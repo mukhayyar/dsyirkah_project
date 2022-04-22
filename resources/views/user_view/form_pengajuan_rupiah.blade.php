@@ -240,7 +240,7 @@
 </section>
 <!-- END SERVICES -->
 @push('styles')
-<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
 <style>
 
     .kbw-signature { width: 100%; height: 200px;}
@@ -261,7 +261,7 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
 			  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
 			  crossorigin="anonymous"></script>
-<script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
+<script type="text/javascript" src="https://keith-wood.name/js/jquery.signature.js"></script>
 <script>
     $(function() {
         $('#pilihanProgram').change(function(){

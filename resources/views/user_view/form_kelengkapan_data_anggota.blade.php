@@ -276,7 +276,7 @@
     $(document).ready(function(){
         $.ajax({
             type: "GET",
-            url: "http://dev.farizdotid.com/api/daerahindonesia/provinsi",
+            url: "https://dev.farizdotid.com/api/daerahindonesia/provinsi",
             success: function(hasil){
                 hasil = hasil.provinsi
                 hasilAkhir = []
