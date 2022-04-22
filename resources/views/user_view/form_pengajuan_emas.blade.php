@@ -337,6 +337,7 @@
 			  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
 			  crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://keith-wood.name/js/jquery.signature.js"></script>
+<script src="/assets/js/jquery.signature.js"></script>
 <script>
     $(function() {
         $('#pilihanProgram').change(function(){
