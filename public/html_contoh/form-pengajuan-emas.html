@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Landing Page | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- App css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/> 
+        
+               
+
+    </head>
+
+    <body class="loading" data-layout-config='{"darkMode":false}' >
+
+        <!-- NAVBAR START -->
+        <nav class="navbar sticky-top navbar-expand-lg py-lg-3 navbar-dark" style="background-color: rgb(38, 105, 252);" >
+            <div class="container">
+
+                <!-- logo -->
+                <a href="index.html" class="navbar-brand me-lg-5">
+                    <img src="assets/images/logo.png" alt="" class="logo-dark" height="18" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+
+                <!-- menus -->
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                    <!-- left menu -->
+                    <ul class="navbar-nav me-auto align-items-center" >
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link active" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link" href="mutlaqah.html">Mutlaqah</a>
+                        </li>
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link" href="">Muqayyadah</a>
+                        </li>
+                        
+                    </ul>
+
+                    <!-- right menu -->
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item me-0">
+                            <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" target="_blank" class="nav-link d-lg-none">Login Anggota</a>
+                            <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" target="_blank" class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex">
+                                <i class="mdi mdi-account me-2"></i> Login Anggota
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+        <!-- NAVBAR END -->
+
+        <!-- START SERVICES -->
+        <section class="py-3" style="background-color: rgb(243, 243, 243);">
+            <div class="container">
+                    <div class="card d-block">
+                        <div class="card-header" style="background-color: goldenrod;">
+                            <div class=" align-items-center mb-2 text-white">
+                                <h3>Form Pengajuan D'Syirkah Gold</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="py-0">
+                                <h5>Data Pemohon</h5>
+                            </div><hr>
+                            <form action="#">
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label class="form-label">Nomor BA</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Cari Nomor BA" aria-label="Recipient's username" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Nama Lengkap</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" readonly="">
+                                    </div>
+                                </div><br>
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Nomor HP</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="0994538574985" readonly="">
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="emailaddress" class="form-label">Email address</label>
+                                        <input class="form-control" type="email" id="emailaddress" placeholder="Email" readonly=""> 
+                                    </div>
+                                </div><hr><br>
+
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Nomor KTP</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="example-select" class="form-label">Jenis Kelamin</label>
+                                        <select class="form-select" id="example-select" required>
+                                            <option selected>Pilih</option>
+                                            <option>Laki - Laki</option>
+                                            <option>Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div><br>
+
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Tempat Lahir</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Tanggal Lahir</label>
+                                        <input class="form-control date" type="date" id="fullname" placeholder="dd/mm/yyyy" required>
+                                    </div>
+                                </div><br>
+
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="example-select" class="form-label">Status Pernikahan</label>
+                                        <select class="form-select" id="example-select" required>
+                                            <option selected>Pilih</option>
+                                            <option>Laki - Laki</option>
+                                            <option>Perempuan</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Nomor NPWP (Jika Punya)</label>
+                                        <input class="form-control date" type="date" id="fullname" placeholder="000000000" required>
+                                    </div>
+                                </div><hr><br>
+                                
+                                <div class="col-md">
+                                    <label for="fullname" class="form-label">Alamat Sesuai KTP</label>
+                                    <input class="form-control date" type="text" id="fullname" placeholder="Jl. Raya Nommor:00 RT/RW" required>
+                                </div>
+                                
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Kelurahan</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Kecamatan</label>
+                                        <input class="form-control date" type="text" id="fullname" placeholder="dd/mm/yyyy" required>
+                                    </div>
+                                </div><br>
+
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Kota / Kabupaten</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Provinsi</label>
+                                        <input class="form-control date" type="text" id="fullname" placeholder="dd/mm/yyyy" required>
+                                    </div>
+                                </div><br>
+
+                                <div class="col-md">
+                                    <label for="example-select" class="form-label">Alamat Tinggal</label>
+                                    <select class="form-select" id="example-select" required>
+                                        <option selected>Pilih</option>
+                                        <option>Sesuai KTP</option>
+                                        <option>Tidak Sesuai KTP</option>
+                                    </select>
+                                </div><br>
+
+                                <div class="col-md">
+                                    <label for="fullname" class="form-label">Alamat Saat ini(domisili)</label>
+                                    <input class="form-control date" type="text" id="fullname" placeholder="Jl. Raya Nommor:00 RT/RW" required>
+                                </div>
+                                
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Kelurahan</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Kecamatan</label>
+                                        <input class="form-control date" type="text" id="fullname" placeholder="dd/mm/yyyy" required>
+                                    </div>
+                                </div><br>
+
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Kota / Kabupaten</label>
+                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md">
+                                        <label for="fullname" class="form-label">Provinsi</label>
+                                        <input class="form-control date" type="text" id="fullname" placeholder="dd/mm/yyyy" required>
+                                    </div>
+                                </div><hr><br>
+                                
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Upload Foto KTP</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div><hr><br>
+
+                                <br><div class="mb-3 text-center" >
+                                    <button class="btn btn-primary" type="submit"> Simpan </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+            </div>
+        </section>
+        <!-- END SERVICES -->
+
+        <!-- START FOOTER -->
+        <footer class="bg-dark py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="assets/images/logo.png" alt="" class="logo-dark" height="18" />
+                        <p class="text-muted mt-4">Hyper makes it easier to build better websites with
+                            <br> great speed. Save hundreds of hours of design
+                            <br> and development by using it.</p>
+
+                        <ul class="social-list list-inline mt-3">
+                            <li class="list-inline-item text-center">
+                                <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item text-center">
+                                <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
+                            </li>
+                            <li class="list-inline-item text-center">
+                                <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item text-center">
+                                <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 mt-3 mt-lg-0">
+                        <h5 class="text-light">Company</h5>
+
+                        <ul class="list-unstyled ps-0 mb-0 mt-3">
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">About Us</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Documentation</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Blog</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Affiliate Program</a></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 mt-3 mt-lg-0">
+                        <h5 class="text-light">Apps</h5>
+
+                        <ul class="list-unstyled ps-0 mb-0 mt-3">
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Ecommerce Pages</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Email</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Social Feed</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Projects</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Tasks Management</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 mt-3 mt-lg-0">
+                        <h5 class="text-light">Discover</h5>
+
+                        <ul class="list-unstyled ps-0 mb-0 mt-3">
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Help Center</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Our Products</a></li>
+                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="mt-5">
+                            <p class="text-muted mt-4 text-center mb-0">© 2022 - <script>document.write(new Date().getFullYear())</script> EOA Club | D'Syirkah. KSPPS Simpul Berkah Sinergi
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END FOOTER -->
+
+        <!-- bundle -->
+        <script src="assets/js/vendor.min.js"></script>
+        <script src="assets/js/app.min.js"></script>
+
+    </body>
+
+</html>

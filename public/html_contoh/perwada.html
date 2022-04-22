@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Datatables | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- third party css -->
+        <link href="assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+
+        <!-- App css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+
+    </head>
+
+    <body class="loading" data-layout-color="light" data-leftbar-theme="dark" data-layout-mode="fluid" >
+        <!-- Begin page -->
+        <div class="wrapper">
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="leftside-menu">
+    
+                <!-- LOGO -->
+                <a href="index.html" class="logo text-center logo-light">
+                    <span class="logo-lg">
+                        <img src="assets/images/logo.png" alt="" height="16">
+                    </span>
+                    <span class="logo-sm">
+                        <img src="assets/images/logo_sm.png" alt="" height="16">
+                    </span>
+                </a>
+
+                <!-- LOGO -->
+                <a href="index.html" class="logo text-center logo-dark">
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-dark.png" alt="" height="16">
+                    </span>
+                    <span class="logo-sm">
+                        <img src="assets/images/logo_sm_dark.png" alt="" height="16">
+                    </span>
+                </a>
+    
+                <div class="h-100" id="leftside-menu-container" data-simplebar>
+
+                    <!--- Sidemenu -->
+                    <ul class="side-nav">
+                         <!--li class="side-nav-title side-nav-item">Dasboard</li--> 
+
+                        <li class="side-nav-item">
+                            <a href="dashboard.html" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span class="badge bg-success float-end">3</span>
+                                <span> Dashboards </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">Users Dashboard</li>
+                        
+                        <li class="side-nav-item">
+                            <a href="ganti-sandi.html" class="side-nav-link">
+                                <i class="uil-dialpad"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Ganti Sandi </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="pengaturan-akun-admin.html" class="side-nav-link">
+                                <i class="uil-users-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Pengaturan Akun </span>
+                            </a>
+                        </li>
+
+
+                        <li class="side-nav-title side-nav-item">Users Anggota</li>
+
+                        <li class="side-nav-item">
+                            <a href="data-verifikasi-akun.html" class="side-nav-link">
+                                <i class="uil-shield-check"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Data Verifikasi Akun </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="pengaturan-akun-anggota.html" class="side-nav-link">
+                                <i class="uil-users-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Pengaturan Akun </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-user-square"></i>
+                                <span class="badge bg-info float-end">2</span>
+                                <span> Akses Area Anggota </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">MASTER</li>
+
+                        <li class="side-nav-item">
+                            <a href="perwada.html" class="side-nav-link">
+                                <i class="uil-shutter-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Perwada </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="cif-anggota.html" class="side-nav-link">
+                                <i class="dripicons-user-id"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> CIF Anggota </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-whatsapp"></i>
+                                <span class="badge bg-info float-end">2</span>
+                                <span> Konten WA </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-servers"></i>
+                                <span class="badge bg-info float-end">2</span>
+                                <span> List Keterangan </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="item-emas.html" class="side-nav-link">
+                                <i class="mdi mdi-gold"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Item Emas </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">Daftar Usaha</li>
+                        
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-gold"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Usaha Basis Emas </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-money-insert"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Usaha Basis Rupiah </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <i class="uil-graph-bar"></i>
+                                <span class="badge bg-info float-end">2</span>
+                                <span> Laporan </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">Pengajuan D'Syirkah</li>
+
+                        <li class="side-nav-item">
+                            <a href="pengajuan-emas.html" class="side-nav-link">
+                                <i class="uil-file-plus-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Emas </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="pengajuan-rupiah.html" class="side-nav-link">
+                                <i class="uil-file-plus "></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Rupiah </span>
+                            </a>
+                        </li>
+                        
+                        <li class="side-nav-title side-nav-item">D'Syirkah Aktif</li>
+
+                        <li class="side-nav-item">
+                            <a href="aktif-emas.html" class="side-nav-link">
+                                <i class="uil-file-check-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Emas </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="aktif-rupiah.html" class="side-nav-link">
+                                <i class="uil-file-check"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Rupiah </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">ReAkad D'Syirkah</li>
+
+                        <li class="side-nav-item">
+                            <a href="apps-calendar.html" class="side-nav-link">
+                                <i class="uil-folder-plus"></i>
+                                <span class="badge bg-info float-end">2</span>
+                                <span> Perpanjang </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#stop-syirkah" aria-expanded="false" aria-controls="sidebarBaseUI" class="side-nav-link">
+                                <i class="uil-times-circle"></i>
+                                <span class="badge bg-info float-end">2</span>
+                                <span> Stop Syirkah </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="stop-syirkah">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="#">Rupiah</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Emas/a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">D'Syirkah NonAktif</li>
+
+                        <li class="side-nav-item">
+                            <a href="nonaktif-emas.html" class="side-nav-link">
+                                <i class="uil-file-times-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Emas </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a href="nonaktif-rupiah.html" class="side-nav-link">
+                                <i class="uil-file-times"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Rupiah </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                    <!-- End Sidebar -->
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+            
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                  <!-- Topbar Start -->
+                  <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list d-lg-none">
+                            
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                </form>
+                            </div>
+                       
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-bell noti-icon"></i>
+                                <span class="noti-icon-badge"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
+
+                                <!-- item-->
+                                <div class="dropdown-item noti-title px-3">
+                                    <h5 class="m-0">
+                                        <span class="float-end">
+                                            <a href="javascript: void(0);" class="text-dark">
+                                                <small>Clear All</small>
+                                            </a>
+                                        </span>Notification
+                                    </h5>
+                                </div>
+
+                                <div class="px-3" style="max-height: 300px;" data-simplebar>
+
+                                    <h5 class="text-muted font-13 fw-normal mt-0">Today</h5>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
+                                        <div class="card-body">
+                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="notify-icon bg-primary">
+                                                        <i class="mdi mdi-comment-account-outline"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1 text-truncate ms-2">
+                                                    <h5 class="noti-item-title fw-semibold font-14">Datacorp <small class="fw-normal text-muted ms-1">1 min ago</small></h5>
+                                                    <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                        <div class="card-body">
+                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="notify-icon bg-info">
+                                                        <i class="mdi mdi-account-plus"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1 text-truncate ms-2">
+                                                    <h5 class="noti-item-title fw-semibold font-14">Admin <small class="fw-normal text-muted ms-1">1 hours ago</small></h5>
+                                                    <small class="noti-item-subtitle text-muted">New user registered</small>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </a>
+
+                                    <h5 class="text-muted font-13 fw-normal mt-0">Yesterday</h5>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                        <div class="card-body">
+                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="notify-icon">
+                                                        <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1 text-truncate ms-2">
+                                                    <h5 class="noti-item-title fw-semibold font-14">Cristina Pride <small class="fw-normal text-muted ms-1">1 day ago</small></h5>
+                                                    <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next meeting</small>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </a>
+
+                                    <h5 class="text-muted font-13 fw-normal mt-0">30 Dec 2021</h5>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                        <div class="card-body">
+                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="notify-icon bg-primary">
+                                                        <i class="mdi mdi-comment-account-outline"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1 text-truncate ms-2">
+                                                    <h5 class="noti-item-title fw-semibold font-14">Datacorp</h5>
+                                                    <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </a>
+
+                                     <!-- item-->
+                                     <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                        <div class="card-body">
+                                            <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <div class="notify-icon">
+                                                        <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1 text-truncate ms-2">
+                                                    <h5 class="noti-item-title fw-semibold font-14">Karen Robinson</h5>
+                                                    <small class="noti-item-subtitle text-muted">Wow ! this admin looks good and awesome design</small>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="text-center">
+                                        <i class="mdi mdi-dots-circle mdi-spin text-muted h3 mt-0"></i>
+                                    </div>
+                                </div>
+
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
+                                    View All
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li class="dropdown notification-list d-none d-sm-inline-block">
+                            <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-view-apps noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
+
+                                <div class="p-2">
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/slack.png" alt="slack">
+                                                <span>Slack</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/github.png" alt="Github">
+                                                <span>GitHub</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/dribbble.png" alt="dribbble">
+                                                <span>Dribbble</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
+                                                <span>Bitbucket</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/dropbox.png" alt="dropbox">
+                                                <span>Dropbox</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/g-suite.png" alt="G Suite">
+                                                <span>G Suite</span>
+                                            </a>
+                                        </div>
+                                    </div> <!-- end row-->
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                aria-expanded="false">
+                                <span class="account-user-avatar"> 
+                                    <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Dominic Keller</span>
+                                    <span class="account-position">Founder</span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                                <!-- item-->
+                                <div class=" dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                </div>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-logout me-1"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                    
+                </div>
+                <!-- end Topbar -->
+                
+                <!-- Start Content-->
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">D'Syirkah</a></li>
+                                            <li class="breadcrumb-item active">Perwada/li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">List Perwada</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title --> 
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- Hanya Sementara -->
+                                        <div class="card-body col-lg-7">
+                                            <h6>Keterangan</h6>
+                                            <p>1.Kode Perwada unik</p>
+                                            <p>2.Semua data input manual</p>
+                                        </div>
+
+                                        <div class="row mb-2">
+                                            <div class="col-sm-5">
+                                                <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-perwada"><i class="mdi mdi-plus-circle me-2"></i> Perwada</a>
+                                            </div>
+                                        </div>
+                
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="scroll-horizontal-preview">
+                                                <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Kode Perwada</th>
+                                                            <th>Nama Perwada</th>
+                                                            <th>Wilayah</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>001</td>
+                                                            <td>KP Jakarta</td>
+                                                            <td>Wilayah 5</td>
+                                                            <td>
+                                                                <span class="badge badge-success-lighten">Active</span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-edit-perwada"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>001</td>
+                                                            <td>KP Jakarta</td>
+                                                            <td>Wilayah 5</td>
+                                                            <td>
+                                                                <span class="badge badge-success-lighten">Active</span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-edit-perwada"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>001</td>
+                                                            <td>KP Jakarta</td>
+                                                            <td>Wilayah 5</td>
+                                                            <td>
+                                                                <span class="badge badge-success-lighten">Active</span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-edit-perwada"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>                                          
+                                            </div> <!-- end preview-->
+                                        
+                                            <div class="tab-pane" id="scroll-horizontal-code">
+                                                <pre class="mb-0">
+                                                    <span class="html escape">
+                                                        &lt;table id=&quot;scroll-horizontal-datatable&quot; class=&quot;table w-100 nowrap&quot;&gt;
+                                                            &lt;thead&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;th&gt;No&lt;/th&gt;
+                                                                    &lt;th&gt;Pengajuan&lt;/th&gt;
+                                                                    &lt;th&gt;Perwada&lt;/th&gt;
+                                                                    &lt;th&gt;Office&lt;/th&gt;
+                                                                    &lt;th&gt;Age&lt;/th&gt;
+                                                                    &lt;th&gt;Start date&lt;/th&gt;
+                                                                    &lt;th&gt;Salary&lt;/th&gt;
+                                                                    &lt;th&gt;Extn.&lt;/th&gt;
+                                                                    &lt;th&gt;E-mail&lt;/th&gt;
+                                                                &lt;/tr&gt;
+                                                            &lt;/thead&gt;
+                                                            &lt;tbody&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;td&gt;Tiger&lt;/td&gt;
+                                                                    &lt;td&gt;Nixon&lt;/td&gt;
+                                                                    &lt;td&gt;System Architect&lt;/td&gt;
+                                                                    &lt;td&gt;Edinburgh&lt;/td&gt;
+                                                                    &lt;td&gt;61&lt;/td&gt;
+                                                                    &lt;td&gt;2011/04/25&lt;/td&gt;
+                                                                    &lt;td&gt;$320,800&lt;/td&gt;
+                                                                    &lt;td&gt;5421&lt;/td&gt;
+                                                                    &lt;td&gt;t.nixon@datatables.net&lt;/td&gt;
+                                                                &lt;/tr&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;td&gt;Garrett&lt;/td&gt;
+                                                                    &lt;td&gt;Winters&lt;/td&gt;
+                                                                    &lt;td&gt;Accountant&lt;/td&gt;
+                                                                    &lt;td&gt;Tokyo&lt;/td&gt;
+                                                                    &lt;td&gt;63&lt;/td&gt;
+                                                                    &lt;td&gt;2011/07/25&lt;/td&gt;
+                                                                    &lt;td&gt;$170,750&lt;/td&gt;
+                                                                    &lt;td&gt;8422&lt;/td&gt;
+                                                                    &lt;td&gt;g.winters@datatables.net&lt;/td&gt;
+                                                                &lt;/tr&gt;
+                                                            &lt;/tbody&gt;
+                                                        &lt;/table&gt; 
+                                                    </span>
+                                                </pre> <!-- end highlight-->
+                                            </div> <!-- end preview code-->
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- container -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-tambah-perwada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg loading authentication-bg">
+                            <div class="modal-content bg-transparent">
+                            <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-xxl-7 col-lg-5">
+                                            <div class="card">
+                                                <!-- Logo-->
+                                                <div class="modal-header" style="background-color: #afb4be">
+                                                    <div style="color: rgb(255, 255, 255);"><h4>Tambah Perwada</h4></div>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                </div>
+                                                <div class="card-body p-4">
+                                                    <form action="#">
+            
+                                                        <div class="mb-3">
+                                                            <label for="fullname" class="form-label">Kode</label>
+                                                            <input class="form-control" type="text" placeholder="000" id="fullname" required>
+                                                        </div>
+            
+                                                        <div class="mb-3">
+                                                            <label for="fullname" class="form-label">Nama Perwada</label>
+                                                            <input class="form-control" type="text" id="fullname" placeholder="KP Pusat" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="fullname" class="form-label">Wilayah</label>
+                                                            <input class="form-control" type="text" id="fullname" placeholder="KP Pusat" required>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3">
+                                                            <label for="example-select" class="form-label">Status</label>
+                                                            <select class="form-select" id="example-select">
+                                                                <option>Active</option>
+                                                                <option>Hold</option>
+                                                                <option>NonAktiv</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3 text-center" >
+                                                            <button class="btn btn-primary" type="submit"> Daftar </button>
+                                                        </div>
+                    
+                                                    </form>
+                                                </div> <!-- end card-body -->
+                                            </div>
+                                            <!-- end card -->
+                                            <!-- end row -->
+                    
+                                        </div> <!-- end col -->
+                                    </div>
+                                    
+                                    <!-- end row -->
+                                </div>
+                                <!-- end container -->
+                            </div>
+                            </div>
+                            <!-- end page -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <div class="modal fade" id="modal-edit-perwada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg loading authentication-bg">
+                            <div class="modal-content bg-transparent">
+                            <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+                                        <div class="col-xxl-7 col-lg-5">
+                                            <div class="card">
+                                                <!-- Logo-->
+                                                <div class="modal-header" style="background-color: #afb4be">
+                                                    <div style="color: rgb(255, 255, 255);"><h4>Edit Perwada</h4></div>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                </div>
+                                                <div class="card-body p-4">
+                                                    <form action="#">
+            
+                                                        <div class="mb-3">
+                                                            <label for="fullname" class="form-label">Kode</label>
+                                                            <input class="form-control" type="text" placeholder="000" id="fullname" readonly="">
+                                                        </div>
+            
+                                                        <div class="mb-3">
+                                                            <label for="fullname" class="form-label">Nama Perwada</label>
+                                                            <input class="form-control" type="text" id="fullname" placeholder="KP Pusat" readonly="">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="fullname" class="form-label">Wilayah</label>
+                                                            <input class="form-control" type="text" id="fullname" placeholder="KP Pusat" required>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3">
+                                                            <label for="example-select" class="form-label">Status</label>
+                                                            <select class="form-select" id="example-select">
+                                                                <option>Active</option>
+                                                                <option>Hold</option>
+                                                                <option>NonAktiv</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <div class="mb-3 text-center" >
+                                                            <button class="btn btn-primary" type="submit"> Daftar </button>
+                                                        </div>
+                    
+                                                    </form>
+                                                </div> <!-- end card-body -->
+                                            </div>
+                                            <!-- end card -->
+                                            <!-- end row -->
+                    
+                                        </div> <!-- end col -->
+                                    </div>
+                                    
+                                    <!-- end row -->
+                                </div>
+                                <!-- end container -->
+                            </div>
+                            </div>
+                            <!-- end page -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                </div> <!-- content -->
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <script>document.write(new Date().getFullYear())</script> © KSPPS Simpul Berkah Sinergi - eoaclub.id
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+            
+
+
+
+
+        </div>
+        <!-- END wrapper -->
+        <!-- Right Sidebar -->
+
+        <div class="rightbar-overlay"></div>
+        <!-- /End-bar -->
+
+        <!-- bundle -->
+        <script src="assets/js/vendor.min.js"></script>
+        <script src="assets/js/app.min.js"></script>
+
+        <!-- third party js -->
+        <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
+        <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
+        <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
+        <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/dataTables.buttons.min.js"></script>
+        <script src="assets/js/vendor/buttons.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/buttons.html5.min.js"></script>
+        <script src="assets/js/vendor/buttons.flash.min.js"></script>
+        <script src="assets/js/vendor/buttons.print.min.js"></script>
+        <script src="assets/js/vendor/dataTables.keyTable.min.js"></script>
+        <script src="assets/js/vendor/dataTables.select.min.js"></script>
+        <script src="assets/js/vendor/fixedColumns.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/fixedHeader.bootstrap5.min.js"></script>
+        <!-- third party js ends -->
+
+        <!-- demo app -->
+        <script src="assets/js/pages/demo.datatable-init.js"></script>
+        <!-- end demo js-->
+
+    </body>
+</html>
