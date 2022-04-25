@@ -15,7 +15,12 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            if ($request->is('admin/*')) {
+                return route('login');
+            } else {
+                Session::flash('pop_login','Kamu perlu masuk terlebih dahulu!');
+                return route('landing_page');
+            }
         }
     }
 }

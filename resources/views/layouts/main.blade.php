@@ -38,7 +38,7 @@
                     <!-- left menu -->
                     <ul class="navbar-nav me-auto align-items-center" >
                         <li class="nav-item mx-lg-1">
-                            <a class="nav-link active" href="home.html">Home</a>
+                            <a class="nav-link active" href="/">Home</a>
                         </li>
                         @if(!Auth::check())
                         <li class="nav-item mx-lg-1" data-bs-toggle="modal" data-bs-target="#modal-not-login" >
@@ -58,9 +58,20 @@
                             <a href="/muqayyadah" class="nav-link">Muqayyadah</a>
                         </li>
                         @endif
-                        @if(Auth::check())
-                        <li class="nav-item dropdown d-lg-none">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        
+                    </ul>
+
+                    <!-- right menu -->
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        @if(!Auth::check())
+                        <li class="nav-item me-0">
+                            <a class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#modal-login">
+                                <i class="mdi mdi-account me-2"></i> Masuk
+                            </a>
+                        </li>
+                        @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -76,20 +87,7 @@
                                 </form>
                             </div>
                         </li>
-                        @else
-                        <li class="nav-item d-lg-none" data-bs-toggle="modal" data-bs-target="#modal-login">
-                            <a class="nav-link">Masuk</a>
-                        </li>
                         @endif
-                    </ul>
-
-                    <!-- right menu -->
-                    <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item me-0">
-                            <a class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#modal-login">
-                                <i class="mdi mdi-account me-2"></i> Masuk
-                            </a>
-                        </li>
                         <p></p>
                     </ul>
                 </div>
@@ -121,8 +119,6 @@
                             <div class="text-sm-center"><h6>Sudah Memiliki Akun? Silahkan Masuk </h6></div>
                             <a href="" class="btn btn-lg font-16 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-login" id="btn-Wa-center">
                                 <i class="mdi mdi-account-box-outline"></i> Masuk Anggota</a>
-                                <br><a href="/mutlaqah"><small>Mutlaqah</small></a>
-                                <br><a href="/muqayyadah"><small>Muqoyyadah</small></a>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
@@ -139,7 +135,7 @@
                                 <div class="card">
                                     <!-- Logo -->
                                     <div class="modal-header" style="background-color: #0652f8">
-                                        <a href="index.html">
+                                        <a href="/">
                                             <span><img src="/assets/images/logo.png" alt="" height="18"></span>
                                         </a>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -151,16 +147,17 @@
                                             <p class="text-muted mb-4">Silahkan masuk Untuk ikut andil dalam Program D'Syirkah</p>
                                         </div>
                                         <div>
-                                        <form action="#">
+                                        <form action="{{route('login_user')}}" method="POST">
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                                <input class="form-control" type="email" id="emailaddress" required name="email" placeholder="Enter your email">
                                             </div>
                                             <div class="mb-3">
-                                                <a href="pages-recoverpw.html" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                                <a href="{{route('password.email')}}" class="text-muted float-end"><small>Forgot your password?</small></a>
                                                 <label for="password" class="form-label">Password</label>
                                                 <div class="input-group input-group-merge">
-                                                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                                    <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
                                                     <div class="input-group-text" data-password="false">
                                                         <span class="password-eye"></span>
                                                     </div>
@@ -168,7 +165,7 @@
                                             </div>
                                             <div class="mb-3 mb-3">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
+                                                    <input type="checkbox" class="form-check-input" name="remember" id="checkbox-signin" checked>
                                                     <label class="form-check-label" for="checkbox-signin">Remember me</label>
                                                 </div>
                                             </div>
@@ -206,7 +203,7 @@
                                 <div class="card">
                                     <!-- Logo-->
                                     <div class="modal-header" style="background-color: #0652f8">
-                                        <a href="index.html">
+                                        <a href="/">
                                             <span><img src="/assets/images/logo.png" alt="" height="18"></span>
                                         </a>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
@@ -222,28 +219,28 @@
                                         <form action="#">
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
-                                                <input class="form-control" type="text" id="fullname" placeholder="contoh: 0.123.1234567" required>
+                                                <input class="form-control" type="text" id="nomor_ba" name="nomor_ba" placeholder="contoh: 0.123.1234567" required>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nama Lengkap</label>
-                                                <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                                <input class="form-control" type="text" id="name" placeholder="Enter your name" required>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nomor HP</label>
-                                                <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                                <input class="form-control" type="text" id="no_hp" placeholder="Enter your name" required>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
+                                                <input class="form-control" type="email" id="email" required placeholder="Enter your email">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
                                                 <div class="input-group input-group-merge">
-                                                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
                                                     <div class="input-group-text" data-password="false">
                                                         <span class="password-eye"></span>
                                                     </div>
@@ -258,7 +255,7 @@
                                             </div>
 
                                             <div class="mb-3 text-center" >
-                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-cekemail" type="submit"> Daftar </button>
+                                                <button class="btn btn-primary" type="submit"> Daftar </button>
                                             </div>
 
                                         </form>
@@ -294,7 +291,7 @@
                                 <div class="card">
                                     <!-- Logo-->
                                     <div class="modal-header" style="background-color: #0652f8">
-                                        <a href="index.html">
+                                        <a href="/">
                                             <span><img src="/assets/images/logo.png" alt="" height="18"></span>
                                         </a>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>

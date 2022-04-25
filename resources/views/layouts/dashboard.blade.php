@@ -477,8 +477,8 @@
                                     <img src="/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                                 </span>
                                 <span>
-                                    <span class="account-user-name">Dominic Keller</span>
-                                    <span class="account-position">Founder</span>
+                                    <span class="account-user-name">{{Auth::user()->name}}</span>
+                                    <span class="account-position">{{Auth::user()->role}}</span>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -554,10 +554,6 @@
         <script src="/assets/js/vendor/fixedColumns.bootstrap5.min.js"></script>
         <script src="/assets/js/vendor/fixedHeader.bootstrap5.min.js"></script>
         <!-- third party js ends -->
-
-        <!-- demo app -->
-        <script src="/assets/js/pages/demo.datatable-init.js"></script>
-        <!-- end demo js-->
         @stack('scripts')
     </body>
 </html>

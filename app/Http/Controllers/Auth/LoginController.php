@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Auth\Custom\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -32,9 +33,20 @@ class LoginController extends Controller
     {
         if(Auth::user()->role != 'User')
         {
-            return RouteServiceProvider::ADMIN;
+            if(Auth::user()->checkStatusAdmin()){
+                return RouteServiceProvider::ADMIN;
+            } else {
+                Session::flash('error','Akun Anda Non Aktif, Bila ini sebuah kesalahan coba hubungi Admin Dsyirkah');
+                return $this->logout();
+            }
         } else {
-            return RouteServiceProvider::USER;
+            if(Auth::user()->checkStatusAnggota())
+            {
+                return RouteServiceProvider::USER;
+            } else {
+                Session::flash('error','Akun Anda Non Aktif, Bila ini sebuah kesalahan coba hubungi Admin Dsyirkah');
+                return $this->logout();
+            }
         }
     }
     /**

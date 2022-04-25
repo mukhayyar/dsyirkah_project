@@ -44,6 +44,11 @@
 
                         <!-- form -->
                         <form action="{{ route('login') }}" method="post">
+                            @if(Session::has('error'))
+                            <div class="alert alert-warning" role="alert">
+                                {{Session::get('error')}}
+                            </div>
+                            @enderror
                             @csrf
                             <div class="mb-3">
                                 <label for="emailaddress" class="form-label">Email address</label>
@@ -65,7 +70,7 @@
                             @enderror
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="checkbox-signin">
+                                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
                                     <label class="form-check-label" for="checkbox-signin">Remember me</label>
                                 </div>
                             </div>

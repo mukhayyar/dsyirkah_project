@@ -318,4 +318,13 @@
             </div>
         </section>
         <!-- END CONTACT -->
+@push('scripts')
+@if(Session::has('pop_login'))
+<script>
+    $(document).ready(function(){
+        $("#modal-login").modal('show');
+    })
+</script>
+@endif
+@endpush
 @endsection

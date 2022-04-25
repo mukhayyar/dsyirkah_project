@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use DataTables;
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UsersDashboardController extends Controller
@@ -15,25 +18,50 @@ class UsersDashboardController extends Controller
         return view('admin_view/users_dashboard/ganti_sandi');
     }
     
-    public function ganti_sandi()
+    public function ganti_sandi(Request $request)
     {
-        return 1;
+        $user_auth = Auth::user()->id;
+        $data = User::find($user_auth);
+        if($request->password == $request->password_confirm){
+            if($request->password == $request->old_password){
+                return redirect()->route('ganti_sandi_page')->with('alert','Password baru sama dengan password lama');
+            } else {
+                if(Hash::check($request->old_password, $data->password)){
+                    $data->password = Hash::make($request->password_confirm);
+                    $data->save();
+                    return redirect()->route('ganti_sandi_page')->with('success','Password berhasil diganti');
+                } else {
+                    return redirect()->route('ganti_sandi_page')->with('alert','Salah memasukkan password lama');
+                }
+            }
+        }
+        else {
+            return redirect()->route('ganti_sandi_page')->with('alert','Konfirmasi password salah');
+        }
     }
     
     public function pengaturan_akun_page(Request $request)
     {
         // $data = Admin::latest()->get();
-        // dd($data);
         if($request->ajax()) {
-            $data = Admin::latest()->get();
+            $data = Admin::with('user')->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->editColumn('status', function($row){
+                    if($row->status){
+                        $btn = "<span class='badge badge-success-lighten'>Aktif</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
+                        return $btn;
+                    }
+                })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editCustomer">Edit</a>';
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteCustomer">Delete</a>';
+                    $btn = '<input type="hidden" name="id_admin" id="id_admin" value="'.$row->id.'"><a href="javascript:void(0);" class="action-icon editUser"> <i class="mdi mdi-square-edit-outline"></i></a>';
+
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','status'])
                 ->make(true);
         }
         return view('admin_view/users_dashboard/pengaturan_akun');
@@ -51,7 +79,30 @@ class UsersDashboardController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'status' => ['required', 'boolean'],
         ]);
-
-        return $validation;
+        if($validation->fails()){
+            return response()->json(['error'=>'Data admin gagal ditambahkan']);
+        }
+        $userAdministrator = new User;
+        $userAdministrator->name = $request->fullName;
+        $userAdministrator->email = $request->email;
+        $userAdministrator->password = Hash::make($request->password);
+        $userAdministrator->role = $request->grup;
+        $userAdministrator->save();
+        
+        $administratorProfile = Admin::create([
+            'user_id' => $userAdministrator->id,
+            'nama_karyawan' => $request->fullName,
+            'user_name' => $request->userName,
+            'email' => $request->email,
+            'jabatan' => $request->jabatan,
+            'kantor' => $request->kantor,
+            'status' => $request->status
+        ]);
+        return response()->json(['success'=>'Data admin berhasil ditambahkan']);
+    }
+    public function pengaturan_akun_edit($id)
+    {
+        $anggota = Admin::with('user')->find($id);
+        return response()->json($anggota);
     }
 }
