@@ -37,7 +37,7 @@
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
                                                 <a href="" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-datacif"><i class="mdi mdi-plus-circle me-2"></i> Data CIF Anggota</a>
-                                                <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="mdi mdi-database-import me-2"></i> Import</a>
+                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#importExcel" class="btn btn-success mb-2"><i class="mdi mdi-database-import me-2"></i> Import</a>
                                             </div>
                                         </div>
 
@@ -64,6 +64,30 @@
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
+                        <!-- Import Excel -->
+                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form method="post" action="cif_anggota/import" enctype="multipart/form-data">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            @csrf
+                                            <label>Pilih file excel</label>
+                                            <div class="form-group">
+                                                <input type="file" name="file" required="required">
+                                            </div>
+                
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Import</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <!-- Modal Tambah Data-->
                         <div class="modal fade" id="modal-tambah-datacif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"">
@@ -73,7 +97,7 @@
                                         <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="CustomerForm" name="CustomerForm" method="POST" action="/admin/master/cif_anggota">
+                                        <form id="CustomerForm" name="CustomerForm" method="POST" action="/admin/master/cif_anggota" enctype="multipart/form-data">
                                             @csrf
                                             <h5>Data Akun</h5><hr>
                                             <div class="row g-2">
@@ -129,10 +153,10 @@
                                                 <div class="col-md">
                                                     <label for="status_nikah" class="form-label">Status Pernikahan</label>
                                                     <select class="form-select" id="status_nikah" name="status_nikah" required>
-                                                        <option value="Belum Nikah">Belum Nikah</option>
+                                                        <option value="Belum_Nikah">Belum Nikah</option>
                                                         <option value="Kawin">Kawin</option>
-                                                        <option value="Cerai Hidup">Cerai Hidup</option>
-                                                        <option value="Cerai Mati">Cerai Mati</option>
+                                                        <option value="Cerai_Hidup">Cerai Hidup</option>
+                                                        <option value="Cerai_Mati">Cerai Mati</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md">
@@ -226,15 +250,18 @@
                                                             <option>--Pilih Kecamatan Terlebih Dahulu--</option>
                                                         </select>
                                                     </div>
-                                                </div><hr><br>
+                                                </div>
                                             </div><hr><br>
 
-                                            <div class="mb-3">
+                                            <div class="mb-3" id="div-upload-ktp">
                                                 <label for="formFile" class="form-label">Upload Foto KTP</label>
                                                 <input class="form-control" type="file" id="file_ktp" name="file_ktp">
                                             </div><hr><br>
+                                            <div id="div-foto-ktp" style="display: none">
+                                                <img id="show_foto_ktp" src="" alt="" width="200" height="150">
+                                            </div>
 
-                                            <br><div class="mb-3 text-center" >
+                                            <br><div class="mb-3 text-center" id="div-simpan">
                                                 <button class="btn btn-primary" type="submit"> Simpan </button>
                                             </div>
                                         </form>
@@ -243,175 +270,6 @@
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
 
-                        <!-- Modal view-->
-                        <div class="modal fade" id="modal-view-datacif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: #afb4be">
-                                        <h4 class="modal-title" style="color: rgb(255, 255, 255);" id="myLargeModalLabel">View Data CIF Anggota</h4>
-                                        <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: 0.123.1234567</strong> </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Nama Lengkap</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <h class="font-14"><strong>: </strong>Mukhammad Nasorudin Maulana</h>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Nomor Hp</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <h class="font-14"><strong>: </strong>081228383733894</h>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Email</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <h class="font-14"><strong>: </strong>nasorudin@gmail.com</h>
-                                            </div><hr>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Nomor KTP</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <h class="font-14"><strong>: </strong>72468376825439868435</h>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Jenis Kelamin</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <h class="font-14"><strong>: </strong>Laki-Laki</h>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Tempat Lahir</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <h class="font-14"><strong>: </strong>Jakarta</h>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Tanggal Lahir</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>22 Maret 2022</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Status Pernikahan</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Menikah</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Nomor NPWP</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>893222479238483247</p>
-                                            </div><hr>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Kecamatan</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Kota / Kabupaten</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Provinsi</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Nama Provinsi</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Alamat Tinggal</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Tidak Sesuai KTP</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Kecamatan</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Kota / Kabupaten</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p class="font-14"><strong>Provinsi</strong></p>
-                                            </div>
-                                            <div class="col-8">
-                                                <p class="font-14"><strong>: </strong>Nama Provinsi</p>
-                                            </div><hr>
-                                        </div>
-                                        <div class="col-4">
-                                            <p class="font-14"><strong>Photo KTP</strong></p>
-                                        </div>
-                                        <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/>
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
 
                     </div> <!-- container -->
 
@@ -425,7 +283,7 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(function() {
-        $('#alamatTinggal').change(function(){
+        $('#checkAlamatTinggal').change(function(){
             $('.domisili').hide();
             $('#' + $(this).val()).show();
         })
@@ -439,7 +297,8 @@
                 hasilAkhir = []
                 hasilAkhir.push("<option value=''>--Provinsi--</option>");
                 hasil.forEach(element => {
-                    value = `${element.id},${element.nama}`
+                    var name = element.nama
+                    value = `${element.id},${name}`
                     hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                 });
                 $("#form_prov").html(hasilAkhir);
@@ -453,13 +312,16 @@
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi="+id,
+                ajaxSend: function(){
+                    hasilAkhir.push("<option value=''>--Kabupaten/Kota--</option>");
+                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
+                },
                 success: function(hasil){
                     hasil = hasil.kota_kabupaten
                     hasilAkhir = []
-                    hasilAkhir.push("<option value=''>--Kabupaten/Kota--</option>");
-                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
                     hasil.forEach(element => {
-                        value = `${element.id},${element.nama}`
+                        var name = element.nama
+                        value = `${element.id},${name}`
                         hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                     });
                     $("#form_kab").html(hasilAkhir);
@@ -475,13 +337,16 @@
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+id,
+                ajaxSend: function(){
+                    hasilAkhir.push("<option value=''>--Kecamatan--</option>");
+                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
+                },
                 success: function(hasil){
                     hasil = hasil.kecamatan
                     hasilAkhir = []
-                    hasilAkhir.push("<option value=''>--Kecamatan--</option>");
-                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
                     hasil.forEach(element => {
-                        value = `${element.id},${element.nama}`
+                        var name = element.nama
+                        value = `${element.id},${name}`
                         hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                     });
                     $("#form_kec").html(hasilAkhir);
@@ -497,13 +362,16 @@
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan="+id,
+                ajaxSend: function(){
+                    hasilAkhir.push("<option value=''>--Kelurahan--</option>");
+                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
+                },
                 success: function(hasil){
                     hasil = hasil.kelurahan
                     hasilAkhir = []
-                    hasilAkhir.push("<option value=''>--Kelurahan--</option>");
-                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
                     hasil.forEach(element => {
-                        value = `${element.id},${element.nama}`
+                        var name = element.nama
+                        value = `${element.id},${name}`
                         hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                     });
                     $("#form_kel").html(hasilAkhir);
@@ -521,7 +389,8 @@
                 hasilAkhir = []
                 hasilAkhir.push("<option value=''>--Provinsi--</option>");
                 hasil.forEach(element => {
-                    value = `${element.id},${element.nama}`
+                    var name = element.nama
+                        value = `${element.id},${name}`
                     hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                 });
                 $("#form_prov_dom").html(hasilAkhir);
@@ -535,13 +404,16 @@
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi="+id,
+                ajaxSend: function(){
+                    hasilAkhir.push("<option value=''>--Kabupaten/Kota--</option>");
+                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
+                },
                 success: function(hasil){
                     hasil = hasil.kota_kabupaten
                     hasilAkhir = []
-                    hasilAkhir.push("<option value=''>--Kabupaten/Kota--</option>");
-                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
                     hasil.forEach(element => {
-                        value = `${element.id},${element.nama}`
+                        var name = element.nama
+                        value = `${element.id},${name}`
                         hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                     });
                     $("#form_kab_dom").html(hasilAkhir);
@@ -557,13 +429,16 @@
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+id,
+                ajaxSend: function(){
+                    hasilAkhir.push("<option value=''>--Kecamatan--</option>");
+                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
+                },
                 success: function(hasil){
                     hasil = hasil.kecamatan
                     hasilAkhir = []
-                    hasilAkhir.push("<option value=''>--Kecamatan--</option>");
-                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
                     hasil.forEach(element => {
-                        value = `${element.id},${element.nama}`
+                        var name = element.nama
+                        value = `${element.id},${name}`
                         hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                     });
                     $("#form_kec_dom").html(hasilAkhir);
@@ -579,13 +454,16 @@
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan="+id,
+                ajaxSend: function() {
+                    hasilAkhir.push("<option value=''>--Kelurahan--</option>");
+                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
+                },
                 success: function(hasil){
                     hasil = hasil.kelurahan
                     hasilAkhir = []
-                    hasilAkhir.push("<option value=''>--Kelurahan--</option>");
-                    hasilAkhir.push("<option>--Data Masih Diproses--</option>");
                     hasil.forEach(element => {
-                        value = `${element.id},${element.nama}`
+                        var name = element.nama
+                        value = `${element.id},${name}`
                         hasilAkhir.push("<option value='"+value+"'>"+element.nama+"</option>");
                     });
                     $("#form_kel_dom").html(hasilAkhir);
@@ -610,15 +488,69 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-        $('body').on('click', '.editCustomer', function () {
-        var Customer_id = $(this).data('id');
-        $.get("" +'/' + Customer_id +'/edit', function (data) {
-            $('#modelHeading').html("Edit Customer");
+        $('body').on('click', '.editAkun', function () {
+        var id_akun = $(this).data('id');
+        $.get("cif_anggota" +'/' + id_akun +'/edit', function (data) {
+            $('#myLargeModalLabel').html("Edit Data CIF Anggota");
             $('#saveBtn').val("edit-user");
-            $('#ajaxModel').modal('show');
-            $('#Customer_id').val(data.id);
-            $('#name').val(data.name);
-            $('#detail').val(data.detail);
+            $('#modal-tambah-datacif').modal('show');
+            $('#cari').css('display','none');
+            $('#no_ba').val(data.nomor_ba);
+            $('#fullNameAdd').val(data.nama_lengkap);
+            $('#noHpAdd').val(data.no_hp);
+            $('#emailAdd').val(data.email);
+            $('#noKtp').val(data.no_ktp);
+            $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','selected');
+            $('#tempat_lahir').val(data.tempat_lahir);
+            $('#tanggal_lahir').val(data.tanggal_lahir);
+            $(`#status_nikah option[value=${data.nikah}]`).attr('selected','selected');
+            $('#npwp').val(data.no_npwp);
+            $('#alamat_ktp').val(data.alamat_ktp);
+            $(`#form_prov option[value='${data.provinsi_ktp}']`).prop('selected',true);
+            $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',true);
+            $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',true);
+            if(data.alamat_tinggal == "tidakSesuai"){
+                $('.domisili').show();
+            }
+        })
+        });
+        $('body').on('click', '.viewAkun', function () {
+        var id_akun = $(this).data('id');
+        $.get("cif_anggota" +'/' + id_akun +'/edit', function (data) {
+            $('#myLargeModalLabel').html("Data CIF Anggota");
+            $('#div-simpan').css("display",'none');
+            $('#div-upload-ktp').css("display",'none');
+            $('#no_ba').attr('disabled',true);
+            $('#fullNameAdd').attr('disabled',true);
+            $('#noHpAdd').attr('disabled',true);
+            $('#emailAdd').attr('disabled',true);
+            $('#noKtp').attr('disabled',true);
+            $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('disabled',true);
+            $('#tempat_lahir').attr('disabled',true);
+            $('#tanggal_lahir').attr('disabled',true);
+            $(`#status_nikah option[value=${data.nikah}]`).attr('disabled',true);
+            $('#npwp').attr('disabled',true);
+            $('#alamat_ktp').attr('disabled',true);
+            $('#modal-tambah-datacif').modal('show');
+            $('#cari').css('display','none');
+            $('#no_ba').val(data.nomor_ba);
+            $('#fullNameAdd').val(data.nama_lengkap);
+            $('#noHpAdd').val(data.no_hp);
+            $('#emailAdd').val(data.email);
+            $('#noKtp').val(data.no_ktp);
+            $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','selected');
+            $('#tempat_lahir').val(data.tempat_lahir);
+            $('#tanggal_lahir').val(data.tanggal_lahir);
+            $(`#status_nikah option[value=${data.nikah}]`).attr('selected','selected');
+            $('#npwp').val(data.no_npwp);
+            $('#alamat_ktp').val(data.alamat_ktp);
+            $(`#form_prov option[value='${data.provinsi_ktp}']`).prop('selected',true);
+            $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',true);
+            $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',true);
+            if(data.alamat_tinggal == "tidakSesuai"){
+                $('.domisili').show();
+            }
+            $(`#show_foto_ktp`).attr('src',data.foto_ktp);
         })
         });
         $('#cari').click(function(e){
@@ -655,31 +587,13 @@
                 dataType: 'json',
                 success: function (data) {
                     $('#CustomerForm').trigger("reset");
-                    $('#modal-tambahdata').modal('hide');
-                    table.draw();
                     $(this).html('Cari');
                     $('#modal-tambah-datacif').modal('hide');
+                    table.draw();
                 },
                 error: function (data) {
                     console.log('Error:', data);
                     $('#saveBtn').html('Save Changes');
-                }
-            });
-        });
-        $('body').on('click', '.deleteCustomer', function () {
-            var Customer_id = $(this).data("id");
-            confirm("Are You sure want to delete !");
-            $.ajax({
-                type: "DELETE",
-                url: ""+'/'+Customer_id,
-                headers: {
-                'X-CSRF-TOKEN': $('input[type="hidden"]').val()
-                },
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    console.log('Error:', data);
                 }
             });
         });

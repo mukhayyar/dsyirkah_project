@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('nama_lengkap');
             $table->string('no_hp');
             $table->string('email');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->integer('no_ktp')->nullable();
-            $table->string('jenis_kelamin')->nullable();
+            $table->enum('jenis_kelamin',['Laki-laki','Perempuan'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('status_nikah')->nullable();
@@ -32,13 +32,14 @@ return new class extends Migration
             $table->string('kecamatan_ktp')->nullable();
             $table->string('kota_ktp')->nullable();
             $table->string('provinsi_ktp')->nullable();
-            $table->enum('alamat_tinggal',['Sesuai KTP','Tidak Sesuai KTP'])->nullable();
+            $table->enum('alamat_tinggal',['sesuai','tidakSesuai'])->nullable();
             $table->string('alamat_domisili')->nullable();
             $table->string('kelurahan_domisili')->nullable();
             $table->string('kecamatan_domisili')->nullable();
             $table->string('kota_domisili')->nullable();
             $table->string('provinsi_domisili')->nullable();
             $table->string('foto_ktp')->nullable();
+            $table->string('lokasi_foto_ktp')->nullable();
             $table->timestamps();
         });
     }

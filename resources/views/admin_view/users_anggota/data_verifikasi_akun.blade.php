@@ -38,7 +38,7 @@
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
                                                 <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#modal-tambahdata"><i class="mdi mdi-plus-circle me-2"></i> Data</a>
-                                                <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="mdi mdi-database-import me-2"></i> Import</a>
+                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#importExcel" class="btn btn-success mb-2"><i class="mdi mdi-database-import me-2"></i> Import</a>
                                             </div>
                                         </div>
 
@@ -79,7 +79,30 @@
                     </div> <!-- container -->
 
                 </div> <!-- content -->
-
+                		<!-- Import Excel -->
+                <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form method="post" action="data_verifikasi_akun/import" enctype="multipart/form-data">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                                </div>
+                                <div class="modal-body">
+                                    @csrf
+                                    <label>Pilih file excel</label>
+                                    <div class="form-group">
+                                        <input type="file" name="file" required="required">
+                                    </div>
+        
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Import</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="modal-tambahdata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg loading authentication-bg">
@@ -97,6 +120,7 @@
                                             <div class="card-body p-4">
                                                 <form id="CustomerForm" name="CustomerForm">
                                                     @csrf
+                                                    <input type="hidden" name="id_user" id="id_user">
                                                     <div class="mb-3">
                                                         <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
                                                         <input class="form-control" type="text" id="no_ba" name="no_ba" placeholder="contoh: 0.123.1234567" required>
@@ -127,6 +151,9 @@
 
                                                     <div class="mb-3 text-center" >
                                                         <button class="btn btn-primary" id="saveBtn" type="submit"> Simpan </button>
+                                                    </div>
+                                                    <div class="mb-3 text-center" >
+                                                        <button class="btn btn-primary" style="display: none;" id="editBtn" type="submit"> Edit </button>
                                                     </div>
 
                                                 </form>
@@ -174,11 +201,13 @@
             ]
         });
         $('body').on('click', '.editAkun', function () {
-            var id_akun = $('#id_akun').val();
+            var id_akun = $(this).data('id');
         $.get("data_verifikasi_akun" +'/' + id_akun +'/edit', function (data) {
             $('#modelHeading').html("Edit Customer");
-            $('#saveBtn').val("edit-user");
+            $('#saveBtn').css("display",'none');
+            $('#editBtn').css("display",'block');
             $('#modal-tambahdata').modal('show');
+            $('#id_user').val(id_akun);
             $('#no_ba').val(data.nomor_ba);
             $('#nama').val(data.nama_lengkap);
             $('#email').val(data.email);
@@ -189,7 +218,6 @@
         $('#saveBtn').click(function (e) {
             e.preventDefault();
             $(this).html('Sending..');
-            console.log($('#CustomerForm').serialize());
             $.ajax({
             data: $('#CustomerForm').serialize(),
             url: "",
@@ -206,19 +234,25 @@
             }
         });
         });
-        $('body').on('click', '.deleteCustomer', function () {
-            var Customer_id = $(this).data("id");
-            confirm("Are You sure want to delete !");
+        $('#editBtn').click(function (e) {
+            e.preventDefault();
+            $(this).html('Editing..');
+            var id_user = $("#id_user").val();
             $.ajax({
-                type: "DELETE",
-                url: ""+'/'+Customer_id,
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
-            });
+            data: $('#CustomerForm').serialize(),
+            url: "data_verifikasi_akun/"+id_user+"/edit",
+            type: "PUT",
+            dataType: 'json',
+            success: function (data) {
+                $('#CustomerForm').trigger("reset");
+                $('#modal-tambahdata').modal('hide');
+                table.draw();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Save Changes');
+            }
+        });
         });
     });
     </script>

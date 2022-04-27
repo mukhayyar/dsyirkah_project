@@ -7,7 +7,12 @@ use App\Models\Anggota;
 use App\Models\Perwada;
 use App\Models\ItemEmas;
 use Illuminate\Http\Request;
+use App\Imports\CIFAnggotaImport;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\CIFAnggotaImportTest;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class MasterController extends Controller
@@ -31,7 +36,7 @@ class MasterController extends Controller
                     }
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" class="action-icon" > <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editPerwada" > <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -59,6 +64,30 @@ class MasterController extends Controller
         $perwada->save();
         return response()->json(['success'=>'Data perwada berhasil ditambahkan']);
     }
+    public function perwada_update(Request $request,$id)
+    {
+        $validation = Validator::make($request->all(), [
+            'kode' => ['required', 'string', 'max:5'],
+            'nama' => ['required', 'string', 'max:255'],
+            'wilayah' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string'],
+        ]);
+        if($validation->fails()){
+            return response()->json($validation->errors());
+        }
+        $perwada = Perwada::find($id);
+        $perwada->kode = $request->kode;
+        $perwada->nama = $request->nama;
+        $perwada->wilayah = $request->wilayah;
+        $perwada->status = $request->status;
+        $perwada->save();
+        return response()->json(['success'=>'Data perwada berhasil diupdate']);
+    }
+    public function perwada_edit($id)
+    {
+        $perwada = Perwada::find($id);
+        return response()->json($perwada);
+    }
     public function cif_anggota_page(Request $request)
     {
         if($request->ajax()) {
@@ -78,8 +107,8 @@ class MasterController extends Controller
                     } 
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" class="action-icon" > <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn = $btn.'<a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon viewAkun" > <i class="mdi mdi-card-search-outline"></i></a>';
+                    $btn = $btn.'<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon editAkun"> <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -96,6 +125,7 @@ class MasterController extends Controller
     }
     public function cif_anggota_add(Request $request)
     {
+        // dd($request->file('file_ktp'));
         $validation = Validator::make($request->all(), [
             'no_ba' => ['required', 'string', 'max:24'],
             'no_ktp' => ['required', 'string','min:16','max:16'],
@@ -116,8 +146,8 @@ class MasterController extends Controller
         $anggota = Anggota::where('nomor_ba',$request->no_ba)->first();
         if($request->file('file_ktp')){
             $name = $request->file('file_ktp')->getClientOriginalName();
-            $path = $request->file('file_ktp')->store('public/images/data_penting/ktp');
-            $anggota->file_ktp = $name;
+            $path = $request->file('file_ktp')->move('images/data_penting/ktp');
+            $anggota->foto_ktp = $name;
             $anggota->lokasi_foto_ktp = $path;
         }
         $anggota->no_ktp = $request->no_ktp;
@@ -132,7 +162,37 @@ class MasterController extends Controller
         $anggota->kota_ktp = $request->kota_ktp;
         $anggota->save();
         return redirect()->back();
+    }
+    public function cif_anggota_edit($id){
+        $anggota = Anggota::where([
+            ['user_id','!=',null],
+            ['nomor_ba','=',$id],
+        ])->first();
+        return response()->json($anggota);
     }    
+    public function cif_anggota_import(Request $request)
+    {
+        $this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_excel',$nama_file);
+		// import data
+		Excel::import(new CIFAnggotaImportTest, public_path('/file_excel/'.$nama_file));
+        File::delete('/file_excel/',$nama_file);
+		// notifikasi dengan session
+		Session::flash('sukses','Data Anggota Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect()->back();
+    }
     public function konten_wa_page()
     {
         return view('admin_view/master/');
@@ -157,7 +217,7 @@ class MasterController extends Controller
                     } 
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" class="action-icon" > <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editEmas" > <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -183,5 +243,29 @@ class MasterController extends Controller
         $emas->status = $request->status;
         $emas->save();
         return response()->json(['success'=>'Data emas berhasil ditambahkan']);
+    }
+    public function item_emas_update(Request $request,$id)
+    {
+        $validation = Validator::make($request->all(), [
+            'nama_emas' => ['required', 'string', 'max:255'],
+            'jenis_emas' => ['required', 'string', 'max:255'],
+            'gramasi' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'boolean'],
+        ]);
+        if($validation->fails()){
+            return response()->json($validation->errors());
+        }
+        $emas = ItemEmas::find($id);
+        $emas->nama = $request->nama_emas;
+        $emas->jenis = $request->jenis_emas;
+        $emas->gramasi = $request->gramasi;
+        $emas->status = $request->status;
+        $emas->save();
+        return response()->json(['success'=>'Data emas berhasil diupdate']);
+    }
+    public function item_emas_edit($id)
+    {
+        $emas = ItemEmas::find($id);
+        return response()->json($emas);
     } 
 }

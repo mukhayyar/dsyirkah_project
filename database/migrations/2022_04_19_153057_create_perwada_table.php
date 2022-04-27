@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kode');
             $table->string('nama');
             $table->string('wilayah');
-            $table->boolean('status');
+            $table->enum('status',['Aktif','Hold','Non Aktif']);
         });
     }
 

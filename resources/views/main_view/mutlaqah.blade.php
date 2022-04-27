@@ -55,59 +55,23 @@
                 </div>
 
                 <div class="row">
+                    @foreach($usaha as $data)
                     <div class="col-md-4">
                         <div class="card" >
-                            <img src="OIP.jpg" class="card-img-top" alt="...">
+                            <img src="/images/{{$data->thumbnail}}" width="250" height="400" class="card-img-top" alt="...">
                             <div class="card-body">
-                                    <p><b>Kategori Usaha: </b> UMKM</p>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <p><b>Kebutuhan: </b>Rp 1.000.000.000,-</p>
+                                    <p><b>Kategori Usaha: </b> {{$data->jenis_usaha}}</p>
+                                  <p class="card-text">{{$data->profil}}</p>
+                                  <p><b>Kebutuhan: </b>@if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}} @endif</p>
                             <div class="d-grid">
                                     <a href="/detail_mutlaqah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
                                     </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card" >
-                            <img src="OIP.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                    <p><b>Kategori Usaha: </b> UMKM</p>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <p><b>Kebutuhan: </b> 250 Gram</p>
-                            <div class="d-grid">
-                                    <a href="/detail_mutlaqah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" >
-                            <img src="OIP.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                    <p><b>Kategori Usaha: </b> UMKM</p>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <p><b>Kebutuhan: </b> 300 Gram</p>
-                            <div class="d-grid">
-                                    <a href="/detail_mutlaqah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="javascript: void(0);" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript: void(0);">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $usaha->links() }}
 
                 <div class="row py-2">
                     <div class="col-lg-12">
@@ -118,9 +82,10 @@
                 </div>
                 <div class="card shadow-lg">
                    <div class="container py-3 tab-pane show active" id="scroll-horizontal-preview">
-                    <table class="table table-sm table-centered mb-0 table table-striped w-100 nowrap" id="scroll-horizontal-datatable">
+                    <table class="table table-sm table-centered mb-0 table table-striped w-100 nowrap data-table" id="scroll-horizontal-datatable">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama Usaha</th>
                                 <th>Periode Laporan</th>
                                 <th>Tahun</th>
@@ -130,66 +95,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>UMKM Peternakan</td>
-                                <td>Periode 1</td>
-                                <td>2022</td>
-                                <td>3%</td>
-                                <td>4%</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-editakun-admin"> <i class="mdi mdi-file-pdf-box"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>UMKM Peternakan</td>
-                                <td>Periode 1</td>
-                                <td>2022</td>
-                                <td>3%</td>
-                                <td>4%</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-editakun-admin"> <i class="mdi mdi-file-pdf-box"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>UMKM Peternakan</td>
-                                <td>Periode 1</td>
-                                <td>2022</td>
-                                <td>3%</td>
-                                <td>4%</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-editakun-admin"> <i class="mdi mdi-file-pdf-box"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>UMKM Peternakan</td>
-                                <td>Periode 1</td>
-                                <td>2022</td>
-                                <td>3%</td>
-                                <td>4%</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-editakun-admin"> <i class="mdi mdi-file-pdf-box"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>UMKM Peternakan</td>
-                                <td>Periode 1</td>
-                                <td>2022</td>
-                                <td>3%</td>
-                                <td>4%</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-editakun-admin"> <i class="mdi mdi-file-pdf-box"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>UMKM Peternakan</td>
-                                <td>Periode 1</td>
-                                <td>2022</td>
-                                <td>3%</td>
-                                <td>4%</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-editakun-admin"> <i class="mdi mdi-file-pdf-box"></i></a>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                    </div>
@@ -214,8 +119,23 @@
         <script src="assets/js/vendor/fixedColumns.bootstrap5.min.js"></script>
         <script src="assets/js/vendor/fixedHeader.bootstrap5.min.js"></script>
         <!-- third party js ends -->
-
-        <!-- demo app -->
-        <script src="assets/js/pages/demo.datatable-init.js"></script>
+        <script>
+            $(function(){
+                var table = $('.data-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "",
+                    columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data: 'judul', name: 'judul'},
+                        {data: 'jenis_usaha', name: 'jenis_usaha'},
+                        {data: 'tanggal_post', name: 'tanggal_post'},
+                        {data: 'jangka_waktu', name: 'jangka_waktu'},
+                        {data: 'kebutuhan', name: 'kebutuhan'},
+                        {data: 'action', name: 'action', orderable: false, searchable: false},
+                    ]
+                });
+            })
+        </script>
         @endpush
 @endsection

@@ -84,12 +84,12 @@
                                             <div class="card">
                                                 <!-- Logo-->
                                                 <div class="modal-header" style="background-color: #afb4be">
-                                                    <div style="color: rgb(255, 255, 255);"><h4>Tambah Akun Anggota</h4></div>
+                                                    <div style="color: rgb(255, 255, 255);"><h4 id="modelHeading">Tambah Akun Anggota</h4></div>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                 </div>
                                                 <div class="card-body p-4">
                                                     <form id="CustomerForm">
-                                                        <div class="mb-3">
+                                                        <div class="mb-3" id="cari-nomor-ba">
                                                             <label class="form-label">Nomor BA</label>
                                                             <div class="input-group">
                                                                 <input type="text" id="no_ba" name="nomor_ba" class="form-control" placeholder="Cari Nomor BA" aria-label="Recipient's username">
@@ -112,7 +112,7 @@
                                                             <input class="form-control" type="email" id="emailAdd" name="email" readonly="">
                                                         </div>
 
-                                                        <div class="mb-3">
+                                                        <div id="password" class="mb-3">
                                                             <label for="password" class="form-label">Password</label>
                                                             <div class="input-group input-group-merge">
                                                                 <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
@@ -122,7 +122,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="mb-3">
+                                                        <div id="passwordConf" class="mb-3">
                                                             <label for="password" class="form-label">Konfirmasi Password</label>
                                                             <div class="input-group input-group-merge">
                                                                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Enter your password">
@@ -132,7 +132,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="mb-3">
+                                                        <div id="status-div" class="mb-3">
                                                             <label for="example-select" class="form-label">Status</label>
                                                             <select class="form-select" id="statusAdd" name="status">
                                                                 <option value="1">Aktif</option>
@@ -141,7 +141,10 @@
                                                         </div>
 
                                                         <div class="mb-3 text-center" >
-                                                            <button class="btn btn-primary" id="saveBtn" type="submit"> Daftar </button>
+                                                            <button class="btn btn-primary" id="saveBtn" type="submit"> Tambah </button>
+                                                        </div>
+                                                        <div class="mb-3 text-center" >
+                                                            <button class="btn btn-primary" style="display:none;" id="editBtn" type="submit"> Edit </button>
                                                         </div>
 
                                                     </form>
@@ -162,65 +165,13 @@
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
 
-                    <div class="modal fade" id="modal-view-anggota" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal-notif-reset" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg loading authentication-bg">
                             <div class="modal-content bg-transparent">
-                            <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
-                                <div class="container">
-                                    <div class="row justify-content-center">
-                                        <div class="col-xxl-7 col-lg-5">
-                                            <div class="card">
-                                                <!-- Logo-->
-                                                <div class="modal-header" style="background-color: #afb4be">
-                                                    <div style="color: rgb(255, 255, 255);"><h4>Lihat Akun Anggota</h4></div>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                                                </div>
-                                                <div class="card-body p-4">
-                                                    <form action="#">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Nomor BA</label>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" placeholder="Nomor BA" aria-label="Recipient's username" readonly="">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="fullname" class="form-label">Nama Lengkap</label>
-                                                            <input class="form-control" type="text" id="fullname" placeholder="Enter your name" readonly="">
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="fullname" class="form-label">Nomor HP</label>
-                                                            <input class="form-control" type="text" id="fullname" placeholder="Enter your name" readonly="">
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="emailaddress" class="form-label">Email address</label>
-                                                            <input class="form-control" type="email" id="emailaddress" readonly="">
-                                                        </div>
-
-                                                        <div class="mb-3 text-center" >
-                                                            <button class="btn btn-primary" type="submit"> Daftar </button>
-                                                        </div>
-
-                                                    </form>
-                                                </div> <!-- end card-body -->
-                                            </div>
-                                            <!-- end card -->
-                                            <!-- end row -->
-
-                                        </div> <!-- end col -->
-                                    </div>
-
-                                    <!-- end row -->
-                                </div>
-                                <!-- end container -->
+                                <p id="modal-notif-reset-pesan" class="alert alert-warning"></p>
                             </div>
-                            </div>
-                            <!-- end page -->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->
-
+                        </div>
+                    </div>
                 </div> <!-- content -->
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
@@ -250,24 +201,70 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-        $('body').on('click', '.editCustomer', function () {
-        var id_akun = $('#id_akun').val();
-        console.log(id_akun);
+        $('body').on('click','.reset-password',function () {
+            console.log('test');
+            $.ajax({
+                data: {email:$(this).data('email')},
+                url: '/lupa_password',
+                type: "POST",
+                dataType: 'json',
+                success: function (data) {
+                    $('#modal-notif-reset').modal('show');
+                    $('#modal-notif-reset-pesan').html('Berhasil dikirim!');
+                },
+                error: function (data) {
+                    $('#modal-notif-reset').modal('show');
+                    $('#modal-notif-reset-pesan').html('Gagal dikirim!');
+                }
+            })
+        })
+        $('body').on('click', '.editAkun', function () {
+        var id_akun = $(this).data('id');
         $.get("pengaturan_akun" +'/' + id_akun +'/edit', function (data) {
-            $('#modelHeading').html("Edit Customer");
-            $('#saveBtn').val("edit-user");
-            $('#ajaxModel').modal('show');
-            $('#id_akun').val(data.id);
-            $('#name').val(data.name);
-            $('#detail').val(data.detail);
-            $(`#statusAdd option[value=${data.}]`).val(data.detail);
+            $('#modelHeading').html("Edit Akun");
+            $('#saveBtn').css("display","none");
+            $('#editBtn').css("display","block");
+            $('#cari-nomor-ba').css("display","none");
+            $('#modal-tambahakun-anggota').modal('show');
+            $('#no_ba').val(data.nomor_ba);
+            $('#fullNameAdd').val(data.nama_lengkap);
+            $('#noHpAdd').val(data.no_hp);
+            $('#emailAdd').val(data.email);
+            $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
+            $('body').on('click','.btn-close',function() {
+                $('#saveBtn').css("display","block");
+                $('#editBtn').css("display","none");
+                $('#modelHeading').html("Tambah Akun");
+                $('#saveBtn').html("Tambah");
+                $('#cari-nomor-ba').css("display","block");
+                $('#no_ba').val('');
+                $('#fullNameAdd').val('');
+                $('#noHpAdd').val('');
+                $('#emailAdd').val('');
+                $(`#statusAdd option[value=${data.status}]`).attr('selected','');
+            }); 
+        })
+        });
+        $('body').on('click', '.viewAkun', function () {
+        var id_akun = $(this).data('id');
+        $.get("pengaturan_akun" +'/' + id_akun +'/view', function (data) {
+            $('#modelHeading').html("Lihat Akun");
+            $('#modal-tambahakun-anggota').modal('show');
+            $('#no_ba').val(data.nomor_ba);
+            $('#fullNameAdd').val(data.nama_lengkap);
+            $('#noHpAdd').val(data.no_hp);
+            $('#emailAdd').val(data.email);
+            $('#cari-nomor-ba').css("display","none");
+            $(`#status-div`).css("display","none");
+            $(`#password`).css("display","none");
+            $(`#passwordConf`).css("display","none");
+            $(`#saveBtn`).css("display","none");
         })
         });
         $('#cari').click(function(e){
             e.preventDefault();
             $(this).html('Mencari...');
             var no_ba = $('#no_ba').val();
-            console.log($('#no_ba').val());
             $.get("pengaturan_akun/" +'cari/' + $('#no_ba').val(), function (data,e) {
                 $(this).html('Ditemukan');
                 $('#fullNameAdd').val(data.nama_lengkap);
@@ -286,30 +283,45 @@
             dataType: 'json',
             success: function (data) {
                 $('#CustomerForm').trigger("reset");
-                $('#modal-tambahdata').modal('hide');
-                table.draw();
-                $(this).html('Cari');
+                $(this).html('Simpan');
                 $('#modal-tambahakun-anggota').modal('hide');
+                $('#saveBtn').css("display","block");
+                $('#editBtn').css("display","none");
+                $('#modelHeading').html("Tambah Akun");
+                $('#saveBtn').html("Tambah");
+                $('#cari-nomor-ba').css("display","block");
+                $('#no_ba').val('');
+                $('#fullNameAdd').val('');
+                $('#noHpAdd').val('');
+                $('#emailAdd').val('');
+                table.draw();
             },
             error: function (data) {
                 console.log('Error:', data);
-                $('#saveBtn').html('Save Changes');
+                $('#saveBtn').html('Simpan');
             }
         });
         });
-        $('body').on('click', '.deleteCustomer', function () {
-            var Customer_id = $(this).data("id");
-            confirm("Are You sure want to delete !");
+        $('#editBtn').click(function (e) {
+            e.preventDefault();
+            $(this).html('Sending..');
+            var id_user = $('#no_ba').val();
             $.ajax({
-                type: "DELETE",
-                url: ""+'/'+Customer_id,
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
-            });
+            data: $('#CustomerForm').serialize(),
+            url: "pengaturan_akun/"+id_user+"/edit",
+            type: "PUT",
+            dataType: 'json',
+            success: function (data) {
+                $('#CustomerForm').trigger("reset");
+                $(this).html('Simpan');
+                $('#modal-tambahakun-anggota').modal('hide');
+                table.draw();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Simpan');
+            }
+        });
         });
     });
     </script>

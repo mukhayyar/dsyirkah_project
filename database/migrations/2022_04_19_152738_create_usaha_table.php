@@ -15,18 +15,23 @@ return new class extends Migration
     {
         Schema::create('usaha', function (Blueprint $table) {
             $table->id();
+            $table->string('pemilik');
             $table->string('judul');
             $table->longText('profil');
             $table->longText('legalitas');
             $table->enum('status_post',['Draf','Posting','Cancel']);
             $table->date('tanggal_post');
-            $table->string('user_create');
-            $table->foreignId('jenis_usaha');
+            $table->string('user_create')->nullable();
+            $table->string('jenis_usaha');
             $table->enum('jenis_akad',['Mutlaqah','Muqqayyadah']);
-            $table->string('emas_muqqayadah')->nullable();
-            $table->string('gram_emas_muqqayadah')->nullable();
+            $table->string('jenis_form')->nullable();
+            $table->string('status_dana')->nullable();
+            $table->string('kebutuhan_emas')->nullable();
+            $table->string('kebutuhan_rupiah')->nullable();
             $table->string('jangka_waktu')->nullable();
-            $table->string('capaian_muqqayadah')->nullable();
+            $table->string('capaian_muqayyadah')->nullable();
+            $table->string('proposal')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

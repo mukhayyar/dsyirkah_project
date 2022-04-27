@@ -36,13 +36,13 @@
 
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
-                                                <a href="create_usaha_basis_rupiah" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>Usaha</a>
+                                                <a href="usaha_basis_emas/create" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>Usaha</a>
                                             </div>
                                         </div>
 
                                         <div class="tab-content">
                                             <div class="tab-pane show active" id="scroll-horizontal-preview">
-                                                <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap">
+                                                <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -60,127 +60,9 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>12 Apr 2022 13:30</td>
-                                                            <td>
-                                                                <span class="badge badge-info-lighten">Draff</span>
-                                                                <span class="badge badge-primary-lighten">Posting</span>
-                                                                <span class="badge badge-danger-lighten">Cancel</span>
-                                                            </td>
-                                                            <td>Nasorudin</td>
-                                                            <td>Usaha Maju Bersama</td>
-                                                            <td>UMKM</td>
-                                                            <td>Mutlaqah / Muqoyyadah</td>
-                                                            <td>Rp 1.000,- </td>
-                                                            <td>78 Bulan</td>
-                                                            <td>25%</td>
-                                                            <td>
-                                                                <span class="badge badge-info-lighten">Pengumpulan Dana</span>
-                                                                <span class="badge badge-success-lighten">Sudah Terpenuhi</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>12 Apr 2022 13:30</td>
-                                                            <td>
-                                                                <span class="badge badge-info-lighten">Draff</span>
-                                                                <span class="badge badge-primary-lighten">Posting</span>
-                                                                <span class="badge badge-danger-lighten">Cancel</span>
-                                                            </td>
-                                                            <td>Nasorudin</td>
-                                                            <td>Usaha Maju Bersama</td>
-                                                            <td>UMKM</td>
-                                                            <td>Mutlaqah / Muqoyyadah</td>
-                                                            <td>Rp 1.000,- </td>
-                                                            <td>78 Bulan</td>
-                                                            <td>25%</td>
-                                                            <td>
-                                                                <span class="badge badge-info-lighten">Pengumpulan Dana</span>
-                                                                <span class="badge badge-success-lighten">Sudah Terpenuhi</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            </td>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>12 Apr 2022 13:30</td>
-                                                            <td>
-                                                                <span class="badge badge-info-lighten">Draff</span>
-                                                                <span class="badge badge-primary-lighten">Posting</span>
-                                                                <span class="badge badge-danger-lighten">Cancel</span>
-                                                            </td>
-                                                            <td>Nasorudin</td>
-                                                            <td>Usaha Maju Bersama</td>
-                                                            <td>UMKM</td>
-                                                            <td>Mutlaqah / Muqoyyadah</td>
-                                                            <td>Rp 1.000,- </td>
-                                                            <td>78 Bulan</td>
-                                                            <td>25%</td>
-                                                            <td>
-                                                                <span class="badge badge-info-lighten">Pengumpulan Dana</span>
-                                                                <span class="badge badge-success-lighten">Sudah Terpenuhi</span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end preview-->
-
-                                            <div class="tab-pane" id="scroll-horizontal-code">
-                                                <pre class="mb-0">
-                                                    <span class="html escape">
-                                                        &lt;table id=&quot;scroll-horizontal-datatable&quot; class=&quot;table w-100 nowrap&quot;&gt;
-                                                            &lt;thead&gt;
-                                                                &lt;tr&gt;
-                                                                    &lt;th&gt;No&lt;/th&gt;
-                                                                    &lt;th&gt;Pengajuan&lt;/th&gt;
-                                                                    &lt;th&gt;Perwada&lt;/th&gt;
-                                                                    &lt;th&gt;Office&lt;/th&gt;
-                                                                    &lt;th&gt;Age&lt;/th&gt;
-                                                                    &lt;th&gt;Start date&lt;/th&gt;
-                                                                    &lt;th&gt;Salary&lt;/th&gt;
-                                                                    &lt;th&gt;Extn.&lt;/th&gt;
-                                                                    &lt;th&gt;E-mail&lt;/th&gt;
-                                                                &lt;/tr&gt;
-                                                            &lt;/thead&gt;
-                                                            &lt;tbody&gt;
-                                                                &lt;tr&gt;
-                                                                    &lt;td&gt;Tiger&lt;/td&gt;
-                                                                    &lt;td&gt;Nixon&lt;/td&gt;
-                                                                    &lt;td&gt;System Architect&lt;/td&gt;
-                                                                    &lt;td&gt;Edinburgh&lt;/td&gt;
-                                                                    &lt;td&gt;61&lt;/td&gt;
-                                                                    &lt;td&gt;2011/04/25&lt;/td&gt;
-                                                                    &lt;td&gt;$320,800&lt;/td&gt;
-                                                                    &lt;td&gt;5421&lt;/td&gt;
-                                                                    &lt;td&gt;t.nixon@datatables.net&lt;/td&gt;
-                                                                &lt;/tr&gt;
-                                                                &lt;tr&gt;
-                                                                    &lt;td&gt;Garrett&lt;/td&gt;
-                                                                    &lt;td&gt;Winters&lt;/td&gt;
-                                                                    &lt;td&gt;Accountant&lt;/td&gt;
-                                                                    &lt;td&gt;Tokyo&lt;/td&gt;
-                                                                    &lt;td&gt;63&lt;/td&gt;
-                                                                    &lt;td&gt;2011/07/25&lt;/td&gt;
-                                                                    &lt;td&gt;$170,750&lt;/td&gt;
-                                                                    &lt;td&gt;8422&lt;/td&gt;
-                                                                    &lt;td&gt;g.winters@datatables.net&lt;/td&gt;
-                                                                &lt;/tr&gt;
-                                                            &lt;/tbody&gt;
-                                                        &lt;/table&gt;
-                                                    </span>
-                                                </pre> <!-- end highlight-->
-                                            </div> <!-- end preview code-->
                                         </div>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -191,4 +73,30 @@
                     </div> <!-- container -->
 
                 </div> <!-- content -->
+@push('scripts')
+<script>
+    $(function(){
+        var table = $('.data-table').DataTable({
+            "scrollX": true,
+            processing: true,
+            serverSide: true,
+            ajax: "",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'tanggal_post', name: 'tanggal_post'},
+                {data: 'status_post', name: 'status_post'},
+                {data: 'pemilik', name: 'pemilik'},
+                {data: 'judul', name: 'judul'},
+                {data: 'jenis_usaha', name: 'jenis_usaha'},
+                {data: 'jenis_akad', name: 'jenis_akad'},
+                {data: 'kebutuhan_rupiah', name: 'kebutuhan_rupiah'},
+                {data: 'jangka_waktu', name: 'jangka_waktu'},
+                {data: 'capaian_muqayyadah', name: 'capaian_muqayyadah'},
+                {data: 'status_dana', name: 'status_dana'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
+        });
+    });
+</script>
+@endpush
 @endsection

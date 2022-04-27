@@ -147,7 +147,7 @@
                                             <p class="text-muted mb-4">Silahkan masuk Untuk ikut andil dalam Program D'Syirkah</p>
                                         </div>
                                         <div>
-                                        <form action="{{route('login_user')}}" method="POST">
+                                        <form action="/login" method="POST">
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
@@ -216,7 +216,8 @@
                                             <p class="text-muted mb-4">Untuk Mendaftar akun di program ini anda wajib sebagai anggota KSPPS Simpul Berkah Sinergi</p>
                                         </div>
 
-                                        <form action="#">
+                                        <form action="/register" method="POST">
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
                                                 <input class="form-control" type="text" id="nomor_ba" name="nomor_ba" placeholder="contoh: 0.123.1234567" required>
@@ -224,17 +225,17 @@
 
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nama Lengkap</label>
-                                                <input class="form-control" type="text" id="name" placeholder="Enter your name" required>
+                                                <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name" required>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nomor HP</label>
-                                                <input class="form-control" type="text" id="no_hp" placeholder="Enter your name" required>
+                                                <input class="form-control" type="text" id="no_hp" name="no_hp" placeholder="Enter your name" required>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" type="email" id="email" required placeholder="Enter your email">
+                                                <input class="form-control" type="email" id="email" name="email" required placeholder="Enter your email">
                                             </div>
 
                                             <div class="mb-3">
@@ -246,10 +247,19 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password</label>
+                                                <div class="input-group input-group-merge">
+                                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Enter your password">
+                                                    <div class="input-group-text" data-password="false">
+                                                        <span class="password-eye"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="mb-3">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="checkbox-signup">
+                                                    <input type="checkbox" class="form-check-input" id="checkbox-signup" required>
                                                     <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
                                                 </div>
                                             </div>

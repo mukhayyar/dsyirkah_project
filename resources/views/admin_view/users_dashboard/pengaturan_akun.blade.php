@@ -170,6 +170,9 @@
                                                         <div class="mb-3 text-center" >
                                                             <button class="btn btn-primary" type="submit" id="saveBtn" value="create"> Daftar </button>
                                                         </div>
+                                                        <div class="mb-3 text-center">
+                                                            <button style="display: none;" class="btn btn-primary" type="submit" id="editBtn" value="create"> Edit </button>
+                                                        </div>
 
                                                     </form>
                                                 </div> <!-- end card-body -->
@@ -219,12 +222,13 @@
             ]
         });
         $('body').on('click', '.editUser', function () {
-        var id_admin = $('#id_admin').val();
+        var id_admin = $(this).data('id');
         $.get("pengaturan_akun" +'/' + id_admin +'/edit', function (data) {
             $('#modelHeading').html("Edit Customer");
-            $('#saveBtn').val("edit-user");
+            $('#saveBtn').css("display","none");
+            $('#editBtn').css("display","block");
             $('#modal-tambahakun-admin').modal('show');
-            $('#id_admin').val(data.user_id);
+            $('#id_admin').val(id_admin);
             $('#fullName').val(data.nama_karyawan);
             $('#userName').val(data.user_name);
             $('#email').val(data.email);
@@ -237,11 +241,33 @@
         $('#saveBtn').click(function (e) {
             e.preventDefault();
             $(this).html('Sending..');
-            console.log($('#CustomerForm').serialize());
             $.ajax({
             data: $('#CustomerForm').serialize(),
             url: "",
             type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                $('#CustomerForm').trigger("reset");
+                $('#modal-tambahakun-admin').modal('hide');
+                table.draw();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Save Changes');
+            }
+        });
+        });
+        $('#editBtn').click(function (e) {
+            console.log('berhasil');
+            var id_admin = $('#id_admin').val();
+            console.log(id_admin)
+            e.preventDefault();
+            $(this).html('Editing..');
+            console.log($('#CustomerForm').serialize());
+            $.ajax({
+            data: $('#CustomerForm').serialize(),
+            url: "pengaturan_akun/"+id_admin+"/edit",
+            type: "PUT",
             dataType: 'json',
             success: function (data) {
                 $('#CustomerForm').trigger("reset");

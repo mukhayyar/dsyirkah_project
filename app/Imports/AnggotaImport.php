@@ -15,7 +15,10 @@ class AnggotaImport implements ToModel
     public function model(array $row)
     {
         return new Anggota([
-            //
+            'nomor_ba'=>$row[0],
+            'nama_lengkap'=>$row[1],
+            'no_hp'=>$row[2],
+            'email'=>$row[3],
         ]);
     }
 }

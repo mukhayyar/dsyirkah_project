@@ -75,12 +75,13 @@
                                             <div class="card">
                                                 <!-- Logo-->
                                                 <div class="modal-header" style="background-color: #afb4be">
-                                                    <div style="color: rgb(255, 255, 255);"><h4>Tambah Emas</h4></div>
+                                                    <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading_emas">Tambah Emas</h4></div>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                 </div>
                                                 <div class="card-body p-4">
                                                     <form id="ItemEmasForm">
                                                         @csrf
+                                                        <input type="hidden" id="id_emas" name="id_emas">
                                                         <div class="mb-3">
                                                             <label for="fullname" class="form-label">Nama Emas</label>
                                                             <input class="form-control" type="text" id="nama_emas" name="nama_emas" required>
@@ -90,8 +91,8 @@
                                                             <label for="example-select" class="form-label">Jenis Emas</label>
                                                             <select class="form-select" id="jenis_emas" name="jenis_emas">
                                                                 <option value="Reguler">Reguler</option>
-                                                                <option value="Series IF">Series IF</option>
-                                                                <option value="Series IS">Series IS</option>
+                                                                <option value="Series_IF">Series IF</option>
+                                                                <option value="Series_IS">Series IS</option>
                                                             </select>
                                                         </div>
 
@@ -110,6 +111,9 @@
 
                                                         <div class="mb-3 text-center" >
                                                             <button class="btn btn-primary" id="saveBtn" type="submit"> Daftar </button>
+                                                        </div>
+                                                        <div class="mb-3 text-center" >
+                                                            <button class="btn btn-primary" style="display: none" id="editBtn" type="submit"> Edit </button>
                                                         </div>
 
                                                     </form>
@@ -157,15 +161,28 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-        $('body').on('click', '.editCustomer', function () {
-        var Customer_id = $(this).data('id');
-        $.get("" +'/' + Customer_id +'/edit', function (data) {
-            $('#modelHeading').html("Edit Customer");
-            $('#saveBtn').val("edit-user");
+        $('body').on('click', '.editEmas', function () {
+        var id_emas = $(this).data('id');
+        $.get("item_emas" +'/' + id_emas +'/edit', function (data) {
+            $('#modalHeading').html("Edit Item Emas");
+            $('#id_emas').val(id_emas);
+            $('#saveBtn').css("display","none");
+            $('#editBtn').css("display","block");
             $('#modal-tambah-namaemas').modal('show');
-            $('#Customer_id').val(data.id);
-            $('#name').val(data.name);
-            $('#detail').val(data.detail);
+            $('#nama_emas').val(data.nama);
+            $(`#jenis_emas option[value=${data.jenis}]`).attr('selected','selected');
+            $('#gramasi').val(data.gramasi);
+            $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
+            $('body').on('click','.btn-close', function(){
+                $('#modalHeading').html("Tambah Item Emas");
+                $('#saveBtn').css("display","none");
+                $('#editBtn').css("display","block");
+                $('#modal-tambah-namaemas').modal('show');
+                $('#nama_emas').val('');
+                $(`#jenis_emas option[value=${data.jenis}]`).attr('selected','');
+                $('#gramasi').val('');
+                $(`#statusAdd option[value=${data.status}]`).attr('selected','');
+            })
         })
         });
         $('#saveBtn').click(function (e) {
@@ -176,6 +193,28 @@
             data: $('#ItemEmasForm').serialize(),
             url: "",
             type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $('#ItemEmasForm').trigger("reset");
+                $('#modal-tambah-namaemas').modal('hide');
+                table.draw();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Save Changes');
+            }
+        });
+        });
+        $('#editBtn').click(function (e) {
+            e.preventDefault();
+            $(this).html('Sending..');
+            var id_emas = $("#id_emas").val()
+            console.log($('#ItemEmasForm').serialize());
+            $.ajax({
+            data: $('#ItemEmasForm').serialize(),
+            url: "item_emas/"+id_emas+"/edit",
+            type: "PUT",
             dataType: 'json',
             success: function (data) {
                 console.log(data);

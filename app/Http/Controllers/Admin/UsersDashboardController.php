@@ -57,7 +57,7 @@ class UsersDashboardController extends Controller
                     }
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<input type="hidden" name="id_admin" id="id_admin" value="'.$row->id.'"><a href="javascript:void(0);" class="action-icon editUser"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editUser"> <i class="mdi mdi-square-edit-outline"></i></a>';
 
                     return $btn;
                 })
@@ -87,6 +87,7 @@ class UsersDashboardController extends Controller
         $userAdministrator->email = $request->email;
         $userAdministrator->password = Hash::make($request->password);
         $userAdministrator->role = $request->grup;
+        $userAdministrator->status = $request->status;
         $userAdministrator->save();
         
         $administratorProfile = Admin::create([
@@ -104,5 +105,26 @@ class UsersDashboardController extends Controller
     {
         $anggota = Admin::with('user')->find($id);
         return response()->json($anggota);
+    }
+    public function pengaturan_akun_update(Request $request,$id)
+    {
+        $admin = Admin::find($id);
+        $userAdministrator = User::find($admin->user_id);
+        $userAdministrator->name = $request->fullName;
+        $userAdministrator->email = $request->email;
+        $userAdministrator->password = Hash::make($request->password);
+        $userAdministrator->role = $request->grup;
+        $userAdministrator->status = $request->status;
+        $userAdministrator->save();
+        
+        $administratorProfile = Admin::where('id',$id)->first();
+        $administratorProfile->nama_karyawan = $request->fullName;
+        $administratorProfile->user_name = $request->userName;
+        $administratorProfile->email = $request->email;
+        $administratorProfile->jabatan = $request->jabatan;
+        $administratorProfile->kantor = $request->kantor;
+        $administratorProfile->status = $request->status;
+        $administratorProfile->save();
+        return response()->json(['success'=>'Data berhasil ditambahkan'],201);
     }
 }

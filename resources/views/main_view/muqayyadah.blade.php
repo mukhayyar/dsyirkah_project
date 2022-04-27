@@ -28,6 +28,7 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($usaha as $data)
                 <div class="col-md-4">
                     <div class="card" >
                         <img src="OIP.jpg" class="card-img-top" alt="...">
@@ -44,56 +45,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card" >
-                        <img src="OIP.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                                <p><b>Kategori Usaha: </b> UMKM</p>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <p><b>Kebutuhan: </b>Rp 100.000.000,-</p>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
-                        </div><br>
-                        <div class="d-grid">
-                                <a href="/detail_muqayyadah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" >
-                        <img src="OIP.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                                <p><b>Kategori Usaha: </b> UMKM</p>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <p><b>Kebutuhan: </b> 150 Gram</p>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
-                        </div><br>
-                        <div class="d-grid">
-                                <a href="/detail_muqayyadah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <div class="row">
-                ... 
-            </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="javascript: void(0);" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="javascript: void(0);">Next</a>
-                    </li>
-                </ul>
-            </nav>
+            {{ $usaha->links() }}
         </div>
     </section>
     <!-- END SERVICES -->
+    @push('scripts')
+        <!-- third party js -->
+        <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
+        <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
+        <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
+        <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/dataTables.buttons.min.js"></script>
+        <script src="assets/js/vendor/buttons.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/buttons.html5.min.js"></script>
+        <script src="assets/js/vendor/buttons.flash.min.js"></script>
+        <script src="assets/js/vendor/buttons.print.min.js"></script>
+        <script src="assets/js/vendor/dataTables.keyTable.min.js"></script>
+        <script src="assets/js/vendor/dataTables.select.min.js"></script>
+        <script src="assets/js/vendor/fixedColumns.bootstrap5.min.js"></script>
+        <script src="assets/js/vendor/fixedHeader.bootstrap5.min.js"></script>
+        <!-- third party js ends -->
+        <script>
+            $(function(){
+                var table = $('.data-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "",
+                    columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data: 'judul', name: 'judul'},
+                        {data: 'jenis_usaha', name: 'jenis_usaha'},
+                        {data: 'tanggal_post', name: 'tanggal_post'},
+                        {data: 'jangka_waktu', name: 'jangka_waktu'},
+                        {data: 'kebutuhan', name: 'kebutuhan'},
+                        {data: 'action', name: 'action', orderable: false, searchable: false},
+                    ]
+                });
+            })
+        </script>
+    @endpush
 @endsection
