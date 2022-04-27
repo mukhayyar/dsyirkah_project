@@ -36,7 +36,7 @@
 
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
-                                                <a href="usaha_basis_emas/create" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>Usaha</a>
+                                                <a href="usaha_basis_rupiah/create" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i>Usaha</a>
                                             </div>
                                         </div>
 

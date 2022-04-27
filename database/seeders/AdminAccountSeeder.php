@@ -20,14 +20,14 @@ class AdminAccountSeeder extends Seeder
     {
         $userAdministrator = User::create([
             'name' => Str::random(10),
-            'email' => 'administrator@test.com',
+            'email' => 'administrator1@test.com',
             'password' => Hash::make('password'),
             'role' => 'Administrator'
         ]);
         $administratorProfile = Admin::create([
             'user_id' => $userAdministrator->id,
             'nama_karyawan' => $userAdministrator->name,
-            'user_name' => 'mentorbaik',
+            'user_name' => 'mentorbaik2',
             'email' => $userAdministrator->email,
             'jabatan' => 'Karyawan',
             'kantor' => 'Pusat',

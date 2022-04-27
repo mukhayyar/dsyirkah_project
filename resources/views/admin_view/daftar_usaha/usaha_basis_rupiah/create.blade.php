@@ -24,8 +24,8 @@
                         <form action="" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @else
-                        <form action="" method="POST" enctype="multipart/form-data">
-                        @endif
+                        <form action="" method="post" enctype="multipart/form-data">
+                        @endif   
                             @csrf
                             <div class="row">
                                 <div class="col-xxl-8">
@@ -54,7 +54,7 @@
                                             <div class="row">
                                                 <div class="row mb-2">
                                                     <div class="col-sm-5">
-                                                        <button type="submit" class="btn btn-primary mb-2"> Simpan</button>
+                                                        <button type="submit" class="btn btn-primary mb-2">Simpan</button>
                                                     </div>
                                                 </div><hr>
                                                 <div class="col card-body py-0" data-simplebar style="max-height: 570px;"><br>
@@ -119,13 +119,13 @@
                                                                         <label for="checkMuqayyadah" class="form-label">Jenis Akad</label>
                                                                         <select class="form-select" id="checkMuqayyadah" name="jenis_akad" required>
                                                                             <option >Pilih</option>
-                                                                            <option value="Mutlaqah" @if(isset($usaha))@if($usaha->jenis_akad == 'mutlaqah') selected @endif @elseif(old('jenis_akad') == 'mutlaqah') selected @endif>Mutlaqah</option>
-                                                                            <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'muqayyadah') selected @endif @elseif(old('jenis_akad') == 'muqayyadah') selected @endif>Muqqayyadah</option>
+                                                                            <option value="Mutlaqah" @if(isset($usaha))@if($usaha->jenis_akad == 'Mutlaqah') selected @endif @elseif(old('jenis_akad') == 'mutlaqah') selected @endif>Mutlaqah</option>
+                                                                            <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'muqayyadah') selected @endif>Muqqayyadah</option>
                                                                         </select>
                                                                     </div><br>
                                                                     <div class="col-md muqayyadah" style="display: none;">
                                                                         <label for="example-select" class="form-label">Jenis Form / Bentuk (Jika Muqoyyadah)</label>
-                                                                        <select class="form-select" id="jenis_form" name="jenis_form_bentuk" required>
+                                                                        <select class="form-select" id="jenis_form" name="jenis_form_bentuk">
                                                                             <option value="" >Pilih</option>
                                                                             <option value="rupiah" @if(isset($usaha))@if($usaha->jenis_form == 'rupiah') selected @endif @elseif(old('jenis_form_bentuk') == 'rupiah') selected @endif>Rupiah</option>
                                                                         </select>
@@ -232,9 +232,9 @@
                     </div> <!-- container -->
                 </div> <!-- content -->
         @push('scripts')
-        <script src="assets/js/vendor/dropzone.min.js"></script>
+        <script src="/assets/js/vendor/dropzone.min.js"></script>
         <!-- init js -->
-        <script src="assets/js/ui/component.fileupload.js"></script>
+        <script src="/assets/js/ui/component.fileupload.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <script>
