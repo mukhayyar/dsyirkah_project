@@ -236,6 +236,20 @@
             $(`#kantor option[value=${data.kantor}]`).attr('selected','selected');
             $(`#grup option[value=${data.user.role}]`).attr('selected','selected');
             $(`#statusForm option[value=${data.status}]`).attr('selected','selected');
+            $('body').on('click','.btn-close',function(){
+                $('#modalHeading').html("Tambah Perwada");
+                $('#saveBtn').css("display","block");
+                $('#editBtn').css("display","none");
+                $('#modal-tambah-perwada').modal('show');
+                $('#id_admin').val('');
+                $('#fullName').val('');
+                $('#userName').val('');
+                $('#email').val('');
+                $('#jabatan').val('');
+                $(`#kantor option[value=${data.kantor}]`).attr('selected','');
+                $(`#grup option[value=${data.user.role}]`).attr('selected','');
+                $(`#statusForm option[value=${data.status}]`).attr('selected','');
+            })
         })
         });
         $('#saveBtn').click(function (e) {

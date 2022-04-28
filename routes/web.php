@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function(){
                 Route::get('/cif_anggota',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_page']);
                 Route::post('/cif_anggota/import',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_import']);
                 Route::get('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_edit']);
+                Route::post('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_update']);
                 Route::post('/cif_anggota',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_add']);
                 Route::get('/cif_anggota/cari/{id}',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_cari']);
                 Route::get('/konten_wa',[App\Http\Controllers\Admin\MasterController::class,'konten_wa_page']);

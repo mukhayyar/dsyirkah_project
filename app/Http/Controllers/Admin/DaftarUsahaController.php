@@ -57,6 +57,28 @@ class DaftarUsahaController extends Controller
         return view('admin_view/daftar_usaha/usaha_basis_emas/create');
     }
     public function create_usaha_basis_emas(Request $request){
+        $validation = Validator::make($request->all(), [
+            'gallery' => ['required'],
+            'proposal' => ['required'],
+            'thumbnail' => ['required'],
+            'judul_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'legalitas' => ['required'],
+            'status_post' => ['required'],
+            'tanggal_post' => ['required'],
+            'kategori' => ['required'],
+            'jenis_akad' => ['required'],
+            'pemilik' => ['required'],
+            'jenis_form_bentuk' => ['required'],
+            'status_dana' => ['required'],
+            'kebutuhan' => ['required'],
+            'jangka_waktu' => ['required'],
+            'capaian' => ['required'],
+        ]);
+        if($validation->fails()){
+            return redirect()->back()->with($validation->errors());
+        }
         if($request->hasfile('gallery')){
             foreach($request->file('gallery') as $image){
                 $name = $image->getClientOriginalName();
@@ -182,6 +204,28 @@ class DaftarUsahaController extends Controller
         return view('admin_view/daftar_usaha/usaha_basis_rupiah/create');
     }
     public function create_usaha_basis_rupiah(Request $request){
+        $validation = Validator::make($request->all(), [
+            'gallery' => ['required'],
+            'proposal' => ['required'],
+            'thumbnail' => ['required'],
+            'judul_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'legalitas' => ['required'],
+            'status_post' => ['required'],
+            'tanggal_post' => ['required'],
+            'kategori' => ['required'],
+            'jenis_akad' => ['required'],
+            'pemilik' => ['required'],
+            'jenis_form_bentuk' => ['required'],
+            'status_dana' => ['required'],
+            'kebutuhan' => ['required'],
+            'jangka_waktu' => ['required'],
+            'capaian' => ['required'],
+        ]);
+        if($validation->fails()){
+            return redirect()->back()->with($validation->errors());
+        }
         if($request->hasfile('gallery')){
             foreach($request->file('gallery') as $image){
                 $name = $image->getClientOriginalName();

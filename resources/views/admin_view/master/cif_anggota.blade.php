@@ -261,7 +261,8 @@
                                                 <img id="show_foto_ktp" src="" alt="" width="200" height="150">
                                             </div>
 
-                                            <br><div class="mb-3 text-center" id="div-simpan">
+                                            <br>
+                                            <div class="mb-3 text-center" id="div-simpan">
                                                 <button class="btn btn-primary" type="submit"> Simpan </button>
                                             </div>
                                         </form>
@@ -491,8 +492,9 @@
         $('body').on('click', '.editAkun', function () {
         var id_akun = $(this).data('id');
         $.get("cif_anggota" +'/' + id_akun +'/edit', function (data) {
+            $('form').attr("action","cif_anggota/"+id_akun+"/edit");
+            $('form').append("<input class='methodPut' id='methodPut' type='hidden' name='_method' value='PUT'>")
             $('#myLargeModalLabel').html("Edit Data CIF Anggota");
-            $('#saveBtn').val("edit-user");
             $('#modal-tambah-datacif').modal('show');
             $('#cari').css('display','none');
             $('#no_ba').val(data.nomor_ba);
@@ -512,6 +514,35 @@
             if(data.alamat_tinggal == "tidakSesuai"){
                 $('.domisili').show();
             }
+            var image = data.lokasi_foto_ktp;
+            if(image != null){
+                var result = image.replace("public","storage");
+                $(`#show_foto_ktp`).attr('src',"/"+result);
+                $('#div-foto-ktp').css("display","block");
+            }
+            $('body').on('click','.btn-close',function() {
+                console.log('tutup')
+                $('form').attr("action","cif_anggota");
+                console.log($('form #methodPut'));
+                $('input').remove('.methodPut');
+                $('#myLargeModalLabel').html("Tambah Data CIF Anggota");
+                $('#cari').css('display','block');
+                $('#no_ba').val('');
+                $('#fullNameAdd').val('');
+                $('#noHpAdd').val('');
+                $('#emailAdd').val('');
+                $('#noKtp').val('');
+                $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','');
+                $('#tempat_lahir').val('');
+                $('#tanggal_lahir').val('');
+                $(`#status_nikah option[value=${data.nikah}]`).attr('selected','');
+                $('#npwp').val('');
+                $('#alamat_ktp').val('');
+                $(`#form_prov option[value='${data.provinsi_ktp}']`).prop('selected',false);
+                $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',false);
+                $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',false);
+                $('.domisili').hide();
+            });
         })
         });
         $('body').on('click', '.viewAkun', function () {
@@ -550,7 +581,47 @@
             if(data.alamat_tinggal == "tidakSesuai"){
                 $('.domisili').show();
             }
-            $(`#show_foto_ktp`).attr('src',data.foto_ktp);
+            var image = data.lokasi_foto_ktp;
+            if(image != null){
+                var result = image.replace("public","storage");
+                $(`#show_foto_ktp`).attr('src',"/"+result);
+                $('#div-foto-ktp').css("display","block");
+            }
+            $('body').on('click','.btn-close',function() {
+                console.log('tutup')
+                $('#myLargeModalLabel').html("Tambah Data CIF Anggota");
+                $('#div-simpan').css("display",'block');
+                $('#div-upload-ktp').css("display",'block');
+                $('#no_ba').attr('disabled',false);
+                $('#fullNameAdd').attr('disabled',false);
+                $('#noHpAdd').attr('disabled',false);
+                $('#emailAdd').attr('disabled',false);
+                $('#noKtp').attr('disabled',false);
+                $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('disabled',false);
+                $('#tempat_lahir').attr('disabled',false);
+                $('#tanggal_lahir').attr('disabled',false);
+                $(`#status_nikah option[value=${data.nikah}]`).attr('disabled',false);
+                $('#npwp').attr('disabled',false);
+                $('#alamat_ktp').attr('disabled',false);
+                $('#cari').css('display','block');
+                $('#no_ba').val('');
+                $('#fullNameAdd').val('');
+                $('#noHpAdd').val('');
+                $('#emailAdd').val('');
+                $('#noKtp').val('');
+                $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','');
+                $('#tempat_lahir').val('');
+                $('#tanggal_lahir').val('');
+                $(`#status_nikah option[value=${data.nikah}]`).attr('selected','');
+                $('#npwp').val('');
+                $('#alamat_ktp').val('');
+                $(`#form_prov option[value='${data.provinsi_ktp}']`).prop('selected',false);
+                $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',false);
+                $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',false);
+                $(`#show_foto_ktp`).attr('src',"");
+                $('#div-foto-ktp').css("display","none");
+                $('.domisili').hide();
+            }); 
         })
         });
         $('#cari').click(function(e){

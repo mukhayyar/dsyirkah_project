@@ -213,6 +213,18 @@
             $('#email').val(data.email);
             $('#no_hp').val(data.no_hp);
             $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
+            $('body').on('click','.btn-close',function(){
+                $('#modalHeading').html("Tambah Perwada");
+                $('#saveBtn').css("display","block");
+                $('#editBtn').css("display","none");
+                $('#modal-tambah-perwada').modal('show');
+                $('#id_user').val('');
+                $('#no_ba').val('');
+                $('#nama').val('');
+                $('#email').val('');
+                $('#no_hp').val('');
+                $(`#statusAdd option[value=${data.kantor}]`).attr('selected','');
+            })
         })
         });
         $('#saveBtn').click(function (e) {
