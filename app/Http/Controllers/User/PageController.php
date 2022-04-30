@@ -40,4 +40,9 @@ class PageController extends Controller
         $usaha = Usaha::where('jenis_akad','mutlaqah')->latest()->paginate(3);
         return view('main_view/mutlaqah',compact('usaha'));
     }
+    public function detail_usaha_mutlaqah($id)
+    {
+        $usaha = Usaha::find($id);
+        return view('main_view/detail_mutlaqah',compact('usaha'));
+    }
 }

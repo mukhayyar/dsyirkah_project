@@ -7,6 +7,7 @@ use App\Models\Usaha;
 use App\Models\UsahaImages;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class DaftarUsahaController extends Controller
 {
@@ -70,31 +71,29 @@ class DaftarUsahaController extends Controller
             'kategori' => ['required'],
             'jenis_akad' => ['required'],
             'pemilik' => ['required'],
-            'jenis_form_bentuk' => ['required'],
             'status_dana' => ['required'],
             'kebutuhan' => ['required'],
             'jangka_waktu' => ['required'],
-            'capaian' => ['required'],
         ]);
         if($validation->fails()){
             return redirect()->back()->with($validation->errors());
         }
         if($request->hasfile('gallery')){
             foreach($request->file('gallery') as $image){
-                $name = $image->getClientOriginalName();
-                $image->move(public_path().'/images/',rand().$name);
+                $name = rand().$image->getClientOriginalName();
+                $image->move(public_path().'/images/',$name);
                 $data[] = $name;
             }
         }
         if($request->hasfile('proposal')){
             $file = $request->file('proposal');
-            $proposalName = $file->getClientOriginalName();
-            $file->move(public_path().'/proposal/',rand().$proposalName);
+            $proposalName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/proposal/',$proposalName);
         }
         if($request->hasfile('thumbnail')){
             $file = $request->file('thumbnail');
-            $thumbnailName = $file->getClientOriginalName();
-            $file->move(public_path().'/images/',rand().$thumbnailName);
+            $thumbnailName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$thumbnailName);
         }
         $usaha = new Usaha;
         $usaha->judul = $request->judul_usaha;
@@ -119,14 +118,31 @@ class DaftarUsahaController extends Controller
         $images_usaha->usaha_id = $usaha->id;
         $images_usaha->nama = \json_encode($data);
         $images_usaha->save();
-        return redirect()->route('admin.usaha_basis_rupiah');
+        return redirect()->route('admin.usaha_basis_emas');
     }
     public function update_usaha_basis_emas(Request $request,$id){
+        $validation = Validator::make($request->all(), [
+            'judul_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'legalitas' => ['required'],
+            'status_post' => ['required'],
+            'tanggal_post' => ['required'],
+            'kategori' => ['required'],
+            'jenis_akad' => ['required'],
+            'pemilik' => ['required'],
+            'status_dana' => ['required'],
+            'kebutuhan' => ['required'],
+            'jangka_waktu' => ['required'],
+        ]);
+        if($validation->fails()){
+            return redirect()->back()->with($validation->errors());
+        }
         $usaha = Usaha::find($id);
         if($request->hasfile('gallery')){
             foreach($request->file('gallery') as $image){
-                $name = $image->getClientOriginalName();
-                $image->move(public_path().'/images/',rand().$name);
+                $name = rand().$image->getClientOriginalName();
+                $image->move(public_path().'/images/',$name);
                 $data[] = $name;
             }
              // upload multiple image ke images usaha
@@ -136,14 +152,14 @@ class DaftarUsahaController extends Controller
         } 
         if($request->hasfile('proposal')){
             $file = $request->file('proposal');
-            $proposalName = $file->getClientOriginalName();
-            $file->move(public_path().'/proposal/',rand().$proposalName);
+            $proposalName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/proposal/',$proposalName);
             $usaha->proposal = $proposalName;
         }
         if($request->hasfile('thumbnail')){
             $file = $request->file('thumbnail');
-            $thumbnailName = $file->getClientOriginalName();
-            $file->move(public_path().'/images/',rand().$thumbnailName);
+            $thumbnailName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$thumbnailName);
             $usaha->thumbnail = $thumbnailName;
         }
         $usaha->judul = $request->judul_usaha;
@@ -217,31 +233,29 @@ class DaftarUsahaController extends Controller
             'kategori' => ['required'],
             'jenis_akad' => ['required'],
             'pemilik' => ['required'],
-            'jenis_form_bentuk' => ['required'],
             'status_dana' => ['required'],
             'kebutuhan' => ['required'],
             'jangka_waktu' => ['required'],
-            'capaian' => ['required'],
         ]);
         if($validation->fails()){
             return redirect()->back()->with($validation->errors());
         }
         if($request->hasfile('gallery')){
             foreach($request->file('gallery') as $image){
-                $name = $image->getClientOriginalName();
-                $image->move(public_path().'/images/',rand().$name);
+                $name = rand().$image->getClientOriginalName();
+                $image->move(public_path().'/images/',$name);
                 $data[] = $name;
             }
         }
         if($request->hasfile('proposal')){
             $file = $request->file('proposal');
-            $proposalName = $file->getClientOriginalName();
-            $file->move(public_path().'/proposal/',rand().$proposalName);
+            $proposalName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/proposal/',$proposalName);
         }
         if($request->hasfile('thumbnail')){
             $file = $request->file('thumbnail');
-            $thumbnailName = $file->getClientOriginalName();
-            $file->move(public_path().'/images/',rand().$thumbnailName);
+            $thumbnailName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$thumbnailName);
         }
         $usaha = new Usaha;
         $usaha->judul = $request->judul_usaha;
@@ -266,14 +280,31 @@ class DaftarUsahaController extends Controller
         $images_usaha->usaha_id = $usaha->id;
         $images_usaha->nama = \json_encode($data);
         $images_usaha->save();
-        return redirect()->route('admin.usaha_basis_emas');
+        return redirect()->route('admin.usaha_basis_rupiah');
     }
     public function update_usaha_basis_rupiah(Request $request,$id){
+        $validation = Validator::make($request->all(), [
+            'judul_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'profil_usaha' => ['required'],
+            'legalitas' => ['required'],
+            'status_post' => ['required'],
+            'tanggal_post' => ['required'],
+            'kategori' => ['required'],
+            'jenis_akad' => ['required'],
+            'pemilik' => ['required'],
+            'status_dana' => ['required'],
+            'kebutuhan' => ['required'],
+            'jangka_waktu' => ['required'],
+        ]);
+        if($validation->fails()){
+            return redirect()->back()->with($validation->errors());
+        }
         $usaha = Usaha::find($id);
         if($request->hasfile('gallery')){
             foreach($request->file('gallery') as $image){
-                $name = $image->getClientOriginalName();
-                $image->move(public_path().'/images/',rand().$name);
+                $name = rand().$image->getClientOriginalName();
+                $image->move(public_path().'/images/',$name);
                 $data[] = $name;
             }
             // upload multiple image ke images usaha
@@ -283,15 +314,15 @@ class DaftarUsahaController extends Controller
         }
         if($request->hasfile('proposal')){
             $file = $request->file('proposal');
-            $proposalName = $file->getClientOriginalName();
-            $file->move(public_path().'/proposal/',rand().$proposalName);
+            $proposalName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/proposal/',$proposalName);
             $usaha->proposal = $proposalName;
 
         }
         if($request->hasfile('thumbnail')){
             $file = $request->file('thumbnail');
-            $thumbnailName = $file->getClientOriginalName();
-            $file->move(public_path().'/images/',rand().$thumbnailName);
+            $thumbnailName = rand().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$thumbnailName);
             $usaha->thumbnail = $thumbnailName;
         }
         $usaha->judul = $request->judul_usaha;

@@ -1,6 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
+/public/proposal
+/public/images
+/public/html_contoh
+/public/file_excel
 /storage/*.key
 /vendor
 .env

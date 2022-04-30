@@ -133,7 +133,7 @@ class UsersAnggotaController extends Controller
 		$file->move('file_excel',$nama_file);
 		// import data
 		Excel::import(new AnggotaImport, public_path('/file_excel/'.$nama_file));
-        File::delete(public_path('/file_excel/'),$nama_file);
+        File::delete(public_path('/file_excel/'.$nama_file));
 		// notifikasi dengan session
 		Session::flash('sukses','Data Anggota Berhasil Diimport!');
  

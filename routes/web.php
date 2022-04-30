@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function(){
     Route::middleware('IsUser')->group(function(){
         Route::get('/mutlaqah', [App\Http\Controllers\User\PageController::class,'mutlaqah']);
         Route::get('/muqayyadah', [App\Http\Controllers\User\PageController::class,'muqayyadah']);
-        Route::get('/mutlaqah/{id}', [App\Http\Controllers\User\PageController::class,'detail_mutlaqah']);
+        Route::get('/mutlaqah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_mutlaqah']);
         Route::get('/muqayyadah/{id}', [App\Http\Controllers\User\PageController::class,'detail_muqayyadah']);
         Route::get('/detail_mutlaqah', function () {
             return view('main_view/detail_mutlaqah');

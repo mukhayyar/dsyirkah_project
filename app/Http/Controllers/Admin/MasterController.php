@@ -186,7 +186,7 @@ class MasterController extends Controller
 		$file->move('file_excel',$nama_file);
 		// import data
 		Excel::import(new CIFAnggotaImportTest, public_path('/file_excel/'.$nama_file));
-        File::delete('/file_excel/',$nama_file);
+        File::delete(public_path('/file_excel/'.$nama_file));
 		// notifikasi dengan session
 		Session::flash('sukses','Data Anggota Berhasil Diimport!');
  

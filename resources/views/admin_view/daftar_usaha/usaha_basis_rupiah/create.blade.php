@@ -123,7 +123,7 @@
                                                                             <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'muqayyadah') selected @endif>Muqqayyadah</option>
                                                                         </select>
                                                                     </div><br>
-                                                                    <div class="col-md muqayyadah" style="display: none;">
+                                                                    <div class="col-md Muqayyadah" style="display: none;">
                                                                         <label for="example-select" class="form-label">Jenis Form / Bentuk (Jika Muqoyyadah)</label>
                                                                         <select class="form-select" id="jenis_form" name="jenis_form_bentuk">
                                                                             <option value="" >Pilih</option>
@@ -142,7 +142,7 @@
                                                                         <input class="form-control date" type="text" name="jangka_waktu" id="jangka_waktu" value="@if(isset($usaha)){{$usaha->jangka_waktu}}@else{{ old('jangka_waktu') }}@endif" required>
                                                                     </div><br>
 
-                                                                    <div class="col-md muqayyadah" style="display: none;">
+                                                                    <div class="col-md Muqayyadah" style="display: none;">
                                                                         <label for="capaian" class="form-label">Capaian (jika Muqoyyadah)</label>
                                                                         <input class="form-control date" type="text" name="capaian" id="capaian" readonly="" @if(isset($usaha)){{$usaha->capaian_muqayyadah}}@else{{ old('capaian_muqayyadah') }}@endif>
                                                                     </div><br>
@@ -240,7 +240,7 @@
         <script>
             $(function() {
                 $('#checkMuqayyadah').change(function(){
-                    $('.muqayyadah').hide();
+                    $('.Muqayyadah').hide();
                     $('.' + $(this).val()).show();
                 })
             })

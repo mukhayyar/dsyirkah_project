@@ -6,7 +6,7 @@
                     <div class="card d-block">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h3 class="">Usaha Maju Bersama</h3>
+                                <h3 class="">{{$usaha->judul}}</h3>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -14,20 +14,26 @@
                                         <div class="ribbon ribbon-success float-start" style="background-color: rgb(65, 124, 253);"><i class="mdi mdi-progress-check me-1"></i> Draff / Pengumpulan Dana / Sudah Terpenuhi </div>
                                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                                     <ol class="carousel-indicators">
-                                                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                                                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                                                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                                                        @foreach(json_decode($usaha->usahaImages->nama) as $image)
+                                                        @if($loop->index == 0)
+                                                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$loop->index}}" class="active"></li>
+                                                        @else
+                                                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$loop->index}}"></li>
+                                                        @endif
+                                                        @endforeach
                                                     </ol>
                                                     <div class="carousel-inner" role="listbox">
+                                                        @foreach(json_decode($usaha->usahaImages->nama) as $image)
+                                                        @if($loop->index == 0)
                                                         <div class="carousel-item active">
-                                                            <img class="d-block img-fluid" src="assets/images/small/small-1.jpg" alt="First slide">
+                                                            <img class="d-block img-fluid" width="612" height="418" src="/images/{{$image}}" alt="{{$image}}">
                                                         </div>
+                                                        @else
                                                         <div class="carousel-item">
-                                                            <img class="d-block img-fluid" src="assets/images/small/small-2.jpg" alt="Second slide">
+                                                            <img class="d-block img-fluid" width="612" height="418" src="/images/{{$image}}" alt="{{$image}}">
                                                         </div>
-                                                        <div class="carousel-item">
-                                                            <img class="d-block img-fluid" src="assets/images/small/small-1.jpg" alt="Third slide">
-                                                        </div>
+                                                        @endif
+                                                        @endforeach
                                                     </div>
                                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -62,29 +68,10 @@
                                     
                                     <div class="tab-content">
                                         <div class="tab-pane show active" id="home1">
-                                            <p Class="text-muted"> 1111Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
-                                                as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
-                                                as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
-                                                as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? </p>
-                                        </div>
-                                        <div class="tab-pane" id="profile1">
-                                            <p Class="text-muted"> With supporting text below as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas
-                                                corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores libero voluptas quod perferendis! Voluptate,
-                                                quod illo rerum? Lorem ipsum dolor sit amet.</p>
+                                            <p Class="text-muted"> {{$usaha->profil}} </p>
                                         </div>
                                         <div class="tab-pane" id="legalitas">
-                                            <p Class="text-muted"> 3333Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
-                                                as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
-                                                as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? Lorem ipsum dolor sit amet. With supporting text below
-                                                as a natural lead-in to additional contenposuere erat a ante. Voluptates, illo, iste itaque voluptas corrupti ratione reprehenderit magni similique? Tempore, quos delectus asperiores
-                                                libero voluptas quod perferendis! Voluptate, quod illo rerum? </p>
+                                            <p Class="text-muted"> {{$usaha->legalitas}} </p>
                                         </div>
                                     </div>
                                     <p class="text-muted mb-2">
@@ -94,14 +81,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p><b>Kategori : </b><small>UMKM Peternakan</small></p>
-                                    <p><b>Kebutuhan : </b><small>Rp 100.0000.000,-</small></p>
-                                    <p><b>Jangka Waktu : </b><small>78 Bulan</small></p>
+                                    <p><b>Kategori : </b><small>{{$usaha->jenis_usaha}}</small></p>
+                                    <p><b>Kebutuhan : </b><small>@if($usaha->checkUsahaKebutuhan())Rp {{number_format($usaha->kebutuhan_rupiah,2,",",".")}},- @else {{$usaha->kebutuhan_emas}} @endif</small></p>
+                                    <p><b>Jangka Waktu : </b><small>{{$usaha->jangkaWaktu()}}</small></p>
                                 </div>
                                 <div class="col-md-6" style="margin-top: 2%;">
                                     <div class="text-sm-center"><h5>Silahkan Hubungi Kami jika membutuhkan penjelasan lebih detail</h5></div>
                                     <div class="text-center mt-sm-0 mt-3 text-sm-center">
-                                        <a href="" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
+                                        <a href="/proposal/{{$usaha->proposal}}" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
                                             <i class="mdi mdi-book"></i> Lihat Proposal </a>
                                         <a href="" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
                                             <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>
@@ -113,7 +100,7 @@
                                 <div class="col-4">
                                     <div class="mb-4">
                                         <h5>Posting</h5>
-                                        <p>17 March 2018 <small class="text-muted">1:00 PM</small></p>
+                                        <p>{{date("d M Y",strtotime($usaha->tanggal_post))}} <small class="text-muted">1:00 PM</small></p>
                                     </div>
                                 </div>
                             </div>

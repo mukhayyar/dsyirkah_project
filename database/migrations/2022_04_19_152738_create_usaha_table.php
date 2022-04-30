@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('usaha', function (Blueprint $table) {
             $table->id();
             $table->string('pemilik');
+            $table->string('slug');
             $table->string('judul');
             $table->longText('profil');
             $table->longText('legalitas');

@@ -64,7 +64,7 @@
                                   <p class="card-text">{{$data->profil}}</p>
                                   <p><b>Kebutuhan: </b>@if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}} @endif</p>
                             <div class="d-grid">
-                                    <a href="/detail_mutlaqah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
+                                    <a href="/mutlaqah/usaha/{{$data->id}}" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
                                     </div>
                             </div>
                         </div>

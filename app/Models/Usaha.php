@@ -14,4 +14,17 @@ class Usaha extends Model
     {
         return $this->hasOne(UsahaImages::class);
     }
+    public function checkUsahaKebutuhan()
+    {
+        if(is_null($this->kebutuhan_emas))
+        {
+            return true;
+        } 
+        return false;
+    }
+
+    public function jangkaWaktu()
+    {
+        return $this->jangka_waktu." Bulan";
+    }
 }

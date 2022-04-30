@@ -125,7 +125,7 @@
                                                                         <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'Muqayyadah') selected @endif>Muqqayyadah</option>
                                                                     </select>
                                                                 </div><br>
-                                                                <div class="col-md muqayyadah" style="display:none;">
+                                                                <div class="col-md Muqayyadah" style="display:none;">
                                                                     <label for="jenis_form_bentuk" class="form-label">Jenis Form / Bentuk (Jika Muqoyyadah)</label>
                                                                     <select class="form-select" id="jenis_form_bentuk" name="jenis_form_bentuk">
                                                                         <option value="">Pilih</option>
@@ -144,7 +144,7 @@
                                                                     <input class="form-control date" name="jangka_waktu" type="text" id="jangka_waktu" value="@if(isset($usaha)){{$usaha->jangka_waktu}}@else{{ old('jangka_waktu') }}@endif" required>
                                                                 </div><br>
 
-                                                                <div class="col-md muqayyadah" style="display:none;">
+                                                                <div class="col-md Muqayyadah" style="display:none;">
                                                                     <label for="capaian" class="form-label">Capaian (jika Muqoyyadah)</label>
                                                                     <input class="form-control date" name="capaian" type="text" id="capaian" readonly="" value="@if(isset($usaha)){{$usaha->capaian_muqayyadah}}@else{{ old('capaian') }}@endif">
                                                                 </div><br>
@@ -241,7 +241,7 @@
         <script>
             $(function() {
                 $('#checkMuqayyadah').change(function(){
-                    $('.muqayyadah').hide();
+                    $('.Muqayyadah').hide();
                     $('.' + $(this).val()).show();
                 })
             })
