@@ -45,4 +45,9 @@ class PageController extends Controller
         $usaha = Usaha::find($id);
         return view('main_view/detail_mutlaqah',compact('usaha'));
     }
+    public function detail_usaha_muqayyadah($id)
+    {
+        $usaha = Usaha::find($id);
+        return view('main_view/detail_muqayyadah',compact('usaha'));
+    }
 }

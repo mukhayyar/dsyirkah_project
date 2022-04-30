@@ -31,16 +31,16 @@
                 @foreach($usaha as $data)
                 <div class="col-md-4">
                     <div class="card" >
-                        <img src="OIP.jpg" class="card-img-top" alt="...">
+                        <img src="/images/{{$data->thumbnail}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                                <p><b>Kategori Usaha: </b> UMKM</p>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <p><b>Kebutuhan: </b> Rp 100.000.000,-</p>
+                                <p><b>Kategori Usaha: </b> {{$data->jenis_usaha}}</p>
+                              <p class="card-text">{{$data->profil}}</p>
+                              <p><b>Kebutuhan: </b> @if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}}</p>
                               <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
                         </div><br>
                         <div class="d-grid">
-                                <a href="/detail_muqayyadah" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
+                                <a href="/muqayyadah/usaha/{{$usaha->id}}" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
                                 </div>
                         </div>
                     </div>

@@ -72,34 +72,6 @@
                     @endforeach
                 </div>
                 {{ $usaha->links() }}
-
-                <div class="row py-2">
-                    <div class="col-lg-12">
-                        <div class="text-center text-white">
-                            <br><br><h5 Class="card-header" style="background-color: rgb(48, 113, 252);">Laporan D'Syirkah Mutlaqah</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="card shadow-lg">
-                   <div class="container py-3 tab-pane show active" id="scroll-horizontal-preview">
-                    <table class="table table-sm table-centered mb-0 table table-striped w-100 nowrap data-table" id="scroll-horizontal-datatable">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Usaha</th>
-                                <th>Periode Laporan</th>
-                                <th>Tahun</th>
-                                <th>Target Margin</th>
-                                <th>Capaian Margin</th>
-                                <th>View</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                   </div>
-
-                </div>
             </div>
         </section>
         <!-- END SERVICES -->
