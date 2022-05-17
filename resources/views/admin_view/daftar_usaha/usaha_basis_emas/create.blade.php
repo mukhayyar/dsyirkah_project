@@ -126,12 +126,13 @@
                                                                     </select>
                                                                 </div><br>
                                                                 <div class="col-md Muqayyadah" style="display:none;">
-                                                                    <label for="jenis_form_bentuk" class="form-label">Jenis Form / Bentuk (Jika Muqoyyadah)</label>
+                                                                    <label for="jenis_form_bentuk" class="form-label">Jenis Form / Bentuk</label>
                                                                     <select class="form-select" id="jenis_form_bentuk" name="jenis_form_bentuk">
                                                                         <option value="">Pilih</option>
                                                                         <option value="emas" @if(isset($usaha))@if($usaha->jenis_form == 'emas') selected @endif @elseif(old('jenis_form_bentuk') == 'emas') selected @endif>Emas</option>
                                                                     </select>
-                                                                    <small>jika mutlaqah tidak ada form ini</small>
+                                                                    <label for="kode_usaha" class="form-label">Kode Usaha</label>
+                                                                    <input class="form-control" type="text" value="kode_usaha" id="kode_usaha">
                                                                 </div><br>
 
                                                                 <div class="col-md">

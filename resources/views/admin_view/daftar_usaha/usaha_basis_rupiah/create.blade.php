@@ -129,7 +129,8 @@
                                                                             <option value="" >Pilih</option>
                                                                             <option value="rupiah" @if(isset($usaha))@if($usaha->jenis_form == 'rupiah') selected @endif @elseif(old('jenis_form_bentuk') == 'rupiah') selected @endif>Rupiah</option>
                                                                         </select>
-                                                                        <small>jika mutlaqah tidak ada form ini</small>
+                                                                        <label for="kode_usaha" class="form-label">Kode Usaha</label>
+                                                                        <input class="form-control" type="text" value="kode_usaha" id="kode_usaha">
                                                                     </div><br>
 
                                                                     <div class="col-md">

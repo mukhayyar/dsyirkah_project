@@ -146,7 +146,7 @@ class MasterController extends Controller
         $anggota = Anggota::where('nomor_ba',$request->no_ba)->first();
         if($request->file('file_ktp')){
             $name = $request->file('file_ktp')->getClientOriginalName();
-            $path = $request->file('file_ktp')->move('images/data_penting/ktp');
+            $path = $request->file('file_ktp')->move(public_path().'/images/data_penting/ktp/',$name);
             $anggota->foto_ktp = $name;
             $anggota->lokasi_foto_ktp = $path;
         }

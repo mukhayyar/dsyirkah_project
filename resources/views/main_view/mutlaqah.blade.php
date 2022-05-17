@@ -14,9 +14,9 @@
                     </div>
                 </div><br>
                 <div class="col-md-5 g-3">
-                    <a href="" class="btn btn-lg font-16 btn-success" id="btn-form-gabung">
+                    <a href="/mutlaqah/pengajuan/rupiah" class="btn btn-lg font-16 btn-success" id="btn-form-gabung">
                         <i class="mdi mdi-clipboard-edit-outline"></i> Ikut dengan Rupiah </a>
-                    <a href="" class="btn btn-lg font-16 text-white" id="btn-form-gabung" style="background-color: goldenrod;">
+                    <a href="/mutlaqah/pengajuan/emas" class="btn btn-lg font-16 text-white" id="btn-form-gabung" style="background-color: goldenrod;">
                         <i class="mdi mdi-clipboard-edit-outline"></i > Ikut dengan Emas </a>
                 </div><br>
                 <div class="col-md-6 card shadow-sm">
@@ -75,39 +75,4 @@
             </div>
         </section>
         <!-- END SERVICES -->
-        @push('scripts')
-        <!-- third party js -->
-        <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
-        <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
-        <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
-        <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
-        <script src="assets/js/vendor/dataTables.buttons.min.js"></script>
-        <script src="assets/js/vendor/buttons.bootstrap5.min.js"></script>
-        <script src="assets/js/vendor/buttons.html5.min.js"></script>
-        <script src="assets/js/vendor/buttons.flash.min.js"></script>
-        <script src="assets/js/vendor/buttons.print.min.js"></script>
-        <script src="assets/js/vendor/dataTables.keyTable.min.js"></script>
-        <script src="assets/js/vendor/dataTables.select.min.js"></script>
-        <script src="assets/js/vendor/fixedColumns.bootstrap5.min.js"></script>
-        <script src="assets/js/vendor/fixedHeader.bootstrap5.min.js"></script>
-        <!-- third party js ends -->
-        <script>
-            $(function(){
-                var table = $('.data-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: "",
-                    columns: [
-                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data: 'judul', name: 'judul'},
-                        {data: 'jenis_usaha', name: 'jenis_usaha'},
-                        {data: 'tanggal_post', name: 'tanggal_post'},
-                        {data: 'jangka_waktu', name: 'jangka_waktu'},
-                        {data: 'kebutuhan', name: 'kebutuhan'},
-                        {data: 'action', name: 'action', orderable: false, searchable: false},
-                    ]
-                });
-            })
-        </script>
-        @endpush
 @endsection

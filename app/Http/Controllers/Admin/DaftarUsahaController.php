@@ -97,6 +97,7 @@ class DaftarUsahaController extends Controller
         }
         $usaha = new Usaha;
         $usaha->judul = $request->judul_usaha;
+        $usaha->kode_usaha = $request->kode_usaha;
         $usaha->profil = $request->profil_usaha;
         $usaha->legalitas = $request->legalitas;
         $usaha->status_post = $request->status_post;
@@ -259,6 +260,7 @@ class DaftarUsahaController extends Controller
         }
         $usaha = new Usaha;
         $usaha->judul = $request->judul_usaha;
+        $usaha->kode_usaha = $request->kode_usaha;
         $usaha->profil = $request->profil_usaha;
         $usaha->legalitas = $request->legalitas;
         $usaha->status_post = $request->status_post;

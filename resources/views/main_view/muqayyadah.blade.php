@@ -35,7 +35,7 @@
                         <div class="card-body">
                                 <p><b>Kategori Usaha: </b> {{$data->jenis_usaha}}</p>
                               <p class="card-text">{{$data->profil}}</p>
-                              <p><b>Kebutuhan: </b> @if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}}</p>
+                              <p><b>Kebutuhan: </b> @if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}}@endif</p>
                               <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
                         </div><br>
@@ -50,40 +50,4 @@
             {{ $usaha->links() }}
         </div>
     </section>
-    <!-- END SERVICES -->
-    @push('scripts')
-        <!-- third party js -->
-        <script src="assets/js/vendor/jquery.dataTables.min.js"></script>
-        <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
-        <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
-        <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
-        <script src="assets/js/vendor/dataTables.buttons.min.js"></script>
-        <script src="assets/js/vendor/buttons.bootstrap5.min.js"></script>
-        <script src="assets/js/vendor/buttons.html5.min.js"></script>
-        <script src="assets/js/vendor/buttons.flash.min.js"></script>
-        <script src="assets/js/vendor/buttons.print.min.js"></script>
-        <script src="assets/js/vendor/dataTables.keyTable.min.js"></script>
-        <script src="assets/js/vendor/dataTables.select.min.js"></script>
-        <script src="assets/js/vendor/fixedColumns.bootstrap5.min.js"></script>
-        <script src="assets/js/vendor/fixedHeader.bootstrap5.min.js"></script>
-        <!-- third party js ends -->
-        <script>
-            $(function(){
-                var table = $('.data-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: "",
-                    columns: [
-                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data: 'judul', name: 'judul'},
-                        {data: 'jenis_usaha', name: 'jenis_usaha'},
-                        {data: 'tanggal_post', name: 'tanggal_post'},
-                        {data: 'jangka_waktu', name: 'jangka_waktu'},
-                        {data: 'kebutuhan', name: 'kebutuhan'},
-                        {data: 'action', name: 'action', orderable: false, searchable: false},
-                    ]
-                });
-            })
-        </script>
-    @endpush
 @endsection

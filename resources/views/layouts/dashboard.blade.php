@@ -144,6 +144,30 @@
                         </li>
 
                         <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#versidsyirkah" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-servers"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Versi DSyirkah </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="versidsyirkah">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="/admin/master/versi/mutlaqah_emas">Mutlaqah-Emas</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/master/versi/mutlaqah_rupiah">Mutlaqah-Rupiah</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/master/versi/muqoyyadah_emas">Muqoyyadah-Emas</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/master/versi/muqoyyadah_rupiah">Muqoyyadah-Rupiah</a>
+                                    </li>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
                             <a href="/admin/master/item_emas" class="side-nav-link">
                                 <i class="mdi mdi-gold"></i>
                                 <span class="badge bg-primary float-end">1</span>
@@ -180,7 +204,7 @@
                         <li class="side-nav-title side-nav-item">Pengajuan D'Syirkah</li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/pengajuan_dsyirkah/pengajuan_emas" class="side-nav-link">
+                            <a href="/admin/pengajuan_dsyirkah/emas" class="side-nav-link">
                                 <i class="uil-file-plus-alt"></i>
                                 <span class="badge bg-primary float-end">1</span>
                                 <span> Emas </span>
@@ -188,7 +212,7 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/pengajuan_dsyirkah/pengajuan-rupiah" class="side-nav-link">
+                            <a href="/admin/pengajuan_dsyirkah/rupiah" class="side-nav-link">
                                 <i class="uil-file-plus "></i>
                                 <span class="badge bg-primary float-end">1</span>
                                 <span> Rupiah </span>
@@ -198,7 +222,7 @@
                         <li class="side-nav-title side-nav-item">D'Syirkah Aktif</li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/dsyirkah_aktif/aktif_emas" class="side-nav-link">
+                            <a href="/admin/dsyirkah_aktif/emas" class="side-nav-link">
                                 <i class="uil-file-check-alt"></i>
                                 <span class="badge bg-primary float-end">1</span>
                                 <span> Emas </span>
@@ -206,7 +230,7 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/dsyirkah_aktif/aktif_rupiah" class="side-nav-link">
+                            <a href="/admin/dsyirkah_aktif/rupiah" class="side-nav-link">
                                 <i class="uil-file-check"></i>
                                 <span class="badge bg-primary float-end">1</span>
                                 <span> Rupiah </span>
@@ -216,7 +240,7 @@
                         <li class="side-nav-title side-nav-item">ReAkad D'Syirkah</li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/reakad_dsyirkah/" class="side-nav-link">
+                            <a href="/admin/reakad_dsyirkah/perpanjang" class="side-nav-link">
                                 <i class="uil-folder-plus"></i>
                                 <span class="badge bg-info float-end">2</span>
                                 <span> Perpanjang </span>
@@ -233,10 +257,10 @@
                             <div class="collapse" id="stop-syirkah">
                                 <ul class="side-nav-second-level">
                                     <li>
-                                        <a href="/admin/reakad_dsyirkah/">Rupiah</a>
+                                        <a href="/admin/reakad_dsyirkah/rupiah">Rupiah</a>
                                     </li>
                                     <li>
-                                        <a href="/admin/reakad_dsyirkah/">Emas</a>
+                                        <a href="/admin/reakad_dsyirkah/emas">Emas</a>
                                     </li>
                                 </ul>
                             </div>
@@ -245,7 +269,7 @@
                         <li class="side-nav-title side-nav-item">D'Syirkah NonAktif</li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/dsyirkah_nonaktif/" class="side-nav-link">
+                            <a href="/admin/dsyirkah_nonaktif/emas" class="side-nav-link">
                                 <i class="uil-file-times-alt"></i>
                                 <span class="badge bg-primary float-end">1</span>
                                 <span> Emas </span>
@@ -253,7 +277,7 @@
                         </li>
 
                         <li class="side-nav-item">
-                            <a href="/admin/dsyirkah_nonaktif/" class="side-nav-link">
+                            <a href="/admin/dsyirkah_nonaktif/rupiah" class="side-nav-link">
                                 <i class="uil-file-times"></i>
                                 <span class="badge bg-primary float-end">1</span>
                                 <span> Rupiah </span>
