@@ -53,9 +53,8 @@ Route::middleware('auth')->group(function(){
             return view('main_view/detail_muqayyadah');
         });
         Route::group(['prefix'=>'user'], function () {
-            Route::get('/kelengkapan_data', function () {
-                return view('user_view/form_kelengkapan_data_anggota');
-            });
+            Route::get('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data']);
+            Route::post('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data_store']);
         });
     });
     Route::middleware('IsAdmin')->group(function(){

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RincianPengajuanEmas extends Model
 {
     use HasFactory;
+    protected $table = 'rincian_pengajuan_emas';
+    public $timestamps = false;
 }

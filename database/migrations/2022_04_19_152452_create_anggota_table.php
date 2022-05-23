@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('email');
             $table->boolean('status')->default(1);
-            $table->integer('no_ktp')->nullable();
+            $table->bigInteger('no_ktp')->nullable();
             $table->enum('jenis_kelamin',['Laki-laki','Perempuan'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('status_nikah')->nullable();
-            $table->integer('no_npwp')->nullable();
+            $table->bigInteger('no_npwp')->nullable();
             $table->string('alamat_ktp')->nullable();
             $table->string('kelurahan_ktp')->nullable();
             $table->string('kecamatan_ktp')->nullable();

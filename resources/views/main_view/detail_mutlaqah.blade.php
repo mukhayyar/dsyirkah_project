@@ -11,7 +11,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card ribbon-box">
-                                        <div class="ribbon ribbon-success float-start" style="background-color: rgb(65, 124, 253);"><i class="mdi mdi-progress-check me-1"></i> Draff / Pengumpulan Dana / Sudah Terpenuhi </div>
+                                        <div class="ribbon ribbon-success float-start" style="background-color: rgb(65, 124, 253);"><i class="mdi mdi-progress-check me-1"></i> {{$usaha->status_post}} / {{$usaha->status_dana}} </div>
                                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                                     <ol class="carousel-indicators">
                                                         @foreach(json_decode($usaha->usahaImages->nama) as $image)
@@ -88,7 +88,7 @@
                                 <div class="col-md-6" style="margin-top: 2%;">
                                     <div class="text-sm-center"><h5>Silahkan Hubungi Kami jika membutuhkan penjelasan lebih detail</h5></div>
                                     <div class="text-center mt-sm-0 mt-3 text-sm-center">
-                                        <a href="/proposal/{{$usaha->proposal}}" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
+                                        <a target="__blank" href="/proposal/{{$usaha->proposal}}" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
                                             <i class="mdi mdi-book"></i> Lihat Proposal </a>
                                         <a href="" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
                                             <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>

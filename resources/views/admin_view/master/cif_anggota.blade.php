@@ -153,10 +153,10 @@
                                                 <div class="col-md">
                                                     <label for="status_nikah" class="form-label">Status Pernikahan</label>
                                                     <select class="form-select" id="status_nikah" name="status_nikah" required>
-                                                        <option value="Belum_Nikah">Belum Nikah</option>
+                                                        <option value="Belum Nikah">Belum Nikah</option>
                                                         <option value="Kawin">Kawin</option>
-                                                        <option value="Cerai_Hidup">Cerai Hidup</option>
-                                                        <option value="Cerai_Mati">Cerai Mati</option>
+                                                        <option value="Cerai Hidup">Cerai Hidup</option>
+                                                        <option value="Cerai Mati">Cerai Mati</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md">
@@ -206,7 +206,7 @@
                     
                                             <div class="col-md">
                                                 <label for="example-select" class="form-label">Alamat Tinggal</label>
-                                                <select class="form-select" id="checkAlamatTinggal" required>
+                                                <select class="form-select" id="checkAlamatTinggal" name="checkAlamatTinggal" required>
                                                     <option value="sesuai">Sesuai KTP</option>
                                                     <option value="tidakSesuai">Tidak Sesuai KTP</option>
                                                 </select>

@@ -50,4 +50,21 @@
             {{ $usaha->links() }}
         </div>
     </section>
+    @if(!$check_lengkap_data->no_ktp)
+        <div id="exampleModalLive" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: block;">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLiveLabel">Kamu Belum Bisa Mengakses Halaman Ini!</h5>
+                </div>
+                <div class="modal-body">
+                  <p>Untuk Mengakses Halaman Ini, Mohon Melengkapi Data Diri Terlebih Dahulu.</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="/user/kelengkapan_data" class="btn btn-primary">Disini</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endif
 @endsection

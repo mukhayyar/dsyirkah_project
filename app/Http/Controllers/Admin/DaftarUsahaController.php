@@ -97,6 +97,7 @@ class DaftarUsahaController extends Controller
         }
         $usaha = new Usaha;
         $usaha->judul = $request->judul_usaha;
+        $usaha->slug = md5($request->judul_usaha);
         $usaha->kode_usaha = $request->kode_usaha;
         $usaha->profil = $request->profil_usaha;
         $usaha->legalitas = $request->legalitas;
@@ -198,6 +199,9 @@ class DaftarUsahaController extends Controller
                         return $btn;
                     } 
                 })
+                ->editColumn('kebutuhan_rupiah', function($row){
+                    return "Rp. ".number_format($row->kebutuhan_rupiah,0,",",".").",-";
+                })
                 ->editColumn('status_dana', function($row){
                     if($row->status_dana){
                         $btn = "<span class='badge badge-success-lighten'>Aktif</span>";
@@ -260,6 +264,7 @@ class DaftarUsahaController extends Controller
         }
         $usaha = new Usaha;
         $usaha->judul = $request->judul_usaha;
+        $usaha->slug = md5($request->judul_usaha);
         $usaha->kode_usaha = $request->kode_usaha;
         $usaha->profil = $request->profil_usaha;
         $usaha->legalitas = $request->legalitas;
@@ -271,7 +276,7 @@ class DaftarUsahaController extends Controller
         $usaha->pemilik = $request->pemilik;
         $usaha->jenis_form = $request->jenis_form_bentuk;
         $usaha->status_dana = $request->status_dana;
-        $usaha->kebutuhan_rupiah = $request->kebutuhan;
+        $usaha->kebutuhan_rupiah = str_replace(".","",$request->kebutuhan);
         $usaha->jangka_waktu = $request->jangka_waktu;
         $usaha->capaian_muqayyadah = $request->capaian;
         $usaha->proposal = $proposalName;

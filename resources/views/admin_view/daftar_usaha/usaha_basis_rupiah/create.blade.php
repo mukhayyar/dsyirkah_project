@@ -66,7 +66,7 @@
                                                                     <div class="col-md">
                                                                         <label for="statusPost" class="form-label">Status Post</label>
                                                                         <select class="form-select" id="statusPost" name="status_post" required>
-                                                                            <option >Pilih</option>
+                                                                            <option value="">Pilih</option>
                                                                             <option value="Draf" @if(isset($usaha))@if($usaha->status_post == 'Draf') selected @endif @elseif(old('status_post') == 'Draf') selected @endif>Draf</option>
                                                                             <option value="Posting" @if(isset($usaha))@if($usaha->status_post == 'Posting') selected @endif @elseif(old('status_post') == 'Posting') selected @endif>Posting</option>
                                                                             <option value="Cancel" @if(isset($usaha))@if($usaha->status_post == 'Cancel') selected @endif @elseif(old('status_post') == 'Cancel') selected @endif>Cancel</option>
@@ -100,7 +100,7 @@
                                                                     <div class="col-md">
                                                                         <label for="status_dana" class="form-label">Status Dana</label>
                                                                         <select class="form-select" id="status_dana" name="status_dana" required>
-                                                                            <option >Pilih</option>
+                                                                            <option value="">Pilih</option>
                                                                             <option value="Draf" @if(isset($usaha))@if($usaha->status_dana == 'Draf') selected @endif @elseif(old('status_dana') == 'Draf') selected @endif>Draf</option>
                                                                             <option value="Pengumpulan Dana" @if(isset($usaha))@if($usaha->status_dana == 'Pengumpulan Dana') selected @endif @elseif(old('status_dana') == 'Pengumpulan Dana') selected @endif>Pengumpulan Dana</option>
                                                                             <option value="Sudah Terpenuhi" @if(isset($usaha))@if($usaha->status_dana == 'Sudah Terpenuhi') selected @endif @elseif(old('status_dana') == 'Sudah Terpenuhi') selected @endif>Sudah Terpenuhi</option>
@@ -109,7 +109,7 @@
                                                                     <div class="col-md">
                                                                         <label for="kategori" class="form-label">Kategori</label>
                                                                         <select class="form-select" id="kategori" name="kategori" required>
-                                                                            <option >Pilih</option>
+                                                                            <option value="">Pilih</option>
                                                                             <option value="UMKM Peternakan" @if(isset($usaha))@if($usaha->jenis_usaha == 'UMKM Peternakan') selected @endif @elseif(old('kategori') == 'UMKM Peternakan') selected @endif>UMKM Peternakan</option>
                                                                             <option value="UMKM Kesehatan" @if(isset($usaha))@if($usaha->jenis_usaha == 'UMKM Kesehatan') selected @endif @elseif(old('kategori') == 'UMKM Kesehatan') selected @endif>UMKM Kesehatan</option>
                                                                             <option value="UMKM Perikanan" @if(isset($usaha))@if($usaha->jenis_usaha == 'UMKM Perikanan') selected @endif @elseif(old('kategori') == 'UMKM Perikanan') selected @endif>UMKM Perikanan</option>
@@ -118,7 +118,7 @@
                                                                     <div class="col-md">
                                                                         <label for="checkMuqayyadah" class="form-label">Jenis Akad</label>
                                                                         <select class="form-select" id="checkMuqayyadah" name="jenis_akad" required>
-                                                                            <option >Pilih</option>
+                                                                            <option value="">Pilih</option>
                                                                             <option value="Mutlaqah" @if(isset($usaha))@if($usaha->jenis_akad == 'Mutlaqah') selected @endif @elseif(old('jenis_akad') == 'mutlaqah') selected @endif>Mutlaqah</option>
                                                                             <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'muqayyadah') selected @endif>Muqqayyadah</option>
                                                                         </select>
@@ -130,17 +130,17 @@
                                                                             <option value="rupiah" @if(isset($usaha))@if($usaha->jenis_form == 'rupiah') selected @endif @elseif(old('jenis_form_bentuk') == 'rupiah') selected @endif>Rupiah</option>
                                                                         </select>
                                                                         <label for="kode_usaha" class="form-label">Kode Usaha</label>
-                                                                        <input class="form-control" type="text" value="kode_usaha" id="kode_usaha">
+                                                                        <input class="form-control" type="text" name="kode_usaha" id="kode_usaha">
                                                                     </div><br>
 
                                                                     <div class="col-md">
                                                                         <label for="kebutuhan" class="form-label">Kebutuhan (dalam Rupiah)</label>
-                                                                        <input class="form-control date" type="text" name="kebutuhan" id="kebutuhan" required value="@if(isset($usaha)){{$usaha->kebutuhan_rupiah}}@else{{ old('kebutuhan') }}@endif">
+                                                                        <input class="form-control" type="text" data-toggle="input-mask" data-mask-format="000.000.000.000" data-reverse="true" name="kebutuhan" id="kebutuhan" required value="@if(isset($usaha)){{$usaha->kebutuhan_rupiah}}@else{{ old('kebutuhan') }}@endif">
                                                                     </div><br>
 
                                                                     <div class="col-md">
                                                                         <label for="jangka_waktu" class="form-label">Jangka Waktu (dalam Angka)</label>
-                                                                        <input class="form-control date" type="text" name="jangka_waktu" id="jangka_waktu" value="@if(isset($usaha)){{$usaha->jangka_waktu}}@else{{ old('jangka_waktu') }}@endif" required>
+                                                                        <input class="form-control" type="number" data-mask="00" name="jangka_waktu" id="jangka_waktu" value="@if(isset($usaha)){{$usaha->jangka_waktu}}@else{{ old('jangka_waktu') }}@endif" required>
                                                                     </div><br>
 
                                                                     <div class="col-md Muqayyadah" style="display: none;">

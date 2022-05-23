@@ -160,6 +160,12 @@ class MasterController extends Controller
         $anggota->kelurahan_ktp = $request->kelurahan_ktp;
         $anggota->kecamatan_ktp = $request->kecamatan_ktp;
         $anggota->kota_ktp = $request->kota_ktp;
+        $anggota->alamat_tinggal = $request->checkAlamatTinggal;
+        $anggota->alamat_dom = $request->alamat_dom;
+        $anggota->provinsi_dom = $request->provinsi_dom;
+        $anggota->kota_dom = $request->kota_dom;
+        $anggota->kecamatan_dom = $request->kecamatan_dom;
+        $anggota->kelurahan_dom = $request->kelurahan_dom;
         $anggota->save();
         return redirect()->back();
     }

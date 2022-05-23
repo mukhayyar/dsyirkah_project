@@ -11,7 +11,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card ribbon-box">
-                                        <div class="ribbon ribbon-success float-start" style="background-color: rgb(65, 124, 253);"><i class="mdi mdi-progress-check me-1"></i> Draff / Pengumpulan Dana / Sudah Terpenuhi </div>
+                                        <div class="ribbon ribbon-success float-start" style="background-color: rgb(65, 124, 253);"><i class="mdi mdi-progress-check me-1"></i> {{$usaha->status_post}} / {{$usaha->status_dana}} </div>
                                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                                     <ol class="carousel-indicators">
                                                         @foreach(json_decode($usaha->usahaImages->nama) as $image)

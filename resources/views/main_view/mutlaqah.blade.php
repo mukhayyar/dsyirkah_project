@@ -14,10 +14,19 @@
                     </div>
                 </div><br>
                 <div class="col-md-5 g-3">
+                    @if($percent_target_rupiah == 100)
+                    <a class="btn btn-lg font-16 btn-success" data-bs-toggle="modal" data-bs-target="#warning-aprove-modal"><i class="mdi mdi-clipboard-edit-outline"></i>Ikut dengan Rupiah</a>
+                    @else
                     <a href="/mutlaqah/pengajuan/rupiah" class="btn btn-lg font-16 btn-success" id="btn-form-gabung">
-                        <i class="mdi mdi-clipboard-edit-outline"></i> Ikut dengan Rupiah </a>
+                        <i class="mdi mdi-clipboard-edit-outline"></i> Ikut dengan Rupiah</a>
+                    @endif
+
+                    @if($percent_target_emas == 100)
+                    <a class="btn btn-lg font-16 text-white" data-bs-toggle="modal" data-bs-target="#warning-aprove-modal" style="background-color: goldenrod;"><i class="mdi mdi-clipboard-edit-outline"></i>Ikut dengan Emas</a>
+                    @else
                     <a href="/mutlaqah/pengajuan/emas" class="btn btn-lg font-16 text-white" id="btn-form-gabung" style="background-color: goldenrod;">
                         <i class="mdi mdi-clipboard-edit-outline"></i > Ikut dengan Emas </a>
+                    @endif
                 </div><br>
                 <div class="col-md-6 card shadow-sm">
                     <div class="container">
@@ -26,16 +35,20 @@
                         </h5>
                         <div class="row">
                             <div class="col-lg-6">
-                                <p class="text-black"> <stong> Target Rupiah : Rp 9.000.000.000,-</stong></p>
+                                <p class="text-black"> <stong> Target Rupiah : Rp {{number_format($target_rupiah,0,",",".")}},-</stong></p>
+                                @if($target_rupiah!=0)
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$percent_target_rupiah}}%;" aria-valuenow="{{$percent_target_rupiah}}" aria-valuemin="0" aria-valuemax="100">Capaian {{$percent_target_rupiah}}%</div>
                                 </div><br>
+                                @endif
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-black"> <stong> Target Gold : 1.000 Gram</stong></p>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
-                            </div><br>
+                                <p class="text-black"> <stong> Target Gold : {{number_format($target_emas,0,",",".")}} Gram</stong></p>
+                                @if($target_emas!=0)
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$percent_target_emas}}%;" aria-valuenow="{{$percent_target_emas}}" aria-valuemin="0" aria-valuemax="100">Capaian {{$percent_target_emas}}%</div>
+                                </div><br>
+                                @endif
                         </div><hr>
                     </div>
                 </div>
@@ -75,4 +88,37 @@
             </div>
         </section>
         <!-- END SERVICES -->
+        @if($percent_target_emas == 100 || $percent_target_rupiah == 100)
+        {{-- warn modal ketika sudah 100% --}}
+        <div id="warning-aprove-modal" class="modal fade show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <i class="dripicons-warning h1 text-warning"></i>
+                            <h4 class="mt-2">Perhatian</h4>
+                            <p class="mt-3">Target sudah terpenuhi </p>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        @endif
+        @if(!$check_lengkap_data->no_ktp)
+        <div id="exampleModalLive" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: block;">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLiveLabel">Kamu Belum Bisa Mengakses Halaman Ini!</h5>
+                </div>
+                <div class="modal-body">
+                  <p>Untuk Mengakses Halaman Ini, Mohon Melengkapi Data Diri Terlebih Dahulu.</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="/user/kelengkapan_data" class="btn btn-primary">Disini</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endif
 @endsection

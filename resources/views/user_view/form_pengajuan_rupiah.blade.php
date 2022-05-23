@@ -58,7 +58,7 @@
                             <div class="col-md">
                                 <label for="perwada" class="form-label">Perwada</label>
                                 <select class="form-control" type="text" id="perwada" required name="perwada">
-                                    <option>Pilih</option>
+                                    <option value="">Pilih</option>
                                     @foreach($perwada as $pwd)
                                     <option value="{{$pwd->nama}}">{{$pwd->nama}}</option>
                                     @endforeach
@@ -74,15 +74,15 @@
                                             <div class="col-md">
                                                 <label for="example-select" class="form-label">Pilihan Program</label>
                                                 <select class="form-select" id="pilihanProgram" name="pilihanProgram" required>
-                                                    <option selected>Pilih</option>
+                                                    <option value="" selected>Pilih</option>
                                                     <option value="reguler">Reguler</option>
                                                     <option value="pokokWakaf">Pokok Diwakafkan</option>
                                                 </select>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
                                                 <label for="example-select" class="form-label">Jangka Waktu (jika reg)</label>
-                                                <select class="form-select" id="bulanPil" required name="jangka_waktu">
-                                                    <option>Pilih</option>
+                                                <select class="form-select" id="bulanPil" name="jangka_waktu">
+                                                    <option value="">Pilih</option>
                                                 </select>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
@@ -91,8 +91,8 @@
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
                                                 <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
-                                                <select class="form-select" id="example-select" name="perpanjangan" required>
-                                                    <option selected>Pilih</option>
+                                                <select class="form-select" id="example-select" name="perpanjangan">
+                                                    <option value="" selected>Pilih</option>
                                                     <option value="Otomatis">Otomatis</option>
                                                     <option value="Tidak Otomatis">Tidak Otomatis</option>
                                                 </select>

@@ -58,7 +58,7 @@
                             <div class="col-md">
                                 <label for="perwada" class="form-label">Perwada</label>
                                 <select class="form-control" type="text" id="perwada" required name="perwada">
-                                    <option>Pilih</option>
+                                    <option value="">Pilih</option>
                                     @foreach($perwada as $pwd)
                                     <option value="{{$pwd->nama}}">{{$pwd->nama}}</option>
                                     @endforeach
@@ -73,16 +73,16 @@
                                         <blockquote class="card-bodyquote">
                                             <div class="col-md">
                                                 <label for="example-select" class="form-label">Pilihan Program</label>
-                                                <select class="form-select" id="pilihanProgram" required>
-                                                    <option selected>Pilih</option>
+                                                <select class="form-select" id="pilihanProgram" name="pilihanProgram" required>
+                                                    <option value="" selected>Pilih</option>
                                                     <option value="reguler">Reguler</option>
                                                     <option value="pokokWakaf">Pokok Diwakafkan</option>
                                                 </select>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
                                                 <label for="example-select" class="form-label">Jangka Waktu (jika reg)</label>
-                                                <select class="form-select" id="bulanPil" required name="jangka_waktu">
-                                                    <option>Pilih</option>
+                                                <select class="form-select" id="bulanPil" name="jangka_waktu">
+                                                    <option value="">Pilih</option>
                                                 </select>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
@@ -91,8 +91,8 @@
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
                                                 <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
-                                                <select class="form-select" id="example-select" name="perpanjangan" required>
-                                                    <option selected>Pilih</option>
+                                                <select class="form-select" id="example-select" name="perpanjangan">
+                                                    <option value="">Pilih</option>
                                                     <option value="Otomatis">Otomatis</option>
                                                     <option value="Tidak Otomatis">Tidak Otomatis</option>
                                                 </select>
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="col-sm-5">
-                                    <a href="javascript:void(0);" class="btn mb-2 text-white" data-bs-toggle="modal" data-bs-target="#modal-tambah-perwada" style="background-color: goldenrod;"><i class="mdi mdi-plus-circle me-2"></i> Emas</a>
+                                    <a href="javascript:void(0);" class="btn mb-2 text-white" data-bs-toggle="modal" data-bs-target="#modal-tambah-emas" style="background-color: goldenrod;"><i class="mdi mdi-plus-circle me-2"></i> Emas</a>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-borderless table-nowrap table-centered mb-0">
@@ -124,7 +124,8 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
-                                                <th id="total_gramasi">20 Gram</th>
+                                                <th> <span id="total_jumlah_emas">0</span> Gram</th>
+                                                <input type="hidden" value="" id="input_total_jumlah_emas" name="total_jumlah_emas">
                                                 <th style="width: 50px;"></th>
                                             </tr>
                                         </tfoot>
@@ -230,7 +231,7 @@
                                 <div class="card border-secondary border">
                                     <div class="card-body">
                                         <h5 class="card-title">Catatan :</h5>
-                                        <textarea name="catatan" id="" cols="70" rows="10"></textarea>
+                                        <textarea name="catatan" id="" cols="70" rows="10" required></textarea>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                             </div>
@@ -258,7 +259,7 @@
             </div>
     </div>
 </section>
-<div class="modal fade" id="modal-tambah-perwada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-tambah-emas" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg loading authentication-bg">
         <div class="modal-content bg-transparent">
         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -268,12 +269,11 @@
                         <div class="card">
                             <!-- Logo-->
                             <div class="modal-header" style="background-color: #afb4be">
-                                <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading">Tambah Perwada</h4></div>
+                                <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading">Tambah Item Emas</h4></div>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                             </div>
                             <div class="card-body p-4">
                                 <form id="CustomerForm" name="CustomerForm">
-                                    <input type="hidden" name="id_perwada" id="id_perwada">
                                     @foreach($item_emas as $emas)
                                     <div class="row g-2">
                                         <div class="col-md">
@@ -290,7 +290,7 @@
                                         </div>
                                         <div class="col-md">
                                             <label for="" class="form-label">-</label>
-                                            <button id="tambah_emas" class="btn btn-warning" data-bs-dismiss="modal" data-item="{{$emas->nama}}" data-jenis="{{$emas->jenis}}" data-gramasi="{{$emas->gramasi}}" type="button">Tambah</button>
+                                            <button class="btn btn-warning tambah_emas" id="tambah-emas-{{$emas->id}}" data-bs-dismiss="modal" data-item="{{$emas->nama}}" data-jenis="{{$emas->jenis}}" data-gramasi="{{$emas->gramasi}}" data-id_emas="{{$emas->id}}" type="button">Tambah</button>
                                         </div>
                                     </div>
                                     @endforeach
@@ -337,6 +337,26 @@
 <script type="text/javascript" src="https://keith-wood.name/js/jquery.signature.js"></script>
 <script src="/assets/js/jquery.signature.js"></script>
 <script>
+    function jumlahGram(id_input)
+    {
+        var gramasi = document.getElementsByClassName(`gramasi-${id_input}`);
+        var x = document.getElementById(`input-keping-emas-${id_input}`).value;
+        gramasi = parseFloat(gramasi[0].value)
+        var total = x*gramasi;
+        total = total.toFixed(1);
+        document.getElementById(`jumlah-keping-${id_input}`).innerHTML = total;
+        document.getElementById(`input-jumlah-keping-${id_input}`).value = total;
+        var length = $("#form_tambah_emas tr").length;
+        var total = 0;
+        var test_number = 0;
+        for(let i = 1; i<=length; i++)
+        {
+            test_number += parseFloat(document.getElementById(`jumlah-keping-${i}`).innerText)
+        }
+        total = parseFloat(total).toFixed(1);
+        document.getElementById(`total_jumlah_emas`).innerHTML = test_number;
+        document.getElementById(`input_total_jumlah_emas`).value = test_number;
+    }
     $(function() {
         $('#pilihanProgram').change(function(){
             $('.program').hide();
@@ -370,33 +390,44 @@
                 }
             })
         })
-        $("#tambah_emas").click(function(){
-            console.log($(this)[0]);
+        $(".tambah_emas").click(function(){
             hasilAkhir = [];
             item = $(this)[0].dataset.item;
             jenis = $(this)[0].dataset.jenis;
             gramasi = $(this)[0].dataset.gramasi;
+            id_emas = $(this)[0].dataset.id_emas;
             $("#form_tambah_emas").append(`
-            <tr>
-            <td>${item}</td>
-            <td>
-                <span class="badge badge-primary-lighten">${jenis}</span>
-            </td>
-            <td>${gramasi}</td>
-            <td>
-                <input id="keping" type="number" min="1" value="" class="form-control"
-                    placeholder="Qty" style="width: 90px;">
-            </td>
-            <td>5 Gram</td>
-            <td>
-                <a href="javascript:void(0);" id="removeRow" class="action-icon"> <i
-                        class="mdi mdi-delete"></i></a>
-            </td>
+            <tr id="item-emas-${id_emas}">
+                <td>${item}</td>
+                <input type="hidden" value="${item}" class="form-control" name="item_emas[]">
+                <td>
+                    <span class="badge badge-primary-lighten">${jenis}</span>
+                    <input type="hidden" value="${jenis}" class="form-control" name="jenis_emas[]">
+                </td>
+                <td>${gramasi}</td>
+                <input type="hidden" value="${gramasi}" class="form-control gramasi-${id_emas}" name="gramasi_emas[]">
+                <td>
+                    <input id="input-keping-emas-${id_emas}" type="number" min="1" value="" oninput="jumlahGram(${id_emas})" name="keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>
+                </td>
+                <td>
+                    <span id="jumlah-keping-${id_emas}">
+                       0
+                    </span>
+                    Gram
+                    <input id="input-jumlah-keping-${id_emas}" type="hidden" value="${jenis}" class="form-control" name="jumlah_keping[]">
+                </td>
+                <td>
+                    <a href="javascript:void(0);" id="removeRow" data-id_emas="${id_emas}" class="action-icon"> <i
+                            class="mdi mdi-delete"></i></a>
+                </td>
             </tr>
             `)
+            $(`#tambah-emas-${id_emas}`).css("display","none");
         });
         $(document).on('click', '#removeRow', function () {
-            $(this).closest('#form_tambah_emas').remove();
+            id_emas = $(this)[0].dataset.id_emas;
+            $(this).closest(`#item-emas-${id_emas}`).remove();
+            $(`#tambah-emas-${id_emas}`).css("display","block");
         });
     })
 </script>
