@@ -59,6 +59,7 @@
                                                             <th>Pilihan Program</th>
                                                             <th>Referensi</th>
                                                             <th>Total Rupiah</th>
+                                                            <th>Status</th>
                                                             <th>Jangka Waktu</th>
                                                             <th>Perpanjangan</th>
                                                             <th>Aproval</th>
@@ -98,6 +99,7 @@
                 {data: 'pilihan_program', name: 'pilihan_program'},
                 {data: 'referensi', name: 'referensi'},
                 {data: 'nominal', name: 'nominal'},
+                {data: 'status', name: 'status'},
                 {data: 'jangka_waktu', name: 'jangka_waktu'},
                 {data: 'perpanjangan', name: 'perpanjangan'},
                 {data: 'approval', name: 'approval', orderable: false, searchable: false},

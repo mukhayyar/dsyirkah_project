@@ -44,10 +44,10 @@
                                         <div id="areaPrint">
                                             <div class="row">
                                                 <div class="col-sm-4">
-                                                    <p class="font-14"><strong>Nomor Buku Anggota :</strong> 0.123.1234567</p>
+                                                    <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <p class="font-14"><strong>Nama Lengkap :</strong> Mukhammad Nasorudin Maulana</p>
+                                                    <p class="font-14"><strong>Nama Lengkap :</strong> {{$pengajuan->anggota->nama_lengkap}}</p>
                                                 </div><hr>
                                             </div>
 
@@ -65,47 +65,49 @@
                                                             <tbody>
                                                             <tr>
                                                                 <td>Tanggal Pengajuan</td>
-                                                                <td>: 12 April 2022 13:00</td>
+                                                                <td>: {{date('Y-m-d h:i',strtotime($pengajuan->created_at))}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Nomor Pengajuan</td>
-                                                                <td>: G-123456-MQ </td>
+                                                                <td>: {{$pengajuan->no_pengajuan}} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Referensi</td>
-                                                                <td>: KP Jakarta</td>
+                                                                <td>: {{$pengajuan->referensi}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Pilihan Program</td>
-                                                                <td>: Reguler</td>
+                                                                <td>: {{ucfirst($pengajuan->pilihan_program)}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Jenis Syirkah</td>
-                                                                <td>: Mutlaqah</td>
+                                                                <td>: {{$pengajuan->jenis_syirkah}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Versi Syirkah</td>
-                                                                <td>: 3.0</td>
+                                                                <td>: {{$pengajuan->versi_syirkah}}</td>
                                                             </tr>
+                                                            @if($pengajuan->kode_usaha)
                                                             <tr>
                                                                 <td>Kode Usaha</td>
-                                                                <td>: MQ-123-12345 (jika Muqoyyadah)</td>
+                                                                <td>: {{$pengajuan->kode_usaha}}</td>
                                                             </tr>
+                                                            @endif
                                                             <tr>
                                                                 <td>Nisbah</td>
-                                                                <td>: Anggota 50%:50%Club</td>
+                                                                <td>: {{$pengajuan->nisbah}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Alokasi Nisbah</td>
-                                                                <td>: Nisbah semua dimasukkan ke Simpanan Berkah</td>
+                                                                <td>: {{$pengajuan->alokasi_nisbah}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Perpanjangan</td>
-                                                                <td>: Otomatis</td>
+                                                                <td>: {{$pengajuan->perpanjangan}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Nominal</td>
-                                                                <td>: Rp 500.000</td>
+                                                                <td>: {{$pengajuan->nominal()}}</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -114,7 +116,7 @@
                                                         <div class="col-4">
                                                             <p class="font-14"><strong>Bukti Transfer</strong></p>
                                                         </div>
-                                                        <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/><br>
+                                                        <img src="/images/data_penting/bukti_transfer/{{$pengajuan->bukti_transfer}}" alt="image" class="img-fluid rounded" width="600"/><br>
                                                         <br><div class="card border-info border">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Persetujuan :</h5>
@@ -148,7 +150,7 @@
                                                             <div class="card border-secondary border">
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">Catatan :</h5>
-                                                                    <p class="card-text">Catatan Dari form pengajuan</p>
+                                                                    <p class="card-text">{{$pengajuan->catatan_pengajuan}}</p>
                                                                 </div> <!-- end card-body-->
                                                             </div> <!-- end card-->
                                                         </div>
@@ -156,7 +158,7 @@
                                                             <div class="card border-secondary border">
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">Tandatangan :</h5>
-                                                                    <p class="card-text">Tandtangan Dari Form</p>
+                                                                    <img src="/images/data_penting/tanda_tangan/{{$pengajuan->ttd}}" alt="image" class="img-fluid rounded" height="100" width="150"/><br>
                                                                 </div> <!-- end card-body-->
                                                             </div> <!-- end card-->
                                                         </div>
@@ -166,7 +168,7 @@
                                                             <div class="card border-danger border">
                                                                 <div class="card-body">
                                                                     <h5 class="card-title">Catatan Edit :</h5>
-                                                                    <p class="card-text">di tabel aktif  munculkan keterangan singkat</p>
+                                                                    <p class="card-text">{{$pengajuan->catatan_edit}}</p>
                                                                 </div> <!-- end card-body-->
                                                             </div> <!-- end card-->
                                                         </div>
@@ -198,7 +200,7 @@
                                             <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: 0.123.1234567</strong> </p>
+                                            <p class="font-14"><strong>: {{$pengajuan->anggota->nomor_ba}}</strong> </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -206,7 +208,7 @@
                                             <p class="font-14"><strong>Nama Lengkap</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <h4 class="font-14"><strong>: </strong>Mukhammad Nasorudin Maulana</h4>
+                                            <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->nama_lengkap}}</h>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -214,7 +216,7 @@
                                             <p class="font-14"><strong>Nomor Hp</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <h4 class="font-14"><strong>: </strong>081228383733894</h4>
+                                            <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_hp}}</h>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -222,7 +224,7 @@
                                             <p class="font-14"><strong>Email</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <h4 class="font-14"><strong>: </strong>nasorudin@gmail.com</h4>
+                                            <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->email}}</h>
                                         </div><hr>
                                     </div>
                                     <div class="row">
@@ -230,7 +232,7 @@
                                             <p class="font-14"><strong>Nomor KTP</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <h4 class="font-14"><strong>: </strong>72468376825439868435</h4>
+                                            <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_ktp}}</h>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -238,7 +240,7 @@
                                             <p class="font-14"><strong>Jenis Kelamin</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <h4 class="font-14"><strong>: </strong>Laki-Laki</h4>
+                                            <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->jenis_kelamin}}</h>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -246,7 +248,7 @@
                                             <p class="font-14"><strong>Tempat Lahir</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <h4 class="font-14"><strong>: </strong>Jakarta</h4>
+                                            <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->tempat_lahir}}</h>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -254,7 +256,7 @@
                                             <p class="font-14"><strong>Tanggal Lahir</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>22 Maret 2022</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->tanggal_lahir}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -262,7 +264,7 @@
                                             <p class="font-14"><strong>Status Pernikahan</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Menikah</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->status_nikah}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -270,7 +272,7 @@
                                             <p class="font-14"><strong>Nomor NPWP</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>893222479238483247</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_npwp}}</p>
                                         </div><hr>
                                     </div>
                                     <div class="row">
@@ -278,7 +280,7 @@
                                             <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_ktp}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -286,7 +288,7 @@
                                             <p class="font-14"><strong>Kecamatan</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kecamatan_ktp}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -294,7 +296,7 @@
                                             <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kota_ktp}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -302,7 +304,7 @@
                                             <p class="font-14"><strong>Provinsi</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->provinsi_ktp}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -310,15 +312,16 @@
                                             <p class="font-14"><strong>Alamat Tinggal</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Tidak Sesuai KTP</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_tinggal}}</p>
                                         </div>
                                     </div>
+                                    @if($pengajuan->anggota->alamat_domisili)
                                     <div class="row">
                                         <div class="col-4">
                                             <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_domisili}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -326,7 +329,7 @@
                                             <p class="font-14"><strong>Kecamatan</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kecamatan_domisili}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -334,7 +337,7 @@
                                             <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kota_domisili}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -342,13 +345,14 @@
                                             <p class="font-14"><strong>Provinsi</strong></p>
                                         </div>
                                         <div class="col-8">
-                                            <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                                            <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->provinsi_ktp}}</p>
                                         </div><hr>
                                     </div>
+                                    @endif
                                     <div class="col-4">
                                         <p class="font-14"><strong>Photo KTP</strong></p>
                                     </div>
-                                    <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/>
+                                    <img src="/images/data_penting/ktp/{{$pengajuan->anggota->foto_ktp}}" alt="image" class="img-fluid rounded" width="600"/>
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->

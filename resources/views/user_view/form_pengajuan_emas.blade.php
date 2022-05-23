@@ -181,23 +181,24 @@
                                         <h5 class="card-title">Alokasi Nisbah Reguler :</h5>
                                         <div class="mt-3">
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio1" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio1" name="alokasiNisbah" class="form-check-input" value="Nisbah semua dimasukkan ke Simpanan Berkah">
                                                 <label class="form-check-label" for="customRadio1">Nisbah semua dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input">
-                                                <label class="form-check-label" for="customRadio2">Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah</label>
+                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input" value="Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah">
+                                                <label class="form-check-label" for="customRadio2" >Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input"
+                                                value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah">
                                                 <label class="form-check-label" for="customRadio3">Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah">
                                                 <label class="form-check-label" for="customRadio4">Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input" value="Nisbah semua di wakafkan melalui Wakaf Peradaban">
                                                 <label class="form-check-label" for="customRadio5">Nisbah semua di wakafkan melalui Wakaf Peradaban</label>
                                             </div>
                                         </div> 
@@ -210,15 +211,15 @@
                                         <h5 class="card-title">Alokasi Nisbah Wakaf :</h5>
                                         <div class="mt-3">
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio1" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio1" name="alokasiNisbah" class="form-check-input" value="100% sedekah">
                                                 <label class="form-check-label" for="customRadio6">100% sedekah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input" value="40% anggota ; 60% sedekah">
                                                 <label class="form-check-label" for="customRadio7">40% anggota ; 60% sedekah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input">
+                                                <input type="radio" id="customRadio2" name="alokasiNisbah" class="form-check-input" value="25% anggota ; 75% sedekah">
                                                 <label class="form-check-label" for="customRadio8">25% anggota ; 75% sedekah</label>
                                             </div>
                                         </div> 
@@ -396,8 +397,13 @@
             jenis = $(this)[0].dataset.jenis;
             gramasi = $(this)[0].dataset.gramasi;
             id_emas = $(this)[0].dataset.id_emas;
+            var length = $("#form_tambah_emas tr").length;
+            let index_emas = 1;
+            if(length != 0){
+                index_emas++;
+            }
             $("#form_tambah_emas").append(`
-            <tr id="item-emas-${id_emas}">
+            <tr id="item-emas-${index_emas}">
                 <td>${item}</td>
                 <input type="hidden" value="${item}" class="form-control" name="item_emas[]">
                 <td>
@@ -405,19 +411,19 @@
                     <input type="hidden" value="${jenis}" class="form-control" name="jenis_emas[]">
                 </td>
                 <td>${gramasi}</td>
-                <input type="hidden" value="${gramasi}" class="form-control gramasi-${id_emas}" name="gramasi_emas[]">
+                <input type="hidden" value="${gramasi}" class="form-control gramasi-${index_emas}" name="gramasi_emas[]">
                 <td>
-                    <input id="input-keping-emas-${id_emas}" type="number" min="1" value="" oninput="jumlahGram(${id_emas})" name="keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>
+                    <input id="input-keping-emas-${index_emas}" type="number" min="1" value="" oninput="jumlahGram(${index_emas})" name="keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>
                 </td>
                 <td>
-                    <span id="jumlah-keping-${id_emas}">
+                    <span id="jumlah-keping-${index_emas}">
                        0
                     </span>
                     Gram
-                    <input id="input-jumlah-keping-${id_emas}" type="hidden" value="${jenis}" class="form-control" name="jumlah_keping[]">
+                    <input id="input-jumlah-keping-${index_emas}" type="hidden" value="${jenis}" class="form-control" name="jumlah_keping[]">
                 </td>
                 <td>
-                    <a href="javascript:void(0);" id="removeRow" data-id_emas="${id_emas}" class="action-icon"> <i
+                    <a href="javascript:void(0);" id="removeRow" data-index_emas="${index_emas}" data-id_emas="${id_emas}" class="action-icon"> <i
                             class="mdi mdi-delete"></i></a>
                 </td>
             </tr>
@@ -425,8 +431,18 @@
             $(`#tambah-emas-${id_emas}`).css("display","none");
         });
         $(document).on('click', '#removeRow', function () {
+            index_emas = $(this)[0].dataset.index_emas;
             id_emas = $(this)[0].dataset.id_emas;
-            $(this).closest(`#item-emas-${id_emas}`).remove();
+            var jumlah_terhapus = $(`#jumlah-keping-${index_emas}`)[0].innerText; 
+            var input_total_jumlah = document.getElementById(`input_total_jumlah_emas`).value;
+            var nilai_akhir = parseFloat(input_total_jumlah)-parseFloat(jumlah_terhapus);
+            nilai_akhir = parseFloat(nilai_akhir).toFixed(1);
+            if(nilai_akhir == 0.0){
+                nilai_akhir = 0;
+            }
+            document.getElementById(`total_jumlah_emas`).innerHTML = nilai_akhir;
+            document.getElementById(`input_total_jumlah_emas`).value = nilai_akhir;
+            $(this).closest(`#item-emas-${index_emas}`).remove();
             $(`#tambah-emas-${id_emas}`).css("display","block");
         });
     })

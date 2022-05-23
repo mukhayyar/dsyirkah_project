@@ -49,7 +49,7 @@ class PengajuanController extends Controller
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_pengajuan = $request->catatan;
         $pengajuan->save();
-        return redirect()->back()->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        return redirect('/mutlaqah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
     public function emas_store(Request $request)
     {
@@ -99,6 +99,6 @@ class PengajuanController extends Controller
             $rincianPengajuanEmas->jumlah = $request->jumlah_keping[$i];
             $rincianPengajuanEmas->save();            
         }
-        return redirect()->back()->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        return redirect('/mutlaqah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
 }

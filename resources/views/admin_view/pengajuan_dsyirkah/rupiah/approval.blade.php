@@ -66,7 +66,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td>Tanggal Pengajuan</td>
-                                                            <td>: {{$pengajuan->created_at}}</td>
+                                                            <td>: {{date('Y-m-d h:i',strtotime($pengajuan->created_at))}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Nomor Pengajuan</td>
@@ -117,7 +117,7 @@
                                                     <div class="col-4">
                                                         <p class="font-14"><strong>Bukti Transfer</strong></p>
                                                     </div>
-                                                    <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/><br>
+                                                    <img src="/images/data_penting/bukti_transfer/{{$pengajuan->bukti_transfer}}" alt="image" class="img-fluid rounded" width="600"/><br>
                                                     <br><div class="card border-info border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Persetujuan :</h5>
@@ -194,12 +194,16 @@
                                     <div class="text-center">
                                         <i class="dripicons-warning h1 text-warning"></i>
                                         <h4 class="mt-2">Perhatian</h4>
+                                        @if($pengajuan->status == 'Approved')
+                                        Pengajuan Ini Sudah Di Approved
+                                        @else
                                         <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Setujui</strong></p>
                                         <p> Silakan klik <strong>Aprov</strong> jika sudah yakin</p>
                                         <form action="{{$id}}/approve" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-success my-2">Aprov</button>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div><!-- /.modal-content -->
@@ -213,12 +217,16 @@
                                     <div class="text-center">
                                         <i class="dripicons-warning h1 text-warning"></i>
                                         <h4 class="mt-2">Perhatian</h4>
+                                        @if($pengajuan->status == 'Approved')
+                                        Pengajuan Ini Sudah Di Approved
+                                        @else
                                         <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Riject</strong></p>
                                         <p> Silakan klik <strong>Riject</strong> jika sudah yakin</p>
                                         <form action="{{$id}}/reject" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-warning my-2" data-bs-dismiss="modal">Riject</button>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div><!-- /.modal-content -->
@@ -391,7 +399,7 @@
                                     <div class="col-4">
                                         <p class="font-14"><strong>Photo KTP</strong></p>
                                     </div>
-                                    <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/>
+                                    <img src="/images/data_penting/ktp/{{$pengajuan->anggota->foto_ktp}}" alt="image" class="img-fluid rounded" width="600"/>
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->

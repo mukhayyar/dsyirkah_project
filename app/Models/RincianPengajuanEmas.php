@@ -10,4 +10,8 @@ class RincianPengajuanEmas extends Model
     use HasFactory;
     protected $table = 'rincian_pengajuan_emas';
     public $timestamps = false;
+    public function jumlah()
+    {
+        return $this->jumlah." Gram";
+    }
 }

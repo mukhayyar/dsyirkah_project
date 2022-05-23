@@ -41,4 +41,8 @@ class PengajuanRupiah extends Model
             return "R-000001-MT";
         }
     }
+    public function nominal()
+    {
+        return "Rp. ".number_format($this->nominal,0,",",".").",-";
+    }
 }

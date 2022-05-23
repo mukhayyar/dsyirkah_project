@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\PerpanjanganEmas;
+use App\Models\RincianPengajuanEmas;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PengajuanEmas extends Model
 {
@@ -13,6 +15,16 @@ class PengajuanEmas extends Model
     public function anggota()
     {
         return $this->belongsTo(Anggota::class);
+    }
+
+    public function rincian_pengajuan_emas()
+    {
+        return $this->hasMany(RincianPengajuanEmas::class,'pengajuan_id');
+    }
+
+    public function perpanjangan_emas()
+    {
+        return $this->hasMany(PerpanjanganEmas::class,'pengajuan_id');
     }
 
     public function generate_no_mq()
@@ -38,5 +50,10 @@ class PengajuanEmas extends Model
         } else {
             return "G-000001-MT";
         }
+    }
+
+    public function total_gramasi()
+    {
+        return $this->total_gramasi." Gram";
     }
 }

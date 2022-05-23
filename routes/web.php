@@ -153,12 +153,12 @@ Route::middleware('auth')->group(function(){
             Route::group(['prefix'=>'dsyirkah_aktif'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_index']);
-                Route::get('/emas/action',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approval']);
-                Route::get('/emas/detail',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_detail']);
+                Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approval']);
+                Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_detail']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_index']);
-                Route::get('/rupiah/action',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approval']);
-                Route::get('/rupiah/detail',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_detail']);
+                Route::get('/rupiah/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approval']);
+                Route::get('/rupiah/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_detail']);
             });
             Route::group(['prefix'=>'reakad_dsyirkah'], function(){
     

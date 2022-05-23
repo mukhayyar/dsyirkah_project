@@ -127,52 +127,45 @@
                                 </tbody>
                             </table>                                          
                         </div> <!-- end preview-->
-                    
-                        <div class="tab-pane" id="scroll-horizontal-code">
-                            <pre class="mb-0">
-                                <span class="html escape">
-                                    &lt;table id=&quot;scroll-horizontal-datatable&quot; class=&quot;table w-100 nowrap&quot;&gt;
-                                        &lt;thead&gt;
-                                            &lt;tr&gt;
-                                                &lt;th&gt;No&lt;/th&gt;
-                                                &lt;th&gt;Pengajuan&lt;/th&gt;
-                                                &lt;th&gt;Perwada&lt;/th&gt;
-                                                &lt;th&gt;Office&lt;/th&gt;
-                                                &lt;th&gt;Age&lt;/th&gt;
-                                                &lt;th&gt;Start date&lt;/th&gt;
-                                                &lt;th&gt;Salary&lt;/th&gt;
-                                                &lt;th&gt;Extn.&lt;/th&gt;
-                                                &lt;th&gt;E-mail&lt;/th&gt;
-                                            &lt;/tr&gt;
-                                        &lt;/thead&gt;
-                                        &lt;tbody&gt;
-                                            &lt;tr&gt;
-                                                &lt;td&gt;Tiger&lt;/td&gt;
-                                                &lt;td&gt;Nixon&lt;/td&gt;
-                                                &lt;td&gt;System Architect&lt;/td&gt;
-                                                &lt;td&gt;Edinburgh&lt;/td&gt;
-                                                &lt;td&gt;61&lt;/td&gt;
-                                                &lt;td&gt;2011/04/25&lt;/td&gt;
-                                                &lt;td&gt;$320,800&lt;/td&gt;
-                                                &lt;td&gt;5421&lt;/td&gt;
-                                                &lt;td&gt;t.nixon@datatables.net&lt;/td&gt;
-                                            &lt;/tr&gt;
-                                            &lt;tr&gt;
-                                                &lt;td&gt;Garrett&lt;/td&gt;
-                                                &lt;td&gt;Winters&lt;/td&gt;
-                                                &lt;td&gt;Accountant&lt;/td&gt;
-                                                &lt;td&gt;Tokyo&lt;/td&gt;
-                                                &lt;td&gt;63&lt;/td&gt;
-                                                &lt;td&gt;2011/07/25&lt;/td&gt;
-                                                &lt;td&gt;$170,750&lt;/td&gt;
-                                                &lt;td&gt;8422&lt;/td&gt;
-                                                &lt;td&gt;g.winters@datatables.net&lt;/td&gt;
-                                            &lt;/tr&gt;
-                                        &lt;/tbody&gt;
-                                    &lt;/table&gt; 
-                                </span>
-                            </pre> <!-- end highlight-->
-                        </div> <!-- end preview code-->
+                        <div class="modal fade" id="modal-upload-pengiriman" tabindex="-1" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-lg loading authentication-bg">
+                                <div class="modal-content bg-transparent">
+                                <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-xxl-7 col-lg-5">
+                                                <div class="card">
+                                                    <div class="modal-header" style="background-color: goldenrod">
+                                                        <div style="color: white"><h4>Upload Bukti Pengiriman</h4></div>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                    </div>
+                                                    <div class="card-body p-4">
+                                                        <form action="#">
+                                                            <div class="mb-3">
+                                                                <label for="fullname" class="form-label">Tanggal Pengiriman Barang</label>
+                                                                <input class="form-control" type="date" placeholder="" id="fullname" required="">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="fullname" class="form-label">Upload Bukti Pengiriman</label>
+                                                                <input class="form-control" type="upload" placeholder="" id="fullname" required="">
+                                                            </div>
+                                                            
+                                                            <div class="mb-3 text-center">
+                                                                <button class="btn btn-primary" type="submit"> Simpan </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+                                    </div>
+                                    <!-- end container -->
+                                </div>
+                                </div>
+                                <!-- end page -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
                     </div>
                 </div> <!-- end card-body-->
             </div> <!-- end card-->

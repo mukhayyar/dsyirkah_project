@@ -51,7 +51,7 @@
         </div>
     </section>
     @if(!$check_lengkap_data->no_ktp)
-        <div id="exampleModalLive" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: block;">
+        <div id="exampleModalLive" class="modal fade show" tabindex="-1" aria-modal="true" aria-labelledby="myLargeModalLabel" role="dialog" style="display: block;">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">

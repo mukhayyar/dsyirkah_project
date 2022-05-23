@@ -92,7 +92,7 @@
                                             <div class="col-md program reguler" style="display: none">
                                                 <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
                                                 <select class="form-select" id="example-select" name="perpanjangan">
-                                                    <option value="" selected>Pilih</option>
+                                                    <option value="">Pilih</option>
                                                     <option value="Otomatis">Otomatis</option>
                                                     <option value="Tidak Otomatis">Tidak Otomatis</option>
                                                 </select>

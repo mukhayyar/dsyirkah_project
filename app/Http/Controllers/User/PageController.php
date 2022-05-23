@@ -100,9 +100,15 @@ class PageController extends Controller
             ['status_post','Posting'],
         ])->latest()->paginate(3);
         $target_rupiah = DB::table('usaha')->where('jenis_akad','mutlaqah')->sum('kebutuhan_rupiah');
-        $bagian_target_rupiah = DB::table('pengajuan_rupiah')->where('jenis_syirkah','Mutlaqah')->sum('nominal');
+        $bagian_target_rupiah = DB::table('pengajuan_rupiah')->where([
+            ['jenis_syirkah','Mutlaqah'],
+            ['status','Approved']
+        ])->sum('nominal');
         $target_emas = DB::table('usaha')->where('jenis_akad','mutlaqah')->sum('kebutuhan_emas');
-        $bagian_target_emas = DB::table('pengajuan_emas')->where('jenis_syirkah','Mutlaqah')->sum('total_gramasi');
+        $bagian_target_emas = DB::table('pengajuan_emas')->where([
+            ['jenis_syirkah','Mutlaqah'],
+            ['status','Approved']
+        ])->sum('total_gramasi');
         $percent_target_rupiah = ($bagian_target_rupiah/$target_rupiah)*100;
         $percent_target_emas = ($bagian_target_emas/$target_emas)*100;
         $percent_target_rupiah = round($percent_target_rupiah);

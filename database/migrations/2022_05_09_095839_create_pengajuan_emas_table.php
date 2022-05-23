@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('no_sertifikat')->nullable();
             $table->string('kode_usaha')->nullable();
             $table->string('nisbah')->nullable();
-            $table->string('perpanjangan')->nullable();
+            $table->string('perpanjangan')->nullable()->default('Tidak Otomatis');
             $table->string('jangka_waktu')->nullable();
             $table->string('alokasi_nisbah')->nullable();
             $table->string('persetujuan')->nullable();

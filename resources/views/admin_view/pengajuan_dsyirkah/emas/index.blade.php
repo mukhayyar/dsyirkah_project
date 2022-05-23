@@ -59,6 +59,7 @@
                                                             <th>Pilihan Program</th>
                                                             <th>Referensi</th>
                                                             <th>Total Gramasi</th>
+                                                            <th>Status</th>
                                                             <th>Jangka Waktu</th>
                                                             <th>Perpanjangan</th>
                                                             <th>Aproval</th>
@@ -69,52 +70,6 @@
                                                     </tbody>
                                                 </table>                                          
                                             </div> <!-- end preview-->
-                                        
-                                            <div class="tab-pane" id="scroll-horizontal-code">
-                                                <pre class="mb-0">
-                                                    <span class="html escape">
-                                                        &lt;table id=&quot;scroll-horizontal-datatable&quot; class=&quot;table w-100 nowrap&quot;&gt;
-                                                            &lt;thead&gt;
-                                                                &lt;tr&gt;
-                                                                    &lt;th&gt;No&lt;/th&gt;
-                                                                    &lt;th&gt;Pengajuan&lt;/th&gt;
-                                                                    &lt;th&gt;Perwada&lt;/th&gt;
-                                                                    &lt;th&gt;Office&lt;/th&gt;
-                                                                    &lt;th&gt;Age&lt;/th&gt;
-                                                                    &lt;th&gt;Start date&lt;/th&gt;
-                                                                    &lt;th&gt;Salary&lt;/th&gt;
-                                                                    &lt;th&gt;Extn.&lt;/th&gt;
-                                                                    &lt;th&gt;E-mail&lt;/th&gt;
-                                                                &lt;/tr&gt;
-                                                            &lt;/thead&gt;
-                                                            &lt;tbody&gt;
-                                                                &lt;tr&gt;
-                                                                    &lt;td&gt;Tiger&lt;/td&gt;
-                                                                    &lt;td&gt;Nixon&lt;/td&gt;
-                                                                    &lt;td&gt;System Architect&lt;/td&gt;
-                                                                    &lt;td&gt;Edinburgh&lt;/td&gt;
-                                                                    &lt;td&gt;61&lt;/td&gt;
-                                                                    &lt;td&gt;2011/04/25&lt;/td&gt;
-                                                                    &lt;td&gt;$320,800&lt;/td&gt;
-                                                                    &lt;td&gt;5421&lt;/td&gt;
-                                                                    &lt;td&gt;t.nixon@datatables.net&lt;/td&gt;
-                                                                &lt;/tr&gt;
-                                                                &lt;tr&gt;
-                                                                    &lt;td&gt;Garrett&lt;/td&gt;
-                                                                    &lt;td&gt;Winters&lt;/td&gt;
-                                                                    &lt;td&gt;Accountant&lt;/td&gt;
-                                                                    &lt;td&gt;Tokyo&lt;/td&gt;
-                                                                    &lt;td&gt;63&lt;/td&gt;
-                                                                    &lt;td&gt;2011/07/25&lt;/td&gt;
-                                                                    &lt;td&gt;$170,750&lt;/td&gt;
-                                                                    &lt;td&gt;8422&lt;/td&gt;
-                                                                    &lt;td&gt;g.winters@datatables.net&lt;/td&gt;
-                                                                &lt;/tr&gt;
-                                                            &lt;/tbody&gt;
-                                                        &lt;/table&gt; 
-                                                    </span>
-                                                </pre> <!-- end highlight-->
-                                            </div> <!-- end preview code-->
                                         </div>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -144,6 +99,7 @@
                 {data: 'pilihan_program', name: 'pilihan_program'},
                 {data: 'referensi', name: 'referensi'},
                 {data: 'total_gramasi', name: 'total_gramasi'},
+                {data: 'status', name: 'status'},
                 {data: 'jangka_waktu', name: 'jangka_waktu'},
                 {data: 'perpanjangan', name: 'perpanjangan'},
                 {data: 'approval', name: 'approval', orderable: false, searchable: false},
