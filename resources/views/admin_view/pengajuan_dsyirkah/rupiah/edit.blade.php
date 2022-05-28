@@ -41,32 +41,32 @@
                                                 <div class="col-md">
                                                     <label class="form-label">Nomor BA</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="{{$user->mask_nomor_ba()}}" aria-label="Recipient's username" readonly>
-                                                        <input type="hidden" value="{{$user->nomor_ba}}" name="no_ba">
-                                                        <input type="hidden" value="{{$user->id}}" name="anggota_id">
+                                                        <input type="text" class="form-control" placeholder="{{$pengajuan->anggota->mask_nomor_ba()}}" aria-label="Recipient's username" readonly>
+                                                        <input type="hidden" value="{{$pengajuan->anggota->nomor_ba}}" name="no_ba">
+                                                        <input type="hidden" value="{{$pengajuan->anggota->id}}" name="anggota_id">
                                                     </div>
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Nama Lengkap</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$user->nama_lengkap}}" value="{{$user->nama_lengkap}}" name="nama_lengkap" readonly="">
+                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->anggota->nama_lengkap}}" value="{{$pengajuan->anggota->nama_lengkap}}" name="nama_lengkap" readonly="">
                                                 </div>
                                             </div><br>
                                             <div class="row g-2">
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Nomor HP</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$user->mask_no_hp()}}" readonly="">
-                                                    <input type="hidden" value="{{$user->no_hp}}" name="no_hp">
+                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->anggota->mask_no_hp()}}" readonly="">
+                                                    <input type="hidden" value="{{$pengajuan->anggota->no_hp}}" name="no_hp">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="emailaddress" class="form-label">Email address</label>
-                                                    <input class="form-control" type="email" id="emailaddress" placeholder="{{$user->mask_email()}}" readonly=""> 
-                                                    <input type="hidden" value="{{$user->email}}" name="email">
+                                                    <input class="form-control" type="email" id="emailaddress" placeholder="{{$pengajuan->anggota->mask_email()}}" readonly=""> 
+                                                    <input type="hidden" value="{{$pengajuan->anggota->email}}" name="email">
                                                 </div>
                                             </div><hr><br>
                                             <div class="row g-2">
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Nomor Pengajuan</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$generate_no}}" value="{{$generate_no}}" name="no_referensi" readonly="">
+                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->no_pengajuan}}" value="{{$pengajuan->no_pengajuan}}" name="no_referensi" readonly="">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="emailaddress" class="form-label">Jenis Syirkah</label>
@@ -74,15 +74,14 @@
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Versi D'Syirkah</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$versi->versi}}" value="{{$versi->versi}}" readonly="" name="versi">
-                                                    <input type="hidden" id="id_versi" value="{{$versi->id}}">
+                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->versi_syirkah}}" value="{{$pengajuan->versi_syirkah}}" readonly="" name="versi">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="perwada" class="form-label">Perwada</label>
                                                     <select class="form-control" type="text" id="perwada" required name="perwada">
                                                         <option value="">Pilih</option>
                                                         @foreach($perwada as $pwd)
-                                                        <option value="{{$pwd->nama}}">{{$pwd->nama}}</option>
+                                                        <option value="{{$pwd->nama}}" {{$pengajuan->referensi == $pwd->nama ? 'selected' : ''}}>{{$pwd->nama}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -96,9 +95,9 @@
                                                                 <div class="col-md">
                                                                     <label for="example-select" class="form-label">Pilihan Program</label>
                                                                     <select class="form-select" id="pilihanProgram" name="pilihanProgram" required>
-                                                                        <option value="" selected>Pilih</option>
-                                                                        <option value="reguler">Reguler</option>
-                                                                        <option value="pokokWakaf">Pokok Diwakafkan</option>
+                                                                        <option value="">Pilih</option>
+                                                                        <option value="reguler" {{$pengajuan->pilihan_program == "reguler" ? 'selected' : ''}}>Reguler</option>
+                                                                        <option value="pokokWakaf" {{$pengajuan->pilihan_program == "pokokWakaf" ? 'selected' : ''}}>Pokok Diwakafkan</option>
                                                                     </select>
                                                                 </div><br>
                                                                 <div class="col-md program reguler" style="display: none">
@@ -243,7 +242,7 @@
                                                     <div class="card border-secondary border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Catatan :</h5>
-                                                            <textarea name="catatan" id="" cols="70" rows="10"></textarea>
+                                                            <p class="card-text">{{$pengajuan->catatan_pengajuan}}</p>
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
                                                 </div>
@@ -252,12 +251,17 @@
                                                         <div class="card-body">
                                                             <h5 class="card-title">Tandatangan :</h5>
                                                             <br/>
-                                                            <div style="border:1px solid #000000;">
-                                                                <div id="sig" ></div>
-                                                            </div>
-                                                            <br/>
-                                                            <button id="clear" class="btn btn-danger btn-sm">Hapus Tanda Tangan</button>
-                                                            <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                                            <img src="/images/data_penting/tanda_tangan/{{$pengajuan->ttd}}" width="550" alt="">
+                                                        </div> <!-- end card-body-->
+                                                    </div> <!-- end card-->
+                                                </div>
+                                            </div>
+                                            <div slass="row">
+                                                <div class="col-lg-11">
+                                                    <div class="card border-danger border">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Catatan Edit :</h5>
+                                                            <textarea class="form-control" name="catatan_edit" rows="5"></textarea>
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
                                                 </div>

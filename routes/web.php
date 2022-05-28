@@ -46,12 +46,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/api/versi/nisbah/{id}', [App\Http\Controllers\User\PageController::class,'cari_nisbah']);
         Route::get('/mutlaqah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_mutlaqah']);
         Route::get('/muqayyadah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_muqayyadah']);
-        Route::get('/detail_mutlaqah', function () {
-            return view('main_view/detail_mutlaqah');
-        });
-        Route::get('/detail_muqayyadah', function () {
-            return view('main_view/detail_muqayyadah');
-        });
+        Route::get('/muqayyadah/usaha/{id}/pengajuan', [App\Http\Controllers\User\PageController::class,'detail_usaha_muqayyadah']);
         Route::group(['prefix'=>'user'], function () {
             Route::get('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data']);
             Route::post('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data_store']);
@@ -153,12 +148,16 @@ Route::middleware('auth')->group(function(){
             Route::group(['prefix'=>'dsyirkah_aktif'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_index']);
-                Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approval']);
+                Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_action']);
+                Route::post('/emas/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approve']);
+                Route::post('/emas/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_stop']);
                 Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_detail']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_index']);
-                Route::get('/rupiah/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approval']);
+                Route::get('/rupiah/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_action']);
                 Route::get('/rupiah/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_detail']);
+                Route::post('/rupiah/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approve']);
+                Route::post('/rupiah/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_stop']);
             });
             Route::group(['prefix'=>'reakad_dsyirkah'], function(){
     
@@ -166,12 +165,14 @@ Route::middleware('auth')->group(function(){
             Route::group(['prefix'=>'dsyirkah_nonaktif'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_index']);
-                Route::get('/emas/action',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_approval']);
-                Route::get('/emas/detail',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_detail']);
+                Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_approval']);
+                Route::get('/emas/{id}/detail',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_detail']);
+                Route::post('/emas/{id}/upload-bukti',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_upload_transfer']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_index']);
-                Route::get('/rupiah/action',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_approval']);
-                Route::get('/rupiah/detail',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_detail']);
+                Route::get('/rupiah/action/{id}',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_approval']);
+                Route::get('/rupiah/{id}/detail',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_detail']);
+                Route::post('/rupiah/{id}/upload-bukti',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_upload_transfer']);
             });
         });
     });

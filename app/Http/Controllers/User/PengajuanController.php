@@ -31,8 +31,12 @@ class PengajuanController extends Controller
         file_put_contents($file, $image_base64);
         $pengajuan->ttd = $filename;
         //jangka watu
-        $jangka_waktu = explode(",",$request->jangka_waktu);
-        $jangka_waktu = $jangka_waktu[1];
+        if(is_array($request->jangka_waktu)){
+            $jangka_waktu = explode(",",$request->jangka_waktu);
+            $jangka_waktu = $jangka_waktu[1];
+        } else {
+            $jangka_waktu=12;
+        }
         // data lain
         $pengajuan->slug = rand().$request->jenis.rand().$request->pilihanProgram;
         $pengajuan->anggota_id = $request->anggota_id;
@@ -69,7 +73,7 @@ class PengajuanController extends Controller
             $jangka_waktu = explode(",",$request->jangka_waktu);
             $jangka_waktu = $jangka_waktu[1];
         } else {
-            $jangka_waktu=0;
+            $jangka_waktu=12;
         }
         // data lain
         $pengajuan->slug = rand().$request->jenis.rand().$request->pilihanProgram;

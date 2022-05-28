@@ -56,4 +56,9 @@ class PengajuanEmas extends Model
     {
         return $this->total_gramasi." Gram";
     }
+
+    public function jangka_waktu()
+    {
+        return $this->jangka_waktu." Bulan";
+    }
 }

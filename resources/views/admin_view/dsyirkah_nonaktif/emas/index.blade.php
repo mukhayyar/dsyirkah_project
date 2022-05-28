@@ -32,7 +32,7 @@
 
                     <div class="tab-content">
                         <div class="tab-pane show active" id="scroll-horizontal-preview">
-                            <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap">
+                            <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -49,81 +49,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>12 Apr 2022 13:30</td>
-                                        <td>5467658768678</td>
-                                        <td>0.123.1234567</td>
-                                        <td>Nasorudin</td>
-                                        <td>Muqoyyadah</td>
-                                        <td>10 Gram</td>
-                                        <td>
-                                            <span class="badge badge-primary-lighten">Selesai Akad</span>
-                                            <span class="badge badge-danger-lighten">Batal Akad</span>
-                                        </td>
-                                        <td>
-                                            <a href="" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-upload-pengiriman"><i class="mdi mdi-file-upload"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-update"></i></a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-primary-lighten">Proses</span>
-                                            <span class="badge badge-info-lighten">Close</span>
-                                        </td>
-                                        <td>
-                                            <a href="view-nonaktif-emas.html" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>12 Apr 2022 13:30</td>
-                                        <td>5467658768678</td>
-                                        <td>0.123.1234567</td>
-                                        <td>Nasorudin</td>
-                                        <td>Muqoyyadah</td>
-                                        <td>5 Gram</td>
-                                        <td>
-                                            <span class="badge badge-primary-lighten">Selesai Akad</span>
-                                            <span class="badge badge-danger-lighten">Batal Akad</span>
-                                        </td>
-                                        <td>
-                                            <a href="" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-upload-pengiriman"><i class="mdi mdi-file-upload"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-update"></i></a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-primary-lighten">Proses</span>
-                                            <span class="badge badge-info-lighten">Close</span>
-                                        </td>
-                                        <td>
-                                            <a href="view-nonaktif-emas.html" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>
-                                        </td>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>12 Apr 2022 13:30</td>
-                                        <td>5467658768678</td>
-                                        <td>0.123.1234567</td>
-                                        <td>Nasorudin</td>
-                                        <td>Muqoyyadah</td>
-                                        <td>30 gram</td>
-                                        <td>
-                                            <span class="badge badge-primary-lighten">Selesai Akad</span>
-                                            <span class="badge badge-danger-lighten">Batal Akad</span>
-                                        </td>
-                                        <td>
-                                            <a href="" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-upload-pengiriman"><i class="mdi mdi-file-upload"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-update"></i></a>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-primary-lighten">Proses</span>
-                                            <span class="badge badge-info-lighten">Close</span>
-                                        </td>
-                                        <td>
-                                            <a href="view-nonaktif-emas.html" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tr>
                                 </tbody>
                             </table>                                          
                         </div> <!-- end preview-->
@@ -140,14 +65,15 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
                                                     <div class="card-body p-4">
-                                                        <form action="#">
+                                                        <form action="" id="form-upload-bukti-transfer" enctype="multipart/form-data" method="POST">
+                                                            @csrf
                                                             <div class="mb-3">
-                                                                <label for="fullname" class="form-label">Tanggal Pengiriman Barang</label>
-                                                                <input class="form-control" type="date" placeholder="" id="fullname" required="">
+                                                                <label for="tanggal_pengiriman" class="form-label">Tanggal Pengiriman Barang</label>
+                                                                <input class="form-control" type="date" name="tanggal_pengiriman" placeholder="" id="tanggal_pengiriman" required="">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="fullname" class="form-label">Upload Bukti Pengiriman</label>
-                                                                <input class="form-control" type="upload" placeholder="" id="fullname" required="">
+                                                                <label for="upload-file" class="form-label">Upload Bukti Pengiriman</label>
+                                                                <input class="form-control" type="file" name="file_transfer" placeholder="" id="upload-file" required="">
                                                             </div>
                                                             
                                                             <div class="mb-3 text-center">
@@ -173,4 +99,33 @@
     </div>
     <!-- end row -->
 </div> <!-- container -->
+@push('scripts')
+<script>
+    $(function(){
+        var table = $('.data-table').DataTable({
+            "scrollX": true,
+            processing: true,
+            serverSide: true,
+            ajax: "",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'tanggal_selesai', name: 'tanggal_selesai'},
+                {data: 'kode_sertifikat', name: 'kode_sertifikat'},
+                {data: 'nomor_ba', name: 'nomor_ba'},
+                {data: 'nama_lengkap', name: 'nama_lengkap'},
+                {data: 'jenis', name: 'jenis'},
+                {data: 'total_emas', name: 'total_emas'},
+                {data: 'kategori', name: 'kategori'},
+                {data: 'pengiriman', name: 'pengiriman', orderable: false, searchable: false},
+                {data: 'status', name: 'status'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
+        });
+    });
+    $('body').on('click', '#upload-pengiriman', function () {
+        var id = $(this).data('id');
+        $('#form-upload-bukti-transfer').attr("action",`emas/${id}/upload-bukti`)
+    });
+</script>
+@endpush
 @endsection

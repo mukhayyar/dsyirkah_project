@@ -121,7 +121,9 @@
                                                             <select class="form-select" id="kantor" name="kantor" required>
                                                                 <option selected>Pilihan</option>
                                                                 <option value="Pusat">Pusat</option>
-                                                                <option value="Perwada">Perwada</option>
+                                                                @foreach($perwada as $pwd)
+                                                                <option value="{{$pwd->nama}}">{{$pwd->nama}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
 

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use DataTables;
+use App\Models\NonAktifEmas;
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
+use App\Models\NonAktifRupiah;
+use App\Models\PengajuanRupiah;
+use App\Models\PerpanjanganEmas;
+use App\Models\PerpanjanganRupiah;
 use App\Http\Controllers\Controller;
 
 class DsyirkahAktifController extends Controller
@@ -46,37 +51,146 @@ class DsyirkahAktifController extends Controller
         }
         return view('admin_view/dsyirkah_aktif/emas/index');
     }
+    public function emas_action($id){
+        $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','perpanjangan_emas')->where('slug',$id)->first();
+        return view('admin_view/dsyirkah_aktif/emas/action',compact('pengajuan','id'));
+    }
+    public function emas_detail($id){
+        $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','perpanjangan_emas')->where('slug',$id)->first();
+        return view('admin_view/dsyirkah_aktif/emas/detail',compact('pengajuan','id'));
+    }
+    public function emas_stop(Request $request,$id){
+        PengajuanEmas::where('slug',$id)->update(['status'=>'Non Aktif']);
+        $pengajuan = PengajuanEmas::where('slug',$id)->first();
+        $stop = new NonAktifEmas;
+        $stop->pengajuan_id = $pengajuan->id;
+        $stop->anggota_id = $pengajuan->anggota_id;
+        $stop->kode_sertifikat = $pengajuan->no_pengajuan;
+        $stop->tanggal_non_aktif = date("Y-m-d");
+        $stop->kategori = $request->kategori;
+        $stop->kebutuhan = $request->kebutuhan == "" ? $request->kebutuhan_lainnya : $request->kebutuhan;
+        $stop->keterangan = $request->keterangan;
+        $stop->status = "Proses";
+        $stop->save();
+        return redirect()->back()->with('success','Berhasil stop');
+    }
+    public function emas_approve($id){
+        $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','perpanjangan_emas')->where('slug',$id)->first();
+        $oldCount = count($request->old_perpanjangan_id);
+        for($i = 0; $i >= $oldCount; $i++){
+            $oldPerpanjangan = PerpanjanganRupiah::find($i);
+            $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
+            $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
+            $oldPerpanjangan->jangka_waktu = $request->old_jangka_waktu[$i];
+            $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
+            $oldPerpanjangan->nisbah = $request->old_nisbah[$i];
+            $oldPerpanjangan->status = $request->old_status[$i];
+            $oldPerpanjangan->save();
+        }
+
+        $newCount = count($request->new_jatuh_tempo_sebelumnya);
+        if($newCount){
+            for($i = 0; $i >= $oldCount; $i++){
+                $newPerpanjangan = new PerpanjanganRupiah;
+                $newPerpanjangan->pengajuan_id = $request->pengajuan_id;
+                $newPerpanjangan->jatuh_tempo_sebelumnya = $request->new_jatuh_tempo_sebelumnya[$i];
+                $newPerpanjangan->tgl_akad_baru  = $request->new_tgl_akad_baru[$i];
+                $newPerpanjangan->jangka_waktu = $request->new_jangka_waktu[$i];
+                $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
+                $newPerpanjangan->nisbah = $request->new_nisbah[$i];
+                $newPerpanjangan->status = $request->new_status[$i];
+                $newPerpanjangan->save();
+            }
+        }
+        return redirect()->back()->with('success','Berhasil approve');
+    }
     public function rupiah_index(Request $request){
-         if($request->ajax()) {
-            $data = PengajuanEmas::where([
+        if($request->ajax()) {
+            $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota')->where([
                 ['status','=','Approved']
             ])->get();
             return Datatables::of($data)
                 ->addIndexColumn()
-                ->addColumn('approval', function($row){
-                    $btn = '<a href="emas/approval/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-archive-check"></i></a>';
+                ->editColumn('nominal',function($row){
+                    return $row->nominal();
+                })
+                ->addColumn('tgl_persetujuan',function($row){
+                    return date('Y-m-d h:i',strtotime($row->perpanjangan_rupiah->get(0)->tgl_akad_baru));
+                })
+                ->addColumn('jatuh_tempo',function($row){
+                    return date('Y-m-d',strtotime($row->perpanjangan_rupiah->get(0)->jatuh_tempo_akan_datang));
+                })
+                ->addColumn('nomor_ba',function($row){
+                    return $row->anggota->nomor_ba;
+                })
+                ->addColumn('nama_lengkap',function($row){
+                    return $row->anggota->nama_lengkap;
+                })
+                ->addColumn('tindak_lanjut', function($row){
+                    $btn = '<a href="rupiah/action/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-calendar-start"></i></a>';
                     return $btn;
-                })
-                ->editColumn('status', function($row){
-                    if($row->status == 'Approved'){
-                        $btn = "<span class='badge badge-success-lighten'>Approved</span>";
-                        return $btn;
-                    } else {
-                        $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
-                        return $btn;
-                    }
-                })
-                ->editColumn('nominal', function($row){
-                    return $row->total_gramasi." Gram";
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="emas/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn .= '<a href="emas/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="rupiah/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
+                    $btn .= '<a href="printData('.$row->id.')" class="action-icon"> <i class="mdi mdi-printer"></i></a>';
+                    $btn .= '<a href="" class="action-icon"> <i class="mdi mdi-whatsapp"></i></a>';
                     return $btn;
                 })
-                ->rawColumns(['action','approval','status'])
+                ->rawColumns(['action','tindak_lanjut'])
                 ->make(true);
         }
         return view('admin_view/dsyirkah_aktif/rupiah/index');
+    }
+    public function rupiah_action($id){
+        $pengajuan = PengajuanRupiah::with('anggota','perpanjangan_rupiah')->where('slug',$id)->first();
+        return view('admin_view/dsyirkah_aktif/rupiah/action',compact('pengajuan','id'));
+    }
+    public function rupiah_detail($id){
+        $pengajuan = PengajuanRupiah::with('anggota','perpanjangan_rupiah')->where('slug',$id)->first();
+        return view('admin_view/dsyirkah_aktif/rupiah/detail',compact('pengajuan','id'));
+    }
+    public function rupiah_stop($id, Request $request){
+        PengajuanRupiah::where('slug',$id)->update(['status'=>'Non Aktif']);
+        $pengajuan = PengajuanRupiah::where('slug',$id)->first();
+        $stop = new NonAktifRupiah;
+        $stop->pengajuan_id = $pengajuan->id;
+        $stop->anggota_id = $pengajuan->anggota_id;
+        $stop->kode_sertifikat = $pengajuan->no_pengajuan;
+        $stop->tanggal_non_aktif = date("Y-m-d");
+        $stop->kategori = $request->kategori;
+        $stop->kebutuhan = $request->kebutuhan == "" ? $request->kebutuhan_lainnya : $request->kebutuhan;
+        $stop->keterangan = $request->keterangan;
+        $stop->status = "Proses";
+        $stop->save();
+        return redirect()->back()->with('success','Berhasil stop');
+    }
+    public function rupiah_approve($id, Request $request){
+        $oldCount = count($request->old_perpanjangan_id);
+        for($i = 0; $i >= $oldCount; $i++){
+            $oldPerpanjangan = PerpanjanganRupiah::find($i);
+            $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
+            $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
+            $oldPerpanjangan->jangka_waktu = $request->old_jangka_waktu[$i];
+            $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
+            $oldPerpanjangan->nisbah = $request->old_nisbah[$i];
+            $oldPerpanjangan->status = $request->old_status[$i];
+            $oldPerpanjangan->save();
+        }
+
+        $newCount = count($request->new_jatuh_tempo_sebelumnya);
+        if($newCount){
+            for($i = 0; $i >= $oldCount; $i++){
+                $newPerpanjangan = new PerpanjanganRupiah;
+                $newPerpanjangan->pengajuan_id = $request->pengajuan_id;
+                $newPerpanjangan->jatuh_tempo_sebelumnya = $request->new_jatuh_tempo_sebelumnya[$i];
+                $newPerpanjangan->tgl_akad_baru  = $request->new_tgl_akad_baru[$i];
+                $newPerpanjangan->jangka_waktu = $request->new_jangka_waktu[$i];
+                $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
+                $newPerpanjangan->nisbah = $request->new_nisbah[$i];
+                $newPerpanjangan->status = $request->new_status[$i];
+                $newPerpanjangan->save();
+            }
+        }
+        return redirect()->back()->with('success','Berhasil approve');
     }
 }

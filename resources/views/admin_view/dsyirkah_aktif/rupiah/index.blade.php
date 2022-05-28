@@ -61,30 +61,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>12 Apr 2022 13:30</td>
-                                        <td>G-123456-MQ</td>
-                                        <td>Nomor Sertifikat</td>
-                                        <td>0.123.1234567</td>
-                                        <td>Nasorudin</td>
-                                        <td>Mutlaqah</td>
-                                        <td>3.0</td>
-                                        <td>Reguler</td>
-                                        <td>Pusat</td>
-                                        <td>Rp 10.000.000</td>
-                                        <td>3 Bulan</td>
-                                        <td>12 Apr 2022</td>
-                                        <td>Otomatis</td>
-                                        <td>
-                                            <a href="rupiah/action/{id}" class="action-icon"> <i class="mdi mdi-calendar-start"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="rupiah/detail/{id}" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>
-                                            <a href="" class="action-icon"> <i class="mdi mdi-printer"></i></a>
-                                            <a href="" class="action-icon"> <i class="mdi mdi-whatsapp"></i></a>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>                                          
                         </div> <!-- end preview-->
@@ -101,6 +77,27 @@
     $(function(){
         var table = $('.data-table').DataTable({
             "scrollX": true,
+            processing: true,
+            serverSide: true,
+            ajax: "",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'tgl_persetujuan', name: 'tgl_persetujuan'},
+                {data: 'no_pengajuan', name: 'no_pengajuan'},
+                {data: 'no_pengajuan', name: 'no_pengajuan'},
+                {data: 'nomor_ba', name: 'nomor_ba'},
+                {data: 'nama_lengkap', name: 'nama_lengkap'},
+                {data: 'jenis_syirkah', name: 'jenis_syirkah'},
+                {data: 'versi_syirkah', name: 'versi_syirkah'},
+                {data: 'pilihan_program', name: 'pilihan_program'},
+                {data: 'referensi', name: 'referensi'},
+                {data: 'nominal', name: 'nominal'},
+                {data: 'jangka_waktu', name: 'jangka_waktu'},
+                {data: 'jatuh_tempo', name: 'jatuh_tempo'},
+                {data: 'perpanjangan', name: 'perpanjangan'},
+                {data: 'tindak_lanjut', name: 'tindak_lanjut', orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
         });
     });
 </script>

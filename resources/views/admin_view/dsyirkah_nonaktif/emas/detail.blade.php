@@ -33,7 +33,7 @@
                             <a class="btn btn-success mb-2"><i class="mdi mdi-printer"></i>Print</a>
                         </div>
                         <div class="col-4">
-                            <a href="nonaktif-emas.html" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
+                            <a onclick="history.back()" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
                         </div>
                         <div class="col-4">
                             <a href="" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modal-view-pemohon"><i class="mdi mdi-card-search-outline"></i> Detail Pemohon</a>
@@ -41,10 +41,10 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p class="font-14"><strong>Nomor Buku Anggota :</strong> 0.123.1234567</p>
+                            <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$non_aktif->anggota->nomor_ba}}</p>
                         </div>
                         <div class="col-sm-4">
-                            <p class="font-14"><strong>Nama Lengkap :</strong> Mukhammad Nasorudin Maulana</p>
+                            <p class="font-14"><strong>Nama Lengkap :</strong> {{$non_aktif->anggota->nama_lengkap}}</p>
                         </div><hr>
                     </div>
 
@@ -62,59 +62,61 @@
                                     <tbody>
                                     <tr>
                                         <td>Tanggal Persetujuan</td>
-                                        <td>: 12 April 2022 13:00</td>
+                                        <td>: {{$non_aktif->pengajuan->created_at}}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode DSyirkah</td>
-                                        <td>: G-123456-MQ </td>
+                                        <td>: {{$non_aktif->pengajuan->no_pengajuan}} </td>
                                     </tr>
                                     <tr>
                                         <td>Kode Sertifikat</td>
-                                        <td>: Kode Sertifikat</td>
+                                        <td>: {{$non_aktif->kode_sertifikat}}</td>
                                     </tr>
                                     <tr>
                                         <td>Referensi</td>
-                                        <td>: KP Jakarta</td>
+                                        <td>: {{$non_aktif->pengajuan->referensi}}</td>
                                     </tr>
                                     <tr>
                                         <td>Pilihan Program</td>
-                                        <td>: Reguler</td>
+                                        <td>: {{$non_aktif->pengajuan->pilihan_program}}</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Syirkah</td>
-                                        <td>: Mutlaqah</td>
+                                        <td>: {{$non_aktif->pengajuan->jenis_syirkah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Versi Syirkah</td>
-                                        <td>: 3.0</td>
+                                        <td>: {{$non_aktif->pengajuan->versi_syirkah}}</td>
                                     </tr>
+                                    @if($non_aktif->pengajuan->kode_usaha)
                                     <tr>
                                         <td>Kode Usaha</td>
-                                        <td>: MQ-123-12345 (jika Muqoyyadah)</td>
+                                        <td>: {{$non_aktif->pengajuan->kode_usaha}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td>Jangka Waktu</td>
-                                        <td>: 3 Bulan</td>
+                                        <td>: {{$non_aktif->pengajuan->jangka_waktu()}}</td>
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: 13 Juli 2022</td>
+                                        <td>: {{$non_aktif->pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: Anggota 50%:50%Club</td>
+                                        <td>: {{$non_aktif->pengajuan->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
-                                        <td>: Nisbah semua dimasukkan ke Simpanan Berkah</td>
+                                        <td>: {{$non_aktif->pengajuan->alokasi_nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Perpanjangan</td>
-                                        <td>: Otomatis</td>
+                                        <td>: {{$non_aktif->pengajuan->perpanjangan}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Gramasi</td>
-                                        <td>: 20 Gram</td>
+                                        <td>: {{$non_aktif->pengajuan->total_gramasi()}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -135,42 +137,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Gold 0.1 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-primary-lighten">Reguler</span>
-                                                </td>
-                                                <td>0.1</td>
-                                                <td>50</td>
-                                                <td>5 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 1 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-primary-lighten">Reguler</span>
-                                                </td>
-                                                <td>1</td>
-                                                <td>6</td>
-                                                <td>6 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 5 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-info-lighten">Series IS</span>
-                                                </td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                                <td>5 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 2 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-success-lighten">SeriesIF</span>
-                                                </td>
-                                                <td>2</td>
-                                                <td>2</td>
-                                                <td>4 Gram</td>
-                                            </tr>
+                                                @foreach($non_aktif->pengajuan->rincian_pengajuan_emas as $rincian_emas)
+                                                <tr>
+                                                    <td>{{$rincian_emas->item}}</td>
+                                                    <td>
+                                                        <span class="badge badge-primary-lighten">{{$rincian_emas->jenis}}</span>
+                                                    </td>
+                                                    <td>{{$rincian_emas->gramasi}}</td>
+                                                    <td>{{$rincian_emas->keping}}</td>
+                                                    <td>{{$rincian_emas->jumlah()}}</td>
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -215,24 +192,17 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>-</td>
-                                                    <td>12 April 2021</td>
-                                                    <td>3 Bulan</td>
-                                                    <td>12 Juli 2021</td>
-                                                    <td>Anggota 50%:50%Club</td>
-                                                    <td>Pengajuan / Aproved </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>12 Juli 2021</td>
-                                                    <td>12 Juli 2022</td>
-                                                    <td>12 Bulan</td>
-                                                    <td>12 Juli 2022</td>
-                                                    <td>Anggota 50%:50%Club</td>
-                                                    <td>Pengajuan / Aproved </td>
-                                                </tr>
+                                                    @foreach($non_aktif->pengajuan->perpanjangan_emas as $perpanjangan)
+                                                    <tr>
+                                                        <td>{{$loop->index+1}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td>{{$perpanjangan->nisbah}}</td>
+                                                        <td>{{$perpanjangan->status}}</td>
+                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -256,19 +226,19 @@
                                             <tbody>
                                             <tr>
                                                 <td>Tanggal Non Actif</td>
-                                                <td>: 12 April 2022 13:00</td>
+                                                <td>: {{$non_aktif->tanggal_non_aktif}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Kategory Stop</td>
-                                                <td>: Sesuai Akad</td>
+                                                <td>: {{$non_aktif->kategori}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal Pengiriman Barang</td>
-                                                <td>: 12 April 2022 </td>
+                                                <td>: {{$non_aktif->tanggal_pengiriman_barang}} </td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal Selesai</td>
-                                                <td>: 12 April 2022 </td>
+                                                <td>: {{$non_aktif->tanggal_selesai}} </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -281,7 +251,7 @@
                                     <div class="col-4">
                                         <p class="font-14"><strong>Bukti Pengiriman</strong></p>
                                     </div>
-                                    <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/><br>
+                                    <img src="/images/data_penting/bukti_pengiriman/{{$non_aktif->foto_pengiriman}}" alt="image" class="img-fluid rounded" width="600"/><br>
                                 </div>
                             </div><br>
                         </div>
@@ -307,7 +277,7 @@
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: 0.123.1234567</strong> </p>
+                        <p class="font-14"><strong>: {{$non_aktif->pengajuan->anggota->nomor_ba}}</strong> </p>
                     </div>
                 </div>
                 <div class="row">
@@ -315,7 +285,7 @@
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Mukhammad Nasorudin Maulana</h>
+                        <h class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->nama_lengkap}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -323,7 +293,7 @@
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>081228383733894</h>
+                        <h class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->no_hp}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -331,7 +301,7 @@
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>nasorudin@gmail.com</h>
+                        <h class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->email}}</h>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -339,7 +309,7 @@
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>72468376825439868435</h>
+                        <h class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->no_ktp}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -347,7 +317,7 @@
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Laki-Laki</h>
+                        <h class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->jenis_kelamin}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -355,7 +325,7 @@
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Jakarta</h>
+                        <h class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->tempat_lahir}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -363,7 +333,7 @@
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>22 Maret 2022</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->tanggal_lahir}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -371,7 +341,7 @@
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Menikah</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->status_nikah}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -379,7 +349,7 @@
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>893222479238483247</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->no_npwp}}</p>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -387,7 +357,7 @@
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->alamat_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -395,7 +365,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->kecamatan_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -403,7 +373,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->kota_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -411,7 +381,7 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->provinsi_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -419,15 +389,16 @@
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Tidak Sesuai KTP</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->alamat_tinggal}}</p>
                     </div>
                 </div>
+                @if($non_aktif->pengajuan->anggota->alamat_domisili)
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->alamat_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -435,7 +406,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->kecamatan_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -443,7 +414,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->kota_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -451,13 +422,14 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                        <p class="font-14"><strong>: </strong>{{$non_aktif->pengajuan->anggota->provinsi_ktp}}</p>
                     </div><hr>
                 </div>
+                @endif
                 <div class="col-4">
                     <p class="font-14"><strong>Photo KTP</strong></p>
                 </div>
-                <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/>
+                <img src="/images/data_penting/ktp/{{$non_aktif->pengajuan->anggota->foto_ktp}}" alt="image" class="img-fluid rounded" width="600"/>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

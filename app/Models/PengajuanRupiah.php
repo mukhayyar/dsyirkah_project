@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Anggota;
+use App\Models\PerpanjanganRupiah;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,6 +16,11 @@ class PengajuanRupiah extends Model
     public function anggota()
     {
         return $this->belongsTo(Anggota::class);
+    }
+
+    public function perpanjangan_rupiah()
+    {
+        return $this->hasMany(PerpanjanganRupiah::class,'pengajuan_id');
     }
 
     public function generate_no_mq()
@@ -44,5 +50,9 @@ class PengajuanRupiah extends Model
     public function nominal()
     {
         return "Rp. ".number_format($this->nominal,0,",",".").",-";
+    }
+    public function jangka_waktu()
+    {
+        return $this->jangka_waktu." Bulan";
     }
 }

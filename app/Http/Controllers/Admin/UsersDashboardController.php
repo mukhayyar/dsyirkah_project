@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use DataTables;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Perwada;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,8 @@ class UsersDashboardController extends Controller
                 ->rawColumns(['action','status'])
                 ->make(true);
         }
-        return view('admin_view/users_dashboard/pengaturan_akun');
+        $perwada = Perwada::where('status','Aktif')->get();
+        return view('admin_view/users_dashboard/pengaturan_akun',compact('perwada'));
     }
 
     public function pengaturan_akun(Request $request)

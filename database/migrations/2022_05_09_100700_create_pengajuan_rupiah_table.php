@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('anggota_id')->constrained('anggota')->cascadeOnDelete()->cascadeOnUpdate();
             $table->index('anggota_id');
             $table->string('no_pengajuan');
+            $table->string('kode_sertifikat')->nullable();
             $table->string('referensi');
             $table->string('pilihan_program');
             $table->string('jenis_syirkah');

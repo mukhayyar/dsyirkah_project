@@ -33,7 +33,7 @@
                             <a class="btn btn-success mb-2"><i class="mdi mdi-printer"></i>Print</a>
                         </div>
                         <div class="col-4">
-                            <a href="aktif-emas.html" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
+                            <a onclick="history.back()" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
                         </div>
                         <div class="col-4">
                             <a href="" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modal-view-pemohon"><i class="mdi mdi-card-search-outline"></i> Detail Pemohon</a>
@@ -41,10 +41,10 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p class="font-14"><strong>Nomor Buku Anggota :</strong> 0.123.1234567</p>
+                            <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
                         </div>
                         <div class="col-sm-4">
-                            <p class="font-14"><strong>Nama Lengkap :</strong> Mukhammad Nasorudin Maulana</p>
+                            <p class="font-14"><strong>Nama Lengkap :</strong> {{$pengajuan->anggota->nama_lengkap}}</p>
                         </div><hr>
                     </div>
 
@@ -62,59 +62,61 @@
                                     <tbody>
                                     <tr>
                                         <td>Tanggal Persetujuan</td>
-                                        <td>: 12 April 2022 13:00</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode DSyirkah</td>
-                                        <td>: G-123456-MQ </td>
+                                        <td>: {{$pengajuan->no_pengajuan}} </td>
                                     </tr>
                                     <tr>
                                         <td>Kode Sertifikat</td>
-                                        <td>: Kode Sertifikat</td>
+                                        <td>: {{$pengajuan->no_pengajuan}}</td>
                                     </tr>
                                     <tr>
                                         <td>Referensi</td>
-                                        <td>: KP Jakarta</td>
+                                        <td>: {{$pengajuan->referensi}}</td>
                                     </tr>
                                     <tr>
                                         <td>Pilihan Program</td>
-                                        <td>: Reguler</td>
+                                        <td>: {{$pengajuan->pilihan_program}}</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Syirkah</td>
-                                        <td>: Mutlaqah</td>
+                                        <td>: {{$pengajuan->jenis_syirkah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Versi Syirkah</td>
-                                        <td>: 3.0</td>
+                                        <td>: {{$pengajuan->versi_syirkah}}</td>
                                     </tr>
+                                    @if($pengajuan->kode_usaha)
                                     <tr>
                                         <td>Kode Usaha</td>
-                                        <td>: MQ-123-12345 (jika Muqoyyadah)</td>
+                                        <td>: {{$pengajuan->kode_usaha}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td>Jangka Waktu</td>
-                                        <td>: 3 Bulan</td>
+                                        <td>: {{$pengajuan->jangka_waktu()}}</td>
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: 13 Juli 2022</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: Anggota 50%:50%Club</td>
+                                        <td>: {{$pengajuan->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
-                                        <td>: Nisbah semua dimasukkan ke Simpanan Berkah</td>
+                                        <td>: {{$pengajuan->alokasi_nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Perpanjangan</td>
-                                        <td>: Otomatis</td>
+                                        <td>: {{$pengajuan->perpanjangan}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Gramasi</td>
-                                        <td>: 20 Gram</td>
+                                        <td>: {{$pengajuan->total_gramasi()}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -135,42 +137,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Gold 0.1 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-primary-lighten">Reguler</span>
-                                                </td>
-                                                <td>0.1</td>
-                                                <td>50</td>
-                                                <td>5 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 1 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-primary-lighten">Reguler</span>
-                                                </td>
-                                                <td>1</td>
-                                                <td>6</td>
-                                                <td>6 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 5 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-info-lighten">Series IS</span>
-                                                </td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                                <td>5 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 2 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-success-lighten">SeriesIF</span>
-                                                </td>
-                                                <td>2</td>
-                                                <td>2</td>
-                                                <td>4 Gram</td>
-                                            </tr>
+                                                @foreach($pengajuan->rincian_pengajuan_emas as $rincian_emas)
+                                                <tr>
+                                                    <td>{{$rincian_emas->item}}</td>
+                                                    <td>
+                                                        <span class="badge badge-primary-lighten">{{$rincian_emas->jenis}}</span>
+                                                    </td>
+                                                    <td>{{$rincian_emas->gramasi}}</td>
+                                                    <td>{{$rincian_emas->keping}}</td>
+                                                    <td>{{$rincian_emas->jumlah()}}</td>
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -215,24 +192,17 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>-</td>
-                                                    <td>12 April 2021</td>
-                                                    <td>3 Bulan</td>
-                                                    <td>12 Juli 2021</td>
-                                                    <td>Anggota 50%:50%Club</td>
-                                                    <td>Pengajuan / Aproved </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>12 Juli 2021</td>
-                                                    <td>12 Juli 2022</td>
-                                                    <td>12 Bulan</td>
-                                                    <td>12 Juli 2022</td>
-                                                    <td>Anggota 50%:50%Club</td>
-                                                    <td>Pengajuan / Aproved </td>
-                                                </tr>
+                                                    @foreach($pengajuan->perpanjangan_rupiah as $perpanjangan)
+                                                    <tr>
+                                                        <td>{{$loop->index+1}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td>{{$perpanjangan->nisbah}}</td>
+                                                        <td>{{$perpanjangan->status}}</td>
+                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -248,136 +218,6 @@
     <!-- end row -->
 
 </div> <!-- container -->
-<!-- Modal -->
-<div class="modal fade" id="modal-tambah-dataperpanjangan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg loading authentication-bg">
-        <div class="modal-content bg-transparent">
-        <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xxl-7 col-lg-5">
-                        <div class="card">
-                            <!-- Logo-->
-                            <div class="modal-header" style="background-color: #afb4be">
-                                <div style="color: rgb(255, 255, 255);"><h4>Tambah Data Perpanjangan</h4></div>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                            </div>
-                            <div class="card-body p-4">
-                                <form action="#">
-                                    <div class="mb-3">
-                                        <label for="fullname" class="form-label">Jatuh Tempo Sebelumnya</label>
-                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="fullname" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="fullname" class="form-label">Tanggal Akad Baru</label>
-                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="fullname" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="fullname" class="form-label">Jangka Waktu (dalam Bulan)</label>
-                                        <input class="form-control" type="number" id="fullname"  required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="fullname" class="form-label">Jatuh Tempo Akan Datang</label>
-                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="fullname" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="fullname" class="form-label">Nisbah</label>
-                                        <input class="form-control" type="text" id="fullname"  required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Status</label>
-                                        <select class="form-select" id="example-select">
-                                            <option>Pengajuan</option>
-                                            <option>Aproved</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-3 text-center" >
-                                        <button class="btn btn-primary" type="submit"> Simpan </button>
-                                    </div>
-
-                                </form>
-                            </div> <!-- end card-body -->
-                        </div>
-                        <!-- end card -->
-                        <!-- end row -->
-
-                    </div> <!-- end col -->
-                </div>
-                
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </div>
-        </div>
-        <!-- end page -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<!-- Warning Alert Modal -->
-<div id="warning-simpanpersetujuan-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-body p-4">
-                <div class="text-center">
-                    <i class="dripicons-warning h1 text-warning"></i>
-                    <h4 class="mt-2">Perhatian</h4>
-                    <p class="mt-3">Data Perpanjangan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Simpan</strong></p>
-                    <p> Silakan klik <strong>Simpan</strong> jika sudah yakin</p>
-                    <button type="button" class="btn btn-success my-2" data-bs-dismiss="modal">Simpan</button>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-
-<div id="warning-stop-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-m">
-        <div class="modal-content modal-filled bg-danger">
-            <div class="modal-body p-4">
-                <div class="text-center">
-                    <i class="dripicons-warning h1 text-warning"></i>
-                    <h4 class="mt-2">Perhatian</h4>
-                    <p class="mt-3">Data pengajuan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Berhentikan</strong> dalam mengikuti program DSyirkah</p>
-                    <form action="#">
-                        <div class="mb-3">
-                            <label for="example-select" class="form-label">Kategori</label>
-                            <select class="form-select" id="example-select">
-                                <option>Normal</option>
-                                <option>Tidak Sesuai Akad</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="example-select" class="form-label">Kebutuhan</label>
-                            <select class="form-select" id="example-select">
-                                <option>Untuk Investasi di tempat lain</option>
-                                <option>Kebutuhan Harian</option>
-                                <option>Pembayaran Sekolah</option>
-                                <option>Pembayaran Rumah sakit</option>
-                                <option>Kebutuhan Lainnya</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fullname" class="form-label">Sebutkan (jika lainnya)</label>
-                            <input class="form-control" type="text" placeholder="Sebutkan" id="fullname" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fullname" class="form-label">Keterangan</label>
-                            <input class="form-control" type="text" placeholder="" id="fullname" required>
-                        </div>
-                    </form>
-                    <p> Silakan klik <strong>Stop</strong> jika sudah yakin</p>
-                    <button type="button" class="btn btn-warning my-2" data-bs-dismiss="modal">Stop</button>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
 
 <!-- Modal view-->
 <div class="modal fade" id="modal-view-pemohon" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -393,7 +233,7 @@
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: 0.123.1234567</strong> </p>
+                        <p class="font-14"><strong>: {{$pengajuan->anggota->nomor_ba}}</strong> </p>
                     </div>
                 </div>
                 <div class="row">
@@ -401,7 +241,7 @@
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Mukhammad Nasorudin Maulana</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->nama_lengkap}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -409,7 +249,7 @@
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>081228383733894</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_hp}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -417,7 +257,7 @@
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>nasorudin@gmail.com</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->email}}</h>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -425,7 +265,7 @@
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>72468376825439868435</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_ktp}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -433,7 +273,7 @@
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Laki-Laki</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->jenis_kelamin}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -441,7 +281,7 @@
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Jakarta</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->tempat_lahir}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -449,7 +289,7 @@
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>22 Maret 2022</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->tanggal_lahir}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -457,7 +297,7 @@
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Menikah</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->status_nikah}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -465,7 +305,7 @@
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>893222479238483247</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_npwp}}</p>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -473,7 +313,7 @@
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -481,7 +321,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kecamatan_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -489,7 +329,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kota_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -497,7 +337,7 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->provinsi_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -505,15 +345,16 @@
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Tidak Sesuai KTP</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_tinggal}}</p>
                     </div>
                 </div>
+                @if($pengajuan->anggota->alamat_domisili)
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -521,7 +362,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kecamatan_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -529,7 +370,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kota_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -537,13 +378,14 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->provinsi_ktp}}</p>
                     </div><hr>
                 </div>
+                @endif
                 <div class="col-4">
                     <p class="font-14"><strong>Photo KTP</strong></p>
                 </div>
-                <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/>
+                <img src="/images/data_penting/ktp/{{$pengajuan->anggota->foto_ktp}}" alt="image" class="img-fluid rounded" width="600"/>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

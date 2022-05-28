@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use DataTables;
+use App\Models\Perwada;
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
 use App\Models\PengajuanRupiah;
@@ -40,7 +41,9 @@ class PengajuanController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="emas/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn .= '<a href="emas/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    if($row->status != 'Approved'){
+                        $btn .= '<a href="emas/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action','approval','status'])
@@ -108,7 +111,8 @@ class PengajuanController extends Controller
     }
     public function emas_edit($id){
         $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
-        return view('admin_view/pengajuan_dsyirkah/emas/edit',compact('pengajuan'));
+        $perwada = Perwada::where('status','Aktif')->get();
+        return view('admin_view/pengajuan_dsyirkah/emas/edit',compact('pengajuan','perwada'));
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
@@ -138,7 +142,9 @@ class PengajuanController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="rupiah/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn .= '<a href="rupiah/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    if($row->status != 'Approved'){
+                        $btn .= '<a href="rupiah/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action','approval','status'])
@@ -206,6 +212,7 @@ class PengajuanController extends Controller
     }
     public function rupiah_edit($id){
         $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
-        return view('admin_view/pengajuan_dsyirkah/rupiah/edit',compact('pengajuan'));
+        $perwada = Perwada::where('status','Aktif')->get();
+        return view('admin_view/pengajuan_dsyirkah/rupiah/edit',compact('pengajuan','perwada'));
     }
 }

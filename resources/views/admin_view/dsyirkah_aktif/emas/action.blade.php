@@ -36,16 +36,16 @@
                             <a class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#warning-simpanpersetujuan-modal"><i class="mdi mdi-file-check"></i>Simpan Perpanjangan</a>
                         </div>
                         <div class="col-4">
-                            <a href="aktif-emas.html" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
+                            <a onclick="history.back()" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
                             <a href="" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modal-view-pemohon"><i class="mdi mdi-card-search-outline"></i> Detail Pemohon</a>
                         </div><hr> 
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
-                            <p class="font-14"><strong>Nomor Buku Anggota :</strong> 0.123.1234567</p>
+                            <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
                         </div>
                         <div class="col-sm-4">
-                            <p class="font-14"><strong>Nama Lengkap :</strong> Mukhammad Nasorudin Maulana</p>
+                            <p class="font-14"><strong>Nama Lengkap :</strong> {{$pengajuan->anggota->nama_lengkap}}</p>
                         </div><hr>
                     </div>
 
@@ -63,59 +63,61 @@
                                     <tbody>
                                     <tr>
                                         <td>Tanggal Persetujuan</td>
-                                        <td>: 12 April 2022 13:00</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode DSyirkah</td>
-                                        <td>: G-123456-MQ </td>
+                                        <td>: {{$pengajuan->no_pengajuan}} </td>
                                     </tr>
                                     <tr>
                                         <td>Kode Sertifikat</td>
-                                        <td>: Kode Sertifikat</td>
+                                        <td>: {{$pengajuan->no_pengajuan}}</td>
                                     </tr>
                                     <tr>
                                         <td>Referensi</td>
-                                        <td>: KP Jakarta</td>
+                                        <td>: {{$pengajuan->referensi}}</td>
                                     </tr>
                                     <tr>
                                         <td>Pilihan Program</td>
-                                        <td>: Reguler</td>
+                                        <td>: {{$pengajuan->pilihan_program}}</td>
                                     </tr>
                                     <tr>
                                         <td>Jenis Syirkah</td>
-                                        <td>: Mutlaqah</td>
+                                        <td>: {{$pengajuan->jenis_syirkah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Versi Syirkah</td>
-                                        <td>: 3.0</td>
+                                        <td>: {{$pengajuan->versi_syirkah}}</td>
                                     </tr>
+                                    @if($pengajuan->kode_usaha)
                                     <tr>
                                         <td>Kode Usaha</td>
-                                        <td>: MQ-123-12345 (jika Muqoyyadah)</td>
+                                        <td>: {{$pengajuan->kode_usaha}}</td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td>Jangka Waktu</td>
-                                        <td>: 3 Bulan</td>
+                                        <td>: {{$pengajuan->jangka_waktu()}}</td>
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: 13 Juli 2022</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: Anggota 50%:50%Club</td>
+                                        <td>: {{$pengajuan->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
-                                        <td>: Nisbah semua dimasukkan ke Simpanan Berkah</td>
+                                        <td>: {{$pengajuan->alokasi_nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Perpanjangan</td>
-                                        <td>: Otomatis</td>
+                                        <td>: {{$pengajuan->perpanjangan}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Gramasi</td>
-                                        <td>: 20 Gram</td>
+                                        <td>: {{$pengajuan->total_gramasi()}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -136,42 +138,22 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Gold 0.1 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-primary-lighten">Reguler</span>
-                                                </td>
-                                                <td>0.1</td>
-                                                <td>50</td>
-                                                <td>5 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 1 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-primary-lighten">Reguler</span>
-                                                </td>
-                                                <td>1</td>
-                                                <td>6</td>
-                                                <td>6 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 5 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-info-lighten">Series IS</span>
-                                                </td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                                <td>5 Gram</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Gold 2 Gram</td>
-                                                <td>
-                                                    <span class="badge badge-success-lighten">SeriesIF</span>
-                                                </td>
-                                                <td>2</td>
-                                                <td>2</td>
-                                                <td>4 Gram</td>
-                                            </tr>
+                                                @foreach($pengajuan->rincian_pengajuan_emas as $rincian_emas)
+                                                <tr>
+                                                    <td>{{$rincian_emas->item}}</td>
+                                                    <td>
+                                                        <span class="badge badge-primary-lighten">{{$rincian_emas->jenis}}</span>
+                                                    </td>
+                                                    <td>{{$rincian_emas->gramasi}}</td>
+                                                    <td>{{$rincian_emas->keping}}</td>
+                                                    <td>{{$rincian_emas->jumlah()}}</td>
+                                                    <input type="hidden" name="">
+                                                    <input type="hidden" name="">
+                                                    <input type="hidden" name="">
+                                                    <input type="hidden" name="">
+                                                    <input type="hidden" name="">
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -214,40 +196,45 @@
                                                     <th>Nisbah</th>
                                                     <th>Status</th>
                                                     <th>Action
+                                                        @if($pengajuan->status == "Approved")
                                                         <a href="" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-tambah-dataperpanjangan"><i class="mdi mdi-plus-box"></i></a>
+                                                        @endif
                                                     </th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>-</td>
-                                                    <td>12 April 2021</td>
-                                                    <td>3 Bulan</td>
-                                                    <td>12 Juli 2021</td>
-                                                    <td>Anggota 50%:50%Club</td>
-                                                    <td>Pengajuan / Aproved </td>
-                                                    <td>
-                                                        <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                                                        <a href="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                        <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>12 Juli 2021</td>
-                                                    <td>12 Juli 2022</td>
-                                                    <td>12 Bulan</td>
-                                                    <td>12 Juli 2022</td>
-                                                    <td>Anggota 50%:50%Club</td>
-                                                    <td>Pengajuan / Aproved </td>
-                                                    <td>
-                                                        <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                                                        <a href="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                                        <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
+                                                <form action="{{$id}}/approve" method="POST" id="form_simpan_perpanjangan">
+                                                    @csrf
+                                                    <tbody id="form_tambah_perpanjangan">
+                                                        @foreach($pengajuan->perpanjangan_emas as $perpanjangan)
+                                                        <tr>
+                                                            <td>{{$loop->index+1}}</td>
+                                                            <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                            <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                            <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                            <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                            <td>{{$perpanjangan->nisbah}}</td>
+                                                            <td>{{$perpanjangan->status}}</td>
+                                                            <input type="hidden" name="pengajuan_id" value="{{$perpanjangan->pengajuan_id}}">
+                                                            <input type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
+                                                            <input type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
+                                                            <input type="hidden" name="old_jangka_waktu[]" value="{{$perpanjangan->jangka_waktu}}">
+                                                            <input type="hidden" name="old_jatuh_tempo_akan_datang[]" value="{{$perpanjangan->jatuh_tempo_akan_datang}}">
+                                                            <input type="hidden" name="old_nisbah[]" value="{{$perpanjangan->nisbah}}">
+                                                            <input type="hidden" name="old_status[]" value="{{$perpanjangan->status}}">
+                                                            <td>
+                                                                @if($pengajuan->status == "Approved")
+                                                                @if($loop->index+1 != 1)
+                                                                <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
+                                                                <a href="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                                <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                @endif
+                                                                <a data-bs-toggle="modal" data-bs-target="#modal-edit-dataperpanjangan" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                            </form>
                                             </table>
                                         </div>
                                     </div>
@@ -266,6 +253,73 @@
 </div> <!-- container -->
 <!-- Modal -->
 <div class="modal fade" id="modal-tambah-dataperpanjangan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg loading authentication-bg">
+        <div class="modal-content bg-transparent">
+        <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-7 col-lg-5">
+                        <div class="card">
+                            <!-- Logo-->
+                            <div class="modal-header" style="background-color: #afb4be">
+                                <div style="color: rgb(255, 255, 255);"><h4>Tambah Data Perpanjangan</h4></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                            </div>
+                            <div class="card-body p-4">
+                                    <div class="mb-3">
+                                        <label for="tambahJatuhTempoSebelumnya" class="form-label">Jatuh Tempo Sebelumnya</label>
+                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="tambahJatuhTempoSebelumnya" >
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="tambahTanggalAkadBaru" class="form-label">Tanggal Akad Baru</label>
+                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="tambahTanggalAkadBaru" >
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="tambahJangkaWaktu" class="form-label">Jangka Waktu (dalam Bulan)</label>
+                                        <input class="form-control" type="number" id="tambahJangkaWaktu"  >
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="tambahJatuhTempoAkanDatang" class="form-label">Jatuh Tempo Akan Datang</label>
+                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="tambahJatuhTempoAkanDatang" >
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="tambahNisbah" class="form-label">Nisbah</label>
+                                        <input class="form-control" type="text" id="tambahNisbah"  >
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="tambahStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="tambahStatus">
+                                            <option value="Pengajuan">Pengajuan</option>
+                                            <option value="Approved">Approved</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="mb-3 text-center" >
+                                        <button id="tambahPengajuan" class="btn btn-primary" type="submit"> Simpan </button>
+                                    </div>
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+                
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        </div>
+        <!-- end page -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+<div class="modal fade" id="modal-edit-dataperpanjangan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg loading authentication-bg">
         <div class="modal-content bg-transparent">
         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -343,9 +397,13 @@
                 <div class="text-center">
                     <i class="dripicons-warning h1 text-warning"></i>
                     <h4 class="mt-2">Perhatian</h4>
-                    <p class="mt-3">Data Perpanjangan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Simpan</strong></p>
+                    @if($pengajuan->status == "Non Aktif")
+                    <p>Syirkah ini sudah di-stop</p>
+                    @else
+                    <p class="mt-3">Data Perpanjangan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Simpan</strong></p>
                     <p> Silakan klik <strong>Simpan</strong> jika sudah yakin</p>
-                    <button type="button" class="btn btn-success my-2" data-bs-dismiss="modal">Simpan</button>
+                    <button type="submit" form="form_simpan_perpanjangan" class="btn btn-success my-2" >Simpan</button>
+                    @endif
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -359,36 +417,41 @@
                 <div class="text-center">
                     <i class="dripicons-warning h1 text-warning"></i>
                     <h4 class="mt-2">Perhatian</h4>
-                    <p class="mt-3">Data pengajuan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Berhentikan</strong> dalam mengikuti program DSyirkah</p>
-                    <form action="#">
+                    @if($pengajuan->status == "Non Aktif")
+                    <p>Syirkah ini sudah di-stop</p>
+                    @else
+                    <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Berhentikan</strong> dalam mengikuti program DSyirkah</p>
+                    <form action="{{$id}}/stop" method="POST">
+                        @csrf
                         <div class="mb-3">
-                            <label for="example-select" class="form-label">Kategori</label>
-                            <select class="form-select" id="example-select">
-                                <option>Normal</option>
-                                <option>Tidak Sesuai Akad</option>
+                            <label for="kategori" class="form-label">Kategori</label>
+                            <select class="form-select" id="kategori" name="kategori">
+                                <option value="Normal">Normal</option>
+                                <option value="Tidak Sesuai Akad">Tidak Sesuai Akad</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="example-select" class="form-label">Kebutuhan</label>
-                            <select class="form-select" id="example-select">
-                                <option>Untuk Investasi di tempat lain</option>
-                                <option>Kebutuhan Harian</option>
-                                <option>Pembayaran Sekolah</option>
-                                <option>Pembayaran Rumah sakit</option>
-                                <option>Kebutuhan Lainnya</option>
+                            <label for="kebutuhan" class="form-label">Kebutuhan</label>
+                            <select class="form-select" id="kebutuhan" name="kebutuhan">
+                                <option value="Untuk Investasi di tempat lain">Untuk Investasi di tempat lain</option>
+                                <option value="Kebutuhan Harian">Kebutuhan Harian</option>
+                                <option value="Pembayaran Sekolah">Pembayaran Sekolah</option>
+                                <option value="Pembayaran Rumah Sakit">Pembayaran Rumah Sakit</option>
+                                <option value="">Kebutuhan Lainnya</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="fullname" class="form-label">Sebutkan (jika lainnya)</label>
-                            <input class="form-control" type="text" placeholder="Sebutkan" id="fullname" required>
+                        <div class="mb-3 kebutuhan_lainnya" style="display: none">
+                            <label for="kebutuhan_lainnya" class="form-label">Sebutkan (jika lainnya)</label>
+                            <input class="form-control" type="text" placeholder="Sebutkan" id="kebutuhan_lainnya" name="kebutuhan_lainnya">
                         </div>
                         <div class="mb-3">
-                            <label for="fullname" class="form-label">Keterangan</label>
-                            <input class="form-control" type="text" placeholder="" id="fullname" required>
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input class="form-control" type="text" placeholder="" id="keterangan" name="keterangan" required>
                         </div>
+                        <p> Silakan klik <strong>Stop</strong> jika sudah yakin</p>
+                        <button type="submit" class="btn btn-warning my-2">Stop</button>
                     </form>
-                    <p> Silakan klik <strong>Stop</strong> jika sudah yakin</p>
-                    <button type="button" class="btn btn-warning my-2" data-bs-dismiss="modal">Stop</button>
+                    @endif
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -409,7 +472,7 @@
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: 0.123.1234567</strong> </p>
+                        <p class="font-14"><strong>: {{$pengajuan->anggota->nomor_ba}}</strong> </p>
                     </div>
                 </div>
                 <div class="row">
@@ -417,7 +480,7 @@
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Mukhammad Nasorudin Maulana</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->nama_lengkap}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -425,7 +488,7 @@
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>081228383733894</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_hp}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -433,7 +496,7 @@
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>nasorudin@gmail.com</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->email}}</h>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -441,7 +504,7 @@
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>72468376825439868435</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_ktp}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -449,7 +512,7 @@
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Laki-Laki</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->jenis_kelamin}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -457,7 +520,7 @@
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <h class="font-14"><strong>: </strong>Jakarta</h>
+                        <h class="font-14"><strong>: </strong>{{$pengajuan->anggota->tempat_lahir}}</h>
                     </div>
                 </div>
                 <div class="row">
@@ -465,7 +528,7 @@
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>22 Maret 2022</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->tanggal_lahir}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -473,7 +536,7 @@
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Menikah</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->status_nikah}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -481,7 +544,7 @@
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>893222479238483247</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->no_npwp}}</p>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -489,7 +552,7 @@
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -497,7 +560,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kecamatan_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -505,7 +568,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kota_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -513,7 +576,7 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->provinsi_ktp}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -521,15 +584,16 @@
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Tidak Sesuai KTP</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_tinggal}}</p>
                     </div>
                 </div>
+                @if($pengajuan->anggota->alamat_domisili)
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Jl. Rya Raya Terusan raya nomor 3 Rt.05/01</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->alamat_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -537,7 +601,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kecamatan</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kecamatan_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -545,7 +609,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Kabupaten</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->kota_domisili}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -553,15 +617,70 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <p class="font-14"><strong>: </strong>Nama Provinsi</p>
+                        <p class="font-14"><strong>: </strong>{{$pengajuan->anggota->provinsi_ktp}}</p>
                     </div><hr>
                 </div>
+                @endif
                 <div class="col-4">
                     <p class="font-14"><strong>Photo KTP</strong></p>
                 </div>
-                <img src="assets/images/small/small-2.jpg" alt="image" class="img-fluid rounded" width="600"/>
+                <img src="/images/data_penting/ktp/{{$pengajuan->anggota->foto_ktp}}" alt="image" class="img-fluid rounded" width="600"/>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $(function() {
+        $('#kebutuhan').change(function(){
+            if($(this).val() == ""){
+                $('.kebutuhan_lainnya').show();
+            } else {
+                $('.kebutuhan_lainnya').hide();
+            }
+        })
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        $("#tambahPengajuan").click(function(){
+            item = $(this)[0].dataset.item;
+            jenis = $(this)[0].dataset.jenis;
+            gramasi = $(this)[0].dataset.gramasi;
+            id_emas = $(this)[0].dataset.id_emas;
+            var length = $("#form_tambah_perpanjangan tr").length;
+            let index_emas = 1;
+            if(length != 0){
+                index_emas++;
+            }
+            $("#form_tambah_perpanjangan").append(`
+                <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>
+                <input type="hidden" name="new_jatuh_tempo_sebelumnya[]" value="">
+                <input type="hidden" name="new_tgl_akad_baru[]" value="">
+                <input type="hidden" name="new_jangka_waktu[]" value="">
+                <input type="hidden" name="new_jatuh_tempo_akan_datang[]" value="">
+                <input type="hidden" name="new_nisbah[]" value="">
+                <input type="hidden" name="new_status[]" value="">
+                    <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
+                    <a href="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                    <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                    
+                </td>
+                </tr>
+            `)
+            console.log("test")
+            });
+        })
+</script>
+@endpush
 @endsection
