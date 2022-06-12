@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('versi_produk', function (Blueprint $table) {
+        Schema::create('item_emas_syirkah', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->string('jenis');
-            $table->string('item');
-            $table->string('versi');
+            $table->string('gramasi');
             $table->boolean('status');
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('versi_produk');
+        Schema::dropIfExists('item_emas_syirkah');
     }
 };

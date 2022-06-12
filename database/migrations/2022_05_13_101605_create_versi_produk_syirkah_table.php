@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rincian_pengajuan_emas', function (Blueprint $table) {
+        Schema::create('versi_produk_syirkah', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pengajuan_id')->constrained('pengajuan_emas')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->index('pengajuan_id');
-            $table->string('item');
             $table->string('jenis');
-            $table->string('gramasi');
-            $table->string('keping');
-            $table->string('jumlah');
+            $table->string('item');
+            $table->string('versi');
+            $table->boolean('status');
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rincian_pengajuan_emas');
+        Schema::dropIfExists('versi_produk_syirkah');
     }
 };

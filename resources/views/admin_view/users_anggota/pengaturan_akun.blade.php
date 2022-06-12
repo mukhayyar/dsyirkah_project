@@ -266,11 +266,11 @@
             $(this).html('Mencari...');
             var no_ba = $('#no_ba').val();
             $.get("pengaturan_akun/" +'cari/' + $('#no_ba').val(), function (data,e) {
-                $(this).html('Ditemukan');
+                $('#cari').html('Ditemukan');
                 $('#fullNameAdd').val(data.nama_lengkap);
                 $('#noHpAdd').val(data.no_hp);
                 $('#emailAdd').val(data.email);
-                $(this).html('Cari');
+                $('#cari').html('Cari');
             });
         });
         $('#saveBtn').click(function (e) {

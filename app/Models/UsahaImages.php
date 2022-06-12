@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class UsahaImages extends Model
 {
     use HasFactory;
+    protected $table = 'usaha_images_syirkah';
     protected $fillable = ['user_id','nama','lokasi_foto'];
     public function usaha()
     {

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PerpanjanganEmas extends Model
 {
     use HasFactory;
-    protected $table = 'perpanjangan_emas';
+    protected $table = 'perpanjangan_emas_syirkah';
     public $timestamps = false;
 }

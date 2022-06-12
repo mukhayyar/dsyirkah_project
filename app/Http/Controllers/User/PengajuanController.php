@@ -96,6 +96,7 @@ class PengajuanController extends Controller
         {
             $rincianPengajuanEmas = new RincianPengajuanEmas;
             $rincianPengajuanEmas->pengajuan_id = $pengajuan->id;
+            $rincianPengajuanEmas->emas_id = $request->id_emas[$i];            
             $rincianPengajuanEmas->item = $request->item_emas[$i];            
             $rincianPengajuanEmas->jenis = $request->jenis_emas[$i];            
             $rincianPengajuanEmas->gramasi = $request->gramasi_emas[$i];            

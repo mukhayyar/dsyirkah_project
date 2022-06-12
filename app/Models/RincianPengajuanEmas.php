@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RincianPengajuanEmas extends Model
 {
     use HasFactory;
-    protected $table = 'rincian_pengajuan_emas';
+    protected $table = 'rincian_pengajuan_emas_syirkah';
     public $timestamps = false;
     public function jumlah()
     {

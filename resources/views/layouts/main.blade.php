@@ -57,6 +57,9 @@
                         <li class="nav-item mx-lg-1">
                             <a href="/muqayyadah" class="nav-link">Muqayyadah</a>
                         </li>
+                        <li class="nav-item mx-lg-1">
+                            <a href="/transaction" class="nav-link">Transaksi</a>
+                        </li>
                         @endif
                         
                     </ul>

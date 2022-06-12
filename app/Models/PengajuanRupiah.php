@@ -11,7 +11,7 @@ class PengajuanRupiah extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengajuan_rupiah';
+    protected $table = 'pengajuan_rupiah_syirkah';
 
     public function anggota()
     {

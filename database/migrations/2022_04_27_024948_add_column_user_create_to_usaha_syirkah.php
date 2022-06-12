@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usaha_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('usaha_id')->constrained('usaha')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('nama');
-            $table->timestamps();
+        Schema::table('usaha_syirkah', function (Blueprint $table) {
+            $table->string('user_edit')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usaha_images');
+        Schema::table('usaha', function (Blueprint $table) {
+            //
+        });
     }
 };

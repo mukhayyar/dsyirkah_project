@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('nonaktif_emas_syirkah', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pengajuan_id')->constrained('pengajuan_emas')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('pengajuan_id')->constrained('pengajuan_emas_syirkah')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('anggota_id')->constrained('anggota')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('kode_sertifikat');
             $table->dateTime('tanggal_non_aktif');

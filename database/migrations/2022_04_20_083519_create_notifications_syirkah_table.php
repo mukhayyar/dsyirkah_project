@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nisbah_versi_produk', function (Blueprint $table) {
+        Schema::create('notifications_syirkah', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('versi_id')->constrained('versi_produk')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->index('versi_id');
-            $table->integer('bulan');
-            $table->string('nisbah');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nisbah_versi_produk');
+        Schema::dropIfExists('notifications_syirkah');
     }
 };

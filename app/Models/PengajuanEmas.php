@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PengajuanEmas extends Model
 {
     use HasFactory;
-    protected $table = 'pengajuan_emas';
+    protected $table = 'pengajuan_emas_syirkah';
 
     public function anggota()
     {

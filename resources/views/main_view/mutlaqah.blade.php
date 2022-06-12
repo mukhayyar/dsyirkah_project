@@ -14,19 +14,11 @@
                     </div>
                 </div><br>
                 <div class="col-md-5 g-3">
-                    @if($percent_target_rupiah == 100)
-                    <a class="btn btn-lg font-16 btn-success" data-bs-toggle="modal" data-bs-target="#warning-aprove-modal"><i class="mdi mdi-clipboard-edit-outline"></i>Ikut dengan Rupiah</a>
-                    @else
                     <a href="/mutlaqah/pengajuan/rupiah" class="btn btn-lg font-16 btn-success" id="btn-form-gabung">
                         <i class="mdi mdi-clipboard-edit-outline"></i> Ikut dengan Rupiah</a>
-                    @endif
 
-                    @if($percent_target_emas == 100)
-                    <a class="btn btn-lg font-16 text-white" data-bs-toggle="modal" data-bs-target="#warning-aprove-modal" style="background-color: goldenrod;"><i class="mdi mdi-clipboard-edit-outline"></i>Ikut dengan Emas</a>
-                    @else
                     <a href="/mutlaqah/pengajuan/emas" class="btn btn-lg font-16 text-white" id="btn-form-gabung" style="background-color: goldenrod;">
                         <i class="mdi mdi-clipboard-edit-outline"></i > Ikut dengan Emas </a>
-                    @endif
                 </div><br>
                 <div class="col-md-6 card shadow-sm">
                     <div class="container">
@@ -88,22 +80,6 @@
             </div>
         </section>
         <!-- END SERVICES -->
-        @if($percent_target_emas == 100 || $percent_target_rupiah == 100)
-        {{-- warn modal ketika sudah 100% --}}
-        <div id="warning-aprove-modal" class="modal fade show" tabindex="-1" role="dialog" style="display: none;" aria-modal="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-body p-4">
-                        <div class="text-center">
-                            <i class="dripicons-warning h1 text-warning"></i>
-                            <h4 class="mt-2">Perhatian</h4>
-                            <p class="mt-3">Target sudah terpenuhi </p>
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div>
-        @endif
         @if(!$check_lengkap_data->no_ktp)
         <div id="exampleModalLive" class="modal fade show" tabindex="-1" aria-modal="true" aria-labelledby="myLargeModalLabel" role="dialog" style="display: block;">
             <div class="modal-dialog" role="document">

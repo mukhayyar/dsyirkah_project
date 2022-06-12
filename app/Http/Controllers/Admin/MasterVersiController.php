@@ -31,7 +31,7 @@ class MasterVersiController extends Controller
                     }
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editPerwada" > <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editVersi" > <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -39,7 +39,25 @@ class MasterVersiController extends Controller
         }
         return view('admin_view/master/versi_dsyirkah/muqayyadah/emas/index');
     }
-    
+    public function versi_edit($id){
+        $versi = VersiProduk::with('nisbah_versi_produk_syirkah')->find($id);
+        return response()->json($versi);
+    }
+    public function versi_update(Request $request,$id){
+        $versi = VersiProduk::with('nisbah_versi_produk_syirkah')->find($id);
+        $versi->versi;
+        $versi->save();
+        $bulan = $request->bulan;
+        $nisbah = $request->nisbah;
+        $versi_nisbah = $versi->nisbah_versi_produk_syirkah;
+        for($i = 0; $i < count($versi_nisbah); $i++){
+            $update_versi_nisbah = NisbahVersiProduk::find($versi_nisbah[$i]->id);
+            $update_versi_nisbah->bulan = $bulan[$i];
+            $update_versi_nisbah->nisbah = $nisbah[$i];
+            $update_versi_nisbah->save();
+        }
+        return response()->json($update_versi_nisbah);
+    }
     public function muqayyadah_rupiah_index(Request $request)
     {
         if($request->ajax()) {
@@ -59,7 +77,7 @@ class MasterVersiController extends Controller
                     }
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editPerwada" > <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editVersi" > <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -86,7 +104,7 @@ class MasterVersiController extends Controller
                     }
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editPerwada" > <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editVersi" > <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -113,7 +131,7 @@ class MasterVersiController extends Controller
                     }
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editPerwada" > <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->id.'" class="action-icon editVersi" > <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])

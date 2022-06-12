@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PageController extends Controller
 {
+    public function transaction(){
+        $user_id = Auth::user()->id;
+        $check_lengkap_data = Anggota::where('user_id',$user_id)->first('no_ktp');
+        return view('main_view/transaction',compact('check_lengkap_data'));
+    }
     public function kelengkapan_data()
     {
         $user_id = Auth::user()->id;
@@ -99,20 +104,28 @@ class PageController extends Controller
             ['jenis_akad','mutlaqah'],
             ['status_post','Posting'],
         ])->latest()->paginate(3);
-        $target_rupiah = DB::table('usaha')->where('jenis_akad','mutlaqah')->sum('kebutuhan_rupiah');
-        $bagian_target_rupiah = DB::table('pengajuan_rupiah')->where([
+        $target_rupiah = DB::table('usaha_syirkah')->where('jenis_akad','mutlaqah')->sum('kebutuhan_rupiah');
+        $bagian_target_rupiah = DB::table('pengajuan_rupiah_syirkah')->where([
             ['jenis_syirkah','Mutlaqah'],
             ['status','Approved']
         ])->sum('nominal');
-        $target_emas = DB::table('usaha')->where('jenis_akad','mutlaqah')->sum('kebutuhan_emas');
-        $bagian_target_emas = DB::table('pengajuan_emas')->where([
+        $target_emas = DB::table('usaha_syirkah')->where('jenis_akad','mutlaqah')->sum('kebutuhan_emas');
+        $bagian_target_emas = DB::table('pengajuan_emas_syirkah')->where([
             ['jenis_syirkah','Mutlaqah'],
             ['status','Approved']
         ])->sum('total_gramasi');
-        $percent_target_rupiah = ($bagian_target_rupiah/$target_rupiah)*100;
-        $percent_target_emas = ($bagian_target_emas/$target_emas)*100;
-        $percent_target_rupiah = round($percent_target_rupiah);
-        $percent_target_emas = round($percent_target_emas);
+        if($target_emas) {
+            $percent_target_emas = ($bagian_target_emas/$target_emas)*100;
+            $percent_target_emas = round($percent_target_emas);
+        } else {
+            $percent_target_emas = 0;
+        }
+        if($target_rupiah){
+            $percent_target_rupiah = ($bagian_target_rupiah/$target_rupiah)*100;
+            $percent_target_rupiah = round($percent_target_rupiah);
+        } else {
+            $percent_target_rupiah = 0;
+        }
         return view('main_view/mutlaqah',compact('usaha','target_rupiah','target_emas','percent_target_rupiah','percent_target_emas','check_lengkap_data'));
     }
     public function form_pengajuan_emas_mt(Request $request)

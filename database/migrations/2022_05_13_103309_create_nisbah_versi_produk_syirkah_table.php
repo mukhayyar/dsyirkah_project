@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('global_config', function (Blueprint $table) {
+        Schema::create('nisbah_versi_produk_syirkah', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('versi_id')->constrained('versi_produk_syirkah')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->index('versi_id');
+            $table->integer('bulan');
+            $table->string('nisbah');
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('global_config');
+        Schema::dropIfExists('nisbah_versi_produk_syirkah');
     }
 };

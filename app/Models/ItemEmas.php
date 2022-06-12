@@ -9,5 +9,5 @@ class ItemEmas extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'item_emas';
+    protected $table = 'item_emas_syirkah';
 }

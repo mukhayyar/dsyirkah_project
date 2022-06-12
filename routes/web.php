@@ -36,6 +36,7 @@ Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'login']
 Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 Route::middleware('auth')->group(function(){
     Route::middleware('IsUser')->group(function(){
+        Route::get('/transaction', [App\Http\Controllers\User\PageController::class,'transaction']);
         Route::get('/mutlaqah', [App\Http\Controllers\User\PageController::class,'mutlaqah']);
         Route::get('/muqayyadah', [App\Http\Controllers\User\PageController::class,'muqayyadah']);
         Route::get('/mutlaqah/pengajuan/emas', [App\Http\Controllers\User\PageController::class,'form_pengajuan_emas_mt']);
@@ -100,6 +101,8 @@ Route::middleware('auth')->group(function(){
                 Route::post('/versi/muqoyyadah_rupiah',[App\Http\Controllers\Admin\MasterVersiController::class,'store']);
                 Route::get('/versi/mutlaqah_emas',[App\Http\Controllers\Admin\MasterVersiController::class,'mutlaqah_emas_index']);
                 Route::post('/versi/mutlaqah_emas',[App\Http\Controllers\Admin\MasterVersiController::class,'store']);
+                Route::get('/versi/{id}/edit',[App\Http\Controllers\Admin\MasterVersiController::class,'versi_edit']);
+                Route::put('/versi/{id}/edit',[App\Http\Controllers\Admin\MasterVersiController::class,'versi_update']);
                 Route::get('/versi/mutlaqah_rupiah',[App\Http\Controllers\Admin\MasterVersiController::class,'mutlaqah_rupiah_index']);
                 Route::post('/versi/mutlaqah_rupiah',[App\Http\Controllers\Admin\MasterVersiController::class,'store']);
                 // konten wa

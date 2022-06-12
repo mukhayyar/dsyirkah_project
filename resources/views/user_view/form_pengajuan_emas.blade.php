@@ -125,7 +125,7 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th> <span id="total_jumlah_emas">0</span> Gram</th>
-                                                <input type="hidden" value="" id="input_total_jumlah_emas" name="total_jumlah_emas">
+                                                <input style="display: none" value="" id="input_total_jumlah_emas" name="total_jumlah_emas" required>
                                                 <th style="width: 50px;"></th>
                                             </tr>
                                         </tfoot>
@@ -393,6 +393,7 @@
         })
         $(".tambah_emas").click(function(){
             hasilAkhir = [];
+            id_emas = $(this)[0].dataset.id_emas;
             item = $(this)[0].dataset.item;
             jenis = $(this)[0].dataset.jenis;
             gramasi = $(this)[0].dataset.gramasi;
@@ -411,6 +412,7 @@
                     <input type="hidden" value="${jenis}" class="form-control" name="jenis_emas[]">
                 </td>
                 <td>${gramasi}</td>
+                <input type="hidden" value="${id_emas}" class="form-control gramasi-${index_emas}" name="id_emas[]">
                 <input type="hidden" value="${gramasi}" class="form-control gramasi-${index_emas}" name="gramasi_emas[]">
                 <td>
                     <input id="input-keping-emas-${index_emas}" type="number" min="1" value="" oninput="jumlahGram(${index_emas})" name="keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>

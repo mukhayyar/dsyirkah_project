@@ -81,6 +81,8 @@
                                     <input class="form-control" type="hidden" id="jenis" name="jenis" value="Muqayyadah" required>
                                     <input class="form-control" type="hidden" id="item" name="item" value="emas" required>
                                     
+                                    <input class="form-control" type="hidden" id="id_versi" value="" required>
+
                                     <div class="mb-3">
                                         <label for="versi" class="form-label">Versi Syirkah</label>
                                         <input class="form-control" type="text" id="versi" name="versi" placeholder="0.0" data-toggle="input-mask" data-mask-format="0.0" required>
@@ -89,55 +91,55 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="bulan" class="form-label">Bulan</label>
-                                            <input class="form-control" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
+                                            <input class="form-control bulan" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="nisbah" class="form-label">Nisbah</label>
-                                            <input class="form-control" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
+                                            <input class="form-control nisbah" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
                                         </div>
                                     </div><br>
                                     
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="bulan" class="form-label">Bulan</label>
-                                            <input class="form-control" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
+                                            <input class="form-control bulan" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="nisbah" class="form-label">Nisbah</label>
-                                            <input class="form-control" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
+                                            <input class="form-control nisbah" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
                                         </div>
                                     </div><br>
 
                                     <div class="row lg-5">
                                         <div class="col-lg-6">
                                             <label for="bulan" class="form-label">Bulan</label>
-                                            <input class="form-control" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
+                                            <input class="form-control bulan" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="nisbah" class="form-label">Nisbah</label>
-                                            <input class="form-control" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
+                                            <input class="form-control nisbah" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
                                         </div>
                                     </div><br>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="bulan" class="form-label">Bulan</label>
-                                            <input class="form-control" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
+                                            <input class="form-control bulan" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="nisbah" class="form-label">Nisbah</label>
-                                            <input class="form-control" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
+                                            <input class="form-control nisbah" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
                                         </div>
                                     </div><br>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="bulan" class="form-label">Bulan</label>
-                                            <input class="form-control" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
+                                            <input class="form-control bulan" type="text" id="bulan" name="bulan[]" placeholder="00" data-toggle="input-mask" data-mask-format="00" required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="nisbah" class="form-label">Nisbah</label>
-                                            <input class="form-control" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
+                                            <input class="form-control nisbah" type="text" id="nisbah" name="nisbah[]" placeholder="50% anggota : 50% club" required>
                                         </div>
                                     </div><br>
 
@@ -152,7 +154,9 @@
                                     <div class="mb-3 text-center" >
                                         <button id="saveBtn" class="btn btn-primary" type="submit"> Simpan </button>
                                     </div>
-
+                                    <div class="mb-3 text-center" >
+                                        <button id="editBtn" style="display: none" class="btn btn-primary" type="submit"> Update </button>
+                                    </div>
                                 </form>
                             </div> <!-- end card-body -->
                         </div>
@@ -195,27 +199,32 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-        $('body').on('click', '.editEmas', function () {
-        var id_emas = $(this).data('id');
-        $.get("item_emas" +'/' + id_emas +'/edit', function (data) {
-            $('#modalHeading').html("Edit Item Emas");
-            $('#id_emas').val(id_emas);
+        $('body').on('click', '.editVersi', function () {
+        var id_versi = $(this).data('id');
+        $.get(id_versi +'/edit', function (data) {
+            $('#modal-header').html("Edit versi");
             $('#saveBtn').css("display","none");
             $('#editBtn').css("display","block");
             $('#modal-tambah-versidsyirkah').modal('show');
-            $('#nama_emas').val(data.nama);
-            $(`#jenis_emas option[value=${data.jenis}]`).attr('selected','selected');
-            $('#gramasi').val(data.gramasi);
-            $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
-            $('body').on('click','.btn-close', function(){
-                $('#modalHeading').html("Tambah Versi Dsyirkah");
-                $('#saveBtn').css("display","none");
-                $('#editBtn').css("display","block");
+            $('#id_versi').val(id_versi);
+            let bulanList = $('.bulan');
+            let nisbahList = $('.nisbah');
+            for(let i = 0; i < bulanList.length;i++){
+                bulanList[i].value = data.nisbah_versi_produk_syirkah[i].bulan;
+                nisbahList[i].value = data.nisbah_versi_produk_syirkah[i].nisbah;
+            }
+            $('#versi').val(data.versi);
+            $(`#statusForm option[value=${data.status}]`).attr('selected','selected');
+            $('body').on('click','.btn-close',function(){
+                $('#modal-header').html("Tambah versi");
+                $('#saveBtn').css("display","block");
+                $('#editBtn').css("display","none");
                 $('#modal-tambah-versidsyirkah').modal('show');
-                $('#nama_emas').val('');
-                $(`#jenis_emas option[value=${data.jenis}]`).attr('selected','');
-                $('#gramasi').val('');
-                $(`#statusAdd option[value=${data.status}]`).attr('selected','');
+                $('#id_versi').val('');
+                $('#versi').val('');
+                $('.nisbah').val('');
+                $('.bulan').val('');
+                $(`#statusForm option[value=${data.status}]`).attr('selected','');
             })
         })
         });
@@ -243,12 +252,12 @@
         });
         $('#editBtn').click(function (e) {
             e.preventDefault();
-            $(this).html('Sending..');
-            var id_emas = $("#id_emas").val()
+            $('#saveBtn').html('Sending..');
+            var id_versi = $("#id_versi").val();
             console.log($('#VersiForm').serialize());
             $.ajax({
             data: $('#VersiForm').serialize(),
-            url: "item_emas/"+id_emas+"/edit",
+            url: id_versi+"/edit",
             type: "PUT",
             dataType: 'json',
             success: function (data) {

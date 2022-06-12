@@ -123,7 +123,7 @@
                                                     <input type="hidden" name="id_user" id="id_user">
                                                     <div class="mb-3">
                                                         <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
-                                                        <input class="form-control" type="text" id="no_ba" name="no_ba" placeholder="contoh: 0.123.1234567" required>
+                                                        <input class="form-control" type="text" id="no_ba" name="no_ba" placeholder="contoh: 0.123.1234567" data-toggle="input-mask" data-mask-format="0.000.0000000" data-reverse="true" required>
                                                     </div>
 
                                                     <div class="mb-3">
@@ -174,6 +174,10 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
 @push('scripts')
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet"> 
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+			  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+			  crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

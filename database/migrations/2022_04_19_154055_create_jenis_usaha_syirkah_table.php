@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('jenis_usaha_syirkah', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nama');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('jenis_usaha_syirkah');
     }
 };

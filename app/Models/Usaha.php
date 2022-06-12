@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Usaha extends Model
 {
     use HasFactory;
-    protected $table = 'usaha';
+    protected $table = 'usaha_syirkah';
     public function usahaImages()
     {
         return $this->hasOne(UsahaImages::class);
