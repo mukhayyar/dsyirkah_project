@@ -131,7 +131,7 @@
                                                     <div class="card-body">
                                                         <div class="mb-3">
                                                             <label class="form-label">Rp</label>
-                                                            <input type="text" name="nominal" class="form-control" data-toggle="input-mask" data-mask-format="000.000.000.000.000" data-reverse="true">
+                                                            <input type="text" name="nominal" class="form-control" data-toggle="input-mask" data-mask-format="000.000.000.000.000" value="{{$pengajuan->nominal}}" data-reverse="true">
                                                             <span class="font-13 text-muted">Contoh: 100.000.000</span>
                                                         </div>
                                                         <div class="row g-2">

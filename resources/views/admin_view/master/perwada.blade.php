@@ -165,6 +165,7 @@
             $('#editBtn').css("display","block");
             $('#modal-tambah-perwada').modal('show');
             $('#id_perwada').val(id_perwada);
+            $('#kode').attr("readonly","readonly");
             $('#kode').val(data.kode);
             $('#nama').val(data.nama);
             $('#wilayah').val(data.wilayah);
@@ -174,6 +175,7 @@
                 $('#saveBtn').css("display","block");
                 $('#editBtn').css("display","none");
                 $('#modal-tambah-perwada').modal('show');
+                $('#kode').removeAttr("readonly");
                 $('#id_perwada').val('');
                 $('#kode').val('');
                 $('#nama').val('');
@@ -192,6 +194,7 @@
             type: "POST",
             dataType: 'json',
             success: function (data) {
+                $('#kode').removeAttr("readonly");
                 $('#CustomerForm').trigger("reset");
                 $('#modal-tambah-perwada').modal('hide');
                 table.draw();

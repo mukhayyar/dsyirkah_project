@@ -170,41 +170,41 @@
                                                         @endif
                                                     </th>
                                                 </tr>
-                                                </thead>
                                                 <form action="{{$id}}/approve" method="POST" id="form_simpan_perpanjangan">
+                                                </thead>
                                                 @csrf
                                                 <tbody id="form_tambah_perpanjangan">
                                                     @foreach($pengajuan->perpanjangan_rupiah as $perpanjangan)
-                                                    <tr>
-                                                        <input type="hidden" name="pengajuan_id" value="{{$perpanjangan->pengajuan_id}}">
+                                                    <tr id="item-{{$loop->index+1}}">
                                                         <td>{{$loop->index+1}}</td>
-                                                        <input type="hidden" name="old_perpanjangan_id[]" value="{{$perpanjangan->id}}">
-                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
-                                                        <input type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
-                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
-                                                        <input type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
-                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
-                                                        <input type="hidden" name="old_jangka_waktu[]" value="{{$perpanjangan->jangka_waktu}}">
-                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
-                                                        <input type="hidden" name="old_jatuh_tempo_akan_datang[]" value="{{$perpanjangan->jatuh_tempo_akan_datang}}">
-                                                        <td>{{$perpanjangan->nisbah}}</td>
-                                                        <input type="hidden" name="old_nisbah[]" value="{{$perpanjangan->nisbah}}">
-                                                        <td>{{$perpanjangan->status}}</td>
-                                                        <input type="hidden" name="old_status[]" value="{{$perpanjangan->status}}">
+                                                        <td class="tambah-sebelum-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
+                                                        <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
+                                                        <td class="tambah-jangka-{{$loop->index+1}}">{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td class="tambah-mendatang-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td class="tambah-nisbah-{{$loop->index+1}}">{{$perpanjangan->nisbah}}</td>
+                                                        <td class="tambah-status-{{$loop->index+1}}">{{$perpanjangan->status}}</td>
                                                         <td>
+                                                            <input class="tambah-jangka-{{$loop->index+1}}" type="hidden" name="old_jangka_waktu[]" value="{{$perpanjangan->jangka_waktu}}">
+                                                            <input class="tambah-mendatang-{{$loop->index+1}}" type="hidden" name="old_jatuh_tempo_akan_datang[]" value="{{$perpanjangan->jatuh_tempo_akan_datang}}">
+                                                            <input class="tambah-nisbah-{{$loop->index+1}}" type="hidden" name="old_nisbah[]" value="{{$perpanjangan->nisbah}}">
+                                                            <input class="tambah-status-{{$loop->index+1}}" type="hidden" name="old_status[]" value="{{$perpanjangan->status}}">
+                                                            <input type="hidden" name="pengajuan_id" value="{{$perpanjangan->pengajuan_id}}">
+                                                            <input type="hidden" name="old_perpanjangan_id[]" value="{{$perpanjangan->id}}">
                                                             @if($pengajuan->status == "Approved")
                                                             @if($loop->index+1 != 1)
                                                             <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                                                            <a href="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                            <a href="javascript:void(0);" id="editRow" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                                                             <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             @endif
-                                                            <a data-bs-toggle="modal" data-bs-target="#modal-edit-dataperpanjangan" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                            <a href="javascript:void(0);" id="editRow" data-index="{{$loop->index+1}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
-                                                </form>
+                                                <button type="submit">Submit</button>
                                             </table>
                                         </div>
                                     </div>
@@ -212,6 +212,7 @@
                             </div>
                         </div>    
                     </div>
+                </form>
 
                    
                 </div> <!-- end card-body-->
@@ -233,56 +234,54 @@
                             <!-- Logo-->
                             <div class="modal-header" style="background-color: #afb4be">
                                 <div style="color: rgb(255, 255, 255);"><h4>Tambah Data Perpanjangan</h4></div>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                             </div>
                             <div class="card-body p-4">
-                                <form>
+                                <form id="form_tambah_data_perpanjangan">
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Jatuh Tempo Sebelumnya</label>
-                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="fullname">
+                                        <label for="jatuh_tempo_sebelumnya" class="form-label">Jatuh Tempo Sebelumnya</label>
+                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="jatuh_tempo_sebelumnya">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Tanggal Akad Baru</label>
-                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="fullname">
+                                        <label for="tgl_akad_baru" class="form-label">Tanggal Akad Baru</label>
+                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="tgl_akad_baru">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Jangka Waktu (dalam Bulan)</label>
-                                        <input class="form-control" type="number" id="fullname" >
+                                        <label for="jangka_waktu" class="form-label">Jangka Waktu (dalam Bulan)</label>
+                                        <input class="form-control" type="number" id="jangka_waktu" >
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Jatuh Tempo Akan Datang</label>
-                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="fullname">
+                                        <label for="jatuh_tempo_mendatang" class="form-label">Jatuh Tempo Akan Datang</label>
+                                        <input class="form-control" type="date" placeholder="dd/mm/yyyy" id="jatuh_tempo_mendatang">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Nisbah</label>
-                                        <input class="form-control" type="text" id="fullname" >
+                                        <label for="nisbah" class="form-label">Nisbah</label>
+                                        <input class="form-control" type="text" id="nisbah" >
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="example-select" class="form-label">Status</label>
-                                        <select class="form-select" id="example-select">
-                                            <option>Pengajuan</option>
-                                            <option>Aproved</option>
+                                        <label for="statusPil" class="form-label">Status</label>
+                                        <select class="form-select" id="statusPil">
+                                            <option value="Pengajuan">Pengajuan</option>
+                                            <option value="Approved">Approved</option>
                                         </select>
                                     </div>
-                                    
                                     <div class="mb-3 text-center" >
-                                        <button class="btn btn-primary" id="tambahPengajuan" type="submit"> Simpan </button>
+                                        <button class="btn btn-primary" id="tambahPengajuan" type="button"> Simpan </button>
                                     </div>
-
+                                    <div class="mb-3 text-center" >
+                                        <button class="btn btn-primary" id="updatePengajuan" style="display: none" type="button"> Update </button>
+                                    </div>
                                 </form>
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
                         <!-- end row -->
-
                     </div> <!-- end col -->
                 </div>
-                
                 <!-- end row -->
             </div>
             <!-- end container -->
@@ -548,41 +547,92 @@
 <script>
     $(document).ready(function(){
         $("#tambahPengajuan").click(function(){
-            item = $(this)[0].dataset.item;
-            jenis = $(this)[0].dataset.jenis;
-            gramasi = $(this)[0].dataset.gramasi;
-            id_emas = $(this)[0].dataset.id_emas;
+            var jatuh_tempo_sebelumnya = $('#jatuh_tempo_sebelumnya').val();
+            var tgl_akad_baru = $('#tgl_akad_baru').val();
+            var jangka_waktu = $('#jangka_waktu').val();
+            var jatuh_tempo_mendatang = $('#jatuh_tempo_mendatang').val();
+            var nisbah = $('#nisbah').val();
+            var status = $('#statusPil').val();
             var length = $("#form_tambah_perpanjangan tr").length;
-            let index_emas = 1;
+            let index_data = 1;
             if(length != 0){
-                index_emas++;
+                index_data++;
             }
             $("#form_tambah_perpanjangan").append(`
-                <tr>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
+            <tr id="item-${index_data}">
+                <td>${index_data}</td>
+                <td class="tambah-sebelum-${index_data}">${jatuh_tempo_sebelumnya}</td>
+                <td class="tambah-akad-${index_data}">${tgl_akad_baru}</td>
+                <td class="tambah-jangka-${index_data}">${jangka_waktu}</td>
+                <td class="tambah-mendatang-${index_data}">${jatuh_tempo_mendatang}</td>
+                <td class="tambah-nisbah-${index_data}">${nisbah}</td>
+                <td class="tambah-status-${index_data}">${status}</td>
                 <td>
-                <input type="hidden" name="new_jatuh_tempo_sebelumnya[]" value="">
-                <input type="hidden" name="new_tgl_akad_baru[]" value="">
-                <input type="hidden" name="new_jangka_waktu[]" value="">
-                <input type="hidden" name="new_jatuh_tempo_akan_datang[]" value="">
-                <input type="hidden" name="new_nisbah[]" value="">
-                <input type="hidden" name="new_status[]" value="">
-                    <a onclick="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                    <a onclick="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                    <a onclick="deleteNewData(${index_emas})" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                    
-                </td>
-                </tr>
+                    <input type="hidden" class="tambah-sebelum-${index_data}" name="new_jatuh_tempo_sebelumnya[]" value="${jatuh_tempo_sebelumnya}">
+                    <input type="hidden" class="tambah-akad-${index_data}" name="new_tgl_akad_baru[]" value="${tgl_akad_baru}">
+                    <input type="hidden" class="tambah-jangka-${index_data}" name="new_jangka_waktu[]" value="${jangka_waktu}">
+                    <input type="hidden" class="tambah-mendatang-${index_data}" name="new_jatuh_tempo_akan_datang[]" value="${jatuh_tempo_mendatang}">
+                    <input type="hidden" class="tambah-nisbah-${index_data}" name="new_nisbah[]" value="${nisbah}">
+                    <input type="hidden" class="tambah-status-${index_data}" name="new_status[]" value="${status}">
+                    <a href="javascript:void(0);" id="editRow" data-index="${index_data}" class="action-icon" data-id> <i class="mdi mdi-pencil"></i></a>
+                    <a href="javascript:void(0);" id="removeRow" data-index="${index_data}" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                    </td>
+                    </tr>
             `)
-            $('#modal-tambah-dataperpanjangan').close();
-            });
-        })
+            $('#form_tambah_data_perpanjangan')[0].reset();
+            $('#modal-tambah-dataperpanjangan').modal("hide");
+        }); 
+        $(document).on('click', '#removeRow', function () {
+            var index = $(this)[0].dataset.index;
+            $(this).closest(`#item-${index}`).remove();
+        });
+        $(document).on('click', '#editRow', function () {
+            var index = $(this)[0].dataset.index;
+            var jatuh_tempo_sebelumnya = $(`input.tambah-sebelum-${index}`).val();
+            var tgl_akad_baru = $(`input.tambah-akad-${index}`).val();
+            var jangka_waktu = $(`input.tambah-jangka-${index}`).val();
+            var jatuh_tempo_mendatang = $(`input.tambah-mendatang-${index}`).val();
+            var nisbah = $(`input.tambah-nisbah-${index}`).val();
+            console.log($(`input.tambah-jangka-${index}`)[0])
+            var status = $(`input.tambah-status-${index}`).val();
+            $('#jatuh_tempo_sebelumnya').val(jatuh_tempo_sebelumnya);
+            $('#tgl_akad_baru').val(tgl_akad_baru);
+            $('#jangka_waktu').val(jangka_waktu);
+            $('#jatuh_tempo_mendatang').val(jatuh_tempo_mendatang);
+            $('#nisbah').val(nisbah);
+            $(`#statusPil option[value="${status}"]`).attr('selected','selected');
+            $('#modal-tambah-dataperpanjangan').modal("show");
+            $('#updatePengajuan').css("display","block");
+            $('#updatePengajuan').attr("data-index",`${index}`);
+            $('#tambahPengajuan').css("display","none");
+
+        });
+        $(document).on('click', '#updatePengajuan', function () {
+            var index = $(this)[0].dataset.index;
+            var jatuh_tempo_sebelumnya = $('#jatuh_tempo_sebelumnya').val();
+            var tgl_akad_baru = $('#tgl_akad_baru').val();
+            var jangka_waktu = $('#jangka_waktu').val();
+            var jatuh_tempo_mendatang = $('#jatuh_tempo_mendatang').val();
+            var nisbah = $('#nisbah').val();
+            var status = $('#statusPil').val();
+            $(`.tambah-sebelum-${index}`).val(jatuh_tempo_sebelumnya)
+            $(`.tambah-akad-${index}`).val(tgl_akad_baru)
+            $(`.tambah-jangka-${index}`).val(jangka_waktu)
+            $(`.tambah-mendatang-${index}`).val(jatuh_tempo_mendatang)
+            $(`.tambah-nisbah-${index}`).val(nisbah)
+            $(`.tambah-status-${index}`).val(status)
+            $(`td.tambah-sebelum-${index}`).html(jatuh_tempo_sebelumnya)
+            $(`td.tambah-akad-${index}`).html(tgl_akad_baru)
+            $(`td.tambah-jangka-${index}`).html(jangka_waktu)
+            $(`td.tambah-mendatang-${index}`).html(jatuh_tempo_mendatang)
+            $(`td.tambah-nisbah-${index}`).html(nisbah)
+            $(`td.tambah-status-${index}`).html(status)
+            $('#modal-tambah-dataperpanjangan').modal("hide");
+            $('#form_tambah_data_perpanjangan')[0].reset();
+            $('#updatePengajuan').css("display","none");
+            $('#tambahPengajuan').css("display","block");
+        });
+    })
 </script>
 @endpush
 @endsection

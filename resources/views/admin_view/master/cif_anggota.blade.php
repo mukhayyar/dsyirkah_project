@@ -514,10 +514,10 @@
             if(data.alamat_tinggal == "tidakSesuai"){
                 $('.domisili').show();
             }
-            var image = data.lokasi_foto_ktp;
+            var image = data.foto_ktp;
             if(image != null){
-                var result = image.replace("public","storage");
-                $(`#show_foto_ktp`).attr('src',"/"+result);
+                var result = "/images/data_penting/ktp/"+image;
+                $(`#show_foto_ktp`).attr('src',result);
                 $('#div-foto-ktp').css("display","block");
             }
             $('body').on('click','.btn-close',function() {
@@ -575,20 +575,26 @@
             $(`#status_nikah option[value=${data.nikah}]`).attr('selected','selected');
             $('#npwp').val(data.no_npwp);
             $('#alamat_ktp').val(data.alamat_ktp);
-            $(`#form_prov option[value='${data.provinsi_ktp}']`).prop('selected',true);
-            $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',true);
+            $(`#form_prov`).append(`<option selected>${data.provinsi_ktp}</option>`);
+            $(`#form_kab`).append(`<option selected>${data.kota_ktp}</option>`);;
+            $(`#form_kec`).append(`<option selected>${data.kecamatan_ktp}</option>`);;
+            $(`#form_kel`).append(`<option selected>${data.kelurahan_ktp}</option>`);;
+            $(`#form_prov`).attr("disabled","disabled");
+            $(`#form_kab`).attr("disabled","disabled");
+            $(`#form_kec`).attr("disabled","disabled");
+            $(`#form_kel`).attr("disabled","disabled");
             $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',true);
+            $(`#checkAlamatTinggal`).attr('disabled',"disabled");
             if(data.alamat_tinggal == "tidakSesuai"){
                 $('.domisili').show();
             }
-            var image = data.lokasi_foto_ktp;
+            var image = data.foto_ktp;
             if(image != null){
-                var result = image.replace("public","storage");
-                $(`#show_foto_ktp`).attr('src',"/"+result);
+                var result = "/images/data_penting/ktp/"+image;
+                $(`#show_foto_ktp`).attr('src',result);
                 $('#div-foto-ktp').css("display","block");
             }
             $('body').on('click','.btn-close',function() {
-                console.log('tutup')
                 $('#myLargeModalLabel').html("Tambah Data CIF Anggota");
                 $('#div-simpan').css("display",'block');
                 $('#div-upload-ktp').css("display",'block');

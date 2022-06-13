@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="modal-tambahdata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal-tambahdata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                     <div class="modal-dialog modal-lg loading authentication-bg">
                         <div class="modal-content bg-transparent">
                         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -153,7 +153,7 @@
                                                         <button class="btn btn-primary" id="saveBtn" type="submit"> Simpan </button>
                                                     </div>
                                                     <div class="mb-3 text-center" >
-                                                        <button class="btn btn-primary" style="display: none;" id="editBtn" type="submit"> Edit </button>
+                                                        <button class="btn btn-primary" id="editBtn" style="display: none;" type="submit"> Edit </button>
                                                     </div>
 
                                                 </form>
@@ -206,28 +206,32 @@
         });
         $('body').on('click', '.editAkun', function () {
             var id_akun = $(this).data('id');
-        $.get("data_verifikasi_akun" +'/' + id_akun +'/edit', function (data) {
-            $('#modelHeading').html("Edit Customer");
-            $('#saveBtn').css("display",'none');
-            $('#editBtn').css("display",'block');
-            $('#modal-tambahdata').modal('show');
-            $('#id_user').val(id_akun);
-            $('#no_ba').val(data.nomor_ba);
-            $('#nama').val(data.nama_lengkap);
-            $('#email').val(data.email);
-            $('#no_hp').val(data.no_hp);
-            $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
-            $('body').on('click','.btn-close',function(){
-                $('#modalHeading').html("Tambah Perwada");
-                $('#saveBtn').css("display","block");
-                $('#editBtn').css("display","none");
-                $('#modal-tambah-perwada').modal('show');
-                $('#id_user').val('');
-                $('#no_ba').val('');
-                $('#nama').val('');
-                $('#email').val('');
-                $('#no_hp').val('');
-                $(`#statusAdd option[value=${data.kantor}]`).attr('selected','');
+            $.get("data_verifikasi_akun" +'/' + id_akun +'/edit', function (data) {
+                $('#modelHeading').html("Edit Customer");
+                $('#saveBtn').css("display",'none');
+                $('#editBtn').css("display",'block');
+                $('#editBtn').html('Edit');
+                $('#modal-tambahdata').modal('show');
+                $('#no_ba').attr("readonly","readonly");
+                $('#id_user').val(id_akun);
+                $('#no_ba').val(data.nomor_ba);
+                $('#nama').val(data.nama_lengkap);
+                $('#email').val(data.email);
+                $('#no_hp').val(data.no_hp);
+                $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
+                $('body').on('click','.btn-close',function(){
+                    $('#modalHeading').html("Tambah Perwada");
+                    $('#saveBtn').css("display","block");
+                    $('#saveBtn').html("Simpan");
+                    $('#editBtn').css("display","none");
+                    $('#modal-tambah-perwada').modal('show');
+                    $('#no_ba').removeAttr("readonly");
+                    $('#id_user').val('');
+                    $('#no_ba').val('');
+                    $('#nama').val('');
+                    $('#email').val('');
+                    $('#no_hp').val('');
+                    $(`#statusAdd option[value=${data.kantor}]`).attr('selected','');
             })
         })
         });
@@ -243,32 +247,40 @@
                 $('#CustomerForm').trigger("reset");
                 $('#modal-tambahdata').modal('hide');
                 table.draw();
+                $('#saveBtn').html('Simpan');
             },
             error: function (data) {
                 console.log('Error:', data);
-                $('#saveBtn').html('Save Changes');
+                $('#saveBtn').html('Simpan');
             }
         });
         });
         $('#editBtn').click(function (e) {
             e.preventDefault();
-            $(this).html('Editing..');
+            console.log("test");
+            $(this).html('Test..');
             var id_user = $("#id_user").val();
+            console.log("test");
             $.ajax({
-            data: $('#CustomerForm').serialize(),
-            url: "data_verifikasi_akun/"+id_user+"/edit",
-            type: "PUT",
-            dataType: 'json',
-            success: function (data) {
-                $('#CustomerForm').trigger("reset");
-                $('#modal-tambahdata').modal('hide');
-                table.draw();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-                $('#saveBtn').html('Save Changes');
-            }
-        });
+                data: $('#CustomerForm').serialize(),
+                url: "data_verifikasi_akun/"+id_user+"/edit",
+                type: "PUT",
+                dataType: 'json',
+                success: function (data) {
+                    console.log("test");
+                    $('#no_ba').removeAttr("readonly");
+                    $('#CustomerForm').trigger("reset");
+                    $('#modal-tambahdata').modal('hide');
+                    table.draw();
+                    $('#editBtn').html('Edit');
+                    $('#editBtn').css("display",'none');
+                    $('#saveBtn').css("display",'block');
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                    $('#editBtn').html('Edit');
+                }
+            });
         });
     });
     </script>
