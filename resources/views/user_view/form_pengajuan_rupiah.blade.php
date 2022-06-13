@@ -20,6 +20,7 @@
                         @csrf
                         @if(isset($kode_usaha))
                         <input type="hidden" value="{{$kode_usaha}}" name="kode_usaha">
+                        <input type="hidden" value="{{$jenis_form}}" name="jenis_form">
                         @endif
                         <div class="row g-2">
                             <div class="col-md">
@@ -54,7 +55,7 @@
                             </div>
                             <div class="col-md">
                                 <label for="emailaddress" class="form-label">Jenis Syirkah</label>
-                                <input class="form-control" type="text" id="emailaddress" placeholder="Mutlaqah" value="Mutlaqah" readonly="" name="jenis"> 
+                                <input class="form-control" type="text" id="emailaddress" @if(isset($kode_usaha)) placeholder="Muqayyadah" value="Muqayyadah" @else placeholder="Mutlaqah" value="Mutlaqah" @endif readonly="" name="jenis"> 
                             </div>
                             <div class="col-md">
                                 <label for="fullname" class="form-label">Versi D'Syirkah</label>

@@ -54,10 +54,7 @@ class PengajuanController extends Controller
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_pengajuan = $request->catatan;
         $pengajuan->save();
-        if($request->kode_usaha){
-            return redirect('/muqayyadah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
-        }
-        return redirect('/mutlaqah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        return redirect('/transaction')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
     public function emas_store(Request $request)
     {
@@ -109,9 +106,14 @@ class PengajuanController extends Controller
             $rincianPengajuanEmas->jumlah = $request->jumlah_keping[$i];
             $rincianPengajuanEmas->save();            
         }
-        if($request->kode_usaha){
-            return redirect('/muqayyadah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        return redirect('/transaction')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+    }
+
+    public function muqayyadah_store(Request $request){
+        if($request->jenis_form == 'rupiah'){
+            return $this->rupiah_store($request);
+        } else {
+            return $this->emas_store($request);
         }
-        return redirect('/mutlaqah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
 }

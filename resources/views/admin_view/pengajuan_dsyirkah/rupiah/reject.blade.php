@@ -36,7 +36,7 @@
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
                                                 <a onclick="history.back()" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
-                                                <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
+                                                <a href="rupiah/reject/export" target="_blank" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                                             </div>
                                         </div>
                                         <div class="row mb-2">

@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/mutlaqah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_mutlaqah']);
         Route::get('/muqayyadah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_muqayyadah']);
         Route::get('/muqayyadah/usaha/{id}/pengajuan', [App\Http\Controllers\User\PageController::class,'form_pengajuan_mq']);
+        Route::post('/muqayyadah/usaha/{id}/pengajuan', [App\Http\Controllers\User\PengajuanController::class,'muqayyadah_store']);
         Route::group(['prefix'=>'user'], function () {
             Route::get('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data']);
             Route::post('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data_store']);
@@ -131,6 +132,7 @@ Route::middleware('auth')->group(function(){
             Route::group(['prefix'=>'pengajuan_dsyirkah'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\PengajuanController::class,'emas_index']);
+                Route::get('/emas/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_emas']);
                 Route::get('/emas/approval/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_approval']);
                 Route::post('/emas/approval/{id}/approve',[App\Http\Controllers\Admin\PengajuanController::class,'emas_approval_store']);
                 Route::post('/emas/approval/{id}/reject',[App\Http\Controllers\Admin\PengajuanController::class,'reject_pengajuan_emas']);
@@ -138,9 +140,11 @@ Route::middleware('auth')->group(function(){
                 Route::get('/emas/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_edit']);
                 Route::post('/emas/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_update']);
                 Route::get('/emas/reject',[App\Http\Controllers\Admin\PengajuanController::class,'emas_reject']);
+                Route::get('/emas/reject/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_emas_reject']);
                 Route::get('/emas/reject/restore/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'restore_pengajuan_emas']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_index']);
+                Route::get('/rupiah/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_rupiah']);
                 Route::get('/rupiah/approval/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_approval']);
                 Route::post('/rupiah/approval/{id}/approve',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_approval_store']);
                 Route::post('/rupiah/approval/{id}/reject',[App\Http\Controllers\Admin\PengajuanController::class,'reject_pengajuan_rupiah']);
@@ -148,17 +152,20 @@ Route::middleware('auth')->group(function(){
                 Route::get('/rupiah/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_edit']);
                 Route::post('/rupiah/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_update']);
                 Route::get('/rupiah/reject',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_reject']);
+                Route::get('/rupiah/reject/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_rupiah_reject']);
                 Route::get('/rupiah/reject/restore/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'restore_pengajuan_rupiah']);
             });
             Route::group(['prefix'=>'dsyirkah_aktif'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_index']);
+                Route::get('/emas/export',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'export_emas']);
                 Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_action']);
                 Route::post('/emas/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approve']);
                 Route::post('/emas/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_stop']);
                 Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_detail']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_index']);
+                Route::get('/rupiah/export',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'export_rupiah']);
                 Route::get('/rupiah/action/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_action']);
                 Route::get('/rupiah/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_detail']);
                 Route::post('/rupiah/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approve']);

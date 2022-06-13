@@ -187,6 +187,7 @@ class PageController extends Controller
     {
         $checkForm = Usaha::find($id);
         $kode_usaha = $checkForm->kode_usaha;
+        $jenis_form = $checkForm->jenis_form;
         $kebutuhan = $checkForm->kebutuhan_emas ? $checkForm->kebutuhan_emas : $checkForm->kebutuhan_rupiah;
         $kebutuhan_len = $checkForm->kebutuhan_rupiah ? strlen((string)$checkForm->kebutuhan_rupiah) : 19;
         if($checkForm->jenis_form == 'emas'){
@@ -202,7 +203,7 @@ class PageController extends Controller
                 ['item','=','emas'],
             ])->first(['id','versi']);
             if($versi){
-                return view('user_view/form_pengajuan_emas',compact('generate_no','versi','user','perwada','item_emas','kode_usaha','kebutuhan'));
+                return view('user_view/form_pengajuan_emas',compact('generate_no','versi','user','perwada','item_emas','kode_usaha','kebutuhan','jenis_form'));
             } else {
                 return redirect()->back()->with('warning','Admin belum mengatur versi form');
             }
@@ -218,7 +219,7 @@ class PageController extends Controller
             ['item','=','rupiah'],
         ])->first(['id','versi']);
         if($versi){
-            return view('user_view/form_pengajuan_rupiah',compact('generate_no','versi','user','perwada','kode_usaha','kebutuhan','kebutuhan_len'));
+            return view('user_view/form_pengajuan_rupiah',compact('generate_no','versi','user','perwada','kode_usaha','kebutuhan','kebutuhan_len','jenis_form'));
         } else {
             return redirect()->back()->with('warning','Admin belum mengatur versi form');
         }

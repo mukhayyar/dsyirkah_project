@@ -7,9 +7,14 @@ use App\Models\Perwada;
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
 use App\Models\PengajuanRupiah;
+use App\Exports\PengajuanEmasEx;
 use App\Models\PerpanjanganEmas;
+use App\Exports\PengajuanRupiahEx;
 use App\Models\PerpanjanganRupiah;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PengajuanEmasRejectEx;
+use App\Exports\PengajuanRupiahRejectEx;
 
 class PengajuanController extends Controller
 {
@@ -54,6 +59,14 @@ class PengajuanController extends Controller
         }
         return view('admin_view/pengajuan_dsyirkah/emas/index');
     }
+    public function export_emas_reject()
+    {
+        return Excel::download(new PengajuanEmasRejectEx, 'pengajuan_emas.csv');
+    }
+    public function export_emas()
+    {
+        return Excel::download(new PengajuanEmasEx, 'pengajuan_emas.csv');
+    }
     public function reject_pengajuan_emas($id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Reject']);
         return redirect()->back();
@@ -69,6 +82,11 @@ class PengajuanController extends Controller
     public function emas_approval_store($id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
+        if($pengajuan->kode_usaha){
+            $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
+            $usaha->capaian_muqayyadah += $pengajuan->total_gramasi;
+            $usaha->save();
+        }
         if($pengajuan->pilihan_program == "reguler"){
             $perpanjangan = new PerpanjanganEmas;
             $today = date("Y-m-d");
@@ -176,6 +194,11 @@ class PengajuanController extends Controller
     public function rupiah_approval_store($id){
         PengajuanRupiah::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
+        if($pengajuan->kode_usaha){
+            $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
+            $usaha->capaian_muqayyadah += $pengajuan->nominal;
+            $usaha->save();
+        }
         if($pengajuan->pilihan_program == "reguler"){
             $perpanjangan = new PerpanjanganRupiah;
             $today = date("Y-m-d");
@@ -226,5 +249,13 @@ class PengajuanController extends Controller
         $pengajuan = PengajuanRupiah::with('anggota','versi')->where('slug',$id)->first();
         $perwada = Perwada::where('status','Aktif')->get();
         return view('admin_view/pengajuan_dsyirkah/rupiah/edit',compact('pengajuan','perwada'));
+    }
+    public function export_rupiah()
+    {
+        return Excel::download(new PengajuanRupiahEx, 'pengajuan_rupiah.csv');
+    }
+    public function export_rupiah_reject()
+    {
+        return Excel::download(new PengajuanRupiahRejectEx, 'pengajuan_emas.csv');
     }
 }

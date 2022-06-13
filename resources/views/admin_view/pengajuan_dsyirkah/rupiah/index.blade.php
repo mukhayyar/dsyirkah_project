@@ -37,7 +37,7 @@
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
                                                 <a href="rupiah/reject" class="btn btn-danger mb-2"><i class="mdi mdi-delete-alert"></i> Data Riject</a>
-                                                <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
+                                                <a href="rupiah/export" target="_blank" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                                             </div>
                                         </div>
                                         <div class="row mb-2">

@@ -33,7 +33,7 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-4">
-                            <a href="javascript:void(0);" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
+                            <a href="rupiah/export" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                         </div>
                     </div>
                     

@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use DataTables;
+use App\Exports\AktifEmasEx;
 use App\Models\NonAktifEmas;
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
+use App\Exports\AktifRupiahEx;
 use App\Models\NonAktifRupiah;
 use App\Models\PengajuanRupiah;
 use App\Models\PerpanjanganEmas;
 use App\Models\PerpanjanganRupiah;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DsyirkahAktifController extends Controller
 {
@@ -53,6 +56,10 @@ class DsyirkahAktifController extends Controller
                 ->make(true);
         }
         return view('admin_view/dsyirkah_aktif/emas/index');
+    }
+    public function export_emas()
+    {
+        return Excel::download(new AktifEmasEx, 'aktif_emas.csv');
     }
     public function emas_action($id){
         $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','perpanjangan_emas')->where('slug',$id)->first();
@@ -198,5 +205,9 @@ class DsyirkahAktifController extends Controller
             }
         }
         return redirect()->back()->with('success','Berhasil approve');
+    }
+    public function export_rupiah()
+    {
+        return Excel::download(new AktifRupiahEx, 'aktif_rupiah.csv');
     }
 }
