@@ -114,13 +114,13 @@
                         <div style="margin-top: 2%;">
                             <div class="text-sm-center"><h5>Silahkan Hubungi Kami jika membutuhkan penjelasan lebih lanjut Atau langsung Daftar Sebagai Anggota</h5></div>
                             <div class="text-center mt-sm-0 mt-3 text-sm-center">
-                                <a href="" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
+                                <a class="btn btn-lg font-16 btn-danger" id="btn-proposal" data-bs-toggle="modal" data-bs-target="#modal-daftar">
                                     <i class="mdi mdi-badge-account-outline"></i> Daftar Jadi Anggota </a>
                                 <a href="" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
                                     <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>
                             </div><br>
                             <div class="text-sm-center"><h6>Sudah Memiliki Akun? Silahkan Masuk </h6></div>
-                            <a href="" class="btn btn-lg font-16 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-login" id="btn-Wa-center">
+                            <a class="btn btn-lg font-16 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-login" id="btn-Wa-center">
                                 <i class="mdi mdi-account-box-outline"></i> Masuk Anggota</a>
                         </div>
                     </div>
