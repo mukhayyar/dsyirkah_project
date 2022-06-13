@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\VersiProduk;
 use App\Models\PerpanjanganEmas;
 use App\Models\RincianPengajuanEmas;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +28,7 @@ class PengajuanEmas extends Model
         return $this->hasMany(PerpanjanganEmas::class,'pengajuan_id');
     }
 
-    public function generate_no_mq()
+    public function generate_no_mq($check)
     {
         if($check)
         {
@@ -60,5 +61,20 @@ class PengajuanEmas extends Model
     public function jangka_waktu()
     {
         return $this->jangka_waktu." Bulan";
+    }
+
+    public function status()
+    {
+        if($this->status == 'Pengajuan'){
+            return '<span class="badge badge-warning">'.$this->status.'</span>';
+        } else if ($this->status == 'Approved'){
+            return '<span class="badge badge-primary">'.$this->status.'</span>';
+        } else if ($this->status == 'Non Aktif'){
+            return '<span class="badge badge-danger">'.$this->status.'</span>';
+        }
+    }
+    public function versi()
+    {
+        return $this->hasOne(VersiProduk::class,'id','versi_syirkah');
     }
 }

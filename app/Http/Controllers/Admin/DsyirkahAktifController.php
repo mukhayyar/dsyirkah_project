@@ -16,7 +16,7 @@ class DsyirkahAktifController extends Controller
 {
     public function emas_index(Request $request){
          if($request->ajax()) {
-            $data = PengajuanEmas::with('rincian_pengajuan_emas','anggota')->where([
+            $data = PengajuanEmas::with('rincian_pengajuan_emas','anggota','versi')->where([
                 ['status','=','Approved']
             ])->get();
             return Datatables::of($data)
@@ -26,6 +26,9 @@ class DsyirkahAktifController extends Controller
                 })
                 ->addColumn('jatuh_tempo',function($row){
                     return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->jatuh_tempo_akan_datang));
+                })
+                ->editColumn('versi_syirkah',function($row){
+                    return $row->versi->versi;
                 })
                 ->addColumn('nomor_ba',function($row){
                     return $row->anggota->nomor_ba;
@@ -106,7 +109,7 @@ class DsyirkahAktifController extends Controller
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota')->where([
+            $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
                 ['status','=','Approved']
             ])->get();
             return Datatables::of($data)
@@ -116,6 +119,9 @@ class DsyirkahAktifController extends Controller
                 })
                 ->addColumn('tgl_persetujuan',function($row){
                     return date('Y-m-d h:i',strtotime($row->perpanjangan_rupiah->get(0)->tgl_akad_baru));
+                })
+                ->editColumn('versi_syirkah',function($row){
+                    return $row->versi->versi;
                 })
                 ->addColumn('jatuh_tempo',function($row){
                     return date('Y-m-d',strtotime($row->perpanjangan_rupiah->get(0)->jatuh_tempo_akan_datang));

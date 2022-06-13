@@ -160,7 +160,7 @@
                                                     <!-- start attachments -->
                                                     <h5 class="mt-4 mb-2 font-16">Upload Thumbnail (file jpg/png)</h5>
                                                     <div class="fallback">
-                                                        <input name="thumbnail" type="file" />
+                                                        <input name="thumbnail" type="file" accept=".jpg,.jpeg,.png"/>
                                                     </div>
                                                     @if(isset($usaha))
                                                     <div class="dropzone-previews mt-3">
@@ -181,7 +181,7 @@
                                                     <h5 class="mt-4 mb-2 font-16">Upload Proposal (file pdf)</h5>
                                                     <!-- File Upload -->
                                                     <div class="fallback">
-                                                        <input name="proposal" type="file" />
+                                                        <input name="proposal" type="file" accept=".pdf"/>
                                                     </div>
                                                     @if(isset($usaha))
                                                     <div class="dropzone-previews mt-3">
@@ -202,7 +202,7 @@
                                                     <h5 class="mt-4 mb-2 font-16">Upload Photo (file jpg/png)</h5>
                                                     <!-- File Upload -->
                                                     <div class="fallback">
-                                                        <input name="gallery[]" type="file" multiple />
+                                                        <input name="gallery[]" type="file" multiple accept=".jpg,.jpeg,.png"/>
                                                     </div>
                                                     @if(isset($usaha))
                                                     <div class="dropzone-previews mt-3">

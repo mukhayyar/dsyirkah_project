@@ -35,6 +35,8 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class,'r
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'login'])->name('login_user');
 Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 Route::middleware('auth')->group(function(){
+    Route::get('/api/versi/bulan/{id}', [App\Http\Controllers\User\PageController::class,'cari_bulan']);
+    Route::get('/api/versi/nisbah/{id}', [App\Http\Controllers\User\PageController::class,'cari_nisbah']);
     Route::middleware('IsUser')->group(function(){
         Route::get('/transaction', [App\Http\Controllers\User\PageController::class,'transaction']);
         Route::get('/mutlaqah', [App\Http\Controllers\User\PageController::class,'mutlaqah']);
@@ -43,11 +45,9 @@ Route::middleware('auth')->group(function(){
         Route::post('/mutlaqah/pengajuan/emas', [App\Http\Controllers\User\PengajuanController::class,'emas_store']);
         Route::get('/mutlaqah/pengajuan/rupiah', [App\Http\Controllers\User\PageController::class,'form_pengajuan_rupiah_mt']);
         Route::post('/mutlaqah/pengajuan/rupiah', [App\Http\Controllers\User\PengajuanController::class,'rupiah_store']);
-        Route::get('/api/versi/bulan/{id}', [App\Http\Controllers\User\PageController::class,'cari_bulan']);
-        Route::get('/api/versi/nisbah/{id}', [App\Http\Controllers\User\PageController::class,'cari_nisbah']);
         Route::get('/mutlaqah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_mutlaqah']);
         Route::get('/muqayyadah/usaha/{id}', [App\Http\Controllers\User\PageController::class,'detail_usaha_muqayyadah']);
-        Route::get('/muqayyadah/usaha/{id}/pengajuan', [App\Http\Controllers\User\PageController::class,'detail_usaha_muqayyadah']);
+        Route::get('/muqayyadah/usaha/{id}/pengajuan', [App\Http\Controllers\User\PageController::class,'form_pengajuan_mq']);
         Route::group(['prefix'=>'user'], function () {
             Route::get('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data']);
             Route::post('/kelengkapan_data', [App\Http\Controllers\User\PageController::class,'kelengkapan_data_store']);
@@ -136,6 +136,7 @@ Route::middleware('auth')->group(function(){
                 Route::post('/emas/approval/{id}/reject',[App\Http\Controllers\Admin\PengajuanController::class,'reject_pengajuan_emas']);
                 Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_detail']);
                 Route::get('/emas/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_edit']);
+                Route::post('/emas/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_update']);
                 Route::get('/emas/reject',[App\Http\Controllers\Admin\PengajuanController::class,'emas_reject']);
                 Route::get('/emas/reject/restore/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'restore_pengajuan_emas']);
                 // rupiah
@@ -145,6 +146,7 @@ Route::middleware('auth')->group(function(){
                 Route::post('/rupiah/approval/{id}/reject',[App\Http\Controllers\Admin\PengajuanController::class,'reject_pengajuan_rupiah']);
                 Route::get('/rupiah/detail/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_detail']);
                 Route::get('/rupiah/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_edit']);
+                Route::post('/rupiah/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_update']);
                 Route::get('/rupiah/reject',[App\Http\Controllers\Admin\PengajuanController::class,'rupiah_reject']);
                 Route::get('/rupiah/reject/restore/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'restore_pengajuan_rupiah']);
             });

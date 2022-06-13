@@ -21,8 +21,16 @@ class PageController extends Controller
 {
     public function transaction(){
         $user_id = Auth::user()->id;
+        $anggota_id = Anggota::where('user_id',$user_id)->first();
         $check_lengkap_data = Anggota::where('user_id',$user_id)->first('no_ktp');
-        return view('main_view/transaction',compact('check_lengkap_data'));
+        $pengajuan_emas = PengajuanEmas::where('anggota_id',$anggota_id->id)->get();
+        $pengajuan_rupiah = PengajuanRupiah::where('anggota_id',$anggota_id->id)->get();
+        $collection = collect();
+        foreach ($pengajuan_rupiah as $pr)
+            $collection->push($pr);
+        foreach ($pengajuan_emas as $pr)
+            $collection->push($pr);
+        return view('main_view/transaction',compact('check_lengkap_data','collection'));
     }
     public function kelengkapan_data()
     {
@@ -174,5 +182,45 @@ class PageController extends Controller
     {
         $usaha = Usaha::find($id);
         return view('main_view/detail_muqayyadah',compact('usaha'));
+    }
+    public function form_pengajuan_mq(Request $request,$id)
+    {
+        $checkForm = Usaha::find($id);
+        $kode_usaha = $checkForm->kode_usaha;
+        $kebutuhan = $checkForm->kebutuhan_emas ? $checkForm->kebutuhan_emas : $checkForm->kebutuhan_rupiah;
+        $kebutuhan_len = $checkForm->kebutuhan_rupiah ? strlen((string)$checkForm->kebutuhan_rupiah) : 19;
+        if($checkForm->jenis_form == 'emas'){
+            $perwada = Perwada::where('status','Aktif')->get();
+            $check_no = PengajuanEmas::where('jenis_syirkah','Muqayyadah')->latest()->first();
+            $pengajuan_emas = new PengajuanEmas;
+            $item_emas = ItemEmas::where('status',1)->get();
+            $generate_no = $pengajuan_emas->generate_no_mq($check_no);
+            $user = Anggota::where('user_id',Auth::user()->id)->first(['id','nomor_ba','nama_lengkap','no_hp','email']);
+            $versi = VersiProduk::where([
+                ['status','=',1],
+                ['jenis','=','Muqayyadah'],
+                ['item','=','emas'],
+            ])->first(['id','versi']);
+            if($versi){
+                return view('user_view/form_pengajuan_emas',compact('generate_no','versi','user','perwada','item_emas','kode_usaha','kebutuhan'));
+            } else {
+                return redirect()->back()->with('warning','Admin belum mengatur versi form');
+            }
+        }
+        $perwada = Perwada::where('status','Aktif')->get();
+        $check_no = PengajuanRupiah::where('jenis_syirkah','Muqayyadah')->latest()->first();
+        $pengajuan_rupiah = new PengajuanRupiah;
+        $generate_no = $pengajuan_rupiah->generate_no_mq($check_no);
+        $user = Anggota::where('user_id',Auth::user()->id)->first(['id','nomor_ba','nama_lengkap','no_hp','email']);
+        $versi = VersiProduk::where([
+            ['status','=',1],
+            ['jenis','=','Muqayyadah'],
+            ['item','=','rupiah'],
+        ])->first(['id','versi']);
+        if($versi){
+            return view('user_view/form_pengajuan_rupiah',compact('generate_no','versi','user','perwada','kode_usaha','kebutuhan','kebutuhan_len'));
+        } else {
+            return redirect()->back()->with('warning','Admin belum mengatur versi form');
+        }
     }
 }

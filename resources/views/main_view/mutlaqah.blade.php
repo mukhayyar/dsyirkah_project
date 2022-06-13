@@ -82,8 +82,8 @@
         <!-- END SERVICES -->
         @if(!$check_lengkap_data->no_ktp)
         <div id="exampleModalLive" class="modal fade show" tabindex="-1" aria-modal="true" aria-labelledby="myLargeModalLabel" role="dialog" style="display: block;">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+            <div class="modal-dialog modal-lg loading">
+              <div class="modal-content bg-transparent">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLiveLabel">Kamu Belum Bisa Mengakses Halaman Ini!</h5>
                 </div>
@@ -95,6 +95,6 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
         @endif
 @endsection

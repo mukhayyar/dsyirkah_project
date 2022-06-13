@@ -85,7 +85,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Versi Syirkah</td>
-                                                                <td>: {{$pengajuan->versi_syirkah}}</td>
+                                                                <td>: {{$pengajuan->versi->versi}}</td>
                                                             </tr>
                                                             @if($pengajuan->kode_usaha)
                                                             <tr>

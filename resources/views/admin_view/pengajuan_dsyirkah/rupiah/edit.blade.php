@@ -48,13 +48,13 @@
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Nama Lengkap</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->anggota->nama_lengkap}}" value="{{$pengajuan->anggota->nama_lengkap}}" name="nama_lengkap" readonly="">
+                                                    <input class="form-control" type="text" id="nama_lengkap" placeholder="{{$pengajuan->anggota->nama_lengkap}}" value="{{$pengajuan->anggota->nama_lengkap}}" name="nama_lengkap" readonly="">
                                                 </div>
                                             </div><br>
                                             <div class="row g-2">
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Nomor HP</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->anggota->mask_no_hp()}}" readonly="">
+                                                    <input class="form-control" type="text" id="no_hp" placeholder="{{$pengajuan->anggota->mask_no_hp()}}" readonly="">
                                                     <input type="hidden" value="{{$pengajuan->anggota->no_hp}}" name="no_hp">
                                                 </div>
                                                 <div class="col-md">
@@ -66,7 +66,7 @@
                                             <div class="row g-2">
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Nomor Pengajuan</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->no_pengajuan}}" value="{{$pengajuan->no_pengajuan}}" name="no_referensi" readonly="">
+                                                    <input class="form-control" type="text" id="no_referensi" placeholder="{{$pengajuan->no_pengajuan}}" value="{{$pengajuan->no_pengajuan}}" name="no_referensi" readonly="">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="emailaddress" class="form-label">Jenis Syirkah</label>
@@ -74,7 +74,8 @@
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Versi D'Syirkah</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->versi_syirkah}}" value="{{$pengajuan->versi_syirkah}}" readonly="" name="versi">
+                                                    <input class="form-control" type="text" id="versi" placeholder="{{$pengajuan->versi->versi}}" value="{{$pengajuan->versi->versi}}" readonly="" name="versi">
+                                                    <input type="hidden" id="id_versi" value="{{$pengajuan->versi->id}}" readonly="">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="perwada" class="form-label">Perwada</label>
@@ -100,22 +101,22 @@
                                                                         <option value="pokokWakaf" {{$pengajuan->pilihan_program == "pokokWakaf" ? 'selected' : ''}}>Pokok Diwakafkan</option>
                                                                     </select>
                                                                 </div><br>
-                                                                <div class="col-md program reguler" style="display: none">
+                                                                <div class="col-md program reguler" style="display: {{$pengajuan->pilihan_program == 'reguler' ? 'block' : 'none'}};">
                                                                     <label for="example-select" class="form-label">Jangka Waktu (jika reg)</label>
                                                                     <select class="form-select" id="bulanPil" name="jangka_waktu">
                                                                         <option value="">Pilih</option>
                                                                     </select>
                                                                 </div><br>
-                                                                <div class="col-md program reguler" style="display: none">
+                                                                <div class="col-md program reguler" style="display: {{$pengajuan->pilihan_program == 'reguler' ? 'block' : 'none'}};">
                                                                     <label for="nisbahPil" class="form-label">Nisbah (sesuai dg jangka waktu)</label>
                                                                     <input class="form-control date" type="text" id="nisbahPil" name="nisbah" readonly>
                                                                 </div><br>
-                                                                <div class="col-md program reguler" style="display: none">
+                                                                <div class="col-md program reguler" style="display: {{$pengajuan->pilihan_program == 'reguler' ? 'block' : 'none'}};">
                                                                     <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
                                                                     <select class="form-select" id="example-select" name="perpanjangan">
                                                                         <option value="">Pilih</option>
-                                                                        <option value="Otomatis">Otomatis</option>
-                                                                        <option value="Tidak Otomatis">Tidak Otomatis</option>
+                                                                        <option value="Otomatis" {{$pengajuan->perpanjangan == 'Otomatis'}}>Otomatis</option>
+                                                                        <option value="Tidak Otomatis" {{$pengajuan->perpanjangan == 'Tidak Otomatis'}}>Tidak Otomatis</option>
                                                                     </select>
                                                                 </div>
                                                             </blockquote>
@@ -144,7 +145,11 @@
                                                         </div>
                     
                                                     </div>
-                                                    <div class="card border-primary border program reguler" style="display: none">
+                                                    <div class="card-body">
+                                                        <p>Bukti Transfer:</p>
+                                                        <img src="/images/data_penting/bukti_transfer/{{$pengajuan->bukti_transfer}}" width="200" height="200" alt="">
+                                                    </div>
+                                                    <div class="card border-primary border program reguler" @if($pengajuan->pilihan_program == "reguler")style="display: block;" @else style="display: none;"@endif>
                                                         <div class="card-body">
                                                             <h5 class="card-title">Persetujuan : (jika Reguler)</h5>
                                                             <p class="card-text">
@@ -163,7 +168,7 @@
                                                                 </ul>
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
-                                                    <div class="card border-primary border program pokokWakaf" style="display: none">
+                                                    <div class="card border-primary border program pokokWakaf" @if($pengajuan->pilihan_program == "pokokWakaf")style="display: block;" @else style="display: none;"@endif>
                                                         <div class="card-body">
                                                             <h5 class="card-title">Persetujuan : (jika Pokok diwakafkan)</h5>
                                                             <p class="card-text">
@@ -186,7 +191,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="col-lg program reguler" style="display: none">
+                                                <div class="col-lg program reguler" @if($pengajuan->pilihan_program == "reguler")style="display: block;" @else style="display: none;"@endif>
                                                     <div class="card border-secondary border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Alokasi Nisbah Reguler :</h5>
@@ -196,40 +201,40 @@
                                                                     <label class="form-check-label" for="customRadio1">Nisbah semua dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio2">Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio3">Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio4">Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah semua di wakafkan melalui Wakaf Peradaban" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio5">Nisbah semua di wakafkan melalui Wakaf Peradaban</label>
                                                                 </div>
                                                             </div> 
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
                                                 </div>
-                                                <div class="col-lg program pokokWakaf" style="display: none">
+                                                <div class="col-lg program pokokWakaf" @if($pengajuan->pilihan_program == "pokokWakaf")style="display: block;" @else style="display: none;"@endif>
                                                     <div class="card border-secondary border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Alokasi Nisbah Wakaf :</h5>
                                                             <div class="mt-3">
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio1" name="alokasiNisbah" value="100% sedekah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio1" name="alokasiNisbah" value="100% sedekah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "100% sedekah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio6">100% sedekah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "40% anggota ; 60% sedekah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio7">40% anggota ; 60% sedekah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "25% anggota ; 75% sedekah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio8">25% anggota ; 75% sedekah</label>
                                                                 </div>
                                                             </div> 
@@ -279,39 +284,6 @@
                         <!-- end row -->
 
                     </div> <!-- container -->
-
-                    <!-- Warning Alert Modal -->
-                    <div id="warning-aprove-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-body p-4">
-                                    <div class="text-center">
-                                        <i class="dripicons-warning h1 text-warning"></i>
-                                        <h4 class="mt-2">Perhatian</h4>
-                                        <p class="mt-3">Data pengajuan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Setujui</strong></p>
-                                        <p> Silakan klik <strong>Aprov</strong> jika sudah yakin</p>
-                                        <button type="button" class="btn btn-success my-2" data-bs-dismiss="modal">Aprov</button>
-                                    </div>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div>
-
-                    <div id="warning-riject-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content modal-filled bg-danger">
-                                <div class="modal-body p-4">
-                                    <div class="text-center">
-                                        <i class="dripicons-warning h1 text-warning"></i>
-                                        <h4 class="mt-2">Perhatian</h4>
-                                        <p class="mt-3">Data pengajuan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Riject</strong></p>
-                                        <p> Silakan klik <strong>Riject</strong> jika sudah yakin</p>
-                                        <button type="button" class="btn btn-warning my-2" data-bs-dismiss="modal">Riject</button>
-                                    </div>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div>
 
                     <!-- Modal view-->
                     <div class="modal fade" id="modal-view-pemohon" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -486,4 +458,42 @@
                     </div><!-- /.modal -->
 
                 </div> <!-- content -->
+@push('scripts')
+<script>    
+    $(function() {
+        $('#pilihanProgram').change(function(){
+            $('.program').hide();
+            $('.' + $(this).val()).show();
+        })
+    });
+    $(document).ready(function(){
+        var id_versi = $("#id_versi").val();
+        $.ajax({
+            type: "GET",
+            url: "/api/versi/bulan/"+id_versi,
+            success: function(hasil){
+                hasilAkhir = [];
+                hasilAkhir.push("<option>--Pilih--</option>");
+                hasil.forEach(element => {
+                    value = `${element.id},${element.bulan}`;
+                    hasilAkhir.push("<option value='"+value+"'>"+element.bulan+" Bulan</option>");
+                });
+                $("#bulanPil").html(hasilAkhir);
+            }
+        })
+        $("body").on("change","#bulanPil", function(){
+            var value = $(this).val();
+            const myArray = value.split(",");
+            let id = myArray[0];
+            $.ajax({
+                type: "GET",
+                url: "/api/versi/nisbah/"+id,
+                success: function(hasil){
+                    $("#nisbahPil").val(hasil.nisbah);
+                }
+            })
+        })
+    })
+</script>
+@endpush
 @endsection

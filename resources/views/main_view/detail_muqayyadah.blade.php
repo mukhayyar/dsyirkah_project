@@ -85,19 +85,19 @@
                                     <p><b>Bentuk : </b><small>{{$usaha->jenis_form}}</small></p>
                                     <p><b>Kebutuhan : </b><small>@if($usaha->checkUsahaKebutuhan())Rp {{number_format($usaha->kebutuhan_rupiah,2,",",".")}},- @else {{$usaha->kebutuhan_emas}} @endif</small></p>
                                     <p><b>Jangka Waktu : </b><small>{{$usaha->jangkaWaktu()}}</small></p>
-                                    <p><b>Capaian : </b><small>Rp 25.000.0000,-</small></p>
+                                    <p><b>Capaian : </b><small>@if($usaha->checkUsahaKebutuhan())Rp {{number_format($usaha->capaian_muqayyadah,2,",",".")}},- @else {{$usaha->capaian_muqayyadah}} @endif</small></p>
                                     <div class="progress" style="height: 25px; ">
-                                        <div class="progress-bar bg-success " role="progressbar" style="width: 25%; " aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div><br>
+                                        <div class="progress-bar bg-success " role="progressbar" style="width: {{$usaha->capaian_percent()}}%; " aria-valuenow="{{$usaha->capaian_percent()}}" aria-valuemin="0" aria-valuemax="100">{{$usaha->capaian_percent()}}%</div><br>
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="margin-top: 2%;">
                                     <div class="text-sm-center"><h5>Silahkan Hubungi Kami jika membutuhkan penjelasan lebih detail</h5></div>
                                     <div class="text-center mt-sm-0 mt-3 text-sm-center">
-                                        <a href="" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
+                                        <a target="_blank" href="/proposal/{{$usaha->proposal}}" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
                                             <i class="mdi mdi-book"></i> Lihat Proposal </a>
                                         <a href="" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
                                             <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>
-                                        <a href="" class="btn btn-lg font-16 btn-primary" id="btn-form-gabung" >
+                                        <a href="/muqayyadah/usaha/{{$usaha->id}}/pengajuan" class="btn btn-lg font-16 btn-primary" id="btn-form-gabung" >
                                             <i class="mdi mdi-clipboard-edit-outline"></i> Daftar </a>
                                     </div>
                                 </div>

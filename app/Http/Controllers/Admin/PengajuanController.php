@@ -15,7 +15,7 @@ class PengajuanController extends Controller
 {
     public function emas_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::where([
+            $data = PengajuanEmas::with('versi')->where([
                 ['status','!=','Reject']
             ])->get();
             return Datatables::of($data)
@@ -26,6 +26,9 @@ class PengajuanController extends Controller
                 })
                 ->editColumn('created_at',function($row){
                     return date('Y-m-d h:i',strtotime($row->created_at));
+                })
+                ->editColumn('versi_syirkah',function($row){
+                    return $row->versi->versi;
                 })
                 ->editColumn('status', function($row){
                     if($row->status == 'Approved'){
@@ -60,7 +63,7 @@ class PengajuanController extends Controller
         return redirect()->back();
     }
     public function emas_approval($id){
-        $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas')->where('slug',$id)->first();
+        $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','versi')->where('slug',$id)->first();
         return view('admin_view/pengajuan_dsyirkah/emas/approval',compact('pengajuan','id'));
     }
     public function emas_approval_store($id){
@@ -90,14 +93,17 @@ class PengajuanController extends Controller
         return redirect()->back();
     }
     public function emas_detail($id){
-        $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
+        $pengajuan = PengajuanEmas::with('anggota','versi')->where('slug',$id)->first();
         return view('admin_view/pengajuan_dsyirkah/emas/detail',compact('pengajuan'));
     }
     public function emas_reject(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::where('status','Reject')->get();
+            $data = PengajuanEmas::with('versi')->where('status','Reject')->get();
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->editColumn('versi_syirkah',function($row){
+                    return $row->versi->versi;
+                })
                 ->addColumn('action', function($row){
                     $btn = '<a href="detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
                     $btn .= '<a href="reject/restore/'.$row->slug.'" onclick="event.preventDefault(); document.getElementById("restore-form").submit();" class="action-icon"> <i class="mdi mdi-file-restore"></i></a>';
@@ -110,13 +116,13 @@ class PengajuanController extends Controller
         return view('admin_view/pengajuan_dsyirkah/emas/reject');
     }
     public function emas_edit($id){
-        $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
+        $pengajuan = PengajuanEmas::with('anggota','versi')->where('slug',$id)->first();
         $perwada = Perwada::where('status','Aktif')->get();
         return view('admin_view/pengajuan_dsyirkah/emas/edit',compact('pengajuan','perwada'));
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::where([
+            $data = PengajuanRupiah::with('versi')->where([
                 ['status','!=','Reject']
             ])->get();
             return Datatables::of($data)
@@ -127,6 +133,9 @@ class PengajuanController extends Controller
                 })
                 ->editColumn('created_at',function($row){
                     return date('Y-m-d h:i',strtotime($row->created_at));
+                })
+                ->editColumn('versi_syirkah',function($row){
+                    return $row->versi->versi;
                 })
                 ->editColumn('status', function($row){
                     if($row->status == 'Approved'){
@@ -161,7 +170,7 @@ class PengajuanController extends Controller
        return redirect()->back();
     }
     public function rupiah_approval($id){
-        $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
+        $pengajuan = PengajuanRupiah::with('anggota','versi')->where('slug',$id)->first();
         return view('admin_view/pengajuan_dsyirkah/rupiah/approval',compact('pengajuan','id'));
     }
     public function rupiah_approval_store($id){
@@ -191,12 +200,12 @@ class PengajuanController extends Controller
         return redirect()->back();
     }
     public function rupiah_detail($id){
-        $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
+        $pengajuan = PengajuanRupiah::with('anggota','versi')->where('slug',$id)->first();
         return view('admin_view/pengajuan_dsyirkah/rupiah/detail',compact('pengajuan'));
     }
     public function rupiah_reject(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::where('status','Reject')->get();
+            $data = PengajuanRupiah::with('versi')->where('status','Reject')->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -205,13 +214,16 @@ class PengajuanController extends Controller
                     $btn .= '<form id="restore-form" action="reject/restore/'.$row->slug.'" method="POST" class="d-none"> @csrf </form>';
                     return $btn;
                 })
+                ->editColumn('versi_syirkah',function($row){
+                    return $row->versi->versi;
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
         return view('admin_view/pengajuan_dsyirkah/rupiah/reject');
     }
     public function rupiah_edit($id){
-        $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
+        $pengajuan = PengajuanRupiah::with('anggota','versi')->where('slug',$id)->first();
         $perwada = Perwada::where('status','Aktif')->get();
         return view('admin_view/pengajuan_dsyirkah/rupiah/edit',compact('pengajuan','perwada'));
     }

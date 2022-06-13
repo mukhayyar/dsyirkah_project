@@ -27,4 +27,12 @@ class Usaha extends Model
     {
         return $this->jangka_waktu." Bulan";
     }
+
+    public function capaian_percent()
+    {
+        if($this->kebutuhan_rupiah){
+            return ($this->capaian_muqayyadah/$this->kebutuhan_rupiah)*100;
+        }
+        return ($this->capaian_muqayyadah/$this->kebutuhan_emas)*100;
+    }
 }

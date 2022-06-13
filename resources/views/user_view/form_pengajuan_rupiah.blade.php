@@ -7,6 +7,9 @@
                 <div class="card-header bg-success">
                     <div class=" align-items-center mb-2 text-white">
                         <h3>Form Pengajuan D'Syirkah Rupiah</h3>
+                        @if(isset($kode_usaha))
+                        <h5>Kode Usaha: {{$kode_usaha}}</h5>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -15,6 +18,9 @@
                     </div><hr>
                     <form action="" enctype="multipart/form-data" method="POST">
                         @csrf
+                        @if(isset($kode_usaha))
+                        <input type="hidden" value="{{$kode_usaha}}" name="kode_usaha">
+                        @endif
                         <div class="row g-2">
                             <div class="col-md">
                                 <label class="form-label">Nomor BA</label>
@@ -109,8 +115,8 @@
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label class="form-label">Rp</label>
-                                        <input type="text" name="nominal" class="form-control" data-toggle="input-mask" data-mask-format="000.000.000.000.000" data-reverse="true">
-                                        <span class="font-13 text-muted">Contoh: 100.000.000</span>
+                                        <input type="text" name="nominal" class="form-control" data-toggle="input-mask" data-mask-format="0.000.000.000.000" data-reverse="false">
+                                        @if(isset($kebutuhan))<span class="font-13 text-muted">Kebutuhan Usaha: Rp. {{number_format($kebutuhan,0,",",".")}}</span>@endif
                                     </div>
                                     <div class="row g-2">
                                         <div class="col-md text-center py-lg-3">

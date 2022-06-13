@@ -7,6 +7,9 @@
                 <div class="card-header" style="background-color: goldenrod;">
                     <div class=" align-items-center mb-2 text-white">
                         <h3>Form Pengajuan D'Syirkah Gold</h3>
+                        @if(isset($kode_usaha))
+                        <h5>Kode Usaha: {{$kode_usaha}}</h5>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -15,6 +18,9 @@
                     </div><hr>
                     <form action="" enctype="multipart/form-data" method="POST">
                         @csrf
+                        @if(isset($kode_usaha))
+                        <input type="hidden" value="{{$kode_usaha}}" name="kode_usaha">
+                        @endif
                         <div class="row g-2">
                             <div class="col-md">
                                 <label class="form-label">Nomor BA</label>
@@ -107,6 +113,7 @@
                                     <a href="javascript:void(0);" class="btn mb-2 text-white" data-bs-toggle="modal" data-bs-target="#modal-tambah-emas" style="background-color: goldenrod;"><i class="mdi mdi-plus-circle me-2"></i> Emas</a>
                                 </div>
                                 <div class="table-responsive">
+                                    <h4>Kebutuhan Emas: {{$kebutuhan}} Gram</h4>
                                     <table class="table table-borderless table-nowrap table-centered mb-0">
                                         <thead class="text-white" style="background-color: goldenrod;">
                                             <tr>

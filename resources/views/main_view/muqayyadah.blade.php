@@ -37,10 +37,10 @@
                               <p class="card-text">{{$data->profil}}</p>
                               <p><b>Kebutuhan: </b> @if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}}@endif</p>
                               <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Capaian 90%</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$data->capaian_percent()}}%;" aria-valuenow="{{$data->capaian_percent()}}" aria-valuemin="0" aria-valuemax="100">Capaian {{$data->capaian_percent()}}%</div>
                         </div><br>
                         <div class="d-grid">
-                                <a href="/muqayyadah/usaha/{{$usaha->id}}" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
+                                <a href="/muqayyadah/usaha/{{$data->id}}" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>
                                 </div>
                         </div>
                     </div>
@@ -52,8 +52,8 @@
     </section>
     @if(!$check_lengkap_data->no_ktp)
         <div id="exampleModalLive" class="modal fade show" tabindex="-1" aria-modal="true" aria-labelledby="myLargeModalLabel" role="dialog" style="display: block;">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+            <div class="modal-dialog modal-lg loading">
+                <div class="modal-content bg-transparent">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLiveLabel">Kamu Belum Bisa Mengakses Halaman Ini!</h5>
                 </div>

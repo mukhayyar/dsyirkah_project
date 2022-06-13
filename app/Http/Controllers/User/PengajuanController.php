@@ -48,11 +48,15 @@ class PengajuanController extends Controller
         $pengajuan->jenis_syirkah = $request->jenis;
         $pengajuan->versi_syirkah = $request->versi;
         $pengajuan->nisbah = $request->nisbah;
+        $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
         $pengajuan->nominal = str_replace(".","",$request->nominal);
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_pengajuan = $request->catatan;
         $pengajuan->save();
+        if($request->kode_usaha){
+            return redirect('/muqayyadah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        }
         return redirect('/mutlaqah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
     public function emas_store(Request $request)
@@ -86,6 +90,7 @@ class PengajuanController extends Controller
         $pengajuan->jenis_syirkah = $request->jenis;
         $pengajuan->versi_syirkah = $request->versi;
         $pengajuan->nisbah = $request->nisbah;
+        $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
         $pengajuan->total_gramasi = $request->total_jumlah_emas;
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
@@ -103,6 +108,9 @@ class PengajuanController extends Controller
             $rincianPengajuanEmas->keping = $request->keping_emas[$i];            
             $rincianPengajuanEmas->jumlah = $request->jumlah_keping[$i];
             $rincianPengajuanEmas->save();            
+        }
+        if($request->kode_usaha){
+            return redirect('/muqayyadah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
         }
         return redirect('/mutlaqah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }

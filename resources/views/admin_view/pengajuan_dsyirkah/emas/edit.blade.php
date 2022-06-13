@@ -74,7 +74,8 @@
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="fullname" class="form-label">Versi D'Syirkah</label>
-                                                    <input class="form-control" type="text" id="fullname" placeholder="{{$pengajuan->versi_syirkah}}" value="{{$pengajuan->versi_syirkah}}" readonly="" name="versi">
+                                                    <input class="form-control" type="text" id="versi" placeholder="{{$pengajuan->versi->versi}}" value="{{$pengajuan->versi->versi}}" readonly="" name="versi">
+                                                    <input type="hidden" id="id_versi" value="{{$pengajuan->versi->id}}" readonly="">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="perwada" class="form-label">Perwada</label>
@@ -99,17 +100,17 @@
                                                                         <option value="pokokWakaf" {{$pengajuan->pilihan_program == 'pokokWakaf' ? 'selected' : ''}}>Pokok Diwakafkan</option>
                                                                     </select>
                                                                 </div><br>
-                                                                <div class="col-md program reguler" style="display: none">
+                                                                <div class="col-md program reguler" style="display: {{$pengajuan->pilihan_program == 'reguler' ? 'block' : 'none'}};">
                                                                     <label for="example-select" class="form-label">Jangka Waktu (jika reg)</label>
                                                                     <select class="form-select" id="bulanPil" name="jangka_waktu">
                                                                         <option value="">Pilih</option>
                                                                     </select>
                                                                 </div><br>
-                                                                <div class="col-md program reguler" style="display: none">
+                                                                <div class="col-md program reguler" style="display: {{$pengajuan->pilihan_program == 'reguler' ? 'block' : 'none'}};">
                                                                     <label for="nisbahPil" class="form-label">Nisbah (sesuai dg jangka waktu)</label>
                                                                     <input class="form-control date" type="text" id="nisbahPil" name="nisbah" readonly>
                                                                 </div><br>
-                                                                <div class="col-md program reguler" style="display: none">
+                                                                <div class="col-md program reguler" style="display: {{$pengajuan->pilihan_program == 'reguler' ? 'block' : 'none'}};">
                                                                     <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
                                                                     <select class="form-select" id="example-select" name="perpanjangan">
                                                                         <option value="">Pilih</option>
@@ -179,26 +180,7 @@
                                                             </tbody>
                                                         </table>
                                                     </div><hr><br> <!-- end table-responsive-->
-                                                    <div class="card border-primary border program reguler" style="display: none">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Persetujuan : (jika Reguler)</h5>
-                                                            <p class="card-text">
-                                                                <ul class="ul-number">
-                                                                    <li>
-                                                                         Simpanan berjangka dengan akad Mudharabah Muthlaqah
-                                                                    </li>
-                                                                    <li>
-                                                                        Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                                    <li>
-                                                                        Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                                    </li>
-                                                                    <li>
-                                                                        Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
-                                                                    </li>
-                                                                </ul>
-                                                        </div> <!-- end card-body-->
-                                                    </div> <!-- end card-->
-                                                    <div class="card border-primary border program pokokWakaf" style="display: none">
+                                                    <div class="card border-primary border program pokokWakaf" @if($pengajuan->pilihan_program == "pokokWakaf")style="display: block;" @else style="display: none;"@endif>
                                                         <div class="card-body">
                                                             <h5 class="card-title">Persetujuan : (jika Pokok diwakafkan)</h5>
                                                             <p class="card-text">
@@ -221,7 +203,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="col-lg program reguler" style="display: none">
+                                                <div class="col-lg program reguler" @if($pengajuan->pilihan_program == "reguler")style="display: block;" @else style="display: none;"@endif>
                                                     <div class="card border-secondary border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Alokasi Nisbah Reguler :</h5>
@@ -231,40 +213,40 @@
                                                                     <label class="form-check-label" for="customRadio1">Nisbah semua dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio2">Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio3">Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio4">Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah semua di wakafkan melalui Wakaf Peradaban" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio5">Nisbah semua di wakafkan melalui Wakaf Peradaban</label>
                                                                 </div>
                                                             </div> 
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
                                                 </div>
-                                                <div class="col-lg program pokokWakaf" style="display: none">
+                                                <div class="col-lg program pokokWakaf" @if($pengajuan->pilihan_program == "pokokWakaf")style="display: block;" @else style="display: none;"@endif>
                                                     <div class="card border-secondary border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Alokasi Nisbah Wakaf :</h5>
                                                             <div class="mt-3">
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio1" name="alokasiNisbah" value="100% sedekah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio1" name="alokasiNisbah" value="100% sedekah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "100% sedekah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio6">100% sedekah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "40% anggota ; 60% sedekah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio7">40% anggota ; 60% sedekah</label>
                                                                 </div>
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio2" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "25% anggota ; 75% sedekah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio8">25% anggota ; 75% sedekah</label>
                                                                 </div>
                                                             </div> 
