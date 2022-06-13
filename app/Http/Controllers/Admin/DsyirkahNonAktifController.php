@@ -29,7 +29,7 @@ class DsyirkahNonAktifController extends Controller
                 })
                 ->addColumn('pengiriman', function($row){
                     $btn = '';
-                    if($row->tanggal_pengiriman_barang == '' && $row-> $row->foto_pengiriman == ''){
+                    if($row->tanggal_pengiriman_barang == ''){
                         $btn = '<a id="upload-pengiriman" data-id="'.$row->id.'" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-upload-pengiriman"><i class="mdi mdi-file-upload"></i></a>';
                     }
                     $btn .= '<a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-update"></i></a>';
@@ -80,7 +80,7 @@ class DsyirkahNonAktifController extends Controller
                 })
                 ->addColumn('pengiriman', function($row){
                     $btn = '';
-                    if($row->tanggal_pengiriman_barang == '' && $row-> $row->foto_pengiriman == ''){
+                    if($row->tanggal_pengiriman_barang == '' ){
                         $btn = '<a id="upload-pengiriman" data-id="'.$row->id.'" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-upload-pengiriman"><i class="mdi mdi-file-upload"></i></a>';
                     }
                     $btn .= '<a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-update"></i></a>';
@@ -98,7 +98,7 @@ class DsyirkahNonAktifController extends Controller
     }
     public function rupiah_detail($id){
         $non_aktif = NonAktifRupiah::with('pengajuan','anggota')->where('id',$id)->first();
-        return view('admin_view/dsyirkah_nonaktif/rupiah/detail',compact('non_a$non_aktif','id'));
+        return view('admin_view/dsyirkah_nonaktif/rupiah/detail',compact('non_aktif','id'));
     }
     public function rupiah_upload_transfer(Request $request,$id)
     {

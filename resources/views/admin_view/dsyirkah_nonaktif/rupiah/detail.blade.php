@@ -100,7 +100,7 @@
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: {{$non_aktif->pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
+                                        <td>: {{$non_aktif->pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
@@ -162,7 +162,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($non_aktif->pengajuan->perpanjangan_emas as $perpanjangan)
+                                                    @foreach($non_aktif->pengajuan->perpanjangan_rupiah as $perpanjangan)
                                                     <tr>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>

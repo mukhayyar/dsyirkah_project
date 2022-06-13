@@ -12,7 +12,7 @@ class NonAktifRupiah extends Model
     use HasFactory;
     public function pengajuan()
     {
-        return $this->belongsTo(PengajuanEmas::class,'pengajuan_id');
+        return $this->belongsTo(PengajuanRupiah::class,'pengajuan_id');
     }
     public function anggota()
     {
