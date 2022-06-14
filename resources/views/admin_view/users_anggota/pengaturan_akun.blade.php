@@ -84,7 +84,7 @@
                                             <div class="card">
                                                 <!-- Logo-->
                                                 <div class="modal-header" style="background-color: #afb4be">
-                                                    <div style="color: rgb(255, 255, 255);"><h4 id="modelHeading">Tambah Akun Anggota</h4></div>
+                                                    <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading">Tambah Akun Anggota</h4></div>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                 </div>
                                                 <div class="card-body p-4">
@@ -191,13 +191,13 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'nomor_ba', name: 'nomor_ba'},
-                {data: 'nama_lengkap', name: 'nama_lengkap'},
-                {data: 'no_hp', name: 'no_hp'},
-                {data: 'email', name: 'email'},
-                {data: 'status', name: 'status'},
-                {data: 'reset_sandi', name: 'reset_sandi'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
+                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
+                {data: 'no_hp', name: 'no_hp', orderSequence:['asc']},
+                {data: 'email', name: 'email', orderSequence:['asc']},
+                {data: 'status', name: 'status', orderSequence:['asc']},
+                {data: 'reset_sandi', name: 'reset_sandi', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -221,7 +221,7 @@
         $('body').on('click', '.editAkun', function () {
         var id_akun = $(this).data('id');
         $.get("pengaturan_akun" +'/' + id_akun +'/edit', function (data) {
-            $('#modelHeading').html("Edit Akun");
+            $('#modalHeading').html("Edit Akun Anggota");
             $('#saveBtn').css("display","none");
             $('#editBtn').css("display","block");
             $('#cari-nomor-ba').css("display","none");
@@ -234,7 +234,7 @@
             $('body').on('click','.btn-close',function() {
                 $('#saveBtn').css("display","block");
                 $('#editBtn').css("display","none");
-                $('#modelHeading').html("Tambah Akun");
+                $('#modalHeading').html("Tambah Akun Anggota");
                 $('#saveBtn').html("Tambah");
                 $('#cari-nomor-ba').css("display","block");
                 $('#no_ba').val('');
@@ -248,7 +248,7 @@
         $('body').on('click', '.viewAkun', function () {
         var id_akun = $(this).data('id');
         $.get("pengaturan_akun" +'/' + id_akun +'/view', function (data) {
-            $('#modelHeading').html("Lihat Akun");
+            $('#modalHeading').html("Lihat Akun");
             $('#modal-tambahakun-anggota').modal('show');
             $('#no_ba').val(data.nomor_ba);
             $('#fullNameAdd').val(data.nama_lengkap);
@@ -259,6 +259,22 @@
             $(`#password`).css("display","none");
             $(`#passwordConf`).css("display","none");
             $(`#saveBtn`).css("display","none");
+            $('body').on('click','.btn-close',function() {
+                $('#cari-nomor-ba').css("display","block");
+                $(`#status-div`).css("display","block");
+                $(`#password`).css("display","block");
+                $(`#passwordConf`).css("display","block");
+                $('#saveBtn').css("display","block");
+                $('#editBtn').css("display","none");
+                $('#modalHeading').html("Tambah Akun Anggota");
+                $('#saveBtn').html("Tambah");
+                $('#cari-nomor-ba').css("display","block");
+                $('#no_ba').val('');
+                $('#fullNameAdd').val('');
+                $('#noHpAdd').val('');
+                $('#emailAdd').val('');
+                $(`#statusAdd option[value=${data.status}]`).attr('selected','');
+            }); 
         })
         });
         $('#cari').click(function(e){

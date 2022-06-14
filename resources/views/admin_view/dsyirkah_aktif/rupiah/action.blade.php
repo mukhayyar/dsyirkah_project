@@ -225,7 +225,7 @@
 
 </div> <!-- container -->
 <!-- Modal -->
-<div class="modal fade" id="modal-tambah-dataperpanjangan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-tambah-dataperpanjangan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-keyboard="false" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg loading authentication-bg">
         <div class="modal-content bg-transparent">
         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -236,6 +236,7 @@
                             <!-- Logo-->
                             <div class="modal-header" style="background-color: #afb4be">
                                 <div style="color: rgb(255, 255, 255);"><h4>Tambah Data Perpanjangan</h4></div>
+                                <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
                             </div>
                             <div class="card-body p-4">
                                 <form id="form_tambah_data_perpanjangan">

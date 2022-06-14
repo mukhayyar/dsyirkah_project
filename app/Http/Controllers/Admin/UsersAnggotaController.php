@@ -132,6 +132,7 @@ class UsersAnggotaController extends Controller
 		// upload ke folder file_siswa di dalam folder public
 		$file->move('file_excel',$nama_file);
 		// import data
+        // dd($file);
 		Excel::import(new AnggotaImport, public_path('/file_excel/'.$nama_file));
         File::delete(public_path('/file_excel/'.$nama_file));
 		// notifikasi dengan session

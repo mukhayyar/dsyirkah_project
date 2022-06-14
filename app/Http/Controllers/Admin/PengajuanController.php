@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use DataTables;
+use App\Models\Usaha;
 use App\Models\Perwada;
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
@@ -69,11 +70,11 @@ class PengajuanController extends Controller
     }
     public function reject_pengajuan_emas($id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Reject']);
-        return redirect()->back();
+        return redirect('/admin/pengajuan_dsyirkah/emas/reject');
     }
     public function restore_pengajuan_emas($id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Pengajuan']);
-        return redirect()->back();
+        return redirect('/admin/pengajuan_dsyirkah/emas');
     }
     public function emas_approval($id){
         $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','versi')->where('slug',$id)->first();
@@ -89,26 +90,24 @@ class PengajuanController extends Controller
         }
         if($pengajuan->pilihan_program == "reguler"){
             $perpanjangan = new PerpanjanganEmas;
-            $today = date("Y-m-d");
             $perpanjangan->pengajuan_id = $pengajuan->id;
-            $perpanjangan->tgl_akad_baru = $today;
+            $perpanjangan->tgl_akad_baru = $request->today;
             $perpanjangan->jangka_waktu = $pengajuan->jangka_waktu;
-            $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($today. ' + '.$pengajuan->jangka_waktu.' months'));
+            $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($request->today. ' + '.$pengajuan->jangka_waktu.' months'));
             $perpanjangan->nisbah = $pengajuan->nisbah;
             $perpanjangan->status = "Approved";
             $perpanjangan->save();
-            return redirect()->back();
+            return redirect('/admin/pengajuan_dsyirkah/emas');
         }
         $perpanjangan = new PerpanjanganEmas;
-        $today = date("Y-m-d");
         $perpanjangan->pengajuan_id = $pengajuan->id;
-        $perpanjangan->tgl_akad_baru = $today;
+        $perpanjangan->tgl_akad_baru = $request->today;
         $perpanjangan->jangka_waktu = $pengajuan->jangka_waktu;
-        $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($today. ' + 12 months'));
+        $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($request->today. ' + 12 months'));
         $perpanjangan->nisbah = $pengajuan->nisbah;
         $perpanjangan->status = "Approved";
         $perpanjangan->save();
-        return redirect()->back();
+        return redirect('/admin/pengajuan_dsyirkah/emas');
     }
     public function emas_detail($id){
         $pengajuan = PengajuanEmas::with('anggota','versi')->where('slug',$id)->first();
@@ -181,17 +180,17 @@ class PengajuanController extends Controller
     }
     public function reject_pengajuan_rupiah($id){
        PengajuanRupiah::where('slug','=',$id)->update(['status'=>'Reject']);
-       return redirect()->back();
+       return redirect('/admin/pengajuan_dsyirkah/rupiah/reject');
     }
     public function restore_pengajuan_rupiah($id){
        PengajuanRupiah::where('slug','=',$id)->update(['status'=>'Pengajuan']);
-       return redirect()->back();
+       return redirect('/admin/pengajuan_dsyirkah/rupiah');
     }
     public function rupiah_approval($id){
         $pengajuan = PengajuanRupiah::with('anggota','versi')->where('slug',$id)->first();
         return view('admin_view/pengajuan_dsyirkah/rupiah/approval',compact('pengajuan','id'));
     }
-    public function rupiah_approval_store($id){
+    public function rupiah_approval_store(Request $request, $id){
         PengajuanRupiah::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
         if($pengajuan->kode_usaha){
@@ -201,26 +200,24 @@ class PengajuanController extends Controller
         }
         if($pengajuan->pilihan_program == "reguler"){
             $perpanjangan = new PerpanjanganRupiah;
-            $today = date("Y-m-d");
             $perpanjangan->pengajuan_id = $pengajuan->id;
-            $perpanjangan->tgl_akad_baru = $today;
+            $perpanjangan->tgl_akad_baru = $request->today;
             $perpanjangan->jangka_waktu = $pengajuan->jangka_waktu;
-            $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($today. ' + '.$pengajuan->jangka_waktu.' months'));
+            $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($request->today. ' + '.$pengajuan->jangka_waktu.' months'));
             $perpanjangan->nisbah = $pengajuan->nisbah;
             $perpanjangan->status = "Approved";
             $perpanjangan->save();
-            return redirect()->back();
+            return redirect('/admin/pengajuan_dsyirkah/rupiah');
         }
         $perpanjangan = new PerpanjanganRupiah;
-        $today = date("Y-m-d");
         $perpanjangan->pengajuan_id = $pengajuan->id;
-        $perpanjangan->tgl_akad_baru = $today;
+        $perpanjangan->tgl_akad_baru = $request->today;
         $perpanjangan->jangka_waktu = $pengajuan->jangka_waktu;
-        $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($today. ' + 12 months'));
+        $perpanjangan->jatuh_tempo_akan_datang = date('Y-m-d', strtotime($request->today. ' + 12 months'));
         $perpanjangan->nisbah = $pengajuan->nisbah;
         $perpanjangan->status = "Approved";
         $perpanjangan->save();
-        return redirect()->back();
+        return redirect('/admin/pengajuan_dsyirkah/rupiah');
     }
     public function rupiah_detail($id){
         $pengajuan = PengajuanRupiah::with('anggota','versi')->where('slug',$id)->first();

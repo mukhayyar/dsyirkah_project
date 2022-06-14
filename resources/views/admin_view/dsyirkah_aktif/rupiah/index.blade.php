@@ -44,7 +44,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Persetujuan</th>
-                                        <th>Kode DSyirkah</th>
+                                        <th>No Pengajuan</th>
                                         <th>Kode Sertifikat</th>
                                         <th>Nomor BA</th>
                                         <th>Nama Lengkap</th>
@@ -81,20 +81,20 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'tgl_persetujuan', name: 'tgl_persetujuan'},
-                {data: 'no_pengajuan', name: 'no_pengajuan'},
-                {data: 'no_pengajuan', name: 'no_pengajuan'},
-                {data: 'nomor_ba', name: 'nomor_ba'},
-                {data: 'nama_lengkap', name: 'nama_lengkap'},
-                {data: 'jenis_syirkah', name: 'jenis_syirkah'},
-                {data: 'versi_syirkah', name: 'versi_syirkah'},
-                {data: 'pilihan_program', name: 'pilihan_program'},
-                {data: 'referensi', name: 'referensi'},
-                {data: 'nominal', name: 'nominal'},
-                {data: 'jangka_waktu', name: 'jangka_waktu'},
-                {data: 'jatuh_tempo', name: 'jatuh_tempo'},
-                {data: 'perpanjangan', name: 'perpanjangan'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'tgl_persetujuan', name: 'tgl_persetujuan', orderSequence:['asc']},
+                {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
+                {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
+                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
+                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
+                {data: 'jenis_syirkah', name: 'jenis_syirkah', orderSequence:['asc']},
+                {data: 'versi_syirkah', name: 'versi_syirkah', orderSequence:['asc']},
+                {data: 'pilihan_program', name: 'pilihan_program', orderSequence:['asc']},
+                {data: 'referensi', name: 'referensi', orderSequence:['asc']},
+                {data: 'nominal', name: 'nominal', orderSequence:['asc']},
+                {data: 'jangka_waktu', name: 'jangka_waktu', orderSequence:['asc']},
+                {data: 'jatuh_tempo', name: 'jatuh_tempo', orderSequence:['asc']},
+                {data: 'perpanjangan', name: 'perpanjangan', orderSequence:['asc']},
                 {data: 'tindak_lanjut', name: 'tindak_lanjut', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]

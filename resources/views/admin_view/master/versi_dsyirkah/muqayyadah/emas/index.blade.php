@@ -192,10 +192,10 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'jenis', name: 'jenis'},
-                {data: 'versi', name: 'versi'},
-                {data: 'status', name: 'status'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'jenis', name: 'jenis', orderSequence:['asc']},
+                {data: 'versi', name: 'versi', orderSequence:['asc']},
+                {data: 'status', name: 'status', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });

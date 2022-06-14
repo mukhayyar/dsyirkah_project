@@ -149,11 +149,11 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'kode', name: 'kode'},
-                {data: 'nama', name: 'nama'},
-                {data: 'wilayah', name: 'wilayah'},
-                {data: 'status', name: 'status'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'kode', name: 'kode', orderSequence:['asc']},
+                {data: 'nama', name: 'nama', orderSequence:['asc']},
+                {data: 'wilayah', name: 'wilayah', orderSequence:['asc']},
+                {data: 'status', name: 'status', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });

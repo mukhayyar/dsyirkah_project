@@ -64,217 +64,388 @@
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
-                        <!-- Import Excel -->
-                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <form method="post" action="cif_anggota/import" enctype="multipart/form-data">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            @csrf
-                                            <label>Pilih file excel</label>
-                                            <div class="form-group">
-                                                <input type="file" name="file" required="required">
-                                            </div>
-                
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Import</button>
-                                        </div>
-                                    </div>
-                                </form>
+<!-- Import Excel -->
+<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="post" action="cif_anggota/import" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <label>Pilih file excel</label>
+                    <div class="form-group">
+                        <input type="file" name="file" required="required">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Modal Tambah Data-->
+<div class="modal fade" id="modal-tambah-datacif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #afb4be">
+                <h4 class="modal-title" style="color: rgb(255, 255, 255);" id="myLargeModalLabel">Tambah Data CIF Anggota</h4>
+                <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form id="CustomerForm" name="CustomerForm" method="POST" action="/admin/master/cif_anggota" enctype="multipart/form-data">
+                    @csrf
+                    <h5>Data Akun</h5><hr>
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label class="form-label">Nomor BA</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Cari Nomor BA" data-toggle="input-mask" data-mask-format="0.000.0000000" id="no_ba" name="no_ba">
+                                <button class="btn btn-primary" id="cari" type="button">Cari</button>
                             </div>
                         </div>
-                        <!-- Modal Tambah Data-->
-                        <div class="modal fade" id="modal-tambah-datacif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-                            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: #afb4be">
-                                        <h4 class="modal-title" style="color: rgb(255, 255, 255);" id="myLargeModalLabel">Tambah Data CIF Anggota</h4>
-                                        <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="CustomerForm" name="CustomerForm" method="POST" action="/admin/master/cif_anggota" enctype="multipart/form-data">
-                                            @csrf
-                                            <h5>Data Akun</h5><hr>
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label class="form-label">Nomor BA</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Cari Nomor BA" aria-label="Recipient's username" id="no_ba" name="no_ba">
-                                                        <button class="btn btn-primary" id="cari" type="button">Cari</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Nama Lengkap</label>
-                                                    <input class="form-control" type="text" id="fullNameAdd" placeholder="Enter your name" name="nama" readonly="">
-                                                </div>
-                                            </div><br>
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Nomor HP</label>
-                                                    <input class="form-control" type="text" name="no_hp" id="noHpAdd" placeholder="No Hp" readonly="">
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="emailaddress" class="form-label">Email address</label>
-                                                    <input class="form-control" type="email" name="email" id="emailAdd" placeholder="Email" readonly="">
-                                                </div>
-                                            </div><hr><br>
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Nama Lengkap</label>
+                            <input class="form-control" type="text" id="fullNameAdd" placeholder="Enter your name" name="nama" readonly="">
+                        </div>
+                    </div><br>
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Nomor HP</label>
+                            <input class="form-control" type="text" name="no_hp" id="noHpAdd" placeholder="No Hp" readonly="">
+                        </div>
+                        <div class="col-md">
+                            <label for="emailaddress" class="form-label">Email address</label>
+                            <input class="form-control" type="email" name="email" id="emailAdd" placeholder="Email" readonly="">
+                        </div>
+                    </div><hr><br>
 
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Nomor KTP</label>
-                                                    <input class="form-control" type="text" name="no_ktp" id="noKtp" placeholder="Masukkan Nomor KTP" required>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                                    <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
-                                                        <option value="Laki-laki">Laki - Laki</option>
-                                                        <option value="Perempuan">Perempuan</option>
-                                                    </select>
-                                                </div>
-                                            </div><br>
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Nomor KTP</label>
+                            <input class="form-control" type="text" name="no_ktp" id="noKtp" placeholder="Masukkan Nomor KTP" required>
+                        </div>
+                        <div class="col-md">
+                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                            <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
+                                <option value="Laki-laki">Laki - Laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div><br>
 
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                                                    <input class="form-control" type="text" id="tempat_lahir" name="tempat_lahir" placeholder="Enter your name" required>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                                    <input class="form-control date" type="date" id="tanggal_lahir" name="tanggal_lahir" placeholder="dd/mm/yyyy" required>
-                                                </div>
-                                            </div><br>
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                            <input class="form-control" type="text" id="tempat_lahir" name="tempat_lahir" placeholder="Enter your name" required>
+                        </div>
+                        <div class="col-md">
+                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                            <input class="form-control date" type="date" id="tanggal_lahir" name="tanggal_lahir" placeholder="dd/mm/yyyy" required>
+                        </div>
+                    </div><br>
 
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label for="status_nikah" class="form-label">Status Pernikahan</label>
-                                                    <select class="form-select" id="status_nikah" name="status_nikah" required>
-                                                        <option value="Belum Nikah">Belum Nikah</option>
-                                                        <option value="Kawin">Kawin</option>
-                                                        <option value="Cerai Hidup">Cerai Hidup</option>
-                                                        <option value="Cerai Mati">Cerai Mati</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Nomor NPWP (Jika Punya)</label>
-                                                    <input class="form-control date" type="text" id="npwp" name="npwp" placeholder="000000000">
-                                                </div>
-                                            </div><hr><br>
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label for="status_nikah" class="form-label">Status Pernikahan</label>
+                            <select class="form-select" id="status_nikah" name="status_nikah" required>
+                                <option value="Belum Nikah">Belum Nikah</option>
+                                <option value="Kawin">Kawin</option>
+                                <option value="Cerai Hidup">Cerai Hidup</option>
+                                <option value="Cerai Mati">Cerai Mati</option>
+                            </select>
+                        </div>
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Nomor NPWP (Jika Punya)</label>
+                            <input class="form-control date" type="text" id="npwp" name="npwp" placeholder="000000000">
+                        </div>
+                    </div><hr><br>
 
-                                            <div class="col-md">
-                                                <label for="fullname" class="form-label">Alamat Sesuai KTP</label>
-                                                <input class="form-control date" type="text" id="alamat_ktp" name="alamat_ktp" placeholder="Jl. Raya Nommor:00 RT/RW" required>
-                                            </div>
+                    <div class="col-md">
+                        <label for="fullname" class="form-label">Alamat Sesuai KTP</label>
+                        <input class="form-control date" type="text" id="alamat_ktp" name="alamat_ktp" placeholder="Jl. Raya Nommor:00 RT/RW" required>
+                    </div>
 
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Provinsi</label>
-                                                    <select class="form-control" name="provinsi_ktp" id="form_prov">
-                                                        <option>--Provinsi--</option>
-                                                        <option>--Data Masih Diproses--</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Kota / Kabupaten</label>
-                                                    <select class="form-control" name="kota_ktp" id="form_kab">
-                                                        <option>--Kabupaten/Kota--</option>
-                                                        <option>--Pilih Provinsi Terlebih Dahulu--</option>
-                                                    </select>
-                                                </div>
-                                            </div><br>
-                    
-                                            <div class="row g-2">
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Kecamatan</label>
-                                                    <select class="form-control" name="kecamatan_ktp" id="form_kec">
-                                                        <option>--Kecamatan--</option>
-                                                        <option>--Pilih Kabupaten Terlebih Dahulu--</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Kelurahan</label>
-                                                    <select class="form-control" name="kelurahan_ktp" id="form_kel">
-                                                        <option>--Kelurahan--</option>
-                                                        <option>--Pilih Kecamatan Terlebih Dahulu--</option>
-                                                    </select>
-                                                </div>
-                                            </div><br>
-                    
-                                            <div class="col-md">
-                                                <label for="example-select" class="form-label">Alamat Tinggal</label>
-                                                <select class="form-select" id="checkAlamatTinggal" name="checkAlamatTinggal" required>
-                                                    <option value="sesuai">Sesuai KTP</option>
-                                                    <option value="tidakSesuai">Tidak Sesuai KTP</option>
-                                                </select>
-                                            </div><br>
-                    
-                                            <div id="tidakSesuai" class="domisili" style="display:none">
-                                                <div class="col-md">
-                                                    <label for="fullname" class="form-label">Alamat Saat ini(domisili)</label>
-                                                    <input class="form-control date" type="text" id="alamat_dom" name="alamat_dom" placeholder="Jl. Raya Nommor:00 RT/RW">
-                                                </div>
-                                                
-                                                <div class="row g-2">
-                                                    <div class="col-md">
-                                                        <label for="fullname" class="form-label">Provinsi</label>
-                                                        <select class="form-control" name="provinsi_dom" id="form_prov_dom">
-                                                            <option value="">--Provinsi--</option>
-                                                            <option>--Data Masih Diproses--</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md">
-                                                        <label for="fullname" class="form-label">Kota / Kabupaten</label>
-                                                        <select class="form-control" name="kota_dom" id="form_kab_dom">
-                                                            <option value="">--Kabupaten/Kota--</option>
-                                                            <option>--Pilih Provinsi Terlebih Dahulu--</option>
-                                                        </select>
-                                                    </div>
-                                                </div><br>
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Provinsi</label>
+                            <select class="form-control" name="provinsi_ktp" id="form_prov">
+                                <option>--Provinsi--</option>
+                                <option>--Data Masih Diproses--</option>
+                            </select>
+                        </div>
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Kota / Kabupaten</label>
+                            <select class="form-control" name="kota_ktp" id="form_kab">
+                                <option>--Kabupaten/Kota--</option>
+                                <option>--Pilih Provinsi Terlebih Dahulu--</option>
+                            </select>
+                        </div>
+                    </div><br>
+
+                    <div class="row g-2">
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Kecamatan</label>
+                            <select class="form-control" name="kecamatan_ktp" id="form_kec">
+                                <option>--Kecamatan--</option>
+                                <option>--Pilih Kabupaten Terlebih Dahulu--</option>
+                            </select>
+                        </div>
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Kelurahan</label>
+                            <select class="form-control" name="kelurahan_ktp" id="form_kel">
+                                <option>--Kelurahan--</option>
+                                <option>--Pilih Kecamatan Terlebih Dahulu--</option>
+                            </select>
+                        </div>
+                    </div><br>
+
+                    <div class="col-md">
+                        <label for="example-select" class="form-label">Alamat Tinggal</label>
+                        <select class="form-select" id="checkAlamatTinggal" name="checkAlamatTinggal" required>
+                            <option value="sesuai">Sesuai KTP</option>
+                            <option value="tidakSesuai">Tidak Sesuai KTP</option>
+                        </select>
+                    </div><br>
+
+                    <div id="tidakSesuai" class="domisili" style="display:none">
+                        <div class="col-md">
+                            <label for="fullname" class="form-label">Alamat Saat ini(domisili)</label>
+                            <input class="form-control date" type="text" id="alamat_dom" name="alamat_dom" placeholder="Jl. Raya Nommor:00 RT/RW">
+                        </div>
                         
-                                                <div class="row g-2">
-                                                    <div class="col-md">
-                                                        <label for="fullname" class="form-label">Kecamatan</label>
-                                                        <select class="form-control" name="kecamatan_dom" id="form_kec_dom">
-                                                            <option value="">--Kecamatan--</option>
-                                                            <option>--Pilih Kabupaten Terlebih Dahulu--</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md">
-                                                        <label for="fullname" class="form-label">Kelurahan</label>
-                                                        <select class="form-control" name="kelurahan_dom" id="form_kel_dom">
-                                                            <option value="">--Kelurahan--</option>
-                                                            <option>--Pilih Kecamatan Terlebih Dahulu--</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div><hr><br>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <label for="fullname" class="form-label">Provinsi</label>
+                                <select class="form-control" name="provinsi_dom" id="form_prov_dom">
+                                    <option value="">--Provinsi--</option>
+                                    <option>--Data Masih Diproses--</option>
+                                </select>
+                            </div>
+                            <div class="col-md">
+                                <label for="fullname" class="form-label">Kota / Kabupaten</label>
+                                <select class="form-control" name="kota_dom" id="form_kab_dom">
+                                    <option value="">--Kabupaten/Kota--</option>
+                                    <option>--Pilih Provinsi Terlebih Dahulu--</option>
+                                </select>
+                            </div>
+                        </div><br>
 
-                                            <div class="mb-3" id="div-upload-ktp">
-                                                <label for="formFile" class="form-label">Upload Foto KTP</label>
-                                                <input class="form-control" type="file" id="file_ktp" name="file_ktp">
-                                            </div><hr><br>
-                                            <div id="div-foto-ktp" style="display: none">
-                                                <img id="show_foto_ktp" src="" alt="" width="200" height="150">
-                                            </div>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <label for="fullname" class="form-label">Kecamatan</label>
+                                <select class="form-control" name="kecamatan_dom" id="form_kec_dom">
+                                    <option value="">--Kecamatan--</option>
+                                    <option>--Pilih Kabupaten Terlebih Dahulu--</option>
+                                </select>
+                            </div>
+                            <div class="col-md">
+                                <label for="fullname" class="form-label">Kelurahan</label>
+                                <select class="form-control" name="kelurahan_dom" id="form_kel_dom">
+                                    <option value="">--Kelurahan--</option>
+                                    <option>--Pilih Kecamatan Terlebih Dahulu--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><hr><br>
 
-                                            <br>
-                                            <div class="mb-3 text-center" id="div-simpan">
-                                                <button class="btn btn-primary" type="submit"> Simpan </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
+                    <div class="mb-3" id="div-upload-ktp">
+                        <label for="formFile" class="form-label">Upload Foto KTP</label>
+                        <input class="form-control" type="file" id="file_ktp" name="file_ktp">
+                    </div><hr><br>
+                    <div id="div-foto-ktp" style="display: none">
+                        <img id="show_foto_ktp" src="" alt="" width="200" height="150">
+                    </div>
+
+                    <br>
+                    <div class="mb-3 text-center" id="div-simpan">
+                        <button class="btn btn-primary" type="submit"> Simpan </button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
-                    </div> <!-- container -->
+</div> <!-- container -->
 
-                </div> <!-- content -->
+</div> <!-- content -->
+<!-- Modal view-->
+<div class="modal fade" id="modal-view-anggota" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #afb4be">
+                <h4 class="modal-title" style="color: rgb(255, 255, 255);" id="myLargeModalLabel">Data CIF Anggota</h4>
+                <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Nama Lengkap</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Nomor Hp</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Email</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div><hr>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Nomor KTP</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Jenis Kelamin</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Tempat Lahir</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Tanggal Lahir</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Status Pernikahan</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Nomor NPWP</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div><hr>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Kecamatan</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Kota / Kabupaten</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Provinsi</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Alamat Tinggal</strong></p>
+                    </div>
+                    <div class="col-8">
+                        <strong>: </strong> <p class="font-14"></p>
+                    </div>
+                </div>
+                <div id="checkAlamatTinggalView">
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
+                        </div>
+                        <div class="col-8">
+                            <strong>: </strong> <p class="font-14"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-14"><strong>Kecamatan</strong></p>
+                        </div>
+                        <div class="col-8">
+                            <strong>: </strong> <p class="font-14"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-14"><strong>Kota / Kabupaten</strong></p>
+                        </div>
+                        <div class="col-8">
+                            <strong>: </strong> <p class="font-14"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-14"><strong>Provinsi</strong></p>
+                        </div>
+                        <div class="col-8">
+                            <strong>: </strong> <p class="font-14"></p>
+                        </div><hr>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <p class="font-14"><strong>Photo KTP</strong></p>
+                </div>
+                <img src="/images/data_penting/ktp/" alt="image" class="img-fluid rounded" width="600"/>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @push('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
@@ -481,11 +652,11 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'nomor_ba', name: 'nomor_ba'},
-                {data: 'nama_lengkap', name: 'nama_lengkap'},
-                {data: 'jenis_kelamin', name: 'jenis_kelamin'},
-                {data: 'tanggal_lahir', name: 'tanggal_lahir'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
+                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
+                {data: 'jenis_kelamin', name: 'jenis_kelamin', orderSequence:['asc']},
+                {data: 'tanggal_lahir', name: 'tanggal_lahir', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -548,86 +719,7 @@
         $('body').on('click', '.viewAkun', function () {
         var id_akun = $(this).data('id');
         $.get("cif_anggota" +'/' + id_akun +'/edit', function (data) {
-            $('#myLargeModalLabel').html("Data CIF Anggota");
-            $('#div-simpan').css("display",'none');
-            $('#div-upload-ktp').css("display",'none');
-            $('#no_ba').attr('disabled',true);
-            $('#fullNameAdd').attr('disabled',true);
-            $('#noHpAdd').attr('disabled',true);
-            $('#emailAdd').attr('disabled',true);
-            $('#noKtp').attr('disabled',true);
-            $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('disabled',true);
-            $('#tempat_lahir').attr('disabled',true);
-            $('#tanggal_lahir').attr('disabled',true);
-            $(`#status_nikah option[value=${data.nikah}]`).attr('disabled',true);
-            $('#npwp').attr('disabled',true);
-            $('#alamat_ktp').attr('disabled',true);
-            $('#modal-tambah-datacif').modal('show');
-            $('#cari').css('display','none');
-            $('#no_ba').val(data.nomor_ba);
-            $('#fullNameAdd').val(data.nama_lengkap);
-            $('#noHpAdd').val(data.no_hp);
-            $('#emailAdd').val(data.email);
-            $('#noKtp').val(data.no_ktp);
-            $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','selected');
-            $('#tempat_lahir').val(data.tempat_lahir);
-            $('#tanggal_lahir').val(data.tanggal_lahir);
-            $(`#status_nikah option[value=${data.nikah}]`).attr('selected','selected');
-            $('#npwp').val(data.no_npwp);
-            $('#alamat_ktp').val(data.alamat_ktp);
-            $(`#form_prov`).append(`<option selected>${data.provinsi_ktp}</option>`);
-            $(`#form_kab`).append(`<option selected>${data.kota_ktp}</option>`);;
-            $(`#form_kec`).append(`<option selected>${data.kecamatan_ktp}</option>`);;
-            $(`#form_kel`).append(`<option selected>${data.kelurahan_ktp}</option>`);;
-            $(`#form_prov`).attr("disabled","disabled");
-            $(`#form_kab`).attr("disabled","disabled");
-            $(`#form_kec`).attr("disabled","disabled");
-            $(`#form_kel`).attr("disabled","disabled");
-            $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',true);
-            $(`#checkAlamatTinggal`).attr('disabled',"disabled");
-            if(data.alamat_tinggal == "tidakSesuai"){
-                $('.domisili').show();
-            }
-            var image = data.foto_ktp;
-            if(image != null){
-                var result = "/images/data_penting/ktp/"+image;
-                $(`#show_foto_ktp`).attr('src',result);
-                $('#div-foto-ktp').css("display","block");
-            }
-            $('body').on('click','.btn-close',function() {
-                $('#myLargeModalLabel').html("Tambah Data CIF Anggota");
-                $('#div-simpan').css("display",'block');
-                $('#div-upload-ktp').css("display",'block');
-                $('#no_ba').attr('disabled',false);
-                $('#fullNameAdd').attr('disabled',false);
-                $('#noHpAdd').attr('disabled',false);
-                $('#emailAdd').attr('disabled',false);
-                $('#noKtp').attr('disabled',false);
-                $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('disabled',false);
-                $('#tempat_lahir').attr('disabled',false);
-                $('#tanggal_lahir').attr('disabled',false);
-                $(`#status_nikah option[value=${data.nikah}]`).attr('disabled',false);
-                $('#npwp').attr('disabled',false);
-                $('#alamat_ktp').attr('disabled',false);
-                $('#cari').css('display','block');
-                $('#no_ba').val('');
-                $('#fullNameAdd').val('');
-                $('#noHpAdd').val('');
-                $('#emailAdd').val('');
-                $('#noKtp').val('');
-                $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','');
-                $('#tempat_lahir').val('');
-                $('#tanggal_lahir').val('');
-                $(`#status_nikah option[value=${data.nikah}]`).attr('selected','');
-                $('#npwp').val('');
-                $('#alamat_ktp').val('');
-                $(`#form_prov option[value='${data.provinsi_ktp}']`).prop('selected',false);
-                $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',false);
-                $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',false);
-                $(`#show_foto_ktp`).attr('src',"");
-                $('#div-foto-ktp').css("display","none");
-                $('.domisili').hide();
-            }); 
+            $('#modal-view-anggota').modal("show");
         })
         });
         $('#cari').click(function(e){

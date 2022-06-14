@@ -201,6 +201,7 @@
                                         <p> Silakan klik <strong>Aprov</strong> jika sudah yakin</p>
                                         <form action="{{$id}}/approve" method="POST">
                                             @csrf
+                                            <input type="hidden" name="today" id="today">
                                             <button type="submit" class="btn btn-success my-2">Aprov</button>
                                         </form>
                                         @endif
@@ -406,4 +407,10 @@
                     </div><!-- /.modal -->
 
                 </div> <!-- content -->
+<script>	
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();;
+document.getElementById("today").value = date;
+console.log(date);
+</script>
 @endsection

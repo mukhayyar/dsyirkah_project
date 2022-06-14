@@ -114,7 +114,7 @@
                                         <div class="card">
                                             <!-- Logo-->
                                             <div class="modal-header" style="background-color: #afb4be">
-                                                <div style="color: rgb(255, 255, 255);"><h4>Tambah Data Verifikasi</h4></div>
+                                                <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading">Tambah Data Verifikasi</h4></div>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                             </div>
                                             <div class="card-body p-4">
@@ -123,7 +123,7 @@
                                                     <input type="hidden" name="id_user" id="id_user">
                                                     <div class="mb-3">
                                                         <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
-                                                        <input class="form-control" type="text" id="no_ba" name="no_ba" placeholder="contoh: 0.123.1234567" data-toggle="input-mask" data-mask-format="0.000.0000000" data-reverse="true" required>
+                                                        <input class="form-control" type="text" id="no_ba" name="no_ba" placeholder="contoh: 0.123.1234567" data-toggle="input-mask" data-mask-format="0.000.0000000" required>
                                                     </div>
 
                                                     <div class="mb-3">
@@ -195,19 +195,19 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'nomor_ba', name: 'nomor_ba'},
-                {data: 'nama_lengkap', name: 'nama_lengkap'},
-                {data: 'no_hp', name: 'no_hp'},
-                {data: 'email', name: 'email'},
-                {data: 'status', name: 'status'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
+                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
+                {data: 'no_hp', name: 'no_hp', orderSequence:['asc']},
+                {data: 'email', name: 'email', orderSequence:['asc']},
+                {data: 'status', name: 'status', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
         $('body').on('click', '.editAkun', function () {
             var id_akun = $(this).data('id');
             $.get("data_verifikasi_akun" +'/' + id_akun +'/edit', function (data) {
-                $('#modelHeading').html("Edit Customer");
+                $('#modalHeading').html("Edit Data Verifikasi");
                 $('#saveBtn').css("display",'none');
                 $('#editBtn').css("display",'block');
                 $('#editBtn').html('Edit');
@@ -220,7 +220,7 @@
                 $('#no_hp').val(data.no_hp);
                 $(`#statusAdd option[value=${data.status}]`).attr('selected','selected');
                 $('body').on('click','.btn-close',function(){
-                    $('#modalHeading').html("Tambah Perwada");
+                    $('#modalHeading').html("Tambah Data Verifikasi");
                     $('#saveBtn').css("display","block");
                     $('#saveBtn').html("Simpan");
                     $('#editBtn').css("display","none");

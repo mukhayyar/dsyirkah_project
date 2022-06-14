@@ -89,7 +89,7 @@
                                             <div class="card">
                                                 <!-- Logo-->
                                                 <div class="modal-header" style="background-color: #afb4be">
-                                                    <div style="color: rgb(255, 255, 255);"><h4>Tambah Akun Admin</h4></div>
+                                                    <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading">Tambah Akun Admin</h4></div>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                                 </div>
                                                 <div class="card-body p-4">
@@ -212,21 +212,21 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'nama_karyawan', name: 'nama_karyawan'},
-                {data: 'user_name', name: 'user_name'},
-                {data: 'email', name: 'email'},
-                {data: 'kantor', name: 'kantor'},
-                {data: 'jabatan', name: 'jabatan'},
-                {data: 'user.role', name: 'user.role'},
-                {data: 'status', name: 'status'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                {data: 'nama_karyawan', name: 'nama_karyawan', orderSequence:['asc']},
+                {data: 'user_name', name: 'user_name', orderSequence:['asc']},
+                {data: 'email', name: 'email', orderSequence:['asc']},
+                {data: 'kantor', name: 'kantor', orderSequence:['asc']},
+                {data: 'jabatan', name: 'jabatan', orderSequence:['asc']},
+                {data: 'user.role', name: 'user.role', orderSequence:['asc']},
+                {data: 'status', name: 'status', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
         $('body').on('click', '.editUser', function () {
         var id_admin = $(this).data('id');
         $.get("pengaturan_akun" +'/' + id_admin +'/edit', function (data) {
-            $('#modelHeading').html("Edit Customer");
+            $('#modalHeading').html("Edit Akun Admin");
             $('#saveBtn').css("display","none");
             $('#editBtn').css("display","block");
             $('#modal-tambahakun-admin').modal('show');
@@ -239,7 +239,7 @@
             $(`#grup option[value=${data.user.role}]`).attr('selected','selected');
             $(`#statusForm option[value=${data.status}]`).attr('selected','selected');
             $('body').on('click','.btn-close',function(){
-                $('#modalHeading').html("Tambah Perwada");
+                $('#modalHeading').html("Tambah Akun Admin");
                 $('#saveBtn').css("display","block");
                 $('#editBtn').css("display","none");
                 $('#modal-tambah-perwada').modal('show');
@@ -274,7 +274,6 @@
         });
         });
         $('#editBtn').click(function (e) {
-            console.log('berhasil');
             var id_admin = $('#id_admin').val();
             console.log(id_admin)
             e.preventDefault();
