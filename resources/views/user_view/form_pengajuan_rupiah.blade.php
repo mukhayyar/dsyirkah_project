@@ -59,8 +59,8 @@
                             </div>
                             <div class="col-md">
                                 <label for="fullname" class="form-label">Versi D'Syirkah</label>
-                                <input class="form-control" type="text" id="fullname" placeholder="{{$versi->versi}}" value="{{$versi->versi}}" readonly="" name="versi">
-                                <input type="hidden" id="id_versi" value="{{$versi->id}}">
+                                <input class="form-control" type="text" id="fullname" placeholder="{{$versi->versi}}" value="{{$versi->versi}}" readonly="">
+                                <input type="hidden" id="id_versi" value="{{$versi->id}}" name="versi">
                             </div>
                             <div class="col-md">
                                 <label for="perwada" class="form-label">Perwada</label>

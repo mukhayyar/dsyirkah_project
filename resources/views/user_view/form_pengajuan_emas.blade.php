@@ -59,8 +59,8 @@
                             </div>
                             <div class="col-md">
                                 <label for="fullname" class="form-label">Versi D'Syirkah</label>
-                                <input class="form-control" type="text" id="fullname" placeholder="{{$versi->versi}}" value="{{$versi->versi}}" readonly="" name="versi">
-                                <input type="hidden" id="id_versi" value="{{$versi->id}}">
+                                <input class="form-control" type="text" id="fullname" placeholder="{{$versi->versi}}" value="{{$versi->versi}}" readonly="">
+                                <input type="hidden" id="id_versi" value="{{$versi->id}}" name="versi">
                             </div>
                             <div class="col-md">
                                 <label for="perwada" class="form-label">Perwada</label>
@@ -114,7 +114,9 @@
                                     <a href="javascript:void(0);" class="btn mb-2 text-white" data-bs-toggle="modal" data-bs-target="#modal-tambah-emas" style="background-color: goldenrod;"><i class="mdi mdi-plus-circle me-2"></i> Emas</a>
                                 </div>
                                 <div class="table-responsive">
+                                    @if(isset($kebutuhan))
                                     <h4>Kebutuhan Emas: {{$kebutuhan}} Gram</h4>
+                                    @endif
                                     <table class="table table-borderless table-nowrap table-centered mb-0">
                                         <thead class="text-white" style="background-color: goldenrod;">
                                             <tr>

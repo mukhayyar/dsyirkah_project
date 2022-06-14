@@ -18,16 +18,16 @@
         </div>
     </div>
     <!-- end page title --> 
-
-
+    
     <div class="row">
+        
         <div class="col-12">
             <div class="card">
                 <div class="modal-header bg bg-success">
                     <h4 class="title" style="color: rgb(255, 255, 255);" id="data-pengajuan-emas">Tindaklanjut Rupiah</h4>
                 </div>
                 <div class="card-body">
-
+                    
                     <div class="row mb-2">
                         <div class="col-4">
                             <a class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#warning-stop-modal"><i class="mdi mdi-close-box"></i>Stop</a>
@@ -61,6 +61,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        
                                         <tr>
                                             <td>Tanggal Persetujuan</td>
                                             <td>: {{$pengajuan->perpanjangan_rupiah->get(0)->tgl_akad_baru}}</td>
@@ -149,6 +150,7 @@
                                 </div> <!-- end card-->
                                 
                             </div><br>
+                            <form action="{{$id}}/approve" id="form_simpan_perpanjangan" method="POST">
                             <div slass="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -170,10 +172,11 @@
                                                         @endif
                                                     </th>
                                                 </tr>
-                                                <form action="{{$id}}/approve" method="POST" id="form_simpan_perpanjangan">
-                                                </thead>
-                                                @csrf
-                                                <tbody id="form_tambah_perpanjangan">
+                                            </thead>
+                                            <tbody id="form_tambah_perpanjangan">
+                                                
+                                                
+                                                    @csrf
                                                     @foreach($pengajuan->perpanjangan_rupiah as $perpanjangan)
                                                     <tr id="item-{{$loop->index+1}}">
                                                         <td>{{$loop->index+1}}</td>
@@ -203,8 +206,8 @@
                                                         </td>
                                                     </tr>
                                                     @endforeach
+                                                    <button type="submit">Submit</button>
                                                 </tbody>
-                                                <button type="submit">Submit</button>
                                             </table>
                                         </div>
                                     </div>
@@ -213,7 +216,6 @@
                         </div>    
                     </div>
                 </form>
-
                    
                 </div> <!-- end card-body-->
             </div> <!-- end card-->

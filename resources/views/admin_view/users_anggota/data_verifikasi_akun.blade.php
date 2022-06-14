@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="modal-tambahdata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                <div class="modal fade" id="modal-tambahdata" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-toggle="modal" data-bs-backdrop="static" data-bs-keyboard="false">
                     <div class="modal-dialog modal-lg loading authentication-bg">
                         <div class="modal-content bg-transparent">
                         <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">

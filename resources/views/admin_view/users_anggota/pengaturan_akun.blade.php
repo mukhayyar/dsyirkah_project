@@ -74,7 +74,7 @@
                     </div> <!-- container -->
 
                     <!-- Modal -->
-                    <div class="modal fade" id="modal-tambahakun-anggota" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal-tambahakun-anggota" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog modal-lg loading authentication-bg">
                             <div class="modal-content bg-transparent">
                             <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">

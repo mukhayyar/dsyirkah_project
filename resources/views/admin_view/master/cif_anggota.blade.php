@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <!-- Modal Tambah Data-->
-                        <div class="modal fade" id="modal-tambah-datacif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal-tambah-datacif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"">
                                 <div class="modal-content">
                                     <div class="modal-header" style="background-color: #afb4be">
