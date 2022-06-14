@@ -47,9 +47,6 @@
                         <li class="nav-item mx-lg-1" data-bs-toggle="modal" data-bs-target="#modal-not-login">
                             <a class="nav-link">Muqayyadah</a>
                         </li>
-                        <li class="nav-item mx-lg-1">
-                            <a class="nav-link" href="">Area Anggota</a>
-                        </li>
                         @else
                         <li class="nav-item mx-lg-1">
                             <a href="/mutlaqah" class="nav-link">Mutlaqah</a>
@@ -59,6 +56,9 @@
                         </li>
                         <li class="nav-item mx-lg-1">
                             <a href="/transaction" class="nav-link">Transaksi</a>
+                        </li>
+                        <li class="nav-item mx-lg-1">
+                            <a class="nav-link" href="">Area Anggota</a>
                         </li>
                         @endif
                         

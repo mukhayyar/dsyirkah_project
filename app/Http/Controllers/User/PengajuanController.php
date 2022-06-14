@@ -13,7 +13,6 @@ class PengajuanController extends Controller
 {
     public function rupiah_store(Request $request)
     {
-        dd($request);
         $pengajuan = new PengajuanRupiah;
         // bukti tf
         if($request->file('buktiTransfer')){
