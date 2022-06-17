@@ -31,7 +31,7 @@ class PengajuanController extends Controller
         file_put_contents($file, $image_base64);
         $pengajuan->ttd = $filename;
         //jangka watu
-        if(is_array($request->jangka_waktu)){
+        if($request->jangka_waktu){
             $jangka_waktu = explode(",",$request->jangka_waktu);
             $jangka_waktu = $jangka_waktu[1];
         } else {
@@ -58,6 +58,7 @@ class PengajuanController extends Controller
     }
     public function emas_store(Request $request)
     {
+        // dd($request->all());
         $pengajuan = new PengajuanEmas;
         // ttd
         $folderPath = public_path('images\data_penting\tanda_tangan\\');
@@ -70,7 +71,8 @@ class PengajuanController extends Controller
         file_put_contents($file, $image_base64);
         $pengajuan->ttd = $filename;
         //jangka watu
-        if(is_array($request->jangka_waktu)){
+
+        if($request->jangka_waktu){
             $jangka_waktu = explode(",",$request->jangka_waktu);
             $jangka_waktu = $jangka_waktu[1];
         } else {

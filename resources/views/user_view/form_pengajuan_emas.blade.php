@@ -22,6 +22,7 @@
                         <input type="hidden" value="{{$kode_usaha}}" name="kode_usaha">
                         <input type="hidden" value="{{$jenis_form}}" name="jenis_form">
                         @endif
+                        <input type="hidden" name="today" id="today">
                         <div class="row g-2">
                             <div class="col-md">
                                 <label class="form-label">Nomor BA</label>
@@ -285,26 +286,32 @@
                             </div>
                             <div class="card-body p-4">
                                 <form id="CustomerForm" name="CustomerForm">
-                                    @foreach($item_emas as $emas)
-                                    <div class="row g-2">
-                                        <div class="col-md">
-                                            <label for="" class="form-label">Item Emas</label>
-                                            <input type="text" class="form-control" value="{{$emas->nama}}" readonly>
-                                        </div>
-                                        <div class="col-md">
-                                            <label for="" class="form-label">Jenis</label>
-                                            <input type="text" class="form-control" value="{{$emas->jenis}}" readonly>
-                                        </div>
-                                        <div class="col-md">
-                                            <label for="" class="form-label">Gramasi</label>
-                                            <input type="text" class="form-control" value="{{$emas->gramasi}}" readonly>
-                                        </div>
-                                        <div class="col-md">
-                                            <label for="" class="form-label">-</label>
-                                            <button class="btn btn-warning tambah_emas" id="tambah-emas-{{$emas->id}}" data-bs-dismiss="modal" data-item="{{$emas->nama}}" data-jenis="{{$emas->jenis}}" data-gramasi="{{$emas->gramasi}}" data-id_emas="{{$emas->id}}" type="button">Tambah</button>
-                                        </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless table-nowrap table-centered mb-0">
+                                            <thead class="text-white bg-secondary ">
+                                                <tr>
+                                                    <th>Item emas</th>
+                                                    <th>Jenis</th>
+                                                    <th>Gramasi</th>
+                                                    <th style="width: 50px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($item_emas as $emas)
+                                                <tr>
+                                                    <td>{{$emas->nama}}</td>
+                                                    <td>
+                                                        <span class="badge badge-primary-lighten">{{$emas->jenis}}</span>
+                                                    </td>
+                                                    <td>{{$emas->gramasi}} Gram</td>
+                                                    <td>
+                                                        <a id="tambah-emas-{{$emas->id}}" data-bs-dismiss="modal" data-item="{{$emas->nama}}" data-jenis="{{$emas->jenis}}" data-gramasi="{{$emas->gramasi}}" data-id_emas="{{$emas->id}}" class="action-icon tambah_emas" style="cursor: pointer;"> <i class="mdi mdi-archive-plus"></i></a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    @endforeach
                                 </form>
                             </div> <!-- end card-body -->
                         </div>
@@ -348,10 +355,16 @@
 <script type="text/javascript" src="https://keith-wood.name/js/jquery.signature.js"></script>
 <script src="/assets/js/jquery.signature.js"></script>
 <script>
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();;
+    document.getElementById("today").value = date;
+    console.log(date);
     function jumlahGram(id_input)
     {
         var gramasi = document.getElementsByClassName(`gramasi-${id_input}`);
         var x = document.getElementById(`input-keping-emas-${id_input}`).value;
+        console.log(x);
+        console.log(gramasi)
         gramasi = parseFloat(gramasi[0].value)
         var total = x*gramasi;
         total = total.toFixed(1);
@@ -381,7 +394,7 @@
             url: "/api/versi/bulan/"+id_versi,
             success: function(hasil){
                 hasilAkhir = [];
-                hasilAkhir.push("<option>--Pilih--</option>");
+                hasilAkhir.push("<option value=''>--Pilih--</option>");
                 hasil.forEach(element => {
                     value = `${element.id},${element.bulan}`;
                     hasilAkhir.push("<option value='"+value+"'>"+element.bulan+" Bulan</option>");
@@ -422,7 +435,7 @@
                     <input type="hidden" value="${jenis}" class="form-control" name="jenis_emas[]">
                 </td>
                 <td>${gramasi}</td>
-                <input type="hidden" value="${id_emas}" class="form-control gramasi-${index_emas}" name="id_emas[]">
+                <input type="hidden" value="${id_emas}" class="form-control" name="id_emas[]">
                 <input type="hidden" value="${gramasi}" class="form-control gramasi-${index_emas}" name="gramasi_emas[]">
                 <td>
                     <input id="input-keping-emas-${index_emas}" type="number" min="1" value="" oninput="jumlahGram(${index_emas})" name="keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>

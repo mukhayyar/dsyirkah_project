@@ -176,6 +176,10 @@ class MasterController extends Controller
         ])->first();
         return response()->json($anggota);
     }    
+    public function cif_anggota_update(Request $request, $id)
+    {
+        
+    }
     public function cif_anggota_import(Request $request)
     {
         $this->validate($request, [

@@ -49,6 +49,7 @@ class DsyirkahAktifController extends Controller
                 ->addColumn('action', function($row){
                     $btn = '<a href="emas/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
                     $btn .= '<a href="printData('.$row->id.')" class="action-icon"> <i class="mdi mdi-printer"></i></a>';
+                    $btn .= '<a href="printData('.$row->id.')" class="action-icon"> <i class="mdi mdi-cloud-upload"></i></a>';
                     $btn .= '<a href="" class="action-icon"> <i class="mdi mdi-whatsapp"></i></a>';
                     return $btn;
                 })
@@ -147,6 +148,7 @@ class DsyirkahAktifController extends Controller
                 ->addColumn('action', function($row){
                     $btn = '<a href="rupiah/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
                     $btn .= '<a href="printData('.$row->id.')" class="action-icon"> <i class="mdi mdi-printer"></i></a>';
+                    $btn .= '<a href="printData('.$row->id.')" class="action-icon"> <i class="mdi mdi-cloud-upload"></i></a>';
                     $btn .= '<a href="" class="action-icon"> <i class="mdi mdi-whatsapp"></i></a>';
                     return $btn;
                 })

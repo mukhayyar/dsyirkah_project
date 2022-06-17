@@ -22,6 +22,7 @@
                         <input type="hidden" value="{{$kode_usaha}}" name="kode_usaha">
                         <input type="hidden" value="{{$jenis_form}}" name="jenis_form">
                         @endif
+                        <input type="hidden" id="today" name="today">
                         <div class="row g-2">
                             <div class="col-md">
                                 <label class="form-label">Nomor BA</label>
@@ -296,7 +297,7 @@
             url: "/api/versi/bulan/"+id_versi,
             success: function(hasil){
                 hasilAkhir = [];
-                hasilAkhir.push("<option>--Pilih--</option>");
+                hasilAkhir.push("<option value=''>--Pilih--</option>");
                 hasil.forEach(element => {
                     value = `${element.id},${element.bulan}`;
                     hasilAkhir.push("<option value='"+value+"'>"+element.bulan+" Bulan</option>");
@@ -319,7 +320,9 @@
     })
 </script>
 <script type="text/javascript">
-
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();;
+    document.getElementById("today").value = date;
     var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
 
     $('#clear').click(function(e) {

@@ -115,8 +115,8 @@
                                                                     <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
                                                                     <select class="form-select" id="example-select" name="perpanjangan">
                                                                         <option value="">Pilih</option>
-                                                                        <option value="Otomatis" {{$pengajuan->perpanjangan == 'Otomatis'}}>Otomatis</option>
-                                                                        <option value="Tidak Otomatis" {{$pengajuan->perpanjangan == 'Tidak Otomatis'}}>Tidak Otomatis</option>
+                                                                        <option value="Otomatis" {{$pengajuan->perpanjangan == 'Otomatis' ? 'selected' : ''}}>Otomatis</option>
+                                                                        <option value="Tidak Otomatis" {{$pengajuan->perpanjangan == 'Tidak Otomatis' ? 'selected' : ''}}>Tidak Otomatis</option>
                                                                     </select>
                                                                 </div>
                                                             </blockquote>
@@ -197,7 +197,7 @@
                                                             <h5 class="card-title">Alokasi Nisbah Reguler :</h5>
                                                             <div class="mt-3">
                                                                 <div class="form-check">
-                                                                    <input type="radio" id="customRadio1" name="alokasiNisbah" value="Nisbah semua dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                                    <input type="radio" id="customRadio1" name="alokasiNisbah" value="Nisbah semua dimasukkan ke Simpanan Berkah" class="form-check-input" {{$pengajuan->alokasi_nisbah == "Nisbah semua dimasukkan ke Simpanan Berkah" ? 'checked' : ''}}>
                                                                     <label class="form-check-label" for="customRadio1">Nisbah semua dimasukkan ke Simpanan Berkah</label>
                                                                 </div>
                                                                 <div class="form-check">
@@ -266,7 +266,7 @@
                                                     <div class="card border-danger border">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Catatan Edit :</h5>
-                                                            <textarea class="form-control" name="catatan_edit" rows="5"></textarea>
+                                                            <textarea class="form-control" name="catatan_edit" rows="5">{{$pengajuan->catatan_edit}}</textarea>
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
                                                 </div>
@@ -473,9 +473,14 @@
             url: "/api/versi/bulan/"+id_versi,
             success: function(hasil){
                 hasilAkhir = [];
-                hasilAkhir.push("<option>--Pilih--</option>");
+                hasilAkhir.push("<option value=''>--Pilih--</option>");
+                var oldVersi = {{$pengajuan->jangka_waktu}}
                 hasil.forEach(element => {
                     value = `${element.id},${element.bulan}`;
+                    if(element.bulan == oldVersi){
+                        hasilAkhir.push("<option value='"+value+"' selected>"+element.bulan+" Bulan</option>");
+                        $("#nisbahPil").val(element.nisbah);
+                    }
                     hasilAkhir.push("<option value='"+value+"'>"+element.bulan+" Bulan</option>");
                 });
                 $("#bulanPil").html(hasilAkhir);

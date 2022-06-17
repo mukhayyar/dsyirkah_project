@@ -68,10 +68,10 @@
                                     
                                     <div class="tab-content">
                                         <div class="tab-pane show active" id="home1">
-                                            <p Class="text-muted"> {{$usaha->profil}} </p>
+                                            <p Class="text-muted"> {!!$usaha->profil!!} </p>
                                         </div>
                                         <div class="tab-pane" id="legalitas">
-                                            <p Class="text-muted"> {{$usaha->legalitas}} </p>
+                                            <p Class="text-muted"> {!!$usaha->legalitas!!} </p>
                                         </div>
                                     </div>
                                     <p class="text-muted mb-2">
@@ -90,7 +90,7 @@
                                     <div class="text-center mt-sm-0 mt-3 text-sm-center">
                                         <a target="__blank" href="/proposal/{{$usaha->proposal}}" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
                                             <i class="mdi mdi-book"></i> Lihat Proposal </a>
-                                        <a href="wa.me/6281219974532" target="_blank" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
+                                        <a href="https://wa.me/6281219974532" target="_blank" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
                                             <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>
                                     </div>
                                 </div>

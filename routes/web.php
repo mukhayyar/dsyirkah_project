@@ -92,7 +92,7 @@ Route::middleware('auth')->group(function(){
                 Route::get('/cif_anggota',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_page']);
                 Route::post('/cif_anggota/import',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_import']);
                 Route::get('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_edit']);
-                Route::post('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_update']);
+                Route::put('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_update']);
                 Route::post('/cif_anggota',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_add']);
                 Route::get('/cif_anggota/cari/{id}',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_cari']);
                 // versi
@@ -139,6 +139,7 @@ Route::middleware('auth')->group(function(){
                 Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_detail']);
                 Route::get('/emas/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_edit']);
                 Route::post('/emas/edit/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'emas_update']);
+                Route::delete('/emas/delete/rincian_emas/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'rincian_emas_delete']);
                 Route::get('/emas/reject',[App\Http\Controllers\Admin\PengajuanController::class,'emas_reject']);
                 Route::get('/emas/reject/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_emas_reject']);
                 Route::get('/emas/reject/restore/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'restore_pengajuan_emas']);

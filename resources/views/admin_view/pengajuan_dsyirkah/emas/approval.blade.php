@@ -221,7 +221,7 @@
                                         @if($pengajuan->status == "Approved")
                                         <p class="mt-3">Pengajuan sudah di approve</p>
                                         @else
-                                        <p class="mt-3">Data pengajuan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Setujui</strong></p>
+                                        <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Setujui</strong></p>
                                         <p> Silakan klik <strong>Aprov</strong> jika sudah yakin</p>
                                         <form action="{{$id}}/approve" method="POST">
                                             @csrf
@@ -245,7 +245,7 @@
                                         @if($pengajuan->status == "Approved")
                                         <p class="mt-3">Pengajuan sudah di approve</p>
                                         @else
-                                        <p class="mt-3">Data pengajuan An. XXXXXXX tanggal PengajuanXXXXX Akan di <strong>Riject</strong></p>
+                                        <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Riject</strong></p>
                                         <p> Silakan klik <strong>Riject</strong> jika sudah yakin</p>
                                         <form action="{{$id}}/reject" method="POST">
                                             @csrf

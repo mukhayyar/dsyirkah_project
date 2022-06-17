@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use DataTables;
 use App\Models\Usaha;
 use App\Models\Perwada;
+use App\Models\ItemEmas;
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
 use App\Models\PengajuanRupiah;
@@ -13,6 +14,7 @@ use App\Models\PerpanjanganEmas;
 use App\Exports\PengajuanRupiahEx;
 use App\Models\PerpanjanganRupiah;
 use App\Http\Controllers\Controller;
+use App\Models\RincianPengajuanEmas;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PengajuanEmasRejectEx;
 use App\Exports\PengajuanRupiahRejectEx;
@@ -21,7 +23,7 @@ class PengajuanController extends Controller
 {
     public function emas_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::with('versi')->where([
+            $data = PengajuanEmas::with('versi','anggota')->where([
                 ['status','!=','Reject']
             ])->get();
             return Datatables::of($data)
@@ -80,7 +82,7 @@ class PengajuanController extends Controller
         $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','versi')->where('slug',$id)->first();
         return view('admin_view/pengajuan_dsyirkah/emas/approval',compact('pengajuan','id'));
     }
-    public function emas_approval_store($id){
+    public function emas_approval_store(Request $request, $id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
         if($pengajuan->kode_usaha){
@@ -135,11 +137,12 @@ class PengajuanController extends Controller
     public function emas_edit($id){
         $pengajuan = PengajuanEmas::with('anggota','versi')->where('slug',$id)->first();
         $perwada = Perwada::where('status','Aktif')->get();
-        return view('admin_view/pengajuan_dsyirkah/emas/edit',compact('pengajuan','perwada'));
+        $item_emas_show = ItemEmas::where('status',1)->get();
+        return view('admin_view/pengajuan_dsyirkah/emas/edit',compact('pengajuan','perwada','item_emas_show'));
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('versi')->where([
+            $data = PengajuanRupiah::with('versi','anggota')->where([
                 ['status','!=','Reject']
             ])->get();
             return Datatables::of($data)
@@ -265,7 +268,7 @@ class PengajuanController extends Controller
             $pengajuan->bukti_transfer = $name;
         }
         //jangka watu
-        if(is_array($request->jangka_waktu)){
+        if($request->jangka_waktu){
             $jangka_waktu = explode(",",$request->jangka_waktu);
             $jangka_waktu = $jangka_waktu[1];
         } else {
@@ -283,13 +286,14 @@ class PengajuanController extends Controller
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_edit = $request->catatan_edit;
         $pengajuan->save();
-        return redirect('/transaction')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        return redirect('/admin/pengajuan_dsyirkah/rupiah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
     public function emas_update(Request $request, $id)
     {
+        // dd($request->all());
         $pengajuan = PengajuanEmas::where('slug','=',$id)->first();
         //jangka watu
-        if(is_array($request->jangka_waktu)){
+        if($request->jangka_waktu){
             $jangka_waktu = explode(",",$request->jangka_waktu);
             $jangka_waktu = $jangka_waktu[1];
         } else {
@@ -303,27 +307,44 @@ class PengajuanController extends Controller
         $pengajuan->nisbah = $request->nisbah;
         $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
-        $pengajuan->total_gramasi = $request->total_jumlah_emas;
+        if($request->total_jumlah_emas != 'NaN'){
+            $pengajuan->total_gramasi = $request->total_jumlah_emas;
+        }
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_edit = $request->catatan_edit;
-        $pengajuan->save();
-        $length = count($request->item_emas);
-        for($i =0; $i <$length;$i++)
-        {
-            $rincianPengajuanEmas = new RincianPengajuanEmas;
-            $rincianPengajuanEmas->pengajuan_id = $pengajuan->id;
-            $rincianPengajuanEmas->emas_id = $request->id_emas[$i];            
-            $rincianPengajuanEmas->item = $request->item_emas[$i];            
-            $rincianPengajuanEmas->jenis = $request->jenis_emas[$i];            
-            $rincianPengajuanEmas->gramasi = $request->gramasi_emas[$i];            
-            $rincianPengajuanEmas->keping = $request->keping_emas[$i];            
-            $rincianPengajuanEmas->jumlah = $request->jumlah_keping[$i];
-            $rincianPengajuanEmas->save();            
+        if($request->new_item_emas){
+            $length = count($request->new_item_emas);
+            for($i =0; $i <$length;$i++)
+            {
+                $rincianPengajuanEmas = new RincianPengajuanEmas;
+                $rincianPengajuanEmas->pengajuan_id = $pengajuan->id;
+                $rincianPengajuanEmas->emas_id = $request->new_id_emas[$i];            
+                $rincianPengajuanEmas->item = $request->new_item_emas[$i];            
+                $rincianPengajuanEmas->jenis = $request->new_jenis_emas[$i];            
+                $rincianPengajuanEmas->gramasi = $request->new_gramasi_emas[$i];            
+                $rincianPengajuanEmas->keping = $request->new_keping_emas[$i];            
+                $rincianPengajuanEmas->jumlah = $request->new_jumlah_keping[$i];
+                $rincianPengajuanEmas->save();            
+            }
         }
-        return redirect('/transaction')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
+        if($request->old_rincian_item_emas)
+        {
+            $length = count($request->old_rincian_item_emas);
+            for($i =0; $i <$length;$i++)
+            {
+                $rincianPengajuanEmas = RincianPengajuanEmas::find($request->old_rincian_item_emas[$i]);                
+                $rincianPengajuanEmas->keping = $request->old_keping_emas[$i];            
+                $rincianPengajuanEmas->jumlah = $request->old_jumlah_keping[$i];
+                $rincianPengajuanEmas->save();            
+            }
+        }
+        $pengajuan->save();
+        return redirect('/admin/pengajuan_dsyirkah/emas')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
-    public function rincian_emas_delete()
+    public function rincian_emas_delete($id)
     {
-        
+        $rincian_emas = RincianPengajuanEmas::find($id);
+        $rincian_emas->delete();
+        return response()->json(['success'=>'Data berhasil dihapus']);
     }
 }
