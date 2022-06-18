@@ -358,13 +358,10 @@
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();;
     document.getElementById("today").value = date;
-    console.log(date);
     function jumlahGram(id_input)
     {
         var gramasi = document.getElementsByClassName(`gramasi-${id_input}`);
         var x = document.getElementById(`input-keping-emas-${id_input}`).value;
-        console.log(x);
-        console.log(gramasi)
         gramasi = parseFloat(gramasi[0].value)
         var total = x*gramasi;
         total = total.toFixed(1);
@@ -373,7 +370,7 @@
         var length = $("#form_tambah_emas tr").length;
         var total = 0;
         var test_number = 0;
-        for(let i = 1; i<=length; i++)
+        for(let i = 0; i<length; i++)
         {
             test_number += parseFloat(document.getElementById(`jumlah-keping-${i}`).innerText)
         }
@@ -422,10 +419,7 @@
             gramasi = $(this)[0].dataset.gramasi;
             id_emas = $(this)[0].dataset.id_emas;
             var length = $("#form_tambah_emas tr").length;
-            let index_emas = 1;
-            if(length != 0){
-                index_emas++;
-            }
+            let index_emas = length++;
             $("#form_tambah_emas").append(`
             <tr id="item-emas-${index_emas}">
                 <td>${item}</td>
@@ -459,7 +453,7 @@
             index_emas = $(this)[0].dataset.index_emas;
             id_emas = $(this)[0].dataset.id_emas;
             var jumlah_terhapus = $(`#jumlah-keping-${index_emas}`)[0].innerText; 
-            var input_total_jumlah = document.getElementById(`input_total_jumlah_emas`).value;
+            var input_total_jumlah = document.getElementById(`total_jumlah_emas`).textContent;
             var nilai_akhir = parseFloat(input_total_jumlah)-parseFloat(jumlah_terhapus);
             nilai_akhir = parseFloat(nilai_akhir).toFixed(1);
             if(nilai_akhir == 0.0){

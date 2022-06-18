@@ -154,7 +154,7 @@
                                                             </tfoot>
                                                             <tbody id="form_tambah_emas">
                                                                 @foreach($pengajuan->rincian_pengajuan_emas as $item_emas)
-                                                                <tr id="item-emas-{{$loop->index+1}}" class="id-emas" data-id="{{$item_emas->emas_id}}">
+                                                                <tr id="item-emas-{{$loop->index}}" class="id-emas" data-id="{{$item_emas->emas_id}}">
                                                                     <td>{{$item_emas->item}}</td>
                                                                     <input type="hidden" value="{{$item_emas->id}}" class="form-control" name="old_rincian_item_emas[]">
                                                                     <input type="hidden" value="{{$item_emas->item}}" class="form-control" name="old_item_emas[]">
@@ -163,19 +163,19 @@
                                                                         <input type="hidden" value="{{$item_emas->jenis}}" class="form-control" name="old_jenis_emas[]">
                                                                     </td>
                                                                     <td>{{$item_emas->gramasi}}</td>
-                                                                    <input type="hidden" value="{{$item_emas->gramasi}}" class="form-control gramasi-{{$loop->index+1}}" name="old_gramasi_emas[]">
+                                                                    <input type="hidden" value="{{$item_emas->gramasi}}" class="form-control gramasi-{{$loop->index}}" name="old_gramasi_emas[]">
                                                                     <td>
-                                                                        <input id="input-keping-emas-{{$loop->index+1}}" type="number" min="1" value="{{$item_emas->keping}}" oninput="jumlahGram({{$loop->index+1}})" name="old_keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>
+                                                                        <input id="input-keping-emas-{{$loop->index}}" type="number" min="1" value="{{$item_emas->keping}}" oninput="jumlahGram({{$loop->index}})" name="old_keping_emas[]" class="form-control" placeholder="Qty" style="width: 90px;" required>
                                                                     </td>
                                                                     <td>
-                                                                        <span id="jumlah-keping-{{$loop->index+1}}">
+                                                                        <span id="jumlah-keping-{{$loop->index}}">
                                                                             {{$item_emas->jumlah}}
                                                                         </span>
                                                                         Gram
-                                                                        <input id="input-jumlah-keping-{{$loop->index+1}}" type="hidden" value="{{$item_emas->jumlah}}" class="form-control" name="old_jumlah_keping[]">
+                                                                        <input id="input-jumlah-keping-{{$loop->index}}" type="hidden" value="{{$item_emas->jumlah}}" class="form-control" name="old_jumlah_keping[]">
                                                                     </td>
                                                                     <td>
-                                                                        <a href="javascript:void(0);" id="removeRow" data-index_emas="{{$loop->index+1}}" data-id_emas="{{$item_emas->emas_id}}" data-id_rincian_emas="{{$item_emas->id}}" class="action-icon"> <i
+                                                                        <a href="javascript:void(0);" id="removeRow" data-index_emas="{{$loop->index}}" data-id_emas="{{$item_emas->emas_id}}" data-id_rincian_emas="{{$item_emas->id}}" class="action-icon"> <i
                                                                                 class="mdi mdi-delete"></i></a>
                                                                     </td>
                                                                 </tr>
@@ -362,21 +362,16 @@
 @push('scripts')
 <script>
     var item_emas_active = document.getElementsByClassName(`id-emas`);
-    console.log(item_emas_active);
+    console.log(item_emas_active.length);
     for(var i = 0; i < item_emas_active.length; i++)
     {
-        var id_emas = item_emas_active[0].dataset.id;
+        var id_emas = item_emas_active[i].dataset.id;
         document.getElementById(`tambah-emas-${id_emas}`).style.display = "none";
     }
-    // if(){
-    //     $(`#tambah-emas-${id_emas}`).css("display","none");
-    // }
     function jumlahGram(id_input)
     {
         var gramasi = document.getElementsByClassName(`gramasi-${id_input}`);
         var x = document.getElementById(`input-keping-emas-${id_input}`).value;
-        console.log(x);
-        console.log(gramasi)
         gramasi = parseFloat(gramasi[0].value)
         var total = x*gramasi;
         total = total.toFixed(1);
@@ -385,7 +380,7 @@
         var length = $("#form_tambah_emas tr").length;
         var total = 0;
         var test_number = 0;
-        for(let i = 1; i<=length; i++)
+        for(let i = 0; i<length; i++)
         {
             test_number += parseFloat(document.getElementById(`jumlah-keping-${i}`).innerText)
         }
@@ -439,10 +434,7 @@
             gramasi = $(this)[0].dataset.gramasi;
             id_emas = $(this)[0].dataset.id_emas;
             var length = $("#form_tambah_emas tr").length;
-            let index_emas = 1;
-            if(length != 0){
-                index_emas++;
-            }
+            let index_emas = length++;
             $("#form_tambah_emas").append(`
             <tr id="item-emas-${index_emas}">
                 <td>${item}</td>
