@@ -86,23 +86,22 @@ class DsyirkahAktifController extends Controller
         return redirect()->back()->with('success','Berhasil stop');
     }
     public function emas_approve(Request $request,$id){
-        dd($request);
-        $pengajuan = PengajuanEmas::with('anggota','rincian_pengajuan_emas','perpanjangan_emas')->where('slug',$id)->first();
-        $oldCount = count($request->old_perpanjangan_id);
-        for($i = 0; $i < $oldCount; $i++){
-            $oldPerpanjangan = PerpanjanganRupiah::find($request->old_perpanjangan_id[$i]);
-            $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i] ? $request->old_jatuh_tempo_sebelumnya[$i] : '';
-            $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
-            $oldPerpanjangan->jangka_waktu = $request->old_jangka_waktu[$i];
-            $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
-            $oldPerpanjangan->nisbah = $request->old_nisbah[$i];
-            $oldPerpanjangan->status = $request->old_status[$i];
-            $oldPerpanjangan->save();
+        if($request->old_id_perpanjangan){
+            $oldCount = count($request->old_id_perpanjangan);
+            for($i = 0; $i < $oldCount; $i++){
+                $angka = $request->old_perpanjangan_id[$i];
+                $oldPerpanjangan = PerpanjanganRupiah::find($request->old_id_perpanjangan[$i]);
+                $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
+                $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
+                $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
+                $oldPerpanjangan->status = $request->old_status[$i];
+                $oldPerpanjangan->save();
+            }
         }
 
-        $newCount = count($request->new_jatuh_tempo_sebelumnya);
-        if($newCount){
-            for($i = 0; $i < $oldCount; $i++){
+        if($request->new_jatuh_tempo_sebelumnya){
+            $newCount = count($request->new_jatuh_tempo_sebelumnya);
+            for($i = 0; $i < $newCount; $i++){
                 $newPerpanjangan = new PerpanjanganRupiah;
                 $newPerpanjangan->pengajuan_id = $request->pengajuan_id;
                 $newPerpanjangan->jatuh_tempo_sebelumnya = $request->new_jatuh_tempo_sebelumnya[$i];
@@ -111,7 +110,6 @@ class DsyirkahAktifController extends Controller
                 $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
                 $newPerpanjangan->nisbah = $request->new_nisbah[$i];
                 $newPerpanjangan->status = $request->new_status[$i];
-                $newPerpanjangan->save();
             }
         }
         return redirect()->back()->with('success','Berhasil approve');
@@ -181,33 +179,31 @@ class DsyirkahAktifController extends Controller
         return redirect()->back()->with('success','Berhasil stop');
     }
     public function rupiah_approve($id, Request $request){
-        dd($request->all());
-        $oldCount = count($request->old_perpanjangan_id);
-        for($i = 0; $i < $oldCount; $i++){
-            $angka = $request->old_perpanjangan_id[$i];
-            $oldPerpanjangan = PerpanjanganRupiah::find($angka);
-            $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
-            $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
-            $oldPerpanjangan->jangka_waktu = $request->old_jangka_waktu[$i];
-            $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
-            $oldPerpanjangan->nisbah = $request->old_nisbah[$i];
-            $oldPerpanjangan->status = $request->old_status[$i];
-            $oldPerpanjangan->save();
+        // dd($request->all());
+        if($request->old_id_perpanjangan){
+            $oldCount = count($request->old_id_perpanjangan);
+            for($i = 0; $i < $oldCount; $i++){
+                $angka = $request->old_perpanjangan_id[$i];
+                $oldPerpanjangan = PerpanjanganRupiah::find($request->old_id_perpanjangan[$i]);
+                $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
+                $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
+                $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
+                $oldPerpanjangan->status = $request->old_status[$i];
+                $oldPerpanjangan->save();
+            }
         }
+
         if($request->new_jatuh_tempo_sebelumnya){
             $newCount = count($request->new_jatuh_tempo_sebelumnya);
-            if($newCount){
-                for($i = 0; $i < $oldCount; $i++){
-                    $newPerpanjangan = new PerpanjanganRupiah;
-                    $newPerpanjangan->pengajuan_id = $request->pengajuan_id;
-                    $newPerpanjangan->jatuh_tempo_sebelumnya = $request->new_jatuh_tempo_sebelumnya[$i];
-                    $newPerpanjangan->tgl_akad_baru  = $request->new_tgl_akad_baru[$i];
-                    $newPerpanjangan->jangka_waktu = $request->new_jangka_waktu[$i];
-                    $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
-                    $newPerpanjangan->nisbah = $request->new_nisbah[$i];
-                    $newPerpanjangan->status = $request->new_status[$i];
-                    $newPerpanjangan->save();
-                }
+            for($i = 0; $i < $newCount; $i++){
+                $newPerpanjangan = new PerpanjanganRupiah;
+                $newPerpanjangan->pengajuan_id = $request->pengajuan_id;
+                $newPerpanjangan->jatuh_tempo_sebelumnya = $request->new_jatuh_tempo_sebelumnya[$i];
+                $newPerpanjangan->tgl_akad_baru  = $request->new_tgl_akad_baru[$i];
+                $newPerpanjangan->jangka_waktu = $request->new_jangka_waktu[$i];
+                $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
+                $newPerpanjangan->nisbah = $request->new_nisbah[$i];
+                $newPerpanjangan->status = $request->new_status[$i];
             }
         }
         return redirect()->back()->with('success','Berhasil approve');

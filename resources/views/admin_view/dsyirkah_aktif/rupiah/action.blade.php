@@ -181,6 +181,7 @@
                                                     <tr id="item-{{$loop->index+1}}">
                                                         <td>{{$loop->index+1}}</td>
                                                         <td class="tambah-sebelum-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_id_perpanjangan[]" value="{{$perpanjangan->id}}">
                                                         <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
                                                         <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru}}</td>
                                                         <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
@@ -198,7 +199,6 @@
                                                             @if($pengajuan->status == "Approved")
                                                             @if($loop->index+1 != 1)
                                                             <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                                                            <a href="javascript:void(0);" id="editRow" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                                                             <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             @endif
                                                             <a href="javascript:void(0);" id="editRow" data-index="{{$loop->index+1}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
@@ -252,7 +252,7 @@
 
                                     <div class="mb-3">
                                         <label for="jangka_waktu" class="form-label">Jangka Waktu (dalam Bulan)</label>
-                                        <input class="form-control" type="number" id="jangka_waktu" >
+                                        <input class="form-control" type="number" id="jangka_waktu" value="{{$perpanjangan->jangka_waktu}}" readonly>
                                     </div>
 
                                     <div class="mb-3">
@@ -262,7 +262,7 @@
 
                                     <div class="mb-3">
                                         <label for="nisbah" class="form-label">Nisbah</label>
-                                        <input class="form-control" type="text" id="nisbah" >
+                                        <input class="form-control" type="text" id="nisbah" value="{{$perpanjangan->nisbah}}" readonly>
                                     </div>
                                     
                                     <div class="mb-3">

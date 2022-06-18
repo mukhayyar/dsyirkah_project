@@ -289,7 +289,7 @@
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"> </p>
+                        <strong>: </strong> <p id="" class="font-14"> </p>
                     </div>
                 </div>
                 <div class="row">
@@ -297,7 +297,7 @@
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -305,7 +305,7 @@
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -313,7 +313,7 @@
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -321,7 +321,7 @@
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -329,7 +329,7 @@
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -337,7 +337,7 @@
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -345,7 +345,7 @@
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -353,7 +353,7 @@
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -361,7 +361,7 @@
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div><hr>
                 </div>
                 <div class="row">
@@ -369,7 +369,7 @@
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -377,7 +377,7 @@
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -385,7 +385,7 @@
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -393,7 +393,7 @@
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -401,7 +401,7 @@
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
                     <div class="col-8">
-                        <strong>: </strong> <p class="font-14"></p>
+                        <strong>: </strong> <p id="" class="font-14"></p>
                     </div>
                 </div>
                 <div id="checkAlamatTinggalView">
@@ -410,7 +410,7 @@
                             <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                         </div>
                         <div class="col-8">
-                            <strong>: </strong> <p class="font-14"></p>
+                            <strong>: </strong> <p id="" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -418,7 +418,7 @@
                             <p class="font-14"><strong>Kecamatan</strong></p>
                         </div>
                         <div class="col-8">
-                            <strong>: </strong> <p class="font-14"></p>
+                            <strong>: </strong> <p id="" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -426,7 +426,7 @@
                             <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                         </div>
                         <div class="col-8">
-                            <strong>: </strong> <p class="font-14"></p>
+                            <strong>: </strong> <p id="" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
@@ -434,7 +434,7 @@
                             <p class="font-14"><strong>Provinsi</strong></p>
                         </div>
                         <div class="col-8">
-                            <strong>: </strong> <p class="font-14"></p>
+                            <strong>: </strong> <p id="" class="font-14"></p>
                         </div><hr>
                     </div>
                 </div>

@@ -156,16 +156,32 @@ class MasterController extends Controller
         $anggota->tanggal_lahir = $request->tanggal_lahir;
         $anggota->status_nikah = $request->status_nikah;
         $anggota->alamat_ktp = $request->alamat_ktp;
-        $anggota->provinsi_ktp = $request->provinsi_ktp;
-        $anggota->kelurahan_ktp = $request->kelurahan_ktp;
-        $anggota->kecamatan_ktp = $request->kecamatan_ktp;
-        $anggota->kota_ktp = $request->kota_ktp;
+        $provinsi_ktp = explode(",",$request->provinsi_ktp);
+        $kelurahan_ktp = explode(",",$request->kelurahan_ktp);
+        $kecamatan_ktp = explode(",",$request->kecamatan_ktp);
+        $kota_ktp = explode(",",$request->kota_ktp);
+        $anggota->provinsi_ktp = $provinsi_ktp[1];
+        $anggota->kelurahan_ktp = $kelurahan_ktp[1];
+        $anggota->kecamatan_ktp = $kecamatan_ktp[1];
+        $anggota->kota_ktp = $kota_ktp[1];
         $anggota->alamat_tinggal = $request->checkAlamatTinggal;
         $anggota->alamat_domisili = $request->alamat_dom;
-        $anggota->provinsi_domisili = $request->provinsi_dom;
-        $anggota->kota_domisili = $request->kota_dom;
-        $anggota->kecamatan_domisili = $request->kecamatan_dom;
-        $anggota->kelurahan_domisili = $request->kelurahan_dom;
+        if($request->provinsi_domisili){
+            $provinsi_domisili = explode(",",$request->provinsi_dom);
+            $anggota->provinsi_domisili = $provinsi_domisili[1];
+        }
+        if($request->kecamatan_domisili){
+            $kecamatan_domisili = explode(",",$request->kecamatan_dom);
+            $anggota->kecamatan_domisili = $kecamatan_domisili[1];
+        }
+        if($request->kelurahan_domisili){
+            $kelurahan_domisili = explode(",",$request->kelurahan_dom);
+            $anggota->kelurahan_domisili = $kelurahan_domisili[1];
+        }
+        if($request->provinsi_domisili){
+            $kota_domisili = explode(",",$request->kota_dom);
+            $anggota->kota_domisili = $kota_domisili[1];
+        }
         $anggota->save();
         return redirect()->back();
     }
@@ -178,7 +194,65 @@ class MasterController extends Controller
     }    
     public function cif_anggota_update(Request $request, $id)
     {
-        
+        // dd($request->file('file_ktp'));
+        $validation = Validator::make($request->all(), [
+            'no_ba' => ['required', 'string', 'max:24'],
+            'no_ktp' => ['required', 'string','min:16','max:16'],
+            'jenis_kelamin' => ['required'],
+            'tempat_lahir' => ['required'],
+            'tanggal_lahir' => ['required'],
+            'status_nikah' => ['required'],
+            'alamat_ktp' => ['required'],
+            'kelurahan_ktp' => ['required'],
+            'kecamatan_ktp' => ['required'],
+            'kota_ktp' => ['required'],
+            'provinsi_ktp' => ['required'],
+            'file_ktp' => ['required','max:2048'],
+        ]);
+        if($validation->fails()){
+            return response()->json($validation->errors());
+        }
+        $anggota = Anggota::where('nomor_ba',$request->no_ba)->first();
+        if($request->file('file_ktp')){
+            $name = $request->file('file_ktp')->getClientOriginalName();
+            $path = $request->file('file_ktp')->move(public_path().'/images/data_penting/ktp/',$name);
+            $anggota->foto_ktp = $name;
+            $anggota->lokasi_foto_ktp = $path;
+        }
+        $anggota->no_ktp = $request->no_ktp;
+        $anggota->jenis_kelamin = $request->jenis_kelamin;
+        $anggota->tempat_lahir = $request->tempat_lahir;
+        $anggota->tanggal_lahir = $request->tanggal_lahir;
+        $anggota->status_nikah = $request->status_nikah;
+        $anggota->alamat_ktp = $request->alamat_ktp;
+        $provinsi_ktp = explode(",",$request->provinsi_ktp);
+        $kelurahan_ktp = explode(",",$request->kelurahan_ktp);
+        $kecamatan_ktp = explode(",",$request->kecamatan_ktp);
+        $kota_ktp = explode(",",$request->kota_ktp);
+        $anggota->provinsi_ktp = $provinsi_ktp[1];
+        $anggota->kelurahan_ktp = $kelurahan_ktp[1];
+        $anggota->kecamatan_ktp = $kecamatan_ktp[1];
+        $anggota->kota_ktp = $kota_ktp[1];
+        $anggota->alamat_tinggal = $request->checkAlamatTinggal;
+        $anggota->alamat_domisili = $request->alamat_dom;
+        if($request->provinsi_domisili){
+            $provinsi_domisili = explode(",",$request->provinsi_dom);
+            $anggota->provinsi_domisili = $provinsi_domisili[1];
+        }
+        if($request->kecamatan_domisili){
+            $kecamatan_domisili = explode(",",$request->kecamatan_dom);
+            $anggota->kecamatan_domisili = $kecamatan_domisili[1];
+        }
+        if($request->kelurahan_domisili){
+            $kelurahan_domisili = explode(",",$request->kelurahan_dom);
+            $anggota->kelurahan_domisili = $kelurahan_domisili[1];
+        }
+        if($request->provinsi_domisili){
+            $kota_domisili = explode(",",$request->kota_dom);
+            $anggota->kota_domisili = $kota_domisili[1];
+        }
+        $anggota->save();
+        return redirect()->back();
     }
     public function cif_anggota_import(Request $request)
     {
