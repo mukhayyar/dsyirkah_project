@@ -65,7 +65,7 @@
                     <ul class="side-nav">
                          <!--li class="side-nav-title side-nav-item">Dasboard</li-->
                         <li class="side-nav-item">
-                            <a href="/admin" class="side-nav-link">
+                            <a href="/admin/dashboard" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
                                 <span class="badge bg-success float-end">3</span>
                                 <span> Dashboards </span>
