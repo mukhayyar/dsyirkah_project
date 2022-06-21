@@ -65,5 +65,13 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'IsAdmin' => \App\Http\Middleware\IsAdmin::class,
         'IsUser' => \App\Http\Middleware\IsUser::class,
+        'AktifAccess' => \App\Http\Middleware\AktifAccess::class,
+        'DaftarUsahaAccess' => \App\Http\Middleware\DaftarUsahaAccess::class,
+        'MasterAccess' => \App\Http\Middleware\MasterAccess::class,
+        'NonAktifAccess' => \App\Http\Middleware\NonAktifAccess::class,
+        'PengajuanAccess' => \App\Http\Middleware\PengajuanAccess::class,
+        'ReakadAccess' => \App\Http\Middleware\ReakadAccess::class,
+        'UsersAnggotaAccess' => \App\Http\Middleware\UsersAnggotaAccess::class,
+        'UsersDashboardAccess' => \App\Http\Middleware\UsersDashboardAccess::class,
     ];
 }

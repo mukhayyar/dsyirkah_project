@@ -32,6 +32,16 @@
 
                     <div class="tab-content">
                         <div class="tab-pane show active" id="scroll-horizontal-preview">
+                            <table cellspacing="5" cellpadding="5" border="0">
+                                <tbody><tr>
+                                    <td>Minimum date:</td>
+                                    <td><input type="text" id="min" name="min"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum date:</td>
+                                    <td><input type="text" id="max" name="max"></td>
+                                </tr>
+                            </tbody></table>
                             <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                 <thead>
                                     <tr>
@@ -101,7 +111,41 @@
 </div> <!-- container -->
 @push('scripts')
 <script>
-    $(function(){
+    $('body').on('click', '#upload-pengiriman', function () {
+        var id = $(this).data('id');
+        $('#form-upload-bukti-transfer').attr("action",`emas/${id}/upload-bukti`)
+    });
+</script>
+<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date = new Date( data[1] );
+            console.log(date);
+    
+            if (
+                ( min === null && max === null ) ||
+                ( min === null && date <= max ) ||
+                ( min <= date   && max === null ) ||
+                ( min <= date   && date <= max )
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    $(document).ready(function() {
+        // Create date inputs
+        minDate = new DateTime($('#min'), {
+            format: 'MMMM Do YYYY'
+        });
+        maxDate = new DateTime($('#max'), {
+            format: 'MMMM Do YYYY'
+        });
+
         var table = $('.data-table').DataTable({
             "scrollX": true,
             processing: true,
@@ -121,11 +165,15 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-    });
-    $('body').on('click', '#upload-pengiriman', function () {
-        var id = $(this).data('id');
-        $('#form-upload-bukti-transfer').attr("action",`emas/${id}/upload-bukti`)
+
+        // Refilter the table
+        $('#min, #max').on('change', function () {
+            table.draw();
+        });
     });
 </script>
+@endpush
+@push('styles')
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" type="text/css">
 @endpush
 @endsection

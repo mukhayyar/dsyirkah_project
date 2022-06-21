@@ -194,7 +194,6 @@ class MasterController extends Controller
     }    
     public function cif_anggota_update(Request $request, $id)
     {
-        // dd($request->file('file_ktp'));
         $validation = Validator::make($request->all(), [
             'no_ba' => ['required', 'string', 'max:24'],
             'no_ktp' => ['required', 'string','min:16','max:16'],
@@ -207,7 +206,6 @@ class MasterController extends Controller
             'kecamatan_ktp' => ['required'],
             'kota_ktp' => ['required'],
             'provinsi_ktp' => ['required'],
-            'file_ktp' => ['required','max:2048'],
         ]);
         if($validation->fails()){
             return response()->json($validation->errors());
@@ -225,14 +223,22 @@ class MasterController extends Controller
         $anggota->tanggal_lahir = $request->tanggal_lahir;
         $anggota->status_nikah = $request->status_nikah;
         $anggota->alamat_ktp = $request->alamat_ktp;
-        $provinsi_ktp = explode(",",$request->provinsi_ktp);
-        $kelurahan_ktp = explode(",",$request->kelurahan_ktp);
-        $kecamatan_ktp = explode(",",$request->kecamatan_ktp);
-        $kota_ktp = explode(",",$request->kota_ktp);
-        $anggota->provinsi_ktp = $provinsi_ktp[1];
-        $anggota->kelurahan_ktp = $kelurahan_ktp[1];
-        $anggota->kecamatan_ktp = $kecamatan_ktp[1];
-        $anggota->kota_ktp = $kota_ktp[1];
+        if($request->provinsi_ktp){
+            $provinsi_ktp = explode(",",$request->provinsi_ktp);
+            $anggota->provinsi_ktp = $provinsi_ktp[1];
+        }
+        if($request->provinsi_ktp){
+            $kelurahan_ktp = explode(",",$request->kelurahan_ktp);
+            $anggota->kelurahan_ktp = $kelurahan_ktp[1];
+        }
+        if($request->provinsi_ktp){
+            $kecamatan_ktp = explode(",",$request->kecamatan_ktp);
+            $anggota->kecamatan_ktp = $kecamatan_ktp[1];
+        }
+        if($request->provinsi_ktp){
+            $kota_ktp = explode(",",$request->kota_ktp);
+            $anggota->kota_ktp = $kota_ktp[1];
+        }
         $anggota->alamat_tinggal = $request->checkAlamatTinggal;
         $anggota->alamat_domisili = $request->alamat_dom;
         if($request->provinsi_domisili){

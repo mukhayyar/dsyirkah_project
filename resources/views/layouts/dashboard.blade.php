@@ -51,11 +51,19 @@
                 </a>
 
                 <div class="h-100" id="leftside-menu-container" data-simplebar>
-
+                    @php
+                    $users_dashboard_access = ["Administrator"];
+                    $users_anggota_access = ["Administrator","Teller OPR","Admin","Admin IT"];
+                    $master_access = ["Administrator","Admin IT"];
+                    $daftar_usaha_access = ["Administrator","Admin IT","Manager"];
+                    $pengajuan_access = ["Administrator","Teller OPR","Admin","Manager","Admin Perwada"];
+                    $aktif_access = ["Administrator","Teller OPR","Admin","Manager","Admin Perwada"];
+                    $reakad_access = ["Administrator","Teller OPR","Admin","Manager"];
+                    $non_aktif_access = ["Administrator","Teller OPR","Admin","Manager"];
+                    @endphp
                     <!--- Sidemenu -->
                     <ul class="side-nav">
                          <!--li class="side-nav-title side-nav-item">Dasboard</li-->
-
                         <li class="side-nav-item">
                             <a href="/admin" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
@@ -73,7 +81,7 @@
                                 <span> Ganti Sandi </span>
                             </a>
                         </li>
-
+                        @if(in_array(Auth::user()->role,$users_dashboard_access))
                         <li class="side-nav-item">
                             <a href="/admin/users_dashboard/pengaturan_akun" class="side-nav-link">
                                 <i class="uil-users-alt"></i>
@@ -81,8 +89,9 @@
                                 <span> Pengaturan Akun </span>
                             </a>
                         </li>
+                        @endif
 
-
+                        @if(in_array(Auth::user()->role,$users_anggota_access))
                         <li class="side-nav-title side-nav-item">Users Anggota</li>
 
                         <li class="side-nav-item">
@@ -108,7 +117,9 @@
                                 <span> Akses Area Anggota </span>
                             </a>
                         </li>
+                        @endif
 
+                        @if(in_array(Auth::user()->role,$master_access))
                         <li class="side-nav-title side-nav-item">MASTER</li>
 
                         <li class="side-nav-item">
@@ -174,7 +185,9 @@
                                 <span> Item Emas </span>
                             </a>
                         </li>
+                        @endif
 
+                        @if(in_array(Auth::user()->role,$daftar_usaha_access))
                         <li class="side-nav-title side-nav-item">Daftar Usaha</li>
 
                         <li class="side-nav-item">
@@ -200,7 +213,9 @@
                                 <span> Laporan </span>
                             </a>
                         </li>
+                        @endif
 
+                        @if(in_array(Auth::user()->role,$pengajuan_access))
                         <li class="side-nav-title side-nav-item">Pengajuan D'Syirkah</li>
 
                         <li class="side-nav-item">
@@ -219,6 +234,9 @@
                             </a>
                         </li>
 
+                        @endif
+
+                        @if(in_array(Auth::user()->role,$aktif_access))
                         <li class="side-nav-title side-nav-item">D'Syirkah Aktif</li>
 
                         <li class="side-nav-item">
@@ -236,7 +254,9 @@
                                 <span> Rupiah </span>
                             </a>
                         </li>
+                        @endif
 
+                        @if(in_array(Auth::user()->role,$reakad_access))
                         <li class="side-nav-title side-nav-item">ReAkad D'Syirkah</li>
 
                         <li class="side-nav-item">
@@ -265,7 +285,9 @@
                                 </ul>
                             </div>
                         </li>
+                        @endif
 
+                        @if(in_array(Auth::user()->role,$non_aktif_access))
                         <li class="side-nav-title side-nav-item">D'Syirkah NonAktif</li>
 
                         <li class="side-nav-item">
@@ -283,7 +305,7 @@
                                 <span> Rupiah </span>
                             </a>
                         </li>
-
+                        @endif
                     </ul>
 
 

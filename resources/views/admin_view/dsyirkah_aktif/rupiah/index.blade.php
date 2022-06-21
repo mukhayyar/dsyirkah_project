@@ -39,6 +39,16 @@
                     
                     <div class="tab-content">
                         <div class="tab-pane show active" id="scroll-horizontal-preview">
+                            <table cellspacing="5" cellpadding="5" border="0">
+                                <tbody><tr>
+                                    <td>Minimum date:</td>
+                                    <td><input type="text" id="min" name="min"></td>
+                                </tr>
+                                <tr>
+                                    <td>Maximum date:</td>
+                                    <td><input type="text" id="max" name="max"></td>
+                                </tr>
+                            </tbody></table>
                             <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                 <thead>
                                     <tr>
@@ -72,9 +82,115 @@
     <!-- end row -->
 
 </div> <!-- container -->
+<div class="modal fade" id="modal-upload-sertifikat" tabindex="-1" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg loading authentication-bg">
+        <div class="modal-content bg-transparent">
+        <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-7 col-lg-5">
+                        <div class="card">
+                            <div class="modal-header" style="background-color: goldenrod">
+                                <div style="color: white"><h4>Upload Bukti Sertifikat</h4></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                            </div>
+                            <div class="card-body p-4">
+                                <form action="" id="form-upload-bukti-transfer" enctype="multipart/form-data" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="upload-file" class="form-label">Upload Bukti Sertifikat</label>
+                                        <input class="form-control" type="file" name="file_transfer" placeholder="" id="upload-file" required="">
+                                    </div>
+                                    
+                                    <div class="mb-3 text-center">
+                                        <button class="btn btn-primary" type="submit"> Simpan </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        </div>
+        <!-- end page -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-lihat-sertifikat" tabindex="-1" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg loading authentication-bg">
+        <div class="modal-content bg-transparent">
+        <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xxl-7 col-lg-5">
+                        <div class="card">
+                            <div class="modal-header" style="background-color: goldenrod">
+                                <div style="color: white"><h4>Upload Bukti Sertifikat</h4></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                            </div>
+                            <div class="card-body p-4">
+                                <form action="" id="form-upload-bukti-transfer" enctype="multipart/form-data" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="upload-file" class="form-label">Upload Bukti Sertifikat</label>
+                                        <input class="form-control" type="file" name="file_transfer" placeholder="" id="upload-file" required="">
+                                    </div>
+                                    
+                                    <div class="mb-3 text-center">
+                                        <button class="btn btn-primary" type="submit"> Simpan </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        </div>
+        <!-- end page -->
+    </div><!-- /.modal-dialog -->
+</div>
 @push('scripts')
 <script>
-    $(function(){
+    $('body').on('click', '#upload-sertifikat', function () {
+        var id = $(this).data('id');
+        $('#form-upload-bukti-transfer').attr("action",`rupiah/${id}/upload-sertifikat`)
+    });
+</script>
+<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+<script>
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            var min = minDate.val();
+            var max = maxDate.val();
+            var date = new Date( data[1] );
+            console.log(date);
+    
+            if (
+                ( min === null && max === null ) ||
+                ( min === null && date <= max ) ||
+                ( min <= date   && max === null ) ||
+                ( min <= date   && date <= max )
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+    
+    $(document).ready(function() {
+        // Create date inputs
+        minDate = new DateTime($('#min'), {
+            format: 'MMMM Do YYYY'
+        });
+        maxDate = new DateTime($('#max'), {
+            format: 'MMMM Do YYYY'
+        });
+
         var table = $('.data-table').DataTable({
             "scrollX": true,
             processing: true,
@@ -99,7 +215,15 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
+
+        // Refilter the table
+        $('#min, #max').on('change', function () {
+            table.draw();
+        });
     });
 </script>
+@endpush
+@push('styles')
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css" type="text/css">
 @endpush
 @endsection

@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function(){
                 Route::put('/pengaturan_akun/{id}/edit',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_update']);
                 Route::post('/pengaturan_akun',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun']);
             });
-            Route::group(['prefix'=>'users_anggota'], function(){
+            Route::group(['prefix'=>'users_anggota','middleware'=>'UsersAnggotaAccess'], function(){
                 Route::get('/data_verifikasi_akun',[App\Http\Controllers\Admin\UsersAnggotaController::class,'data_verifikasi_akun_page']);
                 Route::get('/data_verifikasi_akun/{id}/edit',[App\Http\Controllers\Admin\UsersAnggotaController::class,'data_verifikasi_akun_edit']);
                 Route::put('/data_verifikasi_akun/{id}/edit',[App\Http\Controllers\Admin\UsersAnggotaController::class,'data_verifikasi_akun_update']);
@@ -82,7 +82,7 @@ Route::middleware('auth')->group(function(){
                 Route::get('/akses_area_anggota',[App\Http\Controllers\Admin\UsersAnggotaController::class,'akses_area_anggota_page']);
     
             });
-            Route::group(['prefix'=>'master'], function(){
+            Route::group(['prefix'=>'master','middleware'=>'MasterAccess'], function(){
                 // perwada
                 Route::get('/perwada',[App\Http\Controllers\Admin\MasterController::class,'perwada_page']);
                 Route::get('/perwada/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'perwada_edit']);
@@ -116,7 +116,7 @@ Route::middleware('auth')->group(function(){
                 Route::put('/item_emas/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'item_emas_update']);
                 Route::post('/item_emas',[App\Http\Controllers\Admin\MasterController::class,'item_emas_add']);
             });
-            Route::group(['prefix'=>'daftar_usaha'], function(){
+            Route::group(['prefix'=>'daftar_usaha','middleware'=>'DaftarUsahaAccess'], function(){
                 Route::get('/usaha_basis_emas',[App\Http\Controllers\Admin\DaftarUsahaController::class,'usaha_basis_emas_page'])->name('admin.usaha_basis_emas');
                 Route::get('/usaha_basis_rupiah',[App\Http\Controllers\Admin\DaftarUsahaController::class,'usaha_basis_rupiah_page'])->name('admin.usaha_basis_rupiah');
                 Route::get('/usaha_basis_emas/create',[App\Http\Controllers\Admin\DaftarUsahaController::class,'create_usaha_basis_emas_page']);
@@ -128,8 +128,9 @@ Route::middleware('auth')->group(function(){
                 Route::get('/usaha_basis_rupiah/{id}/edit',[App\Http\Controllers\Admin\DaftarUsahaController::class,'edit_usaha_basis_rupiah_page']);
                 Route::put('/usaha_basis_rupiah/{id}/edit',[App\Http\Controllers\Admin\DaftarUsahaController::class,'update_usaha_basis_rupiah']);
                 Route::get('/laporan',[App\Http\Controllers\Admin\DaftarUsahaController::class,'laporan_page']);
+                Route::post('/ckeditor/upload', [App\Http\Controllers\Admin\CKEditorController::class,'upload'])->name('ckeditor.image-upload');
             });
-            Route::group(['prefix'=>'pengajuan_dsyirkah'], function(){
+            Route::group(['prefix'=>'pengajuan_dsyirkah','middleware'=>'PengajuanAccess'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\PengajuanController::class,'emas_index']);
                 Route::get('/emas/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_emas']);
@@ -156,7 +157,7 @@ Route::middleware('auth')->group(function(){
                 Route::get('/rupiah/reject/export',[App\Http\Controllers\Admin\PengajuanController::class,'export_rupiah_reject']);
                 Route::get('/rupiah/reject/restore/{id}',[App\Http\Controllers\Admin\PengajuanController::class,'restore_pengajuan_rupiah']);
             });
-            Route::group(['prefix'=>'dsyirkah_aktif'], function(){
+            Route::group(['prefix'=>'dsyirkah_aktif','middleware'=>'AktifAccess'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_index']);
                 Route::get('/emas/export',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'export_emas']);
@@ -172,10 +173,10 @@ Route::middleware('auth')->group(function(){
                 Route::post('/rupiah/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approve']);
                 Route::post('/rupiah/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_stop']);
             });
-            Route::group(['prefix'=>'reakad_dsyirkah'], function(){
+            Route::group(['prefix'=>'reakad_dsyirkah','middleware'=>'ReakadAccess'], function(){
     
             });
-            Route::group(['prefix'=>'dsyirkah_nonaktif'], function(){
+            Route::group(['prefix'=>'dsyirkah_nonaktif','middleware'=>'NonAktifAccess'], function(){
                 // emas
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_index']);
                 Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_approval']);

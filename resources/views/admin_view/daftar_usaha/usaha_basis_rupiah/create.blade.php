@@ -37,12 +37,12 @@
                                             </div>
                                             <div>
                                                 <h5>Profile Usaha</h5>
-                                                <textarea name="profil_usaha" class="form-control" id="profil_usaha" cols="100" rows="10">@if(isset($usaha)){{$usaha->profil}}@else{{ old('profil_usaha') }}@endif</textarea>
+                                                <textarea name="profil_usaha" class="ckeditor form-control" id="profil_usaha" cols="100" rows="10">@if(isset($usaha)){{$usaha->profil}}@else{{ old('profil_usaha') }}@endif</textarea>
                                             </div><br>
 
                                             <div>
                                                 <h5>Legalitas</h5>
-                                                <textarea name="legalitas" class="form-control" id="legalitas" cols="100" rows="10">@if(isset($usaha)){{$usaha->legalitas}}@else{{ old('legalitas') }}@endif</textarea>
+                                                <textarea name="legalitas" class="ckeditor form-control" id="legalitas" cols="100" rows="10">@if(isset($usaha)){{$usaha->legalitas}}@else{{ old('legalitas') }}@endif</textarea>
                                             </div><br>
 
                                         </div> <!-- end card-body-->
@@ -233,11 +233,11 @@
                     </div> <!-- container -->
                 </div> <!-- content -->
         @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <script src="/assets/js/vendor/dropzone.min.js"></script>
         <!-- init js -->
         <script src="/assets/js/ui/component.fileupload.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
         <script>
             $(function() {
                 $('#checkMuqayyadah').change(function(){
@@ -245,6 +245,9 @@
                     $('.' + $(this).val()).show();
                 })
             })
+            $(document).ready(function () {
+                $('.ckeditor').ckeditor();
+            });
         </script>
         @endpush
 @endsection

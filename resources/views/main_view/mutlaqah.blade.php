@@ -66,7 +66,7 @@
                             <img src="/images/{{$data->thumbnail}}" width="250" height="400" class="card-img-top" alt="...">
                             <div class="card-body">
                                     <p><b>Kategori Usaha: </b> {{$data->jenis_usaha}}</p>
-                                  <p class="card-text">{{ Str::limit($data->profil,150)}}</p>
+                                  <p class="card-text">{!! Str::limit($data->profil,150) !!}</p>
                                   <p><b>Kebutuhan: </b>@if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}} @endif</p>
                             <div class="d-grid">
                                     <a href="/mutlaqah/usaha/{{$data->id}}" class="btn btn-lg font-16 btn-primary" id="btn-Wa-center">Lihat Detail </a>

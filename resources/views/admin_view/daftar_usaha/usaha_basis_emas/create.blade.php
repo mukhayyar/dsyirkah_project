@@ -42,12 +42,12 @@
                                         </div>
                                         <div>
                                             <h5>Profile Usaha</h5>
-                                            <textarea name="profil_usaha" class="form-control" id="profil_usaha" cols="100" rows="10">@if(isset($usaha)){{$usaha->profil}}@else{{ old('profil_usaha') }}@endif</textarea>
+                                            <textarea name="profil_usaha" class="ckeditor form-control" id="profil_usaha" cols="100" rows="10">@if(isset($usaha)){{$usaha->profil}}@else{{ old('profil_usaha') }}@endif</textarea>
                                         </div><br>
 
                                         <div>
                                             <h5>Legalitas</h5>
-                                            <textarea name="legalitas" class="form-control" id="legalitas" cols="100" rows="10">@if(isset($usaha)){{$usaha->legalitas}}@else{{ old('legalitas') }}@endif</textarea>
+                                            <textarea name="legalitas" class="ckeditor form-control" id="legalitas" cols="100" rows="10">@if(isset($usaha)){{$usaha->legalitas}}@else{{ old('legalitas') }}@endif</textarea>
                                         </div><br>
 
                                     </div> <!-- end card-body-->
@@ -238,6 +238,7 @@
                     </div> <!-- container -->
                 </div> <!-- content -->
         @push('scripts')
+        <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <!-- plugin js -->
         <script src="/assets/js/vendor/dropzone.min.js"></script>
         <!-- init js -->

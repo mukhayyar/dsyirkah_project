@@ -34,7 +34,7 @@
                         <img src="/images/{{$data->thumbnail}}" class="card-img-top" alt="...">
                         <div class="card-body">
                                 <p><b>Kategori Usaha: </b> {{$data->jenis_usaha}}</p>
-                              <p class="card-text">{{Str::limit($data->profil,150)}}</p>
+                              <p class="card-text">{!!Str::limit($data->profil,150)!!}</p>
                               <p><b>Kebutuhan: </b> @if(isset($data->kebutuhan_emas)) {{number_format($data->kebutuhan_emas,2,",",".")." Gram"}} @else {{"Rp. ".number_format($data->kebutuhan_rupiah,2,",",".")}}@endif</p>
                               <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: {{$data->capaian_percent()}}%;" aria-valuenow="{{$data->capaian_percent()}}" aria-valuemin="0" aria-valuemax="100">Capaian {{$data->capaian_percent()}}%</div>
