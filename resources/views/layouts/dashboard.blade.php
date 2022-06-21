@@ -53,7 +53,8 @@
                 <div class="h-100" id="leftside-menu-container" data-simplebar>
                     @php
                     $users_dashboard_access = ["Administrator"];
-                    $users_anggota_access = ["Administrator","Teller OPR","Admin","Admin IT"];
+                    $users_anggota_access = ["Administrator","Admin IT"];
+                    $pengaturan_akun_anggota_access = ["Administrator","Teller OPR","Admin","Admin IT"];
                     $master_access = ["Administrator","Admin IT"];
                     $daftar_usaha_access = ["Administrator","Admin IT","Manager"];
                     $pengajuan_access = ["Administrator","Teller OPR","Admin","Manager","Admin Perwada"];
@@ -101,7 +102,7 @@
                                 <span> Data Verifikasi Akun </span>
                             </a>
                         </li>
-
+                        
                         <li class="side-nav-item">
                             <a href="/admin/users_anggota/pengaturan_akun" class="side-nav-link">
                                 <i class="uil-users-alt"></i>
@@ -115,6 +116,18 @@
                                 <i class="uil-user-square"></i>
                                 <span class="badge bg-info float-end">2</span>
                                 <span> Akses Area Anggota </span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if(in_array(Auth::user()->role,$pengaturan_akun_anggota_access))
+                        <li class="side-nav-title side-nav-item">Users Anggota</li>
+
+                        <li class="side-nav-item">
+                            <a href="/admin/users_anggota/pengaturan_akun" class="side-nav-link">
+                                <i class="uil-users-alt"></i>
+                                <span class="badge bg-primary float-end">1</span>
+                                <span> Pengaturan Akun </span>
                             </a>
                         </li>
                         @endif
