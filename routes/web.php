@@ -62,10 +62,12 @@ Route::middleware('auth')->group(function(){
             Route::group(['prefix'=>'users_dashboard'], function(){
                 Route::get('/ganti_sandi',[App\Http\Controllers\Admin\UsersDashboardController::class,'ganti_sandi_page'])->name('ganti_sandi_page');
                 Route::post('/ganti_sandi',[App\Http\Controllers\Admin\UsersDashboardController::class,'ganti_sandi'])->name('ganti_sandi');
-                Route::get('/pengaturan_akun',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_page']);
-                Route::get('/pengaturan_akun/{id}/edit',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_edit']);
-                Route::put('/pengaturan_akun/{id}/edit',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_update']);
-                Route::post('/pengaturan_akun',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun']);
+                Route::group(['middleware'=>'UsersDashboardAccess'], function(){
+                    Route::get('/pengaturan_akun',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_page']);
+                    Route::get('/pengaturan_akun/{id}/edit',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_edit']);
+                    Route::put('/pengaturan_akun/{id}/edit',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun_update']);
+                    Route::post('/pengaturan_akun',[App\Http\Controllers\Admin\UsersDashboardController::class,'pengaturan_akun']);
+                });
             });
             Route::group(['prefix'=>'users_anggota','middleware'=>'UsersAnggotaAccess'], function(){
                 Route::get('/data_verifikasi_akun',[App\Http\Controllers\Admin\UsersAnggotaController::class,'data_verifikasi_akun_page']);
