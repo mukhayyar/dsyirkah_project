@@ -53,6 +53,7 @@ class PengajuanController extends Controller
         $pengajuan->nominal = str_replace(".","",$request->nominal);
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_pengajuan = $request->catatan;
+        $pengajuan->created_at = $request->today;
         $pengajuan->save();
         return redirect('/transaction')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
     }
@@ -94,6 +95,7 @@ class PengajuanController extends Controller
         $pengajuan->total_gramasi = $request->total_jumlah_emas;
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
         $pengajuan->catatan_pengajuan = $request->catatan;
+        $pengajuan->created_at = $request->today;
         $pengajuan->save();
         $length = count($request->item_emas);
         for($i =0; $i <$length;$i++)
