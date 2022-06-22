@@ -216,8 +216,8 @@
                 {data: 'nama_karyawan', name: 'nama_karyawan', orderSequence:['asc']},
                 {data: 'user_name', name: 'user_name', orderSequence:['asc']},
                 {data: 'email', name: 'email', orderSequence:['asc']},
-                {data: 'kantor', name: 'kantor', orderSequence:['asc']},
                 {data: 'jabatan', name: 'jabatan', orderSequence:['asc']},
+                {data: 'kantor', name: 'kantor', orderSequence:['asc']},
                 {data: 'user.role', name: 'user.role', orderSequence:['asc']},
                 {data: 'status', name: 'status', orderSequence:['asc']},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -288,6 +288,7 @@
                 $('#CustomerForm').trigger("reset");
                 $('#modal-tambahakun-admin').modal('hide');
                 table.draw();
+                $('#editBtn').html('Edit');
             },
             error: function (data) {
                 console.log('Error:', data);

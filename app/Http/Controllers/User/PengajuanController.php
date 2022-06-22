@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Models\PengajuanEmas;
+use Intervention\Image\Facades\Image;
 use App\Models\PengajuanRupiah;
 use App\Models\PerpanjanganRupiah;
 use App\Http\Controllers\Controller;
@@ -21,14 +22,14 @@ class PengajuanController extends Controller
             $pengajuan->bukti_transfer = $name;
         }
         // ttd
-        $folderPath = public_path('images\data_penting\tanda_tangan\\');
+        $folderPath = public_path().'/images/data_penting/tanda_tangan/';
         $image_parts = explode(";base64,",$request->signed);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
         $filename = uniqid() . '.'.$image_type;
         $file = $folderPath . $filename;
-        file_put_contents($file, $image_base64);
+        file_put_contents($file,$image_base64);
         $pengajuan->ttd = $filename;
         //jangka watu
         if($request->jangka_waktu){
@@ -62,14 +63,14 @@ class PengajuanController extends Controller
         // dd($request->all());
         $pengajuan = new PengajuanEmas;
         // ttd
-        $folderPath = public_path('images\data_penting\tanda_tangan\\');
+        $folderPath = public_path().'/images/data_penting/tanda_tangan/';
         $image_parts = explode(";base64,",$request->signed);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
         $filename = uniqid() . '.'.$image_type;
         $file = $folderPath . $filename;
-        file_put_contents($file, $image_base64);
+        file_put_contents($file,$image_base64);
         $pengajuan->ttd = $filename;
         //jangka watu
 
