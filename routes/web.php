@@ -34,7 +34,7 @@ Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class,'l
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class,'register']);
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'login'])->name('login_user');
 Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth','checkStatus'])->group(function(){
     Route::get('/api/versi/bulan/{id}', [App\Http\Controllers\User\PageController::class,'cari_bulan']);
     Route::get('/api/versi/nisbah/{id}', [App\Http\Controllers\User\PageController::class,'cari_nisbah']);
     Route::middleware('IsUser')->group(function(){

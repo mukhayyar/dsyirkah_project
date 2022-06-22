@@ -73,5 +73,6 @@ class Kernel extends HttpKernel
         'ReakadAccess' => \App\Http\Middleware\ReakadAccess::class,
         'UsersAnggotaAccess' => \App\Http\Middleware\UsersAnggotaAccess::class,
         'UsersDashboardAccess' => \App\Http\Middleware\UsersDashboardAccess::class,
+        'checkStatus' => \App\Http\Middleware\CheckStatus::class,
     ];
 }
