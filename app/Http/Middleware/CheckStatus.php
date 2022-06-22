@@ -24,8 +24,8 @@ class CheckStatus
         Auth::logout();
 
         if(auth()->user()->role == "user"){
-            return redirect('landing_page')->with('success','Akun sudah nonaktif');
+            return redirect('landing_page')->with('error','Akun sudah nonaktif');
         }
-        return redirect('login')->with('success','Akun sudah nonaktif');
+        return redirect('login')->with('error','Akun sudah nonaktif');
     }
 }

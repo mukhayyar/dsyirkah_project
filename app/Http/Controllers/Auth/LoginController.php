@@ -34,7 +34,7 @@ class LoginController extends Controller
     {
         if(Auth::user()->role != 'User')
         {
-            if(Auth::user()->status){
+            if(Auth::user()->status == 1){
                 return RouteServiceProvider::ADMIN;
             } else {
                 csrf_token();
@@ -44,7 +44,7 @@ class LoginController extends Controller
                 return route('login');
             }
         } else {
-            if(Auth::user()->status)
+            if(Auth::user()->status == 1)
             {
                 return RouteServiceProvider::USER;
             } else {
