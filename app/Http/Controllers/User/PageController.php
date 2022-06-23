@@ -82,7 +82,7 @@ class PageController extends Controller
         $anggota->kecamatan_domisili = $request->kecamatan_dom;
         $anggota->kelurahan_domisili = $request->kelurahan_dom;
         $anggota->save();
-        return redirect()->back();
+        return redirect("/transaction");
     }
     public function cari_bulan($id)
     {
