@@ -21,7 +21,7 @@ class DsyirkahAktifController extends Controller
          if($request->ajax()) {
             $data = PengajuanEmas::with('rincian_pengajuan_emas','anggota','versi')->where([
                 ['status','=','Approved']
-            ])->get();
+            ])->orderBy("created_at","desc")->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl_persetujuan',function($row){
@@ -118,7 +118,7 @@ class DsyirkahAktifController extends Controller
         if($request->ajax()) {
             $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
                 ['status','=','Approved']
-            ])->get();
+            ])->orderBy("created_at","desc")->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('nominal',function($row){

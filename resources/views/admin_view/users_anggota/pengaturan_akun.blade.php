@@ -245,38 +245,6 @@
             }); 
         })
         });
-        $('body').on('click', '.viewAkun', function () {
-        var id_akun = $(this).data('id');
-        $.get("pengaturan_akun" +'/' + id_akun +'/view', function (data) {
-            $('#modalHeading').html("Lihat Akun");
-            $('#modal-tambahakun-anggota').modal('show');
-            $('#no_ba').val(data.nomor_ba);
-            $('#fullNameAdd').val(data.nama_lengkap);
-            $('#noHpAdd').val(data.no_hp);
-            $('#emailAdd').val(data.email);
-            $('#cari-nomor-ba').css("display","none");
-            $(`#status-div`).css("display","none");
-            $(`#password`).css("display","none");
-            $(`#passwordConf`).css("display","none");
-            $(`#saveBtn`).css("display","none");
-            $('body').on('click','.btn-close',function() {
-                $('#cari-nomor-ba').css("display","block");
-                $(`#status-div`).css("display","block");
-                $(`#password`).css("display","block");
-                $(`#passwordConf`).css("display","block");
-                $('#saveBtn').css("display","block");
-                $('#editBtn').css("display","none");
-                $('#modalHeading').html("Tambah Akun Anggota");
-                $('#saveBtn').html("Tambah");
-                $('#cari-nomor-ba').css("display","block");
-                $('#no_ba').val('');
-                $('#fullNameAdd').val('');
-                $('#noHpAdd').val('');
-                $('#emailAdd').val('');
-                $(`#statusAdd option[value=${data.status}]`).attr('selected','');
-            }); 
-        })
-        });
         $('#cari').click(function(e){
             e.preventDefault();
             $(this).html('Mencari...');

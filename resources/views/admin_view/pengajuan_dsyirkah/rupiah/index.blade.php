@@ -92,7 +92,6 @@
                 </div> <!-- content -->
 @push('scripts')
 <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
-
 <script>
     $.fn.dataTable.ext.search.push(
         function( settings, data, dataIndex ) {

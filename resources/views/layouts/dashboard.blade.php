@@ -54,7 +54,7 @@
                     @php
                     $users_dashboard_access = ["Administrator"];
                     $users_anggota_access = ["Administrator","Admin IT"];
-                    $pengaturan_akun_anggota_access = ["Administrator","Teller OPR","Admin","Admin IT"];
+                    $pengaturan_akun_anggota_access = ["Teller OPR","Admin"];
                     $master_access = ["Administrator","Admin IT"];
                     $daftar_usaha_access = ["Administrator","Admin IT","Manager"];
                     $pengajuan_access = ["Administrator","Teller OPR","Admin","Manager","Admin Perwada"];

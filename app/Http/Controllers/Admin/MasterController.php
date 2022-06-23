@@ -48,7 +48,7 @@ class MasterController extends Controller
     public function perwada_add(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'kode' => ['required', 'string', 'max:5'],
+            'kode' => ['required', 'string', 'max:5','unique:perwada'],
             'nama' => ['required', 'string', 'max:255'],
             'wilayah' => ['required', 'string', 'max:255'],
             'status' => ['required', 'string'],

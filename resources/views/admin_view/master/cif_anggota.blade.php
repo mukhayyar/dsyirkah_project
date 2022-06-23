@@ -669,6 +669,7 @@
             $('#modal-tambah-datacif').modal('show');
             $('#cari').css('display','none');
             $('#no_ba').val(data.nomor_ba);
+            $('#no_ba').attr("readonly","readonly");
             $('#fullNameAdd').val(data.nama_lengkap);
             $('#noHpAdd').val(data.no_hp);
             $('#emailAdd').val(data.email);
@@ -706,6 +707,7 @@
                 $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','');
                 $('#tempat_lahir').val('');
                 $('#tanggal_lahir').val('');
+                 $('#no_ba').removeAttr("readonly");
                 $(`#status_nikah option[value=${data.nikah}]`).attr('selected','');
                 $('#npwp').val('');
                 $('#alamat_ktp').val('');

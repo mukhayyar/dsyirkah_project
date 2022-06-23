@@ -45,7 +45,7 @@ class MasterVersiController extends Controller
     }
     public function versi_update(Request $request,$id){
         $versi = VersiProduk::with('nisbah_versi_produk_syirkah')->find($id);
-        $versi->versi;
+        $versi->versi = $request->versi;
         $versi->save();
         $bulan = $request->bulan;
         $nisbah = $request->nisbah;
@@ -56,7 +56,7 @@ class MasterVersiController extends Controller
             $update_versi_nisbah->nisbah = $nisbah[$i];
             $update_versi_nisbah->save();
         }
-        return response()->json($update_versi_nisbah);
+        return response()->json($versi);
     }
     public function muqayyadah_rupiah_index(Request $request)
     {

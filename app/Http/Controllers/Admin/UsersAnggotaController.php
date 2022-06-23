@@ -49,7 +49,7 @@ class UsersAnggotaController extends Controller
     public function data_verifikasi_akun_add(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'no_ba' => ['required', 'string', 'max:24'],
+            'no_ba' => ['required', 'string', 'max:24','unique:anggota'],
             'nama' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'string', 'max:16'],
             'email' => ['required', 'email', 'unique:anggota'],
@@ -108,8 +108,7 @@ class UsersAnggotaController extends Controller
                     return $btn;
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon viewAkun"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn = $btn.'<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon editAkun"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = '<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon editAkun"> <i class="mdi mdi-square-edit-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['reset_sandi','action','status'])

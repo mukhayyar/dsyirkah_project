@@ -100,7 +100,7 @@ class PageController extends Controller
     {
         $user_id = Auth::user()->id;
         $check_lengkap_data = Anggota::where('user_id',$user_id)->first('no_ktp');
-        $usaha = Usaha::where('jenis_akad','muqayyadah')->latest()->paginate(3);
+        $usaha = Usaha::where('jenis_akad','muqayyadah')->latest()->paginate(9);
         return view('main_view/muqayyadah',compact('usaha','check_lengkap_data')); 
     }
     
@@ -111,7 +111,7 @@ class PageController extends Controller
         $usaha = Usaha::where([
             ['jenis_akad','mutlaqah'],
             ['status_post','Posting'],
-        ])->latest()->paginate(3);
+        ])->latest()->paginate(9);
         $target_rupiah = DB::table('usaha_syirkah')->where('jenis_akad','mutlaqah')->sum('kebutuhan_rupiah');
         $bagian_target_rupiah = DB::table('pengajuan_rupiah_syirkah')->where([
             ['jenis_syirkah','Mutlaqah'],
