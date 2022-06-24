@@ -33,10 +33,10 @@
                 <!-- LOGO -->
                 <a href="/admin/dashboard" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="/assets/images/logo.png" alt="" height="16">
+                        <img src="/assets/images/logo.png" alt="" height="70">
                     </span>
                     <span class="logo-sm">
-                        <img src="/assets/images/logo_sm.png" alt="" height="16">
+                        <img src="/assets/images/logo_sm.png" alt="" height="25">
                     </span>
                 </a>
 
@@ -484,23 +484,24 @@
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
 
                                 <div class="p-2">
+                                    
                                     <div class="row g-0">
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="/assets/images/brands/slack.png" alt="slack">
-                                                <span>Slack</span>
+                                                <img src="/assets/images/brands/usermanagement.png" alt="slack">
+                                                <span>Users</span>
                                             </a>
                                         </div>
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="/assets/images/brands/github.png" alt="Github">
-                                                <span>GitHub</span>
+                                                <img src="/assets/images/brands/dashboard.png" alt="Github">
+                                                <span>Dashboard</span>
                                             </a>
                                         </div>
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="/assets/images/brands/dribbble.png" alt="dribbble">
-                                                <span>Dribbble</span>
+                                                <img src="/assets/images/brands/masterdata.png" alt="dribbble">
+                                                <span>Master Data</span>
                                             </a>
                                         </div>
                                     </div>
@@ -508,20 +509,77 @@
                                     <div class="row g-0">
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="/assets/images/brands/bitbucket.png" alt="bitbucket">
-                                                <span>Bitbucket</span>
+                                                <img src="/assets/images/brands/syirkah.png" alt="slack">
+                                                <span>DSyirkah</span>
                                             </a>
                                         </div>
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="/assets/images/brands/dropbox.png" alt="dropbox">
-                                                <span>Dropbox</span>
+                                                <img src="/assets/images/brands/gtc.png" alt="Github">
+                                                <span>GTC</span>
                                             </a>
                                         </div>
                                         <div class="col">
                                             <a class="dropdown-icon-item" href="#">
-                                                <img src="/assets/images/brands/g-suite.png" alt="G Suite">
-                                                <span>G Suite</span>
+                                                <img src="/assets/images/brands/pembiayaan.png" alt="dribbble">
+                                                <span>Pembiayaan</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/assets/images/brands/anggota.png" alt="slack">
+                                                <span>Anggota</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/assets/images/brands/event.png" alt="Github">
+                                                <span>Event</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/assets/images/brands/listform.png" alt="dribbble">
+                                                <span>List Form</span>
+                                            </a>
+                                        </div>
+                                    </div><hr>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/assets/images/brands/transaksi.png" alt="slack">
+                                                <span>Transaksi</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/assets/images/brands/sertifikat.png" alt="Github">
+                                                <span>Sertifikat</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="/assets/images/brands/mobile.png" alt="dribbble">
+                                                <span>Mobile</span>
+                                            </a>
+                                        </div>
+                                    </div><hr>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="https://eoaclub.id/webmail" target="_blank">
+                                                <img src="/assets/images/brands/mail.png" alt="bitbucket">
+                                                <span>Email</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="https://eoaclub.id/" target="_blank">
+                                                <img src="/assets/images/brands/website.png" alt="dropbox">
+                                                <span>Website</span>
                                             </a>
                                         </div>
                                     </div> <!-- end row-->

@@ -27,35 +27,42 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <!-- Hanya Sementara -->
-                                        <div class="card-body col-lg-7">
-                                            <h6>Keterangan</h6>
-                                            <p>1. Tambah Filter tanggal per periode</p>
-                                            <p>2. </p>
-                                        </div>
-
+                                        
                                         <div class="row mb-2">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <a href="emas/reject" class="btn btn-danger mb-2"><i class="mdi mdi-delete-alert"></i> Data Riject</a>
                                                 <a href="emas/export" target="_blank" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                                             </div>
+                                            <div class="col-sm-3">
+                                                <div class="row mb-3">
+                                                    <label for="colFormLabelSm" class="col-4 col-form-label">Min. Date:</label>
+                                                    <div class="col-8">
+                                                        <input class="form-control form-control-sm" type="text" id="min" name="min">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="row mb-3">
+                                                    <label for="colFormLabelSm" class="col-4 col-form-label">Max. Date:</label>
+                                                    <div class="col-8">
+                                                        <input class="form-control form-control-sm" type="text" id="max" name="max">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row mb-2">
-                                            
-                                        </div>
-                
+                                        
                                         <div class="tab-content">
                                             <div class="tab-pane show active" id="scroll-horizontal-preview">
-                                                <table cellspacing="5" cellpadding="5" border="0">
+                                                {{-- <table cellspacing="5" cellpadding="5" border="0">
                                                     <tbody><tr>
-                                                        <td>Minimum date:</td>
-                                                        <td><input type="text" id="min" name="min"></td>
+                                                        <td><label class="form-label">Min. Date:</label></td>
+                                                        <td><input class="form-control" type="text" id="min" name="min"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Maximum date:</td>
-                                                        <td><input type="text" id="max" name="max"></td>
+                                                        <td><label class="form-label">Max. Date:</label></td>
+                                                        <td><input class="form-control" type="text" id="max" name="max"></td>
                                                     </tr>
-                                                </tbody></table>
+                                                </tbody></table> --}}
                                                 <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                                     <thead>
                                                         <tr>

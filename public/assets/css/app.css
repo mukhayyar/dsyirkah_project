@@ -22811,3 +22811,13 @@ body[data-layout-color=dark] .gantt .bar-label, body[data-layout-color=dark] .ga
 body[data-layout-color=dark] .gantt .today-highlight {
   fill: #464f5b;
 }
+
+.hero-image {
+  background-image: url(../images/layouts/homeheader.jpg);
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

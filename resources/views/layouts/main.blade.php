@@ -19,12 +19,12 @@
     <body class="loading" data-layout-config='{"darkMode":false}' >
 
         <!-- NAVBAR START -->
-        <nav class="navbar sticky-top navbar-expand-lg py-lg-3 navbar-dark" style="background-color: rgb(38, 105, 252);" >
+        <nav class="navbar sticky-top navbar-expand-lg py-lg-3 navbar-dark" style="background-color: #a3610a" >
             <div class="container">
 
                 <!-- logo -->
                 <a href="/" class="navbar-brand me-lg-5">
-                    <img src="/assets/images/logo.png" alt="" class="logo-dark" height="18" />
+                    <img src="/assets/images/logosyirkah.png" alt="" class="logo-dark" height="25" />
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -337,45 +337,53 @@
         </div><!-- /.modal -->
 
         <!-- START FOOTER -->
-        <footer class="bg-dark py-5">
+        <footer class="py-3 text-white"  style="background-color: #ce9462">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <img src="/assets/images/logo.png" alt="" class="logo-dark" height="18" />
-                        <p class="text-muted mt-4">Hyper makes it easier to build better websites with
-                            <br> great speed. Save hundreds of hours of design
-                            <br> and development by using it.</p>
-                        <ul class="social-list list-inline mt-3">
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item text-center">
-                                <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                            </li>
-                        </ul>
+                        <div class="text-left">
+                            <h3>EOA CLUB D'Syirkah</h3><br>
+                            <h4>Dsftsr D'Syirkah</h4>
+                            <p>Sekarang juga di media sosial kami</p>
+                        </div>
+                        <div class="">
+                            <a href="https://www.facebook.com/eoaclubofficialaccount/" class="navbar-brand me-lg-3">
+                                <img src="/assets/images/sosmed/facebook.png" alt="" class="logo-dark" height="40">
+                            </a>
+                            <a href="https://www.instagram.com/eoaclubofficial/" class="navbar-brand me-lg-3">
+                                <img src="/assets/images/sosmed/instagram.png" alt="" class="logo-dark" height="40">
+                            </a>
+                            <a href="/" class="navbar-brand me-lg-3">
+                                <img src="/assets/images/sosmed/twitter.png" alt="" class="logo-dark" height="40">
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC7P9jYfWSoCJ0OGnW-pRvvA" class="navbar-brand me-lg-3">
+                                <img src="/assets/images/sosmed/youtube.png" alt="" class="logo-dark" height="40">
+                            </a>
+                        </div>
+                        <div class="text-left py-4">
+                            <h4>Informasi lebih lanjut</h4>
+                            <p>(WA CS)</p>
+                            <a href="https://wa.me/6281219974532" class="navbar-brand me-lg-3">
+                                <img src="/assets/images/sosmed/whatsapp.png" alt="" class="logo-dark" height="40">
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-4 mt-3 mt-lg-0">
-                        <h5 class="text-light">Company</h5>
-                        <ul class="list-unstyled ps-0 mb-0 mt-3">
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">About Us</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Documentation</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Blog</a></li>
-                            <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Affiliate Program</a></li>
+                    <div class="col-lg-2 col-md-4 mt-3 mt-lg-0 text-white">
+                        <h4 class="">Company</h4><hr>
+                        <ul class="list-unstyled ps-0 mb-0 mt-3 text-white">
+                            <li class="mt-2"><a href="" class="text-white">About Us</a></li>
+                            <li class="mt-2"><a href="" class="text-white">Documentation</a></li>
+                            <li class="mt-2"><a href="" class="text-white">Blog</a></li>
+                            <li class="mt-2"><a href="" class="text-white">Affiliate Program</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="mt-5">
-                            <p class="text-muted mt-4 text-center mb-0">© 2022 - <script>document.write(new Date().getFullYear())</script> EOA Club | D'Syirkah. KSPPS Simpul Berkah Sinergi
+                        <div class="mt-3">
+                            <p class="text-white mt-4 text-center mb-0">© 2022 - <script>document.write(new Date().getFullYear())</script> EOA Club | D'Syirkah. KSPPS Simpul Berkah Sinergi
                                 </p>
                         </div>
                     </div>

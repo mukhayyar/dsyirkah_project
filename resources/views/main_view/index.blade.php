@@ -1,31 +1,42 @@
 @extends('layouts.main')
 @section('content')
+
         <!-- START HERO -->
-        <section class="hero-section" style="background-color: rgb(48, 113, 252);" >
-            <div class="container" >
+        <div class="hero-section py-0" style="background-color: #dea057">
+            <div class="container">
                 <div class="row align-items-center" >
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="mt-md-4">
-                            <h2 class="text-white fw-normal mb-4 mt-3 hero-title">
-                                Selamat Datang di EOA Club
-                            </h2>
-                            <p class="mb-4 font-16 text-white-50">Website ini adalah layanan Produk D'Syirkah EOA Club</p>
-                            <a href="https://eoaclub.id/" target="_blank" class="btn btn-success">Detail EOA Club <i
-                                    class="mdi mdi-arrow-right ms-1"></i></a>
+                            <h1 class="text-white display-1" style="font-size: 80px">
+                                3000+
+                            </h1>
+                            <h1 class="display-6 fw-bolder" style="color: #724100">
+                                SUDAH BERGABUNG
+                            </h1>
+                            <h1 class="text-white font-20">
+                                Dalam Program D'Syirkah EOA CLUB
+                            </h1>
+                            <p class="font-16 text-white">Sebuah Program untuk membangun kekuatan ekonomi umat islam dengan berjama'ah dan saling tolong menolong 
+                                dalam mengembangkan aset harta untuk kesuksesan dunia akhirat
+                            </p>
+                            <a href="/" class="navbar-brand me-lg-3" style="z-index: 200">
+                                <img src="/assets/images/buttondsyirkah.png" alt="" class="logo-dark" height="70">
+                            </a>
                         </div>
                     </div>
-                    <div class="col-md-5 offset-md-2">
-                        <div class="text-md-end mt-3 mt-md-0">
-                            <img src="assets/images/startup.svg" alt="" class="img-fluid" />
+                    <div class="col-md-5 offset-md-2" style="position: relative; top: 75px;">
+                        <div class="text-md-end mt-3 me-lg">
+                            <img src="assets/images/headericon.png" alt="" style="image-size: 10px" />
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        
         <!-- END HERO -->
 
         <!-- START SERVICES -->
-        <section class="py-5" style="background-color: rgb(243, 243, 243);">
+        <section class="py-0" style="background-color: #ce9462">
             <div class="container">
                 <div class="row py-4">
                     <div class="col-lg-12">
