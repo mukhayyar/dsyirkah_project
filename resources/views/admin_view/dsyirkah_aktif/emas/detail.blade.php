@@ -192,7 +192,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($pengajuan->perpanjangan_rupiah as $perpanjangan)
+                                                    @foreach($pengajuan->perpanjangan_emas as $perpanjangan)
                                                     <tr>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>

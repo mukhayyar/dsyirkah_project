@@ -19,7 +19,7 @@ class DsyirkahAktifController extends Controller
 {
     public function emas_index(Request $request){
          if($request->ajax()) {
-            $data = PengajuanEmas::with('rincian_pengajuan_emas','anggota','versi')->where([
+            $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
                 ['status','=','Approved']
             ])->orderBy("created_at","desc")->get();
             return Datatables::of($data)
@@ -28,7 +28,7 @@ class DsyirkahAktifController extends Controller
                     return date('Y-m-d h:i',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
                 })
                 ->addColumn('jatuh_tempo',function($row){
-                    return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->jatuh_tempo_akan_datang));
+                    return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
