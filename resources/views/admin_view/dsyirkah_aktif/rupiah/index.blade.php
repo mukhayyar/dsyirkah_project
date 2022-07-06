@@ -200,7 +200,7 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
                 {data: 'tgl_persetujuan', name: 'tgl_persetujuan', orderSequence:['asc']},
                 {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
-                {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
+                {data: 'kode_sertifikat', name: 'kode_sertifikat', orderSequence:['asc']},
                 {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
                 {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
                 {data: 'jenis_syirkah', name: 'jenis_syirkah', orderSequence:['asc']},

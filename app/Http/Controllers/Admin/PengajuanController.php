@@ -85,6 +85,19 @@ class PengajuanController extends Controller
     public function emas_approval_store(Request $request, $id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
+        $check_no = PengajuanEmas::where([
+            ['pilihan_program','=',$pengajuan->pilihan_program],
+            ['jenis_syirkah','=',$pengajuan->jenis_syirkah],
+            ['kode_sertifikat','!=',null]
+        ])->latest()->first();
+        $pengajuan_emas = new PengajuanEmas;
+        if($pengajuan->jenis_syirkah == "Mutlaqah"){
+            $generate_no = $pengajuan_emas->generate_no_sertifikat_mt($check_no, $pengajuan);
+        } else {
+            $generate_no = $pengajuan_emas->generate_no_sertifikat_mq($check_no, $pengajuan);
+        }
+        $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
             $usaha->capaian_muqayyadah += $pengajuan->total_gramasi;
@@ -211,6 +224,19 @@ class PengajuanController extends Controller
     public function rupiah_approval_store(Request $request, $id){
         PengajuanRupiah::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
+        $check_no = PengajuanRupiah::where([
+            ['pilihan_program','=',$pengajuan->pilihan_program],
+            ['jenis_syirkah','=',$pengajuan->jenis_syirkah],
+            ['kode_sertifikat','!=',null]
+        ])->latest()->first();
+        $pengajuan_rupiah = new PengajuanRupiah;
+        if($pengajuan->jenis_syirkah == "Mutlaqah"){
+            $generate_no = $pengajuan_rupiah->generate_no_sertifikat_mt($check_no, $pengajuan);
+        } else {
+            $generate_no = $pengajuan_rupiah->generate_no_sertifikat_mq($check_no, $pengajuan);
+        }
+        $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
             $usaha->capaian_muqayyadah += $pengajuan->nominal;

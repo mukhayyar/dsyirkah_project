@@ -31,6 +31,7 @@ Route::get('password/reset', [App\Http\Controllers\Auth\ResetPasswordController:
 Route::post('password/reset', [App\Http\Controllers\Auth\ResetPasswordController::class,'reset'])->name('password.reset');
 // login route
 Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class,'login']);
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.verify');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class,'register']);
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'login'])->name('login_user');
 Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

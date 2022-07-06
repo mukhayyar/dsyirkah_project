@@ -288,120 +288,128 @@
                     <div class="col-4">
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"> </p>
+                    <div class="col-4">
+                        <p id="no_ba_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="nama_lengkap_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="no_hp_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="email_view" class="font-14"></p>
                     </div><hr>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="no_ktp_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="jenis_kelamin_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="tempat_lahir_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="tanggal_lahir_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="status_nikah_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="no_npwp_view" class="font-14"></p>
                     </div><hr>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="alamat_ktp_view" class="font-14"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="font-14"><strong>Kelurahan</strong></p>
+                    </div>
+                    <div class="col-4">
+                        <p id="kelurahan_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="kecamatan_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="kota_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="provinsi_view" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
-                    <div class="col-8">
-                        <strong>: </strong> <p id="" class="font-14"></p>
+                    <div class="col-4">
+                        <p id="alamat_tinggal_view" class="font-14"></p>
                     </div>
                 </div>
                 <div id="checkAlamatTinggalView">
@@ -409,39 +417,47 @@
                         <div class="col-4">
                             <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                         </div>
-                        <div class="col-8">
-                            <strong>: </strong> <p id="" class="font-14"></p>
+                        <div class="col-4">
+                            <p id="alamat_domisili_view" class="font-14"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="font-14"><strong>Kelurahan</strong></p>
+                        </div>
+                        <div class="col-4">
+                            <p id="kelurahan_domisili_view" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             <p class="font-14"><strong>Kecamatan</strong></p>
                         </div>
-                        <div class="col-8">
-                            <strong>: </strong> <p id="" class="font-14"></p>
+                        <div class="col-4">
+                            <p id="kecamatan_domisili_view" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                         </div>
-                        <div class="col-8">
-                            <strong>: </strong> <p id="" class="font-14"></p>
+                        <div class="col-4">
+                            <p id="kota_domisli_view" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             <p class="font-14"><strong>Provinsi</strong></p>
                         </div>
-                        <div class="col-8">
-                            <strong>: </strong> <p id="" class="font-14"></p>
+                        <div class="col-4">
+                            <p id="provinsi_domisili_view" class="font-14"></p>
                         </div><hr>
                     </div>
                 </div>
                 <div class="col-4">
                     <p class="font-14"><strong>Photo KTP</strong></p>
                 </div>
-                <img src="/images/data_penting/ktp/" alt="image" class="img-fluid rounded" width="600"/>
+                <img src="/images/data_penting/ktp/" alt="image" class="img-fluid rounded" id="show_foto_ktp_view" width="600"/>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -480,7 +496,6 @@
             var value = $(this).val()
             const myArray = value.split(",")
             let id = myArray[0]
-            console.log(id)
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi="+id,
@@ -505,7 +520,6 @@
             var value = $(this).val()
             const myArray = value.split(",")
             let id = myArray[0]
-            console.log(id)
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+id,
@@ -530,7 +544,6 @@
             var value = $(this).val()
             const myArray = value.split(",")
             let id = myArray[0]
-            console.log(id)
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan="+id,
@@ -572,7 +585,6 @@
             var value = $(this).val()
             const myArray = value.split(",")
             let id = myArray[0]
-            console.log(id)
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi="+id,
@@ -597,7 +609,6 @@
             var value = $(this).val()
             const myArray = value.split(",")
             let id = myArray[0]
-            console.log(id)
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+id,
@@ -622,7 +633,6 @@
             var value = $(this).val()
             const myArray = value.split(",")
             let id = myArray[0]
-            console.log(id)
             $.ajax({
                 type: "GET",
                 url: "https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan="+id,
@@ -693,9 +703,7 @@
                 $('#div-foto-ktp').css("display","block");
             }
             $('body').on('click','.btn-close',function() {
-                console.log('tutup')
                 $('form').attr("action","cif_anggota");
-                console.log($('form #methodPut'));
                 $('input').remove('.methodPut');
                 $('#myLargeModalLabel').html("Tambah Data CIF Anggota");
                 $('#cari').css('display','block');
@@ -722,13 +730,38 @@
         var id_akun = $(this).data('id');
         $.get("cif_anggota" +'/' + id_akun +'/edit', function (data) {
             $('#modal-view-anggota').modal("show");
+            $('#no_ba_view').text(data.nomor_ba);
+            $('#nama_lengkap_view').text(data.nama_lengkap);
+            $('#no_hp_view').text(data.no_hp);
+            $('#email_view').text(data.email);
+            $('#no_ktp_view').text(data.no_ktp);
+            $(`#jenis_kelamin_view`).text(data.jenis_kelamin);
+            $('#tempat_lahir_view').text(data.tempat_lahir);
+            $('#tanggal_lahir_view').text(data.tanggal_lahir);
+            $(`#status_nikah_view`).text(data.status_nikah);
+            $('#npwp').text(data.no_npwp);
+            $('#alamat_ktp_view').text(data.alamat_ktp);
+            $('#kelurahan_view').text(data.kelurahan_ktp);
+            $('#kecamatan_view').text(data.kecamatan_ktp);
+            $('#kota_view').text(data.kotat_ktp);
+            $('#provinsi_view').text(data.provinsi_ktp);
+            $('#alamat_tinggal_view').text(data.alamat_tinggal);
+            $('#alamat_domisili_view').text(data.alamat_domisili);
+            $('#kelurahan_domisili_view').text(data.kelurahan_domisili);
+            $('#kecamatan_domisili_view').text(data.kecamatan_domisili);
+            $('#kota_domisili_view').text(data.kota_domisili);
+            $('#provinsi_domisili_view').text(data.provinsi_domisili);
+            var image = data.foto_ktp;
+            if(image != null){
+                var result = "/images/data_penting/ktp/"+image;
+                $(`#show_foto_ktp_view`).attr('src',result);
+            }
         })
         });
         $('#cari').click(function(e){
             e.preventDefault();
             $(this).html('Mencari...');
             var no_ba = $('#no_ba').val();
-            console.log($('#no_ba').val());
             $.get("cif_anggota/" +'cari/' + no_ba, function (data,e) {
                 $(this).html('Ditemukan');
                 $('#fullNameAdd').val(data.nama_lengkap);
@@ -745,7 +778,6 @@
             data.append('username', 'Chris');
             // var files = $('#file_ktp')[0].files;
             // data.append('file_ktp',files[0]);
-            console.log(data);
             $.ajax({
                 data: $('#CustomerForm').serialize(),
                 url: "",
@@ -763,7 +795,6 @@
                     table.draw();
                 },
                 error: function (data) {
-                    console.log('Error:', data);
                     $('#saveBtn').html('Save Changes');
                 }
             });

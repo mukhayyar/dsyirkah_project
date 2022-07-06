@@ -77,4 +77,59 @@ class PengajuanEmas extends Model
     {
         return $this->hasOne(VersiProduk::class,'id','versi_syirkah');
     }
+
+    public function generate_no_sertifikat_mt($check, $pengajuan){
+        if($check)
+        {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "GTW-".$today.$kode."4";
+            } else {
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "GTR-".$today.$kode."0";
+            }
+        } else {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $today = date("dm");
+                return "GTW-".$today."3000001"."4";
+            } else {
+                $today = date("dm");
+                return "GTR-".$today."3000001"."0";
+
+            }
+        }
+    }
+    public function generate_no_sertifikat_mq($check){
+        if($check)
+        {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "GQW-".$today.$kode."6";
+            } else {
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "GQR-".$today.$kode."2";
+            }
+        } else {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $today = date("dm");
+                return "GQW-".$today."3000001"."6";
+            } else {
+                $today = date("dm");
+                return "GQR-".$today."3000001"."2";
+
+            }
+        }
+    }
 }

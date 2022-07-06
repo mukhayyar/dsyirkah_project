@@ -69,4 +69,57 @@ class PengajuanRupiah extends Model
     {
         return $this->hasOne(VersiProduk::class,'id','versi_syirkah');
     }
+    public function generate_no_sertifikat_mt($check, $pengajuan){
+        if($check)
+        {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "RTW-".$today.$kode."5";
+            } else {
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "RTW-".$today.$kode."1";
+            }
+        } else {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $today = date("dm");
+                return "RTW-".$today."3000001"."5";
+            } else {
+                $today = date("dm");
+                return "RTR-".$today."3000001"."1";
+            }
+        }
+    }
+    public function generate_no_sertifikat_mq(){
+        if($check)
+        {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "RQW-".$today.$kode."7";
+            } else {
+                $kode = substr($check->kode_sertifikat,8);
+                $kode = substr_replace($kode,"",-1);
+                $kode = (int)$kode+1;
+                $today = date("dm");
+                return "RQR-".$today.$kode."3";
+            }
+        } else {
+            if($pengajuan->pilihan_program == "pokokWakaf"){
+                $today = date("dm");
+                return "RQW-".$today."3000001"."7";
+            } else {
+                $today = date("dm");
+                return "RQR-".$today."3000001"."3";
+            }
+        }
+    }
+
 }
