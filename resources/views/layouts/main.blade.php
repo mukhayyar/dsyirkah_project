@@ -223,7 +223,7 @@
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
-                                                <input class="form-control" type="text" id="nomor_ba" name="nomor_ba" placeholder="contoh: 0.123.1234567" required>
+                                                <input class="form-control" type="text" id="nomor_ba" name="nomor_ba" placeholder="contoh: 0.123.1234567" required data-toggle="input-mask" data-mask-format="0.000.0000000">
                                             </div>
 
                                             <div class="mb-3">
