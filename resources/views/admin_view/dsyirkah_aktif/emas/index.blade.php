@@ -35,20 +35,30 @@
                         <div class="col-sm-4">
                             <a href="emas/export" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                         </div>
+                        <div class="col-sm-3">
+                            <div class="row mb-3">
+                                <label for="colFormLabelSm" class="col-4 col-form-label">Min. Date:</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" type="text" id="from_date" name="from_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="row mb-3">
+                                <label for="colFormLabelSm" class="col-4 col-form-label">Max. Date:</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" type="text" id="to_date" name="to_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+                            <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
+                        </div>
                     </div>
                     
                     <div class="tab-content">
                         <div class="tab-pane show active" id="scroll-horizontal-preview">
-                            <table cellspacing="5" cellpadding="5" border="0">
-                                <tbody><tr>
-                                    <td>Minimum date:</td>
-                                    <td><input type="text" id="min" name="min"></td>
-                                </tr>
-                                <tr>
-                                    <td>Maximum date:</td>
-                                    <td><input type="text" id="max" name="max"></td>
-                                </tr>
-                            </tbody></table>
                             <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                 <thead>
                                     <tr>

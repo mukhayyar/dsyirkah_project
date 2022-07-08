@@ -29,7 +29,7 @@
                                     <div class="card-body">
                                         
                                         <div class="row mb-2">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <a href="emas/reject" class="btn btn-danger mb-2"><i class="mdi mdi-delete-alert"></i> Data Riject</a>
                                                 <a href="emas/export" target="_blank" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                                             </div>
@@ -37,7 +37,7 @@
                                                 <div class="row mb-3">
                                                     <label for="colFormLabelSm" class="col-4 col-form-label">Min. Date:</label>
                                                     <div class="col-8">
-                                                        <input class="form-control form-control-sm" type="text" id="min" name="min">
+                                                        <input class="form-control form-control-sm" type="text" id="from_date" name="from_date">
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,9 +45,13 @@
                                                 <div class="row mb-3">
                                                     <label for="colFormLabelSm" class="col-4 col-form-label">Max. Date:</label>
                                                     <div class="col-8">
-                                                        <input class="form-control form-control-sm" type="text" id="max" name="max">
+                                                        <input class="form-control form-control-sm" type="text" id="to_date" name="to_date">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+                                                <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
                                             </div>
                                         </div>
                                         

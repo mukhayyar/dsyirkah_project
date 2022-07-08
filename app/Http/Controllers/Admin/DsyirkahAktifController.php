@@ -19,9 +19,17 @@ class DsyirkahAktifController extends Controller
 {
     public function emas_index(Request $request){
          if($request->ajax()) {
-            $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
-                ['status','=','Approved']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                    ['status','=','Approved'],
+                ])
+                ->orWhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->orderBy("created_at","desc")->get();
+            } else {
+                $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                    ['status','=','Approved']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl_persetujuan',function($row){
@@ -119,9 +127,17 @@ class DsyirkahAktifController extends Controller
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
-                ['status','=','Approved']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                    ['status','=','Approved'],
+                ])
+                ->orWhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->orderBy("created_at","desc")->get();
+            } else {
+                $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                    ['status','=','Approved']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('nominal',function($row){
@@ -224,7 +240,7 @@ class DsyirkahAktifController extends Controller
         $rincian_emas->delete();
         return response()->json(['success'=>'Data berhasil dihapus']);
     }
-    
+
     public function rupiah_perpanjangan_delete($id)
     {
         $rincian_rupiah = PerpanjanganRupiah::find($id);
