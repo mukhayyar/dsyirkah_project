@@ -562,7 +562,7 @@
                 hasil.forEach(element => {
                     value = `${element.id},${element.bulan}`;
                     if(element.bulan == oldVersi){
-                        hasilAkhir.push("<option value='"+value+"' selected>"+element.bulan+" Bulan</option>");
+                        hasilAkhir.push("<option value='"+element.bulan+"' selected>"+element.bulan+" Bulan</option>");
                         $("#jangka_waktu").val(element.nisbah);
                     } else {
                         hasilAkhir.push("<option value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
@@ -644,7 +644,7 @@
                     hasil.forEach(element => {
                         value = `${element.id},${element.bulan}`;
                         if(element.bulan == oldVersi){
-                            hasilAkhir.push("<option value='"+value+"' selected>"+element.bulan+" Bulan</option>");
+                            hasilAkhir.push("<option value='"+element.bulan+"' selected>"+element.bulan+" Bulan</option>");
                             $("#jangka_waktu").val(element.nisbah);
                         } else {
                             hasilAkhir.push("<option value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
