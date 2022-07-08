@@ -153,7 +153,7 @@
             ajax: "",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
-                {data: 'tanggal_selesai', name: 'tanggal_selesai', orderSequence:['asc']},
+                {data: 'tanggal_non_aktif', name: 'tanggal_non_aktif', orderSequence:['asc']},
                 {data: 'kode_sertifikat', name: 'kode_sertifikat', orderSequence:['asc']},
                 {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
                 {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},

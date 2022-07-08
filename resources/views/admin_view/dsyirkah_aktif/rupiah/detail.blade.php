@@ -100,11 +100,11 @@
                                         </tr>
                                         <tr>
                                             <td>Jatuh Tempo</td>
-                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
+                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                         </tr>
                                         <tr>
                                             <td>Nisbah</td>
-                                            <td>: {{$pengajuan->nisbah}}</td>
+                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
                                         </tr>
                                         <tr>
                                             <td>Alokasi Nisbah</td>

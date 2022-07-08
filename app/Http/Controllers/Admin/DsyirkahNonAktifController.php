@@ -12,7 +12,7 @@ class DsyirkahNonAktifController extends Controller
 {
     public function emas_index(Request $request){
         if($request->ajax()) {
-            $data = NonAktifEmas::with('pengajuan','anggota')->orderBy("created_at","desc")->get();
+            $data = NonAktifEmas::with('pengajuan','anggota')->orderBy("tanggal_non_aktif","desc")->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('nomor_ba',function($row){
@@ -63,7 +63,7 @@ class DsyirkahNonAktifController extends Controller
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = NonAktifRupiah::with('pengajuan','anggota')->orderBy("created_at","desc")->get();
+            $data = NonAktifRupiah::with('pengajuan','anggota')->orderBy("tanggal_non_aktif","desc")->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('nomor_ba',function($row){

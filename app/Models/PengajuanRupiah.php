@@ -53,7 +53,7 @@ class PengajuanRupiah extends Model
     }
     public function jangka_waktu()
     {
-        return $this->jangka_waktu." Bulan";
+        return $this->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jangka_waktu." Bulan";
     }
     public function status()
     {

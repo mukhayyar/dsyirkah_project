@@ -408,8 +408,9 @@
                     if(element.bulan == oldVersi){
                         hasilAkhir.push("<option value='"+value+"' selected>"+element.bulan+" Bulan</option>");
                         $("#nisbahPil").val(element.nisbah);
+                    } else {
+                        hasilAkhir.push("<option value='"+value+"'>"+element.bulan+" Bulan</option>");
                     }
-                    hasilAkhir.push("<option value='"+value+"'>"+element.bulan+" Bulan</option>");
                 });
                 $("#bulanPil").html(hasilAkhir);
             }

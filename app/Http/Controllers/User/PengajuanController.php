@@ -42,7 +42,16 @@ class PengajuanController extends Controller
         $pengajuan->slug = rand().$request->jenis.rand().$request->pilihanProgram;
         $pengajuan->anggota_id = $request->anggota_id;
         $pengajuan->status = "Pengajuan";
-        $pengajuan->no_pengajuan = $request->no_referensi;
+        if($request->jenis == "Mutlaqah"){
+            $check_no = PengajuanRupiah::where('jenis_syirkah','Mutlaqah')->latest()->first();
+            $pengajuan_rupiah = new PengajuanRupiah;
+            $generate_no = $pengajuan_rupiah->generate_no_mt($check_no);
+        } else {
+            $check_no = PengajuanRupiah::where('jenis_syirkah','Muqayyadah')->latest()->first();
+            $pengajuan_rupiah = new PengajuanRupiah;
+            $generate_no = $pengajuan_rupiah->generate_no_mq($check_no);
+        }
+        $pengajuan->no_pengajuan = $generate_no;
         $pengajuan->referensi = $request->perwada;
         $pengajuan->pilihan_program = $request->pilihanProgram;
         $pengajuan->jangka_waktu = $jangka_waktu;
@@ -84,7 +93,16 @@ class PengajuanController extends Controller
         $pengajuan->slug = rand().$request->jenis.rand().$request->pilihanProgram;
         $pengajuan->anggota_id = $request->anggota_id;
         $pengajuan->status = "Pengajuan";
-        $pengajuan->no_pengajuan = $request->no_referensi;
+        if($request->jenis == "Mutlaqah"){
+            $check_no = PengajuanEmas::where('jenis_syirkah','Mutlaqah')->latest()->first();
+            $pengajuan_emas = new PengajuanEmas;
+            $generate_no = $pengajuan_emas->generate_no_mt($check_no);
+        } else {
+            $check_no = PengajuanEmas::where('jenis_syirkah','Muqayyadah')->latest()->first();
+            $pengajuan_emas = new PengajuanEmas;
+            $generate_no = $pengajuan_emas->generate_no_mq($check_no);
+        }
+        $pengajuan->no_pengajuan = $generate_no;
         $pengajuan->referensi = $request->perwada;
         $pengajuan->pilihan_program = $request->pilihanProgram;
         $pengajuan->jangka_waktu = $jangka_waktu;
