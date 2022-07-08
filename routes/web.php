@@ -168,6 +168,7 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::post('/emas/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approve']);
                 Route::post('/emas/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_stop']);
                 Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_detail']);
+                Route::delete('/emas/delete/perpanjangan/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_perpanjangan_delete']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_index']);
                 Route::get('/rupiah/export',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'export_rupiah']);
@@ -175,6 +176,7 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::get('/rupiah/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_detail']);
                 Route::post('/rupiah/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approve']);
                 Route::post('/rupiah/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_stop']);
+                Route::delete('/rupiah/delete/perpanjangan/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_perpanjangan_delete']);
             });
             Route::group(['prefix'=>'reakad_dsyirkah','middleware'=>'ReakadAccess'], function(){
     

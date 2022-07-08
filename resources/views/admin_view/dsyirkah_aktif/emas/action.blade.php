@@ -204,7 +204,7 @@
                                                 </tr>
                                                 </thead>
                                                     <tbody id="form_tambah_perpanjangan">
-                                                    @csrf
+                                                    <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
                                                     @foreach($pengajuan->perpanjangan_emas as $perpanjangan)
                                                     <tr id="item-{{$loop->index+1}}">
                                                         <td>{{$loop->index+1}}</td>
@@ -224,12 +224,12 @@
                                                             <input class="tambah-status-{{$loop->index+1}}" type="hidden" name="old_status[]" value="{{$perpanjangan->status}}">
                                                             <input type="hidden" name="pengajuan_id" value="{{$perpanjangan->pengajuan_id}}">
                                                             <input type="hidden" name="old_perpanjangan_id[]" value="{{$perpanjangan->id}}">
-                                                            @if($pengajuan->status == "Approved")
-                                                            @if($loop->index+1 != 1)
-                                                            <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                                                            <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                            @if($perpanjangan->status == "Pengajuan")
+                                                            <a href="javascript:void(0);" id="activateRow" data-index="{{$loop->index+1}}" class="action-icon item-active-{{$loop->index+1}}"> <i class="mdi mdi-check-network"></i></a>
                                                             @endif
+                                                            @if($perpanjangan->status == "Approved" || $perpanjangan->status == "Pengajuan")
                                                             <a href="javascript:void(0);" id="editRow" data-index="{{$loop->index+1}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                            <a href="javascript:void(0);" id="removeRow" class="action-icon" data-index="{{$loop->index+1}}" data-id_rincian_perpanjangan="{{$perpanjangan->id}}"> <i class="mdi mdi-delete"></i></a>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -588,13 +588,7 @@
                 hasilAkhir.push("<option value=''>--Pilih--</option>");
                 var oldVersi = {{$pengajuan->jangka_waktu}};
                 hasil.forEach(element => {
-                    value = `${element.id},${element.bulan}`;
-                    if(element.bulan == oldVersi){
-                        hasilAkhir.push("<option value='"+element.bulan+"' selected>"+element.bulan+" Bulan</option>");
-                        $("#jangka_waktu").val(element.nisbah);
-                    } else {
-                        hasilAkhir.push("<option value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
-                    }
+                    hasilAkhir.push("<option value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
                 });
                 $("#jangka_waktu").html(hasilAkhir);
             }
@@ -650,6 +644,25 @@
         $(document).on('click', '#removeRow', function () {
             var index = $(this)[0].dataset.index;
             $(this).closest(`#item-${index}`).remove();
+            var id_rincian_perpanjangan = $(this)[0].dataset.id_rincian_perpanjangan;
+            if(id_rincian_perpanjangan){
+                $.ajax({
+                    type: "DELETE",
+                    url: "/admin/dsyirkah_aktif/emas/delete/perpanjangan/"+id_rincian_perpanjangan,
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
+                    },
+                    success: function(hasil){
+                        console.log("berhasil dihapus");
+                    }
+                })
+            }
+        });
+        $(document).on('click', '#activateRow', function () {
+            var index = $(this)[0].dataset.index;
+            $(this).closest(`.item-active-${index}`).remove();
+            $(`.tambah-status-${index}`).val("Approved")
+            $(`td.tambah-status-${index}`).html("Approved")
         });
         $(document).on('click', '#editRow', function () {
             $('#modal-tambah-title')[0].textContent = 'Edit Data Perpanjangan';

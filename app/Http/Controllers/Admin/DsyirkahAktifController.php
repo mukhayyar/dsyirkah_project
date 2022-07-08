@@ -217,4 +217,18 @@ class DsyirkahAktifController extends Controller
     {
         return Excel::download(new AktifRupiahEx, 'aktif_rupiah.csv');
     }
+
+    public function emas_perpanjangan_delete($id)
+    {
+        $rincian_emas = PerpanjanganEmas::find($id);
+        $rincian_emas->delete();
+        return response()->json(['success'=>'Data berhasil dihapus']);
+    }
+    
+    public function rupiah_perpanjangan_delete($id)
+    {
+        $rincian_rupiah = PerpanjanganRupiah::find($id);
+        $rincian_rupiah->delete();
+        return response()->json(['success'=>'Data berhasil dihapus']);
+    }
 }
