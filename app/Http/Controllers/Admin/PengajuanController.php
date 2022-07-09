@@ -23,9 +23,18 @@ class PengajuanController extends Controller
 {
     public function emas_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::with('versi','anggota')->where([
-                ['status','!=','Reject']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                $data = PengajuanEmas::with('versi','anggota')
+                ->where([
+                    ['status','!=','Reject']
+                ])
+                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->orderBy("created_at","desc")->get();
+            } else {
+                $data = PengajuanEmas::with('versi','anggota')->where([
+                    ['status','!=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('approval', function($row){
@@ -130,7 +139,18 @@ class PengajuanController extends Controller
     }
     public function emas_reject(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::with('versi','anggota')->where('status','Reject')->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                $data = PengajuanEmas::with('versi','anggota')
+                ->where([
+                    ['status','=','Reject']
+                ])
+                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->orderBy("created_at","desc")->get();
+            } else {
+                $data = PengajuanEmas::with('versi','anggota')->where([
+                    ['status','=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('created_at',function($row){
@@ -170,9 +190,18 @@ class PengajuanController extends Controller
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('versi','anggota')->where([
-                ['status','!=','Reject']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                $data = PengajuanRupiah::with('versi','anggota')
+                ->where([
+                    ['status','!=','Reject']
+                ])
+                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->orderBy("created_at","desc")->get();
+            } else {
+                $data = PengajuanRupiah::with('versi','anggota')->where([
+                    ['status','!=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('approval', function($row){
@@ -269,7 +298,18 @@ class PengajuanController extends Controller
     }
     public function rupiah_reject(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('versi','anggota')->where('status','Reject')->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                $data = PengajuanRupiah::with('versi','anggota')
+                ->where([
+                    ['status','=','Reject']
+                ])
+                ->whereBetween('created_at',[$request->from_date, $request->to_date])
+                ->orderBy("created_at","desc")->get();
+            } else {
+                $data = PengajuanRupiah::with('versi','anggota')->where([
+                    ['status','=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

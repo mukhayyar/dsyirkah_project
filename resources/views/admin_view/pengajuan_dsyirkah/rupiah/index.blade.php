@@ -27,13 +27,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <!-- Hanya Sementara -->
-                                        <div class="card-body col-lg-7">
-                                            <h6>Keterangan</h6>
-                                            <p>1. Tambah Filter tanggal per periode</p>
-                                            <p>2. </p>
-                                        </div>
-
                                         <div class="row mb-2 input-daterange">
                                             <div class="col-sm-4">
                                                 <a href="rupiah/reject" class="btn btn-danger mb-2"><i class="mdi mdi-delete-alert"></i> Data Riject</a>
@@ -112,29 +105,29 @@
         function load_data(from_date = '', to_date = ''){
             $('.data-table').DataTable({
                 "scrollX": true,
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "",
-                data:{from_date:from_date, to_date:to_date}
-            },
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
-                {data: 'created_at', name: 'created_at', orderSequence:['asc']},
-                {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
-                {data: 'anggota.nomor_ba', name: 'anggota.nomor_ba', orderSequence:['asc']},
-                {data: 'anggota.nama_lengkap', name: 'anggota.nama_lengkap', orderSequence:['asc']},
-                {data: 'jenis_syirkah', name: 'jenis_syirkah', orderSequence:['asc']},
-                {data: 'versi_syirkah', name: 'versi_syirkah', orderSequence:['asc']},
-                {data: 'pilihan_program', name: 'pilihan_program', orderSequence:['asc']},
-                {data: 'referensi', name: 'referensi', orderSequence:['asc']},
-                {data: 'nominal', name: 'nominal', orderSequence:['asc']},
-                {data: 'status', name: 'status', orderSequence:['asc']},
-                {data: 'jangka_waktu', name: 'jangka_waktu', orderSequence:['asc']},
-                {data: 'perpanjangan', name: 'perpanjangan', orderSequence:['asc']},
-                {data: 'approval', name: 'approval', orderable: false, searchable: false},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-            ]
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "",
+                    data:{from_date:from_date, to_date:to_date}
+                },
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'created_at', name: 'created_at', orderSequence:['asc']},
+                    {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
+                    {data: 'anggota.nomor_ba', name: 'anggota.nomor_ba'},
+                    {data: 'anggota.nama_lengkap', name: 'anggota.nama_lengkap', orderSequence:['asc']},
+                    {data: 'jenis_syirkah', name: 'jenis_syirkah', orderSequence:['asc']},
+                    {data: 'versi_syirkah', name: 'versi_syirkah', orderSequence:['asc']},
+                    {data: 'pilihan_program', name: 'pilihan_program', orderSequence:['asc']},
+                    {data: 'referensi', name: 'referensi', orderSequence:['asc']},
+                    {data: 'nominal', name: 'nominal'},
+                    {data: 'status', name: 'status', orderSequence:['asc']},
+                    {data: 'jangka_waktu', name: 'jangka_waktu', orderSequence:['asc']},
+                    {data: 'perpanjangan', name: 'perpanjangan', orderSequence:['asc']},
+                    {data: 'approval', name: 'approval', orderable: false, searchable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
             });
         }
 
@@ -144,7 +137,7 @@
             var to_date = $('#to_date').val();
             if(from_date != '' &&  to_date != '')
             {
-                $('#order_table').DataTable().destroy();
+                $('.data-table').DataTable().destroy();
                 load_data(from_date, to_date);
             }
             else
@@ -155,10 +148,10 @@
         $('#refresh').click(function(){
             $('#from_date').val('');
             $('#to_date').val('');
-            $('#order_table').DataTable().destroy();
+            $('.data-table').DataTable().destroy();
             load_data();
         });
-        });
+    });
 </script>
 @endpush
 @push('styles')

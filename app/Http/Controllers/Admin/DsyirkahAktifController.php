@@ -23,7 +23,7 @@ class DsyirkahAktifController extends Controller
                 $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
                     ['status','=','Approved'],
                 ])
-                ->orWhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
                 ->orderBy("created_at","desc")->get();
             } else {
                 $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
@@ -131,7 +131,7 @@ class DsyirkahAktifController extends Controller
                 $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
                     ['status','=','Approved'],
                 ])
-                ->orWhereBetween('created_at',[$request->from_date, $request->to_date])
+                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
                 ->orderBy("created_at","desc")->get();
             } else {
                 $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([

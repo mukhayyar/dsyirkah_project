@@ -25,13 +25,7 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Hanya Sementara -->
-                    <div class="card-body col-lg-7">
-                        <h6>Keterangan</h6>
-                        <p>1. Tambah Filter tanggal per periode</p>
-                        <p>2. </p>
-                    </div>
-
-                    <div class="row mb-2">
+                    <div class="row mb-2 input-daterange">
                         <div class="col-sm-4">
                             <a href="emas/export" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
                         </div>
@@ -176,63 +170,65 @@
     });
 </script>
 <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
-<script>
-    $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-            var min = minDate.val();
-            var max = maxDate.val();
-            var date = new Date( data[1] );
-            console.log(date);
-    
-            if (
-                ( min === null && max === null ) ||
-                ( min === null && date <= max ) ||
-                ( min <= date   && max === null ) ||
-                ( min <= date   && date <= max )
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-    
+<script>    
     $(document).ready(function() {
         // Create date inputs
-        minDate = new DateTime($('#min'), {
-            format: 'MMMM Do YYYY'
-        });
-        maxDate = new DateTime($('#max'), {
-            format: 'MMMM Do YYYY'
+        $('.input-daterange').datepicker({
+            todayBtn:'linked',
+            format:'yyyy-mm-dd',
+            autoclose:true
         });
 
-        var table = $('.data-table').DataTable({
-            "scrollX": true,
-            processing: true,
-            serverSide: true,
-            ajax: "",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
-                {data: 'tgl_persetujuan', name: 'tgl_persetujuan', orderSequence:['asc']},
-                {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
-                {data: 'kode_sertifikat', name: 'kode_sertifikat', orderSequence:['asc']},
-                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
-                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
-                {data: 'jenis_syirkah', name: 'jenis_syirkah', orderSequence:['asc']},
-                {data: 'versi_syirkah', name: 'versi_syirkah', orderSequence:['asc']},
-                {data: 'pilihan_program', name: 'pilihan_program', orderSequence:['asc']},
-                {data: 'referensi', name: 'referensi', orderSequence:['asc']},
-                {data: 'total_gramasi', name: 'total_gramasi', orderSequence:['asc']},
-                {data: 'jangka_waktu', name: 'jangka_waktu', orderSequence:['asc']},
-                {data: 'jatuh_tempo', name: 'jatuh_tempo', orderSequence:['asc']},
-                {data: 'perpanjangan', name: 'perpanjangan', orderSequence:['asc']},
-                {data: 'tindak_lanjut', name: 'tindak_lanjut', orderable: false, searchable: false},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-            ]
-        });
+        load_data();
+        function load_data(from_date = '', to_date = ''){
+            $('.data-table').DataTable({
+                "scrollX": true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "",
+                    data:{from_date:from_date, to_date:to_date}
+                },
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
+                    {data: 'tgl_persetujuan', name: 'tgl_persetujuan', orderSequence:['asc']},
+                    {data: 'no_pengajuan', name: 'no_pengajuan', orderSequence:['asc']},
+                    {data: 'kode_sertifikat', name: 'kode_sertifikat', orderSequence:['asc']},
+                    {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
+                    {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
+                    {data: 'jenis_syirkah', name: 'jenis_syirkah', orderSequence:['asc']},
+                    {data: 'versi_syirkah', name: 'versi_syirkah', orderSequence:['asc']},
+                    {data: 'pilihan_program', name: 'pilihan_program', orderSequence:['asc']},
+                    {data: 'referensi', name: 'referensi', orderSequence:['asc']},
+                    {data: 'total_gramasi', name: 'total_gramasi', orderSequence:['asc']},
+                    {data: 'jangka_waktu', name: 'jangka_waktu', orderSequence:['asc']},
+                    {data: 'jatuh_tempo', name: 'jatuh_tempo', orderSequence:['asc']},
+                    {data: 'perpanjangan', name: 'perpanjangan', orderSequence:['asc']},
+                    {data: 'tindak_lanjut', name: 'tindak_lanjut', orderable: false, searchable: false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+        }
 
         // Refilter the table
-        $('#min, #max').on('change', function () {
-            table.draw();
+        $('#filter').click(function(){
+            var from_date = $('#from_date').val();
+            var to_date = $('#to_date').val();
+            if(from_date != '' &&  to_date != '')
+            {
+                $('.data-table').DataTable().destroy();
+                load_data(from_date, to_date);
+            }
+            else
+            {
+                alert('Both Date is required');
+            }
+        });
+        $('#refresh').click(function(){
+            $('#from_date').val('');
+            $('#to_date').val('');
+            $('.data-table').DataTable().destroy();
+            load_data();
         });
     });
 </script>

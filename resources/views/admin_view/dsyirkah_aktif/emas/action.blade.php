@@ -88,6 +88,7 @@
                                     <tr>
                                         <td>Versi Syirkah</td>
                                         <td>: {{$pengajuan->versi->versi}}</td>
+                                        <input id="id_versi" type="hidden" value="{{$pengajuan->versi->id}}">: 
                                     </tr>
                                     @if($pengajuan->kode_usaha)
                                     <tr>
@@ -588,15 +589,15 @@
                 hasilAkhir.push("<option value=''>--Pilih--</option>");
                 var oldVersi = {{$pengajuan->jangka_waktu}};
                 hasil.forEach(element => {
-                    hasilAkhir.push("<option value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
+                    value = `${element.id}`;
+                    hasilAkhir.push("<option data-id='"+value+"' value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
                 });
                 $("#jangka_waktu").html(hasilAkhir);
             }
         })
         $("body").on("change","#jangka_waktu", function(){
-            var value = $(this).val();
-            const myArray = value.split(",");
-            let id = myArray[0];
+            var selected = $(this)[0].options.selectedIndex;
+            var id = $(this)[0].options[selected].dataset.id;
             $.ajax({
                 type: "GET",
                 url: "/api/versi/nisbah/"+id,
@@ -682,21 +683,20 @@
                     hasilAkhir.push("<option value=''>--Pilih--</option>");
                     var oldVersi = jangka_waktu;
                     hasil.forEach(element => {
-                        value = `${element.id},${element.bulan}`;
+                        value = `${element.id}`;
                         if(element.bulan == oldVersi){
-                            hasilAkhir.push("<option value='"+element.bulan+"' selected>"+element.bulan+" Bulan</option>");
+                            hasilAkhir.push("<option data-id='"+value+"' value='"+element.bulan+"' selected>"+element.bulan+" Bulan</option>");
                             $("#jangka_waktu").val(element.nisbah);
                         } else {
-                            hasilAkhir.push("<option value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
+                            hasilAkhir.push("<option data-id='"+value+"' value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
                         }
                     });
                     $("#jangka_waktu").html(hasilAkhir);
                 }
             })
             $("body").on("change","#jangka_waktu", function(){
-                var value = $(this).val();
-                const myArray = value.split(",");
-                let id = myArray[0];
+                var selected = $(this)[0].options.selectedIndex;
+                var id = $(this)[0].options[selected].dataset.id;
                 $.ajax({
                     type: "GET",
                     url: "/api/versi/nisbah/"+id,
