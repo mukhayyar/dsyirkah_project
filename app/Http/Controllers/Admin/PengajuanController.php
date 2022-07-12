@@ -115,6 +115,7 @@ class PengajuanController extends Controller
             $generate_no = $pengajuan_emas->generate_no_sertifikat_mq($check_no, $pengajuan);
         }
         $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->tgl_persetujuan = $request->today;
         $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
@@ -293,6 +294,7 @@ class PengajuanController extends Controller
             $generate_no = $pengajuan_rupiah->generate_no_sertifikat_mq($check_no, $pengajuan);
         }
         $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->tgl_persetujuan = $request->today;
         $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();

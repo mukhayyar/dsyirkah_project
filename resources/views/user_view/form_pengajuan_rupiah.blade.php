@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="col-md">
                                             <label for="formFile" class="form-label">Upload Bukti Transfer</label>
-                                            <input class="form-control" type="file" id="formFile" name="buktiTransfer">
+                                            <input class="form-control" type="file" id="formFile" name="buktiTransfer" accept="image/png, image/jpg, image/jpeg">
                                         </div><hr><br>
                                     </div>
 
