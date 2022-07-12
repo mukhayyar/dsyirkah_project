@@ -662,12 +662,6 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 @push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(function() {
         $('#checkAlamatTinggal').change(function(){
@@ -861,11 +855,11 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
-                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
-                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
-                {data: 'jenis_kelamin', name: 'jenis_kelamin', orderSequence:['asc']},
-                {data: 'tanggal_lahir', name: 'tanggal_lahir', orderSequence:['asc']},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'nomor_ba', name: 'nomor_ba'},
+                {data: 'nama_lengkap', name: 'nama_lengkap'},
+                {data: 'jenis_kelamin', name: 'jenis_kelamin'},
+                {data: 'tanggal_lahir', name: 'tanggal_lahir'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });

@@ -20,11 +20,19 @@ class DsyirkahAktifController extends Controller
     public function emas_index(Request $request){
          if($request->ajax()) {
             if(!empty($request->from_date)) {
-                $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
-                    ['status','=','Approved'],
-                ])
-                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
-                ->orderBy("created_at","desc")->get();
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ['created_at','>=',$request->from_date]
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
             } else {
                 $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
                     ['status','=','Approved']
@@ -128,11 +136,19 @@ class DsyirkahAktifController extends Controller
     public function rupiah_index(Request $request){
         if($request->ajax()) {
             if(!empty($request->from_date)) {
-                $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
-                    ['status','=','Approved'],
-                ])
-                ->WhereBetween('created_at',[$request->from_date, $request->to_date])
-                ->orderBy("created_at","desc")->get();
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ['created_at','>=',$request->from_date],
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
             } else {
                 $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
                     ['status','=','Approved']

@@ -13,9 +13,15 @@ class DsyirkahNonAktifController extends Controller
     public function emas_index(Request $request){
         if($request->ajax()) {
             if(!empty($request->from_date)) {
-                $data = NonAktifEmas::with('pengajuan','anggota')
-                ->WhereBetween('tanggal_non_aktif',[$request->from_date, $request->to_date])
-                ->orderBy("tanggal_non_aktif","desc")->get();
+                if($request->NonAktifEmas == $request->to_date){
+                    $data = NonAktifRupiah::with('pengajuan','anggota')
+                    ->where('tanggal_non_aktif','>=',$request->from_date)
+                    ->orderBy("tanggal_non_aktif","desc")->get();
+                } else {
+                    $data = NonAktifEmas::with('pengajuan','anggota')
+                    ->WhereBetween('tanggal_non_aktif',[$request->from_date, $request->to_date])
+                    ->orderBy("tanggal_non_aktif","desc")->get();
+                }
             } else {
                 $data = NonAktifEmas::with('pengajuan','anggota')->orderBy("tanggal_non_aktif","desc")->get();
             }
@@ -70,9 +76,15 @@ class DsyirkahNonAktifController extends Controller
     public function rupiah_index(Request $request){
         if($request->ajax()) {
             if(!empty($request->from_date)) {
-                $data = NonAktifRupiah::with('pengajuan','anggota')
-                ->whereBetween('tanggal_non_aktif',[$request->from_date, $request->to_date])
-                ->orderBy("tanggal_non_aktif","desc")->get();
+                if($request->from_date == $request->to_date){
+                    $data = NonAktifRupiah::with('pengajuan','anggota')
+                    ->where('tanggal_non_aktif','>=',$request->from_date)
+                    ->orderBy("tanggal_non_aktif","desc")->get();
+                } else {
+                    $data = NonAktifRupiah::with('pengajuan','anggota')
+                    ->whereBetween('tanggal_non_aktif',[$request->from_date, $request->to_date])
+                    ->orderBy("tanggal_non_aktif","desc")->get();
+                }
             } else {
                 $data = NonAktifRupiah::with('pengajuan','anggota')->orderBy("tanggal_non_aktif","desc")->get();
             }
