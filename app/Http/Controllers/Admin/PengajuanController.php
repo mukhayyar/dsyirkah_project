@@ -23,9 +23,27 @@ class PengajuanController extends Controller
 {
     public function emas_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::with('versi','anggota')->where([
-                ['status','!=','Reject']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanEmas::with('versi','anggota')
+                    ->where([
+                        ['created_at','>=',$request->from_date],
+                        ['status','!=','Reject'],
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanEmas::with('versi','anggota')
+                    ->where([
+                        ['status','!=','Reject']
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
+            } else {
+                $data = PengajuanEmas::with('versi','anggota')->where([
+                    ['status','!=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('approval', function($row){
@@ -85,6 +103,19 @@ class PengajuanController extends Controller
     public function emas_approval_store(Request $request, $id){
         PengajuanEmas::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanEmas::with('anggota')->where('slug',$id)->first();
+        $check_no = PengajuanEmas::where([
+            ['pilihan_program','=',$pengajuan->pilihan_program],
+            ['jenis_syirkah','=',$pengajuan->jenis_syirkah],
+            ['kode_sertifikat','!=',null]
+        ])->latest()->first();
+        $pengajuan_emas = new PengajuanEmas;
+        if($pengajuan->jenis_syirkah == "Mutlaqah"){
+            $generate_no = $pengajuan_emas->generate_no_sertifikat_mt($check_no, $pengajuan);
+        } else {
+            $generate_no = $pengajuan_emas->generate_no_sertifikat_mq($check_no, $pengajuan);
+        }
+        $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
             $usaha->capaian_muqayyadah += $pengajuan->total_gramasi;
@@ -117,7 +148,27 @@ class PengajuanController extends Controller
     }
     public function emas_reject(Request $request){
         if($request->ajax()) {
-            $data = PengajuanEmas::with('versi','anggota')->where('status','Reject')->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanEmas::with('versi','anggota')
+                    ->where([
+                        ['status','=','Reject'],
+                        ['created_at','>=',$request->from_date]
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanEmas::with('versi','anggota')
+                    ->where([
+                        ['status','=','Reject']
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
+            } else {
+                $data = PengajuanEmas::with('versi','anggota')->where([
+                    ['status','=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('created_at',function($row){
@@ -157,9 +208,27 @@ class PengajuanController extends Controller
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('versi','anggota')->where([
-                ['status','!=','Reject']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanRupiah::with('versi','anggota')
+                    ->where([
+                        ['status','!=','Reject'],
+                        ['created_at','>=',$request->from_date],
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanRupiah::with('versi','anggota')
+                    ->where([
+                        ['status','!=','Reject']
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
+            } else {
+                $data = PengajuanRupiah::with('versi','anggota')->where([
+                    ['status','!=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('approval', function($row){
@@ -211,6 +280,19 @@ class PengajuanController extends Controller
     public function rupiah_approval_store(Request $request, $id){
         PengajuanRupiah::where('slug','=',$id)->update(['status'=>'Approved']);
         $pengajuan = PengajuanRupiah::with('anggota')->where('slug',$id)->first();
+        $check_no = PengajuanRupiah::where([
+            ['pilihan_program','=',$pengajuan->pilihan_program],
+            ['jenis_syirkah','=',$pengajuan->jenis_syirkah],
+            ['kode_sertifikat','!=',null]
+        ])->latest()->first();
+        $pengajuan_rupiah = new PengajuanRupiah;
+        if($pengajuan->jenis_syirkah == "Mutlaqah"){
+            $generate_no = $pengajuan_rupiah->generate_no_sertifikat_mt($check_no, $pengajuan);
+        } else {
+            $generate_no = $pengajuan_rupiah->generate_no_sertifikat_mq($check_no, $pengajuan);
+        }
+        $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
             $usaha->capaian_muqayyadah += $pengajuan->nominal;
@@ -243,7 +325,27 @@ class PengajuanController extends Controller
     }
     public function rupiah_reject(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('versi','anggota')->where('status','Reject')->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanRupiah::with('versi','anggota')
+                    ->where([
+                        ['status','=','Reject'],
+                        ['created_at','>=',$request->from_date]
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanRupiah::with('versi','anggota')
+                    ->where([
+                        ['status','=','Reject']
+                        ])
+                        ->whereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
+            } else {
+                $data = PengajuanRupiah::with('versi','anggota')->where([
+                    ['status','=','Reject']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

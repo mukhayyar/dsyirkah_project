@@ -30,7 +30,7 @@
 
                     <div class="row mb-2">
                         <div class="col-4">
-                            <a class="btn btn-success mb-2"><i class="mdi mdi-printer"></i>Print</a>
+                        <input type="button" onclick="printData()" class="btn btn-success mb-2" value="Print">
                         </div>
                         <div class="col-4">
                             <a onclick="history.back()" class="btn btn-info mb-2"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> Kembali</a>
@@ -100,11 +100,11 @@
                                         </tr>
                                         <tr>
                                             <td>Jatuh Tempo</td>
-                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
+                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                         </tr>
                                         <tr>
                                             <td>Nisbah</td>
-                                            <td>: {{$pengajuan->nisbah}}</td>
+                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
                                         </tr>
                                         <tr>
                                             <td>Alokasi Nisbah</td>
@@ -366,4 +366,240 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+          <!-- print -->
+          <div style="display:none;">
+              <div id="rp_aktif_print">
+                  <div class="row">
+                      <div class="col-4">
+                          <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
+                      </div>
+                      <div class="col-4">
+                          <p class="font-14"><strong>Nama Lengkap :</strong> {{$pengajuan->anggota->nama_lengkap}}</p>
+                      </div>
+                  </div>
+                  <hr style="border-top: 1px solid;">
+                  <div class="row">
+                      <div class="col-6">
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Tanggal Persetujuan</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->perpanjangan_rupiah->get(0)->tgl_akad_baru}} </p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Kode DSyirkah</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->no_pengajuan}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Kode Sertifikat</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->no_pengajuan}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Referensi</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->referensi}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Pilihan Program</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->pilihan_program}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Jenis Syirkah</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->jenis_syirkah}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Versi Syirkah</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->versi->versi}}</p>
+                              </div>
+                          </div>
+                          @if($pengajuan->kode_usaha)
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Kode Usaha</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->kode_usaha}}</p>
+                              </div>
+                          </div>
+                          @endif
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Jangka Waktu</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->jangka_waktu}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Jatuh Tempo</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">:
+                                      {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Nisbah</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">:
+                                      {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Alokasi Nisbah</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->alokasi_nisbah}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Perpanjangan</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->perpanjangan}}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="font-14"><strong>Nominal</strong></p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="font-14">: {{$pengajuan->nominal}}</p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-6">
+                          <div class="col-4">
+                              <p class="font-14"><strong>Bukti Transfer</strong></p>
+                          </div>
+                          <img src="/images/data_penting/bukti_transfer/{{$pengajuan->bukti_transfer}}" alt="image"
+                              class="img-fluid rounded" width="150" /><br>
+                          <br>
+                          <h5 class="card-title">Persetujuan :</h5>
+                          <div class="card border-info border">
+                              <div class="card-body">
+
+                                  <p class="card-text">
+                                      <ul class="ul-number">
+                                          <li>
+                                              Simpanan berjangka dengan akad Mudharabah Muthlaqah
+                                          </li>
+                                          <li>
+                                              Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo
+                                          </li>
+                                          <li>
+                                              Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan
+                                              Mendapatkan
+                                              Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan
+                                              Hadiah 2 Gram
+                                              Gold
+                                          </li>
+                                          <li>
+                                              Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
+                                          </li>
+                                      </ul>
+                                      <center>Tergantung Dari pilihan Form</center>
+                                  </p>
+                              </div> <!-- end card-body-->
+                          </div> <!-- end card-->
+
+                      </div>
+                      <br>
+
+                  </div>
+                  <hr style="border-top: 1px solid;">
+                  <div slass="row">
+                      <div class="col">
+                          <div>
+                              <div>
+                                  <h5>Rincian Perpanjangan</h5>
+                                  <table>
+                                      <thead>
+                                          <tr>
+                                              <th>No</th>
+                                              <th>Jatuhtempo Sebelumnya</th>
+                                              <th>Tgl Akad Baru</th>
+                                              <th>Jangka Waktu</th>
+                                              <th>Jatuhtempo Akandatang</th>
+                                              <th>Nisbah</th>
+                                              <th>Status</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          @foreach($pengajuan->perpanjangan_rupiah as $perpanjangan)
+                                          <tr>
+                                              <td>{{$loop->index+1}}</td>
+                                              <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                              <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                              <td>{{$perpanjangan->jangka_waktu}}</td>
+                                              <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                              <td>{{$perpanjangan->nisbah}}</td>
+                                              <td>{{$perpanjangan->status}}</td>
+                                          </tr>
+                                          @endforeach
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          <!-- end print -->
 @endsection
+@push('scripts')
+<script>
+    function printData() {
+        var divContents = document.getElementById("rp_aktif_print").innerHTML;
+        var a = window.open('', '', 'height=600, width=600');
+        a.document.write('<html>');
+        a.document.write('<head>');
+        a.document.write('<style> table tr th{width:120px;border-bottom:1px solid gray;border-collapse: collapse;}</style>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('</head>');
+        a.document.write('<body>');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.onload=function(){ // necessary if the div contain images
+            a.focus(); // necessary for IE >= 10
+            a.print();
+            a.close();
+            };
+    }
+</script>
+@endpush

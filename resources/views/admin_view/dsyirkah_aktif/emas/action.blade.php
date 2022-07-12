@@ -24,7 +24,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="modal-header" style="background-color: goldenrod">
-                    <h4 class="title" style="color: rgb(255, 255, 255);" id="data-pengajuan-emas">TindaklanjutEmas</h4>
+                    <h4 class="title" style="color: rgb(255, 255, 255);" id="data-pengajuan-emas">Tindaklanjut Emas</h4>
                 </div>
                 <div class="card-body">
 
@@ -88,6 +88,7 @@
                                     <tr>
                                         <td>Versi Syirkah</td>
                                         <td>: {{$pengajuan->versi->versi}}</td>
+                                        <input id="id_versi" type="hidden" value="{{$pengajuan->versi->id}}">: 
                                     </tr>
                                     @if($pengajuan->kode_usaha)
                                     <tr>
@@ -101,11 +102,11 @@
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: {{$pengajuan->nisbah}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
@@ -204,12 +205,12 @@
                                                 </tr>
                                                 </thead>
                                                     <tbody id="form_tambah_perpanjangan">
-                                                    @csrf
+                                                    <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
                                                     @foreach($pengajuan->perpanjangan_emas as $perpanjangan)
                                                     <tr id="item-{{$loop->index+1}}">
                                                         <td>{{$loop->index+1}}</td>
                                                         <td class="tambah-sebelum-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
-                                                        <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_id_perpanjangan[]" value="{{$perpanjangan->id}}">
+                                                        <input type="hidden" name="old_id_perpanjangan[]" value="{{$perpanjangan->id}}">
                                                         <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
                                                         <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru}}</td>
                                                         <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
@@ -224,12 +225,12 @@
                                                             <input class="tambah-status-{{$loop->index+1}}" type="hidden" name="old_status[]" value="{{$perpanjangan->status}}">
                                                             <input type="hidden" name="pengajuan_id" value="{{$perpanjangan->pengajuan_id}}">
                                                             <input type="hidden" name="old_perpanjangan_id[]" value="{{$perpanjangan->id}}">
-                                                            @if($pengajuan->status == "Approved")
-                                                            @if($loop->index+1 != 1)
-                                                            <a href="" class="action-icon"> <i class="mdi mdi-check-network"></i></a>
-                                                            <a href="" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                            @if($perpanjangan->status == "Pengajuan")
+                                                            <a href="javascript:void(0);" id="activateRow" data-index="{{$loop->index+1}}" class="action-icon item-active-{{$loop->index+1}}"> <i class="mdi mdi-check-network"></i></a>
                                                             @endif
+                                                            @if($perpanjangan->status == "Approved" || $perpanjangan->status == "Pengajuan")
                                                             <a href="javascript:void(0);" id="editRow" data-index="{{$loop->index+1}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                            <a href="javascript:void(0);" id="removeRow" class="action-icon" data-index="{{$loop->index+1}}" data-id_rincian_perpanjangan="{{$perpanjangan->id}}"> <i class="mdi mdi-delete"></i></a>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -262,7 +263,7 @@
                         <div class="card">
                             <!-- Logo-->
                             <div class="modal-header" style="background-color: #afb4be">
-                                <div style="color: rgb(255, 255, 255);"><h4>Tambah Data Perpanjangan</h4></div>
+                                <div style="color: rgb(255, 255, 255);"><h4 id="modal-tambah-title">Tambah Data Perpanjangan</h4></div>
                                 <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
                             </div>
                             <div class="card-body p-4">
@@ -279,7 +280,9 @@
 
                                     <div class="mb-3">
                                         <label for="jangka_waktu" class="form-label">Jangka Waktu (dalam Bulan)</label>
-                                        <input class="form-control" type="number" id="jangka_waktu" value="{{$perpanjangan->jangka_waktu}}" readonly>
+                                        <select class="form-select" id="jangka_waktu" name="jangka_waktu">
+                                            <option value="">Pilih</option>
+                                        </select>
                                     </div>
 
                                     <div class="mb-3">
@@ -289,7 +292,7 @@
 
                                     <div class="mb-3">
                                         <label for="nisbah" class="form-label">Nisbah</label>
-                                        <input class="form-control" type="text" id="nisbah" value="{{$perpanjangan->nisbah}}" readonly>
+                                        <input class="form-control" type="text" id="nisbah" value="" readonly>
                                     </div>
                                     
                                     <div class="mb-3">
@@ -577,6 +580,32 @@
 </script>
 <script>
     $(document).ready(function(){
+        var id_versi = $("#id_versi").val();
+        $.ajax({
+            type: "GET",
+            url: "/api/versi/bulan/"+id_versi,
+            success: function(hasil){
+                hasilAkhir = [];
+                hasilAkhir.push("<option value=''>--Pilih--</option>");
+                var oldVersi = {{$pengajuan->jangka_waktu}};
+                hasil.forEach(element => {
+                    value = `${element.id}`;
+                    hasilAkhir.push("<option data-id='"+value+"' value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
+                });
+                $("#jangka_waktu").html(hasilAkhir);
+            }
+        })
+        $("body").on("change","#jangka_waktu", function(){
+            var selected = $(this)[0].options.selectedIndex;
+            var id = $(this)[0].options[selected].dataset.id;
+            $.ajax({
+                type: "GET",
+                url: "/api/versi/nisbah/"+id,
+                success: function(hasil){
+                    $("#nisbah").val(hasil.nisbah);
+                }
+            })
+        })
         $("#tambahPengajuan").click(function(){
             var jatuh_tempo_sebelumnya = $('#jatuh_tempo_sebelumnya').val();
             var tgl_akad_baru = $('#tgl_akad_baru').val();
@@ -616,16 +645,66 @@
         $(document).on('click', '#removeRow', function () {
             var index = $(this)[0].dataset.index;
             $(this).closest(`#item-${index}`).remove();
+            var id_rincian_perpanjangan = $(this)[0].dataset.id_rincian_perpanjangan;
+            if(id_rincian_perpanjangan){
+                $.ajax({
+                    type: "DELETE",
+                    url: "/admin/dsyirkah_aktif/emas/delete/perpanjangan/"+id_rincian_perpanjangan,
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
+                    },
+                    success: function(hasil){
+                        console.log("berhasil dihapus");
+                    }
+                })
+            }
+        });
+        $(document).on('click', '#activateRow', function () {
+            var index = $(this)[0].dataset.index;
+            $(this).closest(`.item-active-${index}`).remove();
+            $(`.tambah-status-${index}`).val("Approved")
+            $(`td.tambah-status-${index}`).html("Approved")
         });
         $(document).on('click', '#editRow', function () {
+            $('#modal-tambah-title')[0].textContent = 'Edit Data Perpanjangan';
             var index = $(this)[0].dataset.index;
-            var jatuh_tempo_sebelumnya = $(`input.tambah-sebelum-${index}`).val();
+            var jatuh_tempo_sebelumnya = $(`input.tambah-sebelum-${index}`)[0].value;
             var tgl_akad_baru = $(`input.tambah-akad-${index}`).val();
             var jangka_waktu = $(`input.tambah-jangka-${index}`).val();
             var jatuh_tempo_mendatang = $(`input.tambah-mendatang-${index}`).val();
             var nisbah = $(`input.tambah-nisbah-${index}`).val();
-            console.log($(`input.tambah-jangka-${index}`)[0])
             var status = $(`input.tambah-status-${index}`).val();
+            var id_versi = $("#id_versi").val();
+            $.ajax({
+                type: "GET",
+                url: "/api/versi/bulan/"+id_versi,
+                success: function(hasil){
+                    hasilAkhir = [];
+                    hasilAkhir.push("<option value=''>--Pilih--</option>");
+                    var oldVersi = jangka_waktu;
+                    hasil.forEach(element => {
+                        value = `${element.id}`;
+                        if(element.bulan == oldVersi){
+                            hasilAkhir.push("<option data-id='"+value+"' value='"+element.bulan+"' selected>"+element.bulan+" Bulan</option>");
+                            $("#jangka_waktu").val(element.nisbah);
+                        } else {
+                            hasilAkhir.push("<option data-id='"+value+"' value='"+element.bulan+"'>"+element.bulan+" Bulan</option>");
+                        }
+                    });
+                    $("#jangka_waktu").html(hasilAkhir);
+                }
+            })
+            $("body").on("change","#jangka_waktu", function(){
+                var selected = $(this)[0].options.selectedIndex;
+                var id = $(this)[0].options[selected].dataset.id;
+                $.ajax({
+                    type: "GET",
+                    url: "/api/versi/nisbah/"+id,
+                    success: function(hasil){
+                        $("#nisbah").val(hasil.nisbah);
+                    }
+                })
+            })
             $('#jatuh_tempo_sebelumnya').val(jatuh_tempo_sebelumnya);
             $('#tgl_akad_baru').val(tgl_akad_baru);
             $('#jangka_waktu').val(jangka_waktu);
@@ -636,7 +715,10 @@
             $('#updatePengajuan').css("display","block");
             $('#updatePengajuan').attr("data-index",`${index}`);
             $('#tambahPengajuan').css("display","none");
-
+            $('body').on('click','.btn-close',function() {
+                $('#modal-tambah-title')[0].textContent = 'Tambah Data Perpanjangan';
+                $('#form_tambah_data_perpanjangan').trigger('reset');
+            })
         });
         $(document).on('click', '#updatePengajuan', function () {
             var index = $(this)[0].dataset.index;

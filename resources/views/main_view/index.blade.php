@@ -1,6 +1,10 @@
 @extends('layouts.main')
 @section('content')
-
+        @error('nomor_ba')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
         <!-- START HERO -->
         <div class="hero-section py-3" style="background-color: #dea057">
             <div class="container">

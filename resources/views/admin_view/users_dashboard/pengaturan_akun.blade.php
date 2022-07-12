@@ -1,8 +1,5 @@
 @extends('layouts.dashboard')
 @section('content')
-@push('styles')
-<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-@endpush
 <!-- Start Content-->
 
                     <!-- Start Content-->
@@ -195,11 +192,6 @@
                     </div><!-- /.modal -->
                 </div> <!-- content -->
 @push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript">
     $(function () {
         $.ajaxSetup({
@@ -212,14 +204,14 @@
             serverSide: true,
             ajax: "",
             columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
-                {data: 'nama_karyawan', name: 'nama_karyawan', orderSequence:['asc']},
-                {data: 'user_name', name: 'user_name', orderSequence:['asc']},
-                {data: 'email', name: 'email', orderSequence:['asc']},
-                {data: 'jabatan', name: 'jabatan', orderSequence:['asc']},
-                {data: 'kantor', name: 'kantor', orderSequence:['asc']},
-                {data: 'user.role', name: 'user.role', orderSequence:['asc']},
-                {data: 'status', name: 'status', orderSequence:['asc']},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'nama_karyawan', name: 'nama_karyawan'},
+                {data: 'user_name', name: 'user_name'},
+                {data: 'email', name: 'email'},
+                {data: 'jabatan', name: 'jabatan'},
+                {data: 'kantor', name: 'kantor'},
+                {data: 'user.role', name: 'user.role'},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });

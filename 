@@ -1,0 +1,275 @@
+[33mcommit 9ccc3e1499107dcd8ce2ed3d27928faa55f1adf0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: nasorudinnd <104040264+nasorudinnd@users.noreply.github.com>
+Date:   Tue Jul 12 21:47:29 2022 +0700
+
+    ui update
+
+[33mcommit 6e575f131f050e9f1aabb351dee7f76ba36a5eb4[m
+Author: nasorudinnd <104040264+nasorudinnd@users.noreply.github.com>
+Date:   Fri Jun 24 20:36:20 2022 +0700
+
+    update assets on landing page dan dashboard
+
+[33mcommit ee69c1a42c19f76a68444974460ec8b66231b844[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Thu Jun 23 18:35:19 2022 +0700
+
+    fix some bugs
+
+[33mcommit b50e485a5b1dc3afb757e8f6a889975ae792d0d2[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Thu Jun 23 14:23:27 2022 +0700
+
+    update redirect form lengkap data
+
+[33mcommit ac0a04ffaeb3542f00ce70b554120762f98746a7[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Wed Jun 22 19:30:39 2022 +0700
+
+    update session and redirect account with status 0
+
+[33mcommit c0947018596906297bd955fb404f9301e4d62ff1[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Wed Jun 22 19:20:21 2022 +0700
+
+    add middleware check status account
+
+[33mcommit 7431d4df5de4b3434ddd19c2c79464992b0a1628[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Wed Jun 22 19:02:34 2022 +0700
+
+    update ttd logic and pengaturan typo
+
+[33mcommit e77198108150e3f660b8086eb4a99dc71bda558d[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Wed Jun 22 18:23:08 2022 +0700
+
+    reject view update
+
+[33mcommit f9b16af247633be0dd01b6745441537f133c92cf[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 21 19:13:29 2022 +0700
+
+    check role in nav
+
+[33mcommit 1cc8d23f3cc12376b560283245a4ff86a1e3f916[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 21 19:03:52 2022 +0700
+
+    add middleware in pengaturan akun
+
+[33mcommit 18aa7f71b68f69310861eceb36c67e27ec831710[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 21 19:00:14 2022 +0700
+
+    fix url
+
+[33mcommit 78ce00833e1ec211a7414da72b77cff32549d1d4[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 21 18:57:11 2022 +0700
+
+    update dinamis page dan wysyg
+
+[33mcommit 4be2dfa1b3e44a4c1e2bd3dab35c41fe4c3a6399[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sat Jun 18 21:03:26 2022 +0700
+
+    update bug tambah emas
+
+[33mcommit 741b8a72e8d2490071ac2a46bc6667d5af9a76be[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sat Jun 18 20:11:22 2022 +0700
+
+    add and update perpanjangan
+
+[33mcommit 9b1793444dc6f29a698f661e80e9d27377f71732[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sat Jun 18 19:42:23 2022 +0700
+
+    update cif import
+
+[33mcommit d05eb6f574fa00e0b765bacf06dee5b3e63d0e2c[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Jun 17 18:54:34 2022 +0700
+
+    update fix
+
+[33mcommit 55d464d37bb9df96039b2a198e4e158d916be6da[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 14 19:07:20 2022 +0700
+
+    update & bug fix
+
+[33mcommit a34da1c96de5022928c3dd33d48a417c1daab7d4[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 14 11:06:51 2022 +0700
+
+    update & fix bug
+
+[33mcommit aa6b5d0172c65801fae2077a304ae63a5dd7bff4[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue Jun 14 10:59:54 2022 +0700
+
+    update & fix bug
+
+[33mcommit f6dd345abef200e79b8096af33dd241789b3fced[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Jun 13 19:30:32 2022 +0700
+
+    fix bug
+
+[33mcommit b90cfb8cae9a8d52743290ab8ee712a181c51805[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Jun 13 19:26:35 2022 +0700
+
+    new update
+
+[33mcommit 41bdd8e3dee244315eaad8bacf4c86546a4e653e[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Jun 13 19:15:07 2022 +0700
+
+    update again
+
+[33mcommit e53c153f4c8e9ce0e4b07af9a3cf15c4a4cf0dae[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Jun 13 10:52:12 2022 +0700
+
+    update daftar login
+
+[33mcommit ee1ff959899c0ce7b0353389bd883f786837d4de[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Jun 13 10:45:52 2022 +0700
+
+    update
+
+[33mcommit a6b412f30bbdb6bd670143cc1536900cd11fc4b6[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Jun 13 07:58:37 2022 +0700
+
+    update
+
+[33mcommit 71f1efe9cbd365549245a71063b4db0521b2fc0d[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sun Jun 12 20:57:03 2022 +0700
+
+    new update
+
+[33mcommit 2d79cd1c1b83df9890b04a58fd5899d556c6a019[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sat May 28 19:44:29 2022 +0700
+
+    new update on aktif, pengajuan, non atif
+
+[33mcommit b78d339b8030ae0e9b8b0d79c381fba4314ae29e[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon May 23 19:24:52 2022 +0700
+
+    new commit, fix bug
+
+[33mcommit 8858be2526105a991016496fc4491de1395cad46[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon May 23 13:33:23 2022 +0700
+
+    Update lagi
+
+[33mcommit 004a1248083e995288d730953dee6f4be545b560[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Tue May 17 20:55:40 2022 +0700
+
+    update 2.0
+
+[33mcommit 923fe0988cd4848e5aa7c5b58c204a1958446e56[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sat Apr 30 11:31:07 2022 +0700
+
+    new update in mutlaqah and muqayyadah page
+
+[33mcommit cbc499a798c8f5e311f8a826aa3ee80d758681e1[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Sat Apr 30 11:24:36 2022 +0700
+
+    new update
+
+[33mcommit 92f112b3546849adbece8fad8a53300949ee311e[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Thu Apr 28 21:56:18 2022 +0700
+
+    update 1a terbaru
+
+[33mcommit acd45b95f2a2d5e74ba7258729cf84e2143bb2eb[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Wed Apr 27 22:11:44 2022 +0700
+
+    fix bug di create usaha
+
+[33mcommit b9d535d1fce1cb502de4012c43b99b88671cacbe[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Wed Apr 27 21:04:28 2022 +0700
+
+    new update in menu 1a
+
+[33mcommit 8d330a61a74d29ab76ec15dd942c2b9121bf6811[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Mon Apr 25 21:13:03 2022 +0700
+
+    Update fitur 1a, not completely all
+
+[33mcommit 92e74f8130a10f6f000bbe568a859d0c08b6d6d8[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 18:39:58 2022 +0700
+
+    fixed mixed content
+
+[33mcommit 9d2a0edf22cd1297f3e19efc1b86d3943462274c[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 18:36:44 2022 +0700
+
+    fixed mixed content
+
+[33mcommit 19734c8cf809d1088afa8f2110710e3d656d3e76[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 18:32:26 2022 +0700
+
+    fixed mixed content
+
+[33mcommit 34659d879cfa9a1cd0c20029698967de74480318[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 18:24:32 2022 +0700
+
+    fix routes again sorry typo
+
+[33mcommit 5a50920aec3f1324283c79c4b2adf6fb3994786b[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 18:22:56 2022 +0700
+
+    fix routes
+
+[33mcommit 4b2d8a8f630f6261e1f6fed16bb0a6283b3ead15[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 18:10:09 2022 +0700
+
+    solve auth::routes problem first
+
+[33mcommit bcfc944fe9bdccd4aed05fa703bc96f8fec61179[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 17:30:39 2022 +0700
+
+    Trigger Heroku deploy after enabling collectstatic
+
+[33mcommit 30de3139a4d99c942c9f6aa4515774de92111152[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 17:19:14 2022 +0700
+
+    add htaccess
+
+[33mcommit e816217b4116b5293024152364be6404326809b4[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 17:15:25 2022 +0700
+
+    edited composer for heroku
+
+[33mcommit f0b68488dc346d7325bac6c14cfb169cac1c043b[m
+Author: Muhammad Tsaqif Mukhayyar <m3g3nz2@gmail.com>
+Date:   Fri Apr 22 17:08:43 2022 +0700
+
+    First Commit

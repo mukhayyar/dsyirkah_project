@@ -19,16 +19,32 @@ class DsyirkahAktifController extends Controller
 {
     public function emas_index(Request $request){
          if($request->ajax()) {
-            $data = PengajuanEmas::with('rincian_pengajuan_emas','anggota','versi')->where([
-                ['status','=','Approved']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ['created_at','>=',$request->from_date]
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
+            } else {
+                $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                    ['status','=','Approved']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl_persetujuan',function($row){
                     return date('Y-m-d h:i',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
                 })
                 ->addColumn('jatuh_tempo',function($row){
-                    return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->jatuh_tempo_akan_datang));
+                    return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -76,7 +92,7 @@ class DsyirkahAktifController extends Controller
         $stop = new NonAktifEmas;
         $stop->pengajuan_id = $pengajuan->id;
         $stop->anggota_id = $pengajuan->anggota_id;
-        $stop->kode_sertifikat = $pengajuan->no_pengajuan;
+        $stop->kode_sertifikat = $pengajuan->kode_sertifikat;
         $stop->tanggal_non_aktif = date("Y-m-d");
         $stop->kategori = $request->kategori;
         $stop->kebutuhan = $request->kebutuhan == "" ? $request->kebutuhan_lainnya : $request->kebutuhan;
@@ -90,11 +106,13 @@ class DsyirkahAktifController extends Controller
             $oldCount = count($request->old_id_perpanjangan);
             for($i = 0; $i < $oldCount; $i++){
                 $angka = $request->old_perpanjangan_id[$i];
-                $oldPerpanjangan = PerpanjanganRupiah::find($request->old_id_perpanjangan[$i]);
+                $oldPerpanjangan = PerpanjanganEmas::find($request->old_id_perpanjangan[$i]);
                 $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
                 $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
                 $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
                 $oldPerpanjangan->status = $request->old_status[$i];
+                $oldPerpanjangan->jangka_waktu = $request->old_jangka_waktu[$i];
+                $oldPerpanjangan->nisbah = $request->old_nisbah[$i];
                 $oldPerpanjangan->save();
             }
         }
@@ -102,7 +120,7 @@ class DsyirkahAktifController extends Controller
         if($request->new_jatuh_tempo_sebelumnya){
             $newCount = count($request->new_jatuh_tempo_sebelumnya);
             for($i = 0; $i < $newCount; $i++){
-                $newPerpanjangan = new PerpanjanganRupiah;
+                $newPerpanjangan = new PerpanjanganEmas;
                 $newPerpanjangan->pengajuan_id = $request->pengajuan_id;
                 $newPerpanjangan->jatuh_tempo_sebelumnya = $request->new_jatuh_tempo_sebelumnya[$i];
                 $newPerpanjangan->tgl_akad_baru  = $request->new_tgl_akad_baru[$i];
@@ -110,15 +128,32 @@ class DsyirkahAktifController extends Controller
                 $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
                 $newPerpanjangan->nisbah = $request->new_nisbah[$i];
                 $newPerpanjangan->status = $request->new_status[$i];
+                $newPerpanjangan->save();
             }
         }
         return redirect()->back()->with('success','Berhasil approve');
     }
     public function rupiah_index(Request $request){
         if($request->ajax()) {
-            $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
-                ['status','=','Approved']
-            ])->orderBy("created_at","desc")->get();
+            if(!empty($request->from_date)) {
+                if($request->from_date == $request->to_date){
+                    $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ['created_at','>=',$request->from_date],
+                    ])
+                    ->orderBy("created_at","desc")->get();
+                } else {
+                    $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                        ['status','=','Approved'],
+                        ])
+                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->orderBy("created_at","desc")->get();
+                }
+            } else {
+                $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                    ['status','=','Approved']
+                ])->orderBy("created_at","desc")->get();
+            }
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('nominal',function($row){
@@ -169,7 +204,7 @@ class DsyirkahAktifController extends Controller
         $stop = new NonAktifRupiah;
         $stop->pengajuan_id = $pengajuan->id;
         $stop->anggota_id = $pengajuan->anggota_id;
-        $stop->kode_sertifikat = $pengajuan->no_pengajuan;
+        $stop->kode_sertifikat = $pengajuan->kode_sertifikat;
         $stop->tanggal_non_aktif = date("Y-m-d");
         $stop->kategori = $request->kategori;
         $stop->kebutuhan = $request->kebutuhan == "" ? $request->kebutuhan_lainnya : $request->kebutuhan;
@@ -179,7 +214,6 @@ class DsyirkahAktifController extends Controller
         return redirect()->back()->with('success','Berhasil stop');
     }
     public function rupiah_approve($id, Request $request){
-        // dd($request->all());
         if($request->old_id_perpanjangan){
             $oldCount = count($request->old_id_perpanjangan);
             for($i = 0; $i < $oldCount; $i++){
@@ -188,6 +222,8 @@ class DsyirkahAktifController extends Controller
                 $oldPerpanjangan->jatuh_tempo_sebelumnya = $request->old_jatuh_tempo_sebelumnya[$i];
                 $oldPerpanjangan->tgl_akad_baru  = $request->old_tgl_akad_baru[$i];
                 $oldPerpanjangan->jatuh_tempo_akan_datang = $request->old_jatuh_tempo_akan_datang[$i];
+                $oldPerpanjangan->jangka_waktu = $request->old_jangka_waktu[$i];
+                $oldPerpanjangan->nisbah = $request->old_nisbah[$i];
                 $oldPerpanjangan->status = $request->old_status[$i];
                 $oldPerpanjangan->save();
             }
@@ -204,6 +240,7 @@ class DsyirkahAktifController extends Controller
                 $newPerpanjangan->jatuh_tempo_akan_datang = $request->new_jatuh_tempo_akan_datang[$i];
                 $newPerpanjangan->nisbah = $request->new_nisbah[$i];
                 $newPerpanjangan->status = $request->new_status[$i];
+                $newPerpanjangan->save();
             }
         }
         return redirect()->back()->with('success','Berhasil approve');
@@ -211,5 +248,19 @@ class DsyirkahAktifController extends Controller
     public function export_rupiah()
     {
         return Excel::download(new AktifRupiahEx, 'aktif_rupiah.csv');
+    }
+
+    public function emas_perpanjangan_delete($id)
+    {
+        $rincian_emas = PerpanjanganEmas::find($id);
+        $rincian_emas->delete();
+        return response()->json(['success'=>'Data berhasil dihapus']);
+    }
+
+    public function rupiah_perpanjangan_delete($id)
+    {
+        $rincian_rupiah = PerpanjanganRupiah::find($id);
+        $rincian_rupiah->delete();
+        return response()->json(['success'=>'Data berhasil dihapus']);
     }
 }

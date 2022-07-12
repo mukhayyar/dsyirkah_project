@@ -416,17 +416,233 @@
                     </div><!-- /.modal -->
 
                 </div> <!-- content -->
+
+
+<!-- print -->
+<div style="display:none;">
+    <div id="pengajuan_print">
+<!-- atas -->
+<div class="row">
+    <div class="col-sm-4">
+        <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
+    </div>
+    <div class="col-sm-4">
+        <p class="font-14"><strong>Nama Lengkap :</strong> {{$pengajuan->anggota->nama_lengkap}}</p>
+    </div>
+</div>
+<!-- /atas -->
+<hr style="border-top: 1px solid;">
+<!-- tengah -->
+<div class="row">
+    <!-- kiri tengah -->
+    <div class="col-6">
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Tanggal Pengajuan</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{date('Y-m-d h:i',strtotime($pengajuan->created_at))}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Nomor Pengajuan</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->no_pengajuan}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Referensi</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->referensi}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Pilihan Program</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->pilihan_progam}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Jenis Syirkah</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->jenis_syirkah}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Versi Syirkah</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->versi_syirkah}} </p>
+            </div>
+        </div>
+        @if($pengajuan->kode_usaha)
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Kode Usaha</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->kode_usaha}} </p>
+            </div>
+        </div>
+        @endif
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Nisbah</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->nisbah}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Alokasi Nisbah</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->alokasi_nisbah}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Perpanjangan</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->perpanjangan}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <p class="font-14"><strong>Total Gramasi</strong></p>
+            </div>
+            <div class="col-6">
+                <p  class="font-14">: {{$pengajuan->total_gramasi}} </p>
+            </div>
+        </div>
+    </div>
+    <!-- / -->
+    <!-- kanan tengah -->
+    <div class="col-6">
+              <h5>Rincian</h5>
+             
+              <table> 
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Jenis</th>
+                    <th>Gramasi</th>
+                    <th>Keping</th>
+                    <th>Jumlah</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($pengajuan->rincian_pengajuan_emas as $rincian_emas)
+                  <tr>
+                    <td>{{$rincian_emas->item}}</td>
+                    <td>
+                      <span class="badge badge-primary-lighten">{{$rincian_emas->jenis}}</span>
+                    </td>
+                    <td>{{$rincian_emas->gramasi}}</td>
+                    <td>{{$rincian_emas->keping}}</td>
+                    <td>{{$rincian_emas->jumlah()}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              <br>
+              <br>
+              <h5>Persetujuan :</h5>
+              <div class="card border-info border">
+                <div class="card-body">
+                
+                  <p class="card-text">
+                  <ul class="ul-number">
+                    <li>
+                      Simpanan berjangka dengan akad Mudharabah Muthlaqah
+                    </li>
+                    <li>
+                      Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
+                    <li>
+                      Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
+                    </li>
+                    <li>
+                      Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
+                    </li>
+                  </ul>
+                  
+                      <center>Tergantung Dari pilihan Form</center>
+                      
+                  
+                
+                 </p>
+                </div> <!-- end card-body-->
+              </div>
+          
+    </div>
+    <!--  -->
+</div>
+<!-- /tengah -->
+<hr style="border-top: 1px solid;">
+<!-- bawah -->
+<div class="row">
+    <div class="col-6">
+    <div class="card border-secondary border">
+            <div class="card-body">
+              <h5 class="card-title">&nbsp;&nbsp;Catatan :</h5>
+              <p class="card-text">{{$pengajuan->catatan_pengajuan}}</p>
+            </div> <!-- end card-body-->
+          </div> <!-- end card-->
+        </div>
+    <div class="col-6">
+    <div class="card border-secondary border">
+            <div class="card-body">
+              <h5 class="card-title">&nbsp;&nbsp;Catatan Edit :</h5>
+              <p class="card-text">{{$pengajuan->catatan_pengajuan}}</p>
+            </div> <!-- end card-body-->
+          </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    <div class="card border-secondary border">
+            <div class="card-body">
+              <h5 class="card-title">&nbsp;&nbsp;Tandatangan :</h5>
+              <img src="/images/data_penting/tanda_tangan/{{$pengajuan->ttd}}" alt="image" class="img-fluid rounded" width="200" />
+            </div> <!-- end card-body-->
+          </div> <!-- end card-->
+    </div>
+</div>
+<!-- /bawah -->
+</div>
+</div>
+<!-- /print -->
+
 @push('scripts')
 <script>
     function printData() {
-        var divContents = document.getElementById("areaPrint").innerHTML;
-        var a = window.open('', '', 'height=500, width=500');
+        var divContents = document.getElementById("pengajuan_print").innerHTML;
+        var a = window.open('', '', 'height=600, width=600');
         a.document.write('<html>');
+        a.document.write('<head>');
+        a.document.write('<style> table tr th{width:120px;border-bottom:1px solid gray;border-collapse: collapse;}</style>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('</head>');
         a.document.write('<body>');
         a.document.write(divContents);
         a.document.write('</body></html>');
         a.document.close();
-        a.print();
+        a.onload=function(){ // necessary if the div contain images
+            a.focus(); // necessary for IE >= 10
+            a.print();
+            a.close();
+            };
     }
 </script>
 @endpush

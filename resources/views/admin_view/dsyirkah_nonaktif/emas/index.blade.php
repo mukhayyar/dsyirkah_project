@@ -24,24 +24,30 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-body col-lg-7">
-                        <h6>Keterangan</h6>
-                        <p>1. Tambah Filter tanggal per periode</p>
-                        <p>2. </p>
+                    <div class="row mb-2 input-daterange">
+                        <div class="col-sm-3">
+                            <div class="row mb-3">
+                                <label for="colFormLabelSm" class="col-4 col-form-label">Min. Date:</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" type="text" id="from_date" name="from_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="row mb-3">
+                                <label for="colFormLabelSm" class="col-4 col-form-label">Max. Date:</label>
+                                <div class="col-8">
+                                    <input class="form-control form-control-sm" type="text" id="to_date" name="to_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+                            <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
+                        </div>
                     </div>
-
                     <div class="tab-content">
                         <div class="tab-pane show active" id="scroll-horizontal-preview">
-                            <table cellspacing="5" cellpadding="5" border="0">
-                                <tbody><tr>
-                                    <td>Minimum date:</td>
-                                    <td><input type="text" id="min" name="min"></td>
-                                </tr>
-                                <tr>
-                                    <td>Maximum date:</td>
-                                    <td><input type="text" id="max" name="max"></td>
-                                </tr>
-                            </tbody></table>
                             <table id="scroll-horizontal-datatable" class="table table-striped w-100 nowrap data-table">
                                 <thead>
                                     <tr>
@@ -118,57 +124,59 @@
 </script>
 <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 <script>
-    $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-            var min = minDate.val();
-            var max = maxDate.val();
-            var date = new Date( data[1] );
-            console.log(date);
-    
-            if (
-                ( min === null && max === null ) ||
-                ( min === null && date <= max ) ||
-                ( min <= date   && max === null ) ||
-                ( min <= date   && date <= max )
-            ) {
-                return true;
-            }
-            return false;
-        }
-    );
-    
     $(document).ready(function() {
         // Create date inputs
-        minDate = new DateTime($('#min'), {
-            format: 'MMMM Do YYYY'
-        });
-        maxDate = new DateTime($('#max'), {
-            format: 'MMMM Do YYYY'
+        $('.input-daterange').datepicker({
+            todayBtn:'linked',
+            format:'yyyy-mm-dd',
+            autoclose:true
         });
 
-        var table = $('.data-table').DataTable({
-            "scrollX": true,
-            processing: true,
-            serverSide: true,
-            ajax: "",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderSequence:['asc']},
-                {data: 'tanggal_selesai', name: 'tanggal_selesai', orderSequence:['asc']},
-                {data: 'kode_sertifikat', name: 'kode_sertifikat', orderSequence:['asc']},
-                {data: 'nomor_ba', name: 'nomor_ba', orderSequence:['asc']},
-                {data: 'nama_lengkap', name: 'nama_lengkap', orderSequence:['asc']},
-                {data: 'jenis', name: 'jenis', orderSequence:['asc']},
-                {data: 'total_emas', name: 'total_emas', orderSequence:['asc']},
-                {data: 'kategori', name: 'kategori', orderSequence:['asc']},
-                {data: 'pengiriman', name: 'pengiriman', orderable: false, searchable: false},
-                {data: 'status', name: 'status'},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-            ]
-        });
+        load_data();
+        function load_data(from_date = '', to_date = ''){
+            $('.data-table').DataTable({
+                "scrollX": true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                        url: "",
+                        data:{from_date:from_date, to_date:to_date}
+                },
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'tanggal_non_aktif', name: 'tanggal_non_aktif'},
+                    {data: 'kode_sertifikat', name: 'kode_sertifikat'},
+                    {data: 'nomor_ba', name: 'nomor_ba'},
+                    {data: 'nama_lengkap', name: 'nama_lengkap'},
+                    {data: 'jenis', name: 'jenis'},
+                    {data: 'total_emas', name: 'total_emas'},
+                    {data: 'kategori', name: 'kategori'},
+                    {data: 'pengiriman', name: 'pengiriman', orderable: false, searchable: false},
+                    {data: 'status', name: 'status'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+        }
 
         // Refilter the table
-        $('#min, #max').on('change', function () {
-            table.draw();
+        $('#filter').click(function(){
+            var from_date = $('#from_date').val();
+            var to_date = $('#to_date').val();
+            if(from_date != '' &&  to_date != '')
+            {
+                $('.data-table').DataTable().destroy();
+                load_data(from_date, to_date);
+            }
+            else
+            {
+                alert('Both Date is required');
+            }
+        });
+        $('#refresh').click(function(){
+            $('#from_date').val('');
+            $('#to_date').val('');
+            $('.data-table').DataTable().destroy();
+            load_data();
         });
     });
 </script>

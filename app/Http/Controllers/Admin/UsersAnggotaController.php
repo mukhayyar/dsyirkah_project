@@ -48,11 +48,12 @@ class UsersAnggotaController extends Controller
     }
     public function data_verifikasi_akun_add(Request $request)
     {
+        // dd($request);
         $validation = Validator::make($request->all(), [
-            'no_ba' => ['required', 'string', 'max:24','unique:anggota'],
+            'no_ba' => ['required', 'string', 'max:24','unique:anggota,nomor_ba'],
             'nama' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'string', 'max:16'],
-            'email' => ['required', 'email', 'unique:anggota'],
+            'email' => ['required', 'email', 'unique:anggota,email'],
             'status' => ['required', 'string'],
         ]);
         if($validation->fails()){

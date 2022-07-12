@@ -31,6 +31,7 @@ Route::get('password/reset', [App\Http\Controllers\Auth\ResetPasswordController:
 Route::post('password/reset', [App\Http\Controllers\Auth\ResetPasswordController::class,'reset'])->name('password.reset');
 // login route
 Route::post('/admin/login', [App\Http\Controllers\Auth\LoginController::class,'login']);
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.verify');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class,'register']);
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'login'])->name('login_user');
 Route::post('logout', [App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
@@ -97,6 +98,7 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::put('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_update']);
                 Route::post('/cif_anggota',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_add']);
                 Route::get('/cif_anggota/cari/{id}',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_cari']);
+                Route::get('/cif_anggota/print/{id}',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_print'])->name('cif_anggota_print');
                 // versi
                 Route::get('/versi/muqoyyadah_emas',[App\Http\Controllers\Admin\MasterVersiController::class,'muqayyadah_emas_index']);
                 Route::post('/versi/muqoyyadah_emas',[App\Http\Controllers\Admin\MasterVersiController::class,'store']);
@@ -167,6 +169,7 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::post('/emas/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_approve']);
                 Route::post('/emas/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_stop']);
                 Route::get('/emas/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_detail']);
+                Route::delete('/emas/delete/perpanjangan/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'emas_perpanjangan_delete']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_index']);
                 Route::get('/rupiah/export',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'export_rupiah']);
@@ -174,6 +177,7 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::get('/rupiah/detail/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_detail']);
                 Route::post('/rupiah/action/{id}/approve',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_approve']);
                 Route::post('/rupiah/action/{id}/stop',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_stop']);
+                Route::delete('/rupiah/delete/perpanjangan/{id}',[App\Http\Controllers\Admin\DsyirkahAktifController::class,'rupiah_perpanjangan_delete']);
             });
             Route::group(['prefix'=>'reakad_dsyirkah','middleware'=>'ReakadAccess'], function(){
     

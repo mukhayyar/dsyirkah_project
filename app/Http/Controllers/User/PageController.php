@@ -141,8 +141,8 @@ class PageController extends Controller
         $perwada = Perwada::where('status','Aktif')->get();
         $check_no = PengajuanEmas::where('jenis_syirkah','Mutlaqah')->latest()->first();
         $pengajuan_emas = new PengajuanEmas;
-        $item_emas = ItemEmas::where('status',1)->get();
         $generate_no = $pengajuan_emas->generate_no_mt($check_no);
+        $item_emas = ItemEmas::where('status',1)->get();
         $user = Anggota::where('user_id',Auth::user()->id)->first(['id','nomor_ba','nama_lengkap','no_hp','email']);
         $versi = VersiProduk::where([
             ['status','=',1],
@@ -194,8 +194,8 @@ class PageController extends Controller
             $perwada = Perwada::where('status','Aktif')->get();
             $check_no = PengajuanEmas::where('jenis_syirkah','Muqayyadah')->latest()->first();
             $pengajuan_emas = new PengajuanEmas;
-            $item_emas = ItemEmas::where('status',1)->get();
             $generate_no = $pengajuan_emas->generate_no_mq($check_no);
+            $item_emas = ItemEmas::where('status',1)->get();
             $user = Anggota::where('user_id',Auth::user()->id)->first(['id','nomor_ba','nama_lengkap','no_hp','email']);
             $versi = VersiProduk::where([
                 ['status','=',1],

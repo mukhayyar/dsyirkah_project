@@ -74,7 +74,11 @@ class RegisterController extends Controller
         ]);
         $anggota = Anggota::where('nomor_ba',$data['nomor_ba'])->first();
         $anggota->user_id = $user->id;
+        $anggota->nama_lengkap = $data['name'];
+        $anggota->email = $data['email'];
+        $anggota->no_hp = $data['no_hp'];
         $anggota->status = 1;
-        return $anggota->save();
+        $anggota->save();
+        return $user;
     }
 }
