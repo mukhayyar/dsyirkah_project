@@ -670,20 +670,22 @@
             $('#modal-tambah-dataperpanjangan').modal("hide");
         }); 
         $(document).on('click', '#removeRow', function () {
-            var index = $(this)[0].dataset.index;
-            $(this).closest(`#item-${index}`).remove();
-            var id_rincian_perpanjangan = $(this)[0].dataset.id_rincian_perpanjangan;
-            if(id_rincian_perpanjangan){
-                $.ajax({
-                    type: "DELETE",
-                    url: "/admin/dsyirkah_aktif/emas/delete/perpanjangan/"+id_rincian_perpanjangan,
-                    beforeSend: function(xhr){
-                        xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
-                    },
-                    success: function(hasil){
-                        console.log("berhasil dihapus");
-                    }
-                })
+            if(confirm("Yakin akan menghapus data perpanjangan ini?")){
+                var index = $(this)[0].dataset.index;
+                $(this).closest(`#item-${index}`).remove();
+                var id_rincian_perpanjangan = $(this)[0].dataset.id_rincian_perpanjangan;
+                if(id_rincian_perpanjangan){
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/admin/dsyirkah_aktif/emas/delete/perpanjangan/"+id_rincian_perpanjangan,
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
+                        },
+                        success: function(hasil){
+                            console.log("berhasil dihapus");
+                        }
+                    })
+                }
             }
         });
         $(document).on('click', '#activateRow', function () {

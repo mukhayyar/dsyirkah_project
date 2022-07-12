@@ -147,7 +147,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'tanggal_non_aktif', name: 'tanggal_non_aktif'},
                     {data: 'kode_sertifikat', name: 'kode_sertifikat'},
-                    {data: 'kode_usaha', name: 'kode_usaha'},
+                    {data: 'pengajuan.kode_usaha', name: 'pengajuan.kode_usaha'},
                     {data: 'nomor_ba', name: 'nomor_ba'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
                     {data: 'jenis', name: 'jenis'},

@@ -150,22 +150,22 @@
                                         <p class="card-text">
                                             <div class="mt-3">
                                                 <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio1" name="persetujuan" value="Simpanan berjangka dengan akad Mudharabah Muthlaqah" class="form-check-input">
+                                                    <input type="radio" id="persetujuanRadio1" name="persetujuan" value="persetujuan-reguler-1" class="form-check-input" {{$pengajuan->persetujuan == "persetujuan-reguler-1" ? 'checked' : ''}}>
                                                     <label class="form-check-label" for="persetujuanRadio1">Simpanan berjangka dengan akad Mudharabah Muthlaqah</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio2" name="persetujuan" value="Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" class="form-check-input">
+                                                    <input type="radio" id="persetujuanRadio2" name="persetujuan" value="persetujuan-reguler-2" class="form-check-input" {{$pengajuan->persetujuan == "persetujuan-reguler-2" ? 'checked' : ''}}>
                                                     <label class="form-check-label" for="persetujuanRadio2">Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio3" name="persetujuan" value="Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" class="form-check-input">
+                                                    <input type="radio" id="persetujuanRadio3" name="persetujuan" value="persetujuan-reguler-3" class="form-check-input" {{$pengajuan->persetujuan == "persetujuan-reguler-3" ? 'checked' : ''}}>
                                                     <label class="form-check-label" for="persetujuanRadio3">Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio4" name="persetujuan" value="Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." class="form-check-input">
+                                                    <input type="radio" id="persetujuanRadio4" name="persetujuan" value="persetujuan-reguler-4" class="form-check-input" {{$pengajuan->persetujuan == "persetujuan-reguler-4" ? 'checked' : ''}}>
                                                     <label class="form-check-label" for="persetujuanRadio4">Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.</label>
                                                 </div>
-                                            </div>
+                                            </div></p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                                 <div class="card border-primary border program pokokWakaf" style="display: none">
