@@ -98,6 +98,7 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::put('/cif_anggota/{id}/edit',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_update']);
                 Route::post('/cif_anggota',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_add']);
                 Route::get('/cif_anggota/cari/{id}',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_cari']);
+                Route::get('/cif_anggota/print/{id}',[App\Http\Controllers\Admin\MasterController::class,'cif_anggota_print'])->name('cif_anggota_print');
                 // versi
                 Route::get('/versi/muqoyyadah_emas',[App\Http\Controllers\Admin\MasterVersiController::class,'muqayyadah_emas_index']);
                 Route::post('/versi/muqoyyadah_emas',[App\Http\Controllers\Admin\MasterVersiController::class,'store']);

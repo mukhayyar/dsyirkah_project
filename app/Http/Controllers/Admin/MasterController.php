@@ -109,6 +109,7 @@ class MasterController extends Controller
                 ->addColumn('action', function($row){
                     $btn = '<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon viewAkun" > <i class="mdi mdi-card-search-outline"></i></a>';
                     $btn = $btn.'<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon editAkun"> <i class="mdi mdi-square-edit-outline"></i></a>';
+                    $btn = $btn.'<a href="javascript:void(0);" data-id="'.$row->nomor_ba.'" class="action-icon printAkun"> <i class="mdi mdi-printer-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','status'])
@@ -283,6 +284,11 @@ class MasterController extends Controller
 		// alihkan halaman kembali
 		return redirect()->back();
     }
+
+   
+
+
+
     public function konten_wa_page()
     {
         return view('admin_view/master/');
