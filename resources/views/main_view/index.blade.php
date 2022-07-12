@@ -6,12 +6,12 @@
         </span>
         @enderror
         <!-- START HERO -->
-        <div class="hero-section py-0" style="background-color: #dea057">
+        <div class="hero-section py-3" style="background-color: #dea057">
             <div class="container">
                 <div class="row align-items-center" >
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-12">
                         <div class="mt-md-4">
-                            <h1 class="text-white display-1" style="font-size: 80px">
+                            <h1 class="text-white display-1" style="font-size: 85px">
                                 3000+
                             </h1>
                             <h1 class="display-6 fw-bolder" style="color: #724100">
@@ -20,16 +20,16 @@
                             <h1 class="text-white font-20">
                                 Dalam Program D'Syirkah EOA CLUB
                             </h1>
-                            <p class="font-16 text-white">Sebuah Program untuk membangun kekuatan ekonomi umat islam dengan berjama'ah dan saling tolong menolong 
+                            <p class="font-18 text-white">Sebuah Program untuk membangun kekuatan ekonomi umat islam dengan berjama'ah dan saling tolong menolong 
                                 dalam mengembangkan aset harta untuk kesuksesan dunia akhirat
                             </p>
-                            <a href="/" class="navbar-brand me-lg-3" style="z-index: 200">
+                            <a href="/" class="navbar-brand me-lg-3 " style="z-index: 200">
                                 <img src="/assets/images/buttondsyirkah.png" alt="" class="logo-dark" height="70">
                             </a>
                         </div>
                     </div>
                     <div class="col-md-5 offset-md-2" style="position: relative; top: 75px;">
-                        <div class="text-md-end mt-3 me-lg">
+                        <div class="text-md-end mt-3 me-lg d-none d-lg-block">
                             <img src="assets/images/headericon.png" alt="" style="image-size: 10px" />
                         </div>
                     </div>
@@ -39,300 +39,258 @@
         
         <!-- END HERO -->
 
-        <!-- START SERVICES -->
-        <section class="py-0" style="background-color: #ce9462">
+        <!-- START Keuntungan Anggota -->
+        <section class="py-3" style="background-color: white ">
             <div class="container">
                 <div class="row py-4">
                     <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-handshake"></i></h1>
-                            <h3>D'Syirkah Adalah Produk dari EOA Club <br>KSPPS SImpul Berkah Sinergi</h3>
-                            <p class="text-muted mt-2">Penjelasan detai tentang syirkah dlld kwekjdnkwjbdkjwedwq
-                                <br>yugfuebeuf jhdewiuw uiuhcaxoiw IOJWIDE  </p>
+                        <div class="text-center" style="color: #724100">
+                            <img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="40">
+                            <h2>Apa keuntungan menjadi</h2>
+                            <h1 class="fw-bolder">Anggota D'Syirkah:<h1>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="text-center p-2 p-sm-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-desktop text-primary font-24"></i>
-                                </span>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="col-md-5 offset-md-2" style="position: relative; top: -20px; right: 120px;">
+                            <div class="text-md-end mt-3 me-lg d-none d-lg-block">
+                                <img src="assets/images/jpg2.png" alt="" style="image-size: 10px" />
                             </div>
-                            <h4 class="mt-3">Sesuai Syariah</h4>
-                            <p class="text-muted mt-2 mb-0">Et harum quidem rerum as expedita distinctio nam libero tempore
-                                cum soluta nobis est cumque quo.
-                            </p>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="text-center p-2 p-sm-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-vector-square text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Dikelola profesional</h4>
-                            <p class="text-muted mt-2 mb-0">Temporibus autem quibusdam et aut officiis necessitatibus saepe
-                                eveniet ut sit et recusandae.
-                            </p>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="text-left p-3 p-lg-3 h3" style="color: #724100">
+                            <ul style="list-style-image: url(/assets/images/list.png)" height="3">
+                                <li>Aset kita bisa bermanfaat untuk dunia dan akhirat, InsyaAllah.</li><br>
+                                <li>Mendapat Keuntungan bagi hasil usaha sesuai dengan akad syariah (Passive income)</li><br>
+                                <li>Aset yang kita titipkan akan di olah oleh tim yang profesional</li><br>
+                                <li>Tidak perlu menjalankan bisnis sendiri atau membuat sistem bisnis sendiri yang rumit & memakan waktu</li><br>
+                                <li>bisa menjadi pilihan yang optimal, karena aset akan terus produktif bahkan disaat tidur</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="text-center p-2 p-sm-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-presentation text-primary font-24"></i>
-                                </span>
+                    <div class="col-lg-1 col-md-6">
+                        <div class="col-md-5 offset-md-2" style="position: relative; top: -150px; left: 50px;">
+                            <div class="text-md-end mt-3 me-lg d-none d-lg-block">
+                                <img src="assets/images/jpg2back.png" alt="" style="image-size: 10px" />
                             </div>
-                            <h4 class="mt-3">Apalagi </h4>
-                            <p class="text-muted mt-2 mb-0">Nam libero tempore, cum soluta a est eligendi minus id quod
-                                maxime placeate facere assumenda est.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="text-center p-2 p-sm-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-apps text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Dan lagi</h4>
-                            <p class="text-muted mt-2 mb-0">Et harum quidem rerum as expedita distinctio nam libero tempore
-                                cum soluta nobis est cumque quo.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="text-center p-2 p-sm-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-shopping-cart-alt text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Ecommerce Pages</h4>
-                            <p class="text-muted mt-2 mb-0">Temporibus autem quibusdam et aut officiis necessitatibus saepe
-                                eveniet ut sit et recusandae.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="text-center p-2 p-sm-3">
-                            <div class="avatar-sm m-auto">
-                                <span class="avatar-title bg-primary-lighten rounded-circle">
-                                    <i class="uil uil-grids text-primary font-24"></i>
-                                </span>
-                            </div>
-                            <h4 class="mt-3">Multiple Layouts</h4>
-                            <p class="text-muted mt-2 mb-0">Nam libero tempore, cum soluta a est eligendi minus id quod
-                                maxime placeate facere assumenda est.
-                            </p>
                         </div>
                     </div>
                 </div>
 
             </div>
         </section>
-        <!-- END SERVICES -->
-
-        <!-- START FEATURES 2 -->
-        <section class="py-5">
+        <!-- END keuntungan Anggota -->
+        
+        <!-- START Keuntungan Mitra -->
+        <section class="py-3" style="background-color: #dea057; background-image: url('assets/images/jpg3back.png'); background-repeat: no-repeat">
             <div class="container">
-                <div class="row">
+                <div class="row py-4">
                     <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-heart-multiple-outline"></i></h1>
-                            <h3>Features you'll <span class="text-danger">love</span></h3>
-                            <p class="text-muted mt-2">Hyper comes with next generation ui design and have multiple benefits
-                            </p>
+                        <div class="text-center" style="color: #724100">
+                            <img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="40">
+                            <h2>Keuntungan Menjadi</h2>
+                            <h1 class="fw-bolder">Mitra Usaha:<h1>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2 py-5 align-items-center">
-                    <div class="col-lg-5 col-md-6">
-                        <img src="assets/images/features-1.svg" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-6 offset-md-1 col-md-5">
-                        <h3 class="fw-normal">Inbuilt applications and pages</h3>
-                        <p class="text-muted mt-3">Hyper comes with a variety of ready-to-use applications and pages that help to speed up the development</p>
 
-                        <div class="mt-4">
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Projects & Tasks</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Ecommerce Application Pages</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Profile, pricing, invoice</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-primary"></i> Login, signup, forget password</p>
+                <div class="row">
+                    <div class="col-lg-1 col-md-6">
+                        <div class="col-md-5 offset-md-2">
                         </div>
-
-                        <a href="" class="btn btn-primary rounded-pill mt-3">Read More <i class="mdi mdi-arrow-right ms-1"></i></a>
-
                     </div>
-                </div>
+                    
 
-                <div class="row pb-3 pt-5 align-items-center">
-                    <div class="col-lg-6 col-md-5">
-                        <h3 class="fw-normal">Simply beautiful design</h3>
-                        <p class="text-muted mt-3">The simplest and fastest way to build dashboard or admin panel. Hyper is built using the latest tech and tools and provide an easy way to customize anything, including an overall color schemes, layout, etc.</p>
-
-                        <div class="mt-4">
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Built with latest Bootstrap</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Extensive use of SCSS variables</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Well documented and structured code</p>
-                            <p class="text-muted"><i class="mdi mdi-circle-medium text-success"></i> Detailed Documentation</p>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="text-left p-3 p-lg-3 h3" style="color: #724100">
+                            <ul style="list-style-image: url(/assets/images/list.png)" height="3">
+                                <li>Mendapatkan Modal Usaha yang Insya Allah Berkah, Sehingga bisa menjadi modal bisnis untuk makin berkembang dan menguntungkan.</li><br><br>
+                                <li>Mengekspansi bisnis menjadi lebih besar lagi</li><br>
+                            </ul>
                         </div>
-
-                        <a href="" class="btn btn-success rounded-pill mt-3">Read More <i class="mdi mdi-arrow-right ms-1"></i></a>
-
                     </div>
-                    <div class="col-lg-5 col-md-6 offset-md-1">
-                        <img src="assets/images/features-2.svg" class="img-fluid" alt="">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="col-md-5 offset-md-2" style="position: relative; top: -360px; left: -70px;">
+                            <div class="text-md-end mt-3 me-lg d-none d-lg-block">
+                                <img src="assets/images/jpg3.png" alt="" style="image-size: 0px" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </section>
-        <!-- END FEATURES 2 -->
+        <!-- END SERVICES Mitra -->
 
-        <!-- START FAQ -->
-        <section class="py-5">
+        <!-- START Keuntungan Anggota Dekstop -->
+        <section class="py-5 d-none d-lg-block" style="position: relative; top: -250px; background-color: white ">
             <div class="container">
+                
+
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="mt-0"><i class="mdi mdi-frequently-asked-questions"></i></h1>
-                            <h3>Frequently Asked <span class="text-primary">Questions</span></h3>
-                            <p class="text-muted mt-2">Here are some of the basic types of questions for our customers. For more
-                                <br>information please contact us.</p>
-
-                            <button type="button" class="btn btn-success btn-sm mt-2"><i class="mdi mdi-email-outline me-1"></i> Email us your question</button>
-                            <button type="button" class="btn btn-info btn-sm mt-2 ms-1"><i class="mdi mdi-twitter me-1"></i> Send us a tweet</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mt-5">
-                    <div class="col-lg-5 offset-lg-1">
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Can I use this template for my client?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Yup, the marketplace license allows you to use this theme
-                                in any end products.
-                                For more information on licenses, please refere <a href="https://themes.getbootstrap.com/licenses/" target="_blank">here</a>.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">How do I get help with the theme?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Use our dedicated support email (support@coderthemes.com) to send your issues or feedback. We are here to help anytime.</p>
-                        </div>
-
-                    </div>
-                    <!--/col-lg-5 -->
-
-                    <div class="col-lg-5">
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Can this theme work with Wordpress?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">No. This is a HTML template. It won't directly with
-                                wordpress, though you can convert this into wordpress compatible theme.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question text-body">Will you regularly give updates of Hyper?</h4>
-                            <p class="faq-answer mb-4 pb-1 text-muted">Yes, We will update the Hyper regularly. All the
-                                future updates would be available without any cost.</p>
-                        </div>
-
-                    </div>
-                    <!--/col-lg-5-->
-                </div>
-                <!-- end row -->
-
-            </div> <!-- end container-->
-        </section>
-        <!-- END FAQ -->
-
-
-        <!-- START CONTACT -->
-        <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <h3>Get In <span class="text-primary">Touch</span></h3>
-                            <p class="text-muted mt-2">Please fill out the following form and we will get back to you shortly. For more
-                                <br>information please contact us.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center mt-3">
-                    <div class="col-md-4">
-                        <p class="text-muted"><span class="fw-bold">Customer Support:</span><br> <span class="d-block mt-1">+1 234 56 7894</span></p>
-                        <p class="text-muted mt-4"><span class="fw-bold">Email Address:</span><br> <span class="d-block mt-1">info@gmail.com</span></p>
-                        <p class="text-muted mt-4"><span class="fw-bold">Office Address:</span><br> <span class="d-block mt-1">4461 Cedar Street Moro, AR 72368</span></p>
-                        <p class="text-muted mt-4"><span class="fw-bold">Office Time:</span><br> <span class="d-block mt-1">9:00AM To 6:00PM</span></p>
-                    </div>
-
-                    <div class="col-md-8">
-                        <form>
-                            <div class="row mt-4">
-                                <div class="col-lg-6">
-                                    <div class="mb-2">
-                                        <label for="fullname" class="form-label">Your Name</label>
-                                        <input class="form-control form-control-light" type="text" id="fullname" placeholder="Name...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-2">
-                                        <label for="emailaddress" class="form-label">Your Email</label>
-                                        <input class="form-control form-control-light" type="email" required="" id="emailaddress" placeholder="Enter you email...">
-                                    </div>
-                                </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="col-md-5 offset-md-2" style="position: relative; top: 80px; left: -180px;">
+                            <div class="text-md-end mt-3 me-lg d-none d-lg-block">
+                                <img src="assets/images/jpg4.png" alt="" style="image-size: 10px" />
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="row mt-1">
-                                <div class="col-lg-12">
-                                    <div class="mb-2">
-                                        <label for="subject" class="form-label">Your Subject</label>
-                                        <input class="form-control form-control-light" type="text" id="subject" placeholder="Enter subject...">
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-lg-7 col-md-6">
+                        <div class="text-left" style="color: #724100">
+                            <h2>Kenapa ada lebih dari 3.000+ Orang</h2>
+                            <h1 class="fw-bolder">memilih D'syirkah EOA Club?<h1>
+                        </div>
+                        <div class="text-left p-3 p-lg-3 h3" style="color: #724100">
+                            <ul style="list-style-image: url(/assets/images/list.png)" height="3">
+                                <li>Diawasi Oleh dewan pengawas syariah, insyaAllah sistem yang digunakan pun berlandaskan Syariah.</li><br>
+                                <li>Modal dana D'Syirkah akan diserahkan untuk usaha yang hanya sudah berjalan & menguntungkan di bidang peternakan, pertanian dan sebagainya yang sudah bekerjasama dengan EOA Club</li><br>
+                                <li>Dipercayai untuk memegang amanah pengembangan aset oleh lebih dari 3.000+ Orang dan terus bertambah</li><br>
+                                <li>D'Syirkah sudah berjalan sejak tahun 2020</li><br>
+                                <li>Transparansi pelaporan bagi hasil yang dilakukan 3 bulan sekali kepada</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                            <div class="row mt-1">
-                                <div class="col-lg-12">
-                                    <div class="mb-2">
-                                        <label for="comments" class="form-label">Message</label>
-                                        <textarea id="comments" rows="4" class="form-control form-control-light" placeholder="Type your message here..."></textarea>
-                                    </div>
-                                </div>
+                    <div class="col-lg-1 col-md-6">
+                        <div class="col-md-5 offset-md-2" style="position: relative; top: 750px; left: 0px;">
+                            <div class="text-md-end mt-3 me-lg d-none d-lg-block">
+                                <img src="assets/images/jpg4back.png" alt="" style="image-size: 10px" />
                             </div>
-
-                            <div class="row mt-2">
-                                <div class="col-12 text-end">
-                                    <button class="btn btn-primary">Send a Message <i
-                                        class="mdi mdi-telegram ms-1"></i> </button>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="row py-4">
+                        <div class="col-lg-12">
+                            <div class="text-center" style="position: relative; top: 100px;">
+                                <img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="40">
+                                <h2>Ada masalah,</h2>
+                                <h1 class="fw-bolder">ADA SOLUSI DARI EOA CLUB:<h1>
+                                <button type="button" class="btn btn-info" style="color: #724100"><i class="mdi mdi-whatsapp"></i> <span><b>WA US YOUR QUESTION</span> </button>
                             </div>
-                        </form>
+                            <div class="col-md-12" style="position: relative; top: 180px;">
+                                <div class="card border" style="border-color: #724100">
+                                    <div class="card-body">
+                                        <div class="">
+                                            <i class=""><img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="30"></i><span style="font-size: 25px">
+                                                Punya tabungan lebih tapi tidak punya waktu berbisnis</span>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                            <div class="col-md-12" style="position: relative; top: 220px;">
+                                <div class="card border" style="border-color: #724100">
+                                    <div class="card-body">
+                                        <div class="">
+                                            <i class=""><img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="30"></i><span style="font-size: 25px">
+                                                Punya tabungan lebih tapi tidak punya waktu berbisnis</span>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                            <div class="col-md-12" style="position: relative; top: 260px;">
+                                <div class="card border" style="border-color: #724100">
+                                    <div class="card-body">
+                                        <div class="">
+                                            <i class=""><img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="30"></i><span style="font-size: 25px">
+                                                Punya tabungan lebih tapi tidak punya waktu berbisnis</span>
+                                        </div>
+                                    </div> <!-- end card-body-->
+                                </div> <!-- end card-->
+                            </div> <!-- end col-->
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- END CONTACT -->
+        <!-- END keuntungan Anggota -->
+
+        {{-- <!-- START Keuntungan Anggota hp -->
+        <section class="py-5 d-xl-none" style="background-color: white ">
+            <div class="container">
+                
+
+                <div class="row">
+                    
+                    <div class="col-lg-7 col-md-6">
+                        <div class="text-left" style="color: #724100">
+                            <h2>Kenapa ada lebih dari 3.000+ Orang</h2>
+                            <h1 class="fw-bolder">memilih D'syirkah EOA Club?<h1>
+                        </div>
+                        <div class="text-left p-3 p-lg-3 h3" style="color: #724100">
+                            <ul style="list-style-image: url(/assets/images/list.png)" height="3">
+                                <li>Diawasi Oleh dewan pengawas syariah, insyaAllah sistem yang digunakan pun berlandaskan Syariah.</li><br>
+                                <li>Modal dana D'Syirkah akan diserahkan untuk usaha yang hanya sudah berjalan & menguntungkan di bidang peternakan, pertanian dan sebagainya yang sudah bekerjasama dengan EOA Club</li><br>
+                                <li>Dipercayai untuk memegang amanah pengembangan aset oleh lebih dari 3.000+ Orang dan terus bertambah</li><br>
+                                <li>D'Syirkah sudah berjalan sejak tahun 2020</li><br>
+                                <li>Transparansi pelaporan bagi hasil yang dilakukan 3 bulan sekali kepada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-4">
+                    <div class="col-lg-12">
+                        <div class="text-center" style="color: #724100">
+                            <img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="40">
+                            <h2>Keuntungan Menjadi</h2>
+                            <h1 class="fw-bolder">Mitra Usaha:<h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section> --}}
+        <!-- END keuntungan Anggota -->
+
+         <!-- START Video -->
+         <section class="py-3" style="background-color: #dea057">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col-lg-12">
+                        <div class="text-center" style="color: #724100">
+                            <img src="/assets/images/keuntungan.png" alt="" class="logo-dark" height="40">
+                            <h2>Keuntungan Menjadi</h2>
+                            <h1 class="fw-bolder">Mitra Usaha:<h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2 col-md-1">
+                        <div class="col-md-5 offset-md-2">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8 col-md-10">
+                        <div class="card border" style="border-color: #724100">
+                            <div class="card-body">
+                                <div class="ratio ratio-16x9">
+                                    <iframe src="https://www.youtube.com/embed/PrUxWZiQfy4?autohide=0&showinfo=0&controls=0"></iframe>
+                                </div>
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div>
+
+                    <div class="col-lg-2 col-md-1">
+                        <div class="col-md-5 offset-md-2" style="position: relative; top: 360px; left: -70px;">
+                            <div class="text-md-end mt-3 me-lg d-none d-lg-block">
+                                <img src="/assets/images/jpg5.png" alt="" style="image-size: 0px" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- END Video -->
+
+        
+        
 @push('scripts')
 @if(Session::has('pop_login'))
 <script>

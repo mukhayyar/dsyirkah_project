@@ -54,12 +54,72 @@
                             <div class="col-lg-6 card">
                                 <table class="table mb-0">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 35%;"></th>
-                                        <th style="width: 65%;"></th>
-                                    </tr>
+                                        <tr>
+                                            <th style="width: 35%;"></th>
+                                            <th style="width: 65%;"></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
+                                        <tr>
+                                            <td>Tanggal Persetujuan</td>
+                                            <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kode DSyirkah</td>
+                                            <td>: {{$pengajuan->no_pengajuan}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kode Sertifikat</td>
+                                            <td>: {{$pengajuan->no_pengajuan}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Referensi</td>
+                                            <td>: {{$pengajuan->referensi}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pilihan Program</td>
+                                            <td>: {{$pengajuan->pilihan_program}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jenis Syirkah</td>
+                                            <td>: {{$pengajuan->jenis_syirkah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Versi Syirkah</td>
+                                            <td>: {{$pengajuan->versi->versi}}</td>
+                                        </tr>
+                                        @if($pengajuan->kode_usaha)
+                                        <tr>
+                                            <td>Kode Usaha</td>
+                                            <td>: {{$pengajuan->kode_usaha}}</td>
+                                        </tr>
+                                        @endif
+                                        <tr>
+                                            <td>Jangka Waktu</td>
+                                            <td>: {{$pengajuan->jangka_waktu()}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jatuh Tempo</td>
+                                            <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nisbah</td>
+                                            <td>: {{$pengajuan->nisbah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alokasi Nisbah</td>
+                                            <td>: {{$pengajuan->alokasi_nisbah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Perpanjangan</td>
+                                            <td>: {{$pengajuan->perpanjangan}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Gramasi</td>
+                                            <td>: {{$pengajuan->total_gramasi()}}</td>
+                                        </tr>
+=======
                                     <tr>
                                         <td>Tanggal Persetujuan</td>
                                         <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
@@ -118,6 +178,7 @@
                                         <td>Total Gramasi</td>
                                         <td>: {{$pengajuan->total_gramasi()}}</td>
                                     </tr>
+>>>>>>> origin
                                     </tbody>
                                 </table>
                             </div><br>
