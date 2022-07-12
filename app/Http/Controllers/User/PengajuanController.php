@@ -62,6 +62,7 @@ class PengajuanController extends Controller
         $pengajuan->perpanjangan = $request->perpanjangan;
         $pengajuan->nominal = str_replace(".","",$request->nominal);
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
+        $pengajuan->persetujuan = $request->persetujuan;
         $pengajuan->catatan_pengajuan = $request->catatan;
         $pengajuan->created_at = $request->today;
         $pengajuan->save();
@@ -113,6 +114,7 @@ class PengajuanController extends Controller
         $pengajuan->perpanjangan = $request->perpanjangan;
         $pengajuan->total_gramasi = $request->total_jumlah_emas;
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
+        $pengajuan->persetujuan = $request->persetujuan;
         $pengajuan->catatan_pengajuan = $request->catatan;
         $pengajuan->created_at = $request->today;
         $pengajuan->save();

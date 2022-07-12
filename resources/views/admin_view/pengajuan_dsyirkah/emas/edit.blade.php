@@ -183,23 +183,52 @@
                                                             </tbody>
                                                         </table>
                                                     </div><hr><br> <!-- end table-responsive-->
+                                                    <div class="card border-primary border program reguler" @if($pengajuan->pilihan_program == "reguler")style="display: block;" @else style="display: none;"@endif>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Persetujuan : (jika Reguler)</h5>
+                                                            <p class="card-text">
+                                                                <div class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio1" name="persetujuan" value="Simpanan berjangka dengan akad Mudharabah Muthlaqah" class="form-check-input" {{$pengajuan->persetujuan == "Simpanan berjangka dengan akad Mudharabah Muthlaqah" ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio1">Simpanan berjangka dengan akad Mudharabah Muthlaqah</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio2" name="persetujuan" value="Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" class="form-check-input" {{$pengajuan->persetujuan == "Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio2">Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio3" name="persetujuan" value="Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" class="form-check-input" {{$pengajuan->persetujuan == "Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio3">Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio4" name="persetujuan" value="Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." class="form-check-input" {{$pengajuan->persetujuan == "Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio4">Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.</label>
+                                                                    </div>
+                                                                </div>
+                                                        </div> <!-- end card-body-->
+                                                    </div> <!-- end card-->
                                                     <div class="card border-primary border program pokokWakaf" @if($pengajuan->pilihan_program == "pokokWakaf")style="display: block;" @else style="display: none;"@endif>
                                                         <div class="card-body">
                                                             <h5 class="card-title">Persetujuan : (jika Pokok diwakafkan)</h5>
                                                             <p class="card-text">
-                                                                <ul class="ul-number">
-                                                                    <li>
-                                                                         Simpanan berjangka dengan akad Mudharabah Muthlaqah
-                                                                    </li>
-                                                                    <li>
-                                                                        Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                                    <li>
-                                                                        Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                                    </li>
-                                                                    <li>
-                                                                        Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
-                                                                    </li>
-                                                                </ul>
+                                                                <div class="mt-3">
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio5" name="persetujuan" value="Simpanan berjangka dengan akad Mudharabah Muthlaqah" class="form-check-input" {{$pengajuan->persetujuan == "Simpanan berjangka dengan akad Mudharabah Muthlaqah" ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio5">Simpanan berjangka dengan akad Mudharabah Muthlaqah</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio6" name="persetujuan" value="Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" class="form-check-input" {{$pengajuan->persetujuan == "Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio6">Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio7" name="persetujuan" value="Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" class="form-check-input" {{$pengajuan->persetujuan == "Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio7">Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold</label>
+                                                                    </div>
+                                                                    <div class="form-check">
+                                                                        <input type="radio" id="persetujuanRadio8" name="persetujuan" value="Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." class="form-check-input" {{$pengajuan->persetujuan == "Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." ? 'checked' : ''}}>
+                                                                        <label class="form-check-label" for="persetujuanRadio8">Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.</label>
+                                                                    </div>
+                                                                </div>
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
                                                     

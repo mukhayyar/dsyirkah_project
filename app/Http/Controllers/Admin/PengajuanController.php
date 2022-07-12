@@ -415,10 +415,10 @@ class PengajuanController extends Controller
         $pengajuan->jangka_waktu = $jangka_waktu;
         $pengajuan->jenis_syirkah = $request->jenis;
         $pengajuan->nisbah = $request->nisbah;
-        $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
         $pengajuan->nominal = str_replace(".","",$request->nominal);
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
+        $pengajuan->persetujuan = $request->persetujuan;
         $pengajuan->catatan_edit = $request->catatan_edit;
         $pengajuan->save();
         return redirect('/admin/pengajuan_dsyirkah/rupiah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
@@ -440,8 +440,8 @@ class PengajuanController extends Controller
         $pengajuan->jangka_waktu = $jangka_waktu;
         $pengajuan->jenis_syirkah = $request->jenis;
         $pengajuan->nisbah = $request->nisbah;
-        $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
+        $pengajuan->persetujuan = $request->persetujuan;
         if($request->total_jumlah_emas != 'NaN'){
             $pengajuan->total_gramasi = $request->total_jumlah_emas;
         }

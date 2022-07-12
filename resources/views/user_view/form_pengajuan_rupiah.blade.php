@@ -98,8 +98,8 @@
                                                 <input class="form-control date" type="text" id="nisbahPil" name="nisbah" readonly>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
-                                                <label for="example-select" class="form-label">Perpanjangan (jika reg)</label>
-                                                <select class="form-select" id="example-select" name="perpanjangan">
+                                                <label for="perpanjangan" class="form-label">Perpanjangan (jika reg)</label>
+                                                <select class="form-select" id="perpanjangan" name="perpanjangan">
                                                     <option value="">Pilih</option>
                                                     <option value="Otomatis">Otomatis</option>
                                                     <option value="Tidak Otomatis">Tidak Otomatis</option>
@@ -135,38 +135,48 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Persetujuan : (jika Reguler)</h5>
                                         <p class="card-text">
-                                            <ul class="ul-number">
-                                                <li>
-                                                     Simpanan berjangka dengan akad Mudharabah Muthlaqah
-                                                </li>
-                                                <li>
-                                                    Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                <li>
-                                                    Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                </li>
-                                                <li>
-                                                    Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
-                                                </li>
-                                            </ul>
+                                            <div class="mt-3">
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio1" name="persetujuan" value="Simpanan berjangka dengan akad Mudharabah Muthlaqah" class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio1">Simpanan berjangka dengan akad Mudharabah Muthlaqah</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio2" name="persetujuan" value="Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio2">Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio3" name="persetujuan" value="Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio3">Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio4" name="persetujuan" value="Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio4">Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.</label>
+                                                </div>
+                                            </div>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                                 <div class="card border-primary border program pokokWakaf" style="display: none">
                                     <div class="card-body">
                                         <h5 class="card-title">Persetujuan : (jika Pokok diwakafkan)</h5>
                                         <p class="card-text">
-                                            <ul class="ul-number">
-                                                <li>
-                                                     Simpanan berjangka dengan akad Mudharabah Muthlaqah
-                                                </li>
-                                                <li>
-                                                    Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                <li>
-                                                    Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                </li>
-                                                <li>
-                                                    Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
-                                                </li>
-                                            </ul>
+                                            <div class="mt-3">
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio5" name="persetujuan" value="Simpanan berjangka dengan akad Mudharabah Muthlaqah" class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio5">Simpanan berjangka dengan akad Mudharabah Muthlaqah</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio6" name="persetujuan" value="Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo" class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio6">Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio7" name="persetujuan" value="Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold" class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio7">Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="persetujuanRadio8" name="persetujuan" value="Saya siap mengembalikan hadiah jika tidak sesuai dengan akad." class="form-check-input">
+                                                    <label class="form-check-label" for="persetujuanRadio8">Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.</label>
+                                                </div>
+                                            </div>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                                 
@@ -187,15 +197,15 @@
                                                 <label class="form-check-label" for="customRadio2">Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                <input type="radio" id="customRadio3" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio3">Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                <input type="radio" id="customRadio4" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio4">Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input">
+                                                <input type="radio" id="customRadio5" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio5">Nisbah semua di wakafkan melalui Wakaf Peradaban</label>
                                             </div>
                                         </div> 
@@ -208,15 +218,15 @@
                                         <h5 class="card-title">Alokasi Nisbah Wakaf :</h5>
                                         <div class="mt-3">
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio1" name="alokasiNisbah" value="100% sedekah" class="form-check-input">
+                                                <input type="radio" id="customRadio6" name="alokasiNisbah" value="100% sedekah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio6">100% sedekah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input">
+                                                <input type="radio" id="customRadio7" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio7">40% anggota ; 60% sedekah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input">
+                                                <input type="radio" id="customRadio8" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio8">25% anggota ; 75% sedekah</label>
                                             </div>
                                         </div> 
@@ -288,7 +298,27 @@
         $('#pilihanProgram').change(function(){
             $('.program').hide();
             $('.' + $(this).val()).show();
+            var selected = $('#pilihanProgram')[0].selectedOptions[0].innerText;
+            if(selected == "Reguler")
+            {
+                $('#perpanjangan').attr("required","required");
+                $('#bulanPil').attr("required","required");
+            } else {
+                $('#perpanjangan').removeAttr("required");
+                $('#bulanPil').removeAttr("required");
+
+            }
         })
+        var selected = $('#pilihanProgram')[0].selectedOptions[0].innerText;
+        if(selected == "Reguler")
+        {
+            $('.program').hide();
+            $('.reguler').show();
+            $('#perpanjangan').attr("required","required");
+            $('#bulanPil').attr("required","required");
+        } else if(selected == "Pokok Diwakafkan") {
+            $('.pokokWakaf').show();
+        }
     });
     $(document).ready(function(){
         var id_versi = $("#id_versi").val();
