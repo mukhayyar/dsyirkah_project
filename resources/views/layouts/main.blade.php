@@ -337,16 +337,16 @@
         </div><!-- /.modal -->
 
         <!-- START FOOTER -->
-        <footer class="py-3 text-white"  style="background-color: #ce9462">
+        <footer class="py-3 text-white"  style="background-color: #fefbea">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-9">
-                        <div class="text-left">
+                    <div class="col-lg-8">
+                        <div class="text-left" style="color: #572423">
                             <h3>EOA CLUB D'Syirkah</h3><br>
-                            <h4>Dsftsr D'Syirkah</h4>
+                            <h4>D'Syirkah</h4>
                             <p>Sekarang juga di media sosial kami</p>
                         </div>
-                        <div class="">
+                        <div class="" >
                             <a href="https://www.facebook.com/eoaclubofficialaccount/" class="navbar-brand me-lg-3">
                                 <img src="/assets/images/sosmed/facebook.png" alt="" class="logo-dark" height="40">
                             </a>
@@ -360,22 +360,22 @@
                                 <img src="/assets/images/sosmed/youtube.png" alt="" class="logo-dark" height="40">
                             </a>
                         </div>
-                        <div class="text-left py-4">
+                        <div class="text-left py-4" style="color: #572423">
                             <h4>Informasi lebih lanjut</h4>
-                            <p>(WA CS)</p>
+                            <p>(Whatsapp Customer Service)</p>
                             <a href="https://wa.me/6281219974532" class="navbar-brand me-lg-3">
                                 <img src="/assets/images/sosmed/whatsapp.png" alt="" class="logo-dark" height="40">
                             </a>
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-4 mt-3 mt-lg-0 text-white">
+                    <div class="col-lg-3 col-md-4 mt-3 mt-lg-0" style="color: #572423">
                         <h4 class="">Company</h4><hr>
-                        <ul class="list-unstyled ps-0 mb-0 mt-3 text-white">
-                            <li class="mt-2"><a href="" class="text-white">About Us</a></li>
-                            <li class="mt-2"><a href="" class="text-white">Documentation</a></li>
-                            <li class="mt-2"><a href="" class="text-white">Blog</a></li>
-                            <li class="mt-2"><a href="" class="text-white">Affiliate Program</a></li>
+                        <ul class="list-unstyled ps-0 mb-0 mt-3 text-white" style="color: #572423">
+                            <li class="mt-2"><a href=""  style="color: #572423">Website EOA Club</a></li>
+                            <li class="mt-2"><a href=""  style="color: #572423">EOA Club Mobile</a></li>
+                            <li class="mt-2"><a href="" style="color: #572423">Produk & Layanan EOA Club</a></li>
+                            <li class="mt-2"><a href=""  style="color: #572423">Konfirmasi Setoran</a></li>
                         </ul>
                     </div>
                 </div>
