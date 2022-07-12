@@ -82,11 +82,11 @@
                                                                     </div><br>
                                                                     <div class="col-md">
                                                                         <label for="user_create" class="form-label">User Create</label>
-                                                                        <input class="form-control date" type="text" id="user_create" readonly="">
+                                                                        <input class="form-control date" type="text" id="user_create" readonly="" value="@if(isset($usaha->user_create_usaha)){{$usaha->user_create_usaha->name}} | {{$usaha->user_create_usaha->role}}@endif">
                                                                     </div><br>
                                                                     <div class="col-md">
                                                                         <label for="user_edit" class="form-label">User Edit</label>
-                                                                        <input class="form-control date" type="text" id="user_edit" readonly="">
+                                                                        <input class="form-control date" type="text" id="user_edit" readonly="" value="@if(isset($usaha->user_edit_usaha)){{$usaha->user_edit_usaha->name}} | {{$usaha->user_edit_usaha->role}}@endif">
                                                                     </div>
                                                             </div> <!-- end card-body-->
                                                         </div> <!-- end card-->
@@ -130,7 +130,7 @@
                                                                             <option value="rupiah" @if(isset($usaha))@if($usaha->jenis_form == 'rupiah') selected @endif @elseif(old('jenis_form_bentuk') == 'rupiah') selected @endif>Rupiah</option>
                                                                         </select>
                                                                         <label for="kode_usaha" class="form-label">Kode Usaha</label>
-                                                                        <input class="form-control" type="text" name="kode_usaha" id="kode_usaha">
+                                                                        <input class="form-control" type="text" name="kode_usaha" id="kode_usaha" value="@if(isset($usaha)){{$usaha->kode_usaha}}@else{{ old('kode_usaha') }}@endif">
                                                                     </div><br>
 
                                                                     <div class="col-md">

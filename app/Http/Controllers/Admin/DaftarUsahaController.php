@@ -51,11 +51,8 @@ class DaftarUsahaController extends Controller
         return view('admin_view/daftar_usaha/usaha_basis_emas/create');
     }
     public function edit_usaha_basis_emas_page($id){
-        $usaha = Usaha::with('usahaImages')->find($id);
+        $usaha = Usaha::with('usahaImages','user_create_usaha','user_edit_usaha')->find($id);
         return view('admin_view/daftar_usaha/usaha_basis_emas/create',compact('usaha'));
-    }
-    public function edit_usaha_basis_emas(){
-        return view('admin_view/daftar_usaha/usaha_basis_emas/create');
     }
     public function create_usaha_basis_emas(Request $request){
         $validation = Validator::make($request->all(), [
@@ -169,9 +166,10 @@ class DaftarUsahaController extends Controller
         $usaha->legalitas = $request->legalitas;
         $usaha->status_post = $request->status_post;
         $usaha->tanggal_post = $request->tanggal_post;
-        $usaha->user_create = auth()->user()->id;
+        $usaha->user_edit = auth()->user()->id;
         $usaha->jenis_usaha = $request->kategori;
         $usaha->jenis_akad = $request->jenis_akad;
+        $usaha->kode_usaha = $request->kode_usaha;
         $usaha->pemilik = $request->pemilik;
         $usaha->jenis_form = $request->jenis_form_bentuk;
         $usaha->status_dana = $request->status_dana;
@@ -337,10 +335,11 @@ class DaftarUsahaController extends Controller
         $usaha->legalitas = $request->legalitas;
         $usaha->status_post = $request->status_post;
         $usaha->tanggal_post = $request->tanggal_post;
-        $usaha->user_create = auth()->user()->id;
+        $usaha->user_edit = auth()->user()->id;
         $usaha->jenis_usaha = $request->kategori;
         $usaha->jenis_akad = $request->jenis_akad;
         $usaha->pemilik = $request->pemilik;
+        $usaha->kode_usaha = $request->kode_usaha;
         $usaha->jenis_form = $request->jenis_form_bentuk;
         $usaha->status_dana = $request->status_dana;
         $usaha->kebutuhan_rupiah = str_replace(".","",$request->kebutuhan);
@@ -350,7 +349,7 @@ class DaftarUsahaController extends Controller
         return redirect()->route('admin.usaha_basis_rupiah');
     }
     public function edit_usaha_basis_rupiah_page($id){
-        $usaha = Usaha::with('usahaImages')->find($id);
+        $usaha = Usaha::with('usahaImages','user_create_usaha','user_edit_usaha')->find($id);
         return view('admin_view/daftar_usaha/usaha_basis_rupiah/create',compact('usaha'));
     }
     public function laporan_page(){
