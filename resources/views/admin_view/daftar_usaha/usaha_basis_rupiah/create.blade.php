@@ -120,12 +120,12 @@
                                                                         <select class="form-select" id="checkMuqayyadah" name="jenis_akad" required>
                                                                             <option value="">Pilih</option>
                                                                             <option value="Mutlaqah" @if(isset($usaha))@if($usaha->jenis_akad == 'Mutlaqah') selected @endif @elseif(old('jenis_akad') == 'mutlaqah') selected @endif>Mutlaqah</option>
-                                                                            <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'muqayyadah') selected @endif>Muqqayyadah</option>
+                                                                            <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'muqayyadah') selected @endif>Muqayyadah</option>
                                                                         </select>
                                                                     </div><br>
                                                                     <div class="col-md Muqayyadah" style="display: none;">
                                                                         <label for="example-select" class="form-label">Jenis Form / Bentuk (Jika Muqoyyadah)</label>
-                                                                        <select class="form-select" id="jenis_form" name="jenis_form_bentuk">
+                                                                        <select class="form-select" id="jenis_form_bentuk" name="jenis_form_bentuk">
                                                                             <option value="" >Pilih</option>
                                                                             <option value="rupiah" @if(isset($usaha))@if($usaha->jenis_form == 'rupiah') selected @endif @elseif(old('jenis_form_bentuk') == 'rupiah') selected @endif>Rupiah</option>
                                                                         </select>
@@ -239,15 +239,28 @@
         <!-- init js -->
         <script src="/assets/js/ui/component.fileupload.js"></script>
         <script>
-            $(function() {
-                $('#checkMuqayyadah').change(function(){
+            $('#checkMuqayyadah').change(function(){
                     $('.Muqayyadah').hide();
                     $('.' + $(this).val()).show();
+                    var selected = $('#checkMuqayyadah')[0].selectedOptions[0].innerText;
+                    if(selected == "Muqayyadah")
+                    {
+                        $('#jenis_form_bentuk').attr("required","required");
+                        $('#kode_usaha').attr("required","required");
+                    } else {
+                        $('#jenis_form_bentuk').removeAttr("required");
+                        $('#kode_usaha').removeAttr("required");
+
+                    }
                 })
-            })
-            $(document).ready(function () {
-                $('.ckeditor').ckeditor();
-            });
+
+                var selected = $('#checkMuqayyadah')[0].selectedOptions[0].innerText;
+                if(selected == "Muqayyadah")
+                {
+                    $('.Muqayyadah').show();
+                    $('#jenis_form_bentuk').attr("required","required");
+                    $('#kode_usaha').attr("required","required");
+                }
         </script>
         @endpush
 @endsection

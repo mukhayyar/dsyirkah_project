@@ -22,9 +22,9 @@ class DsyirkahAktifController extends Controller
             if(!empty($request->from_date)) {
                 if($request->from_date == $request->to_date){
                     $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
-                        ['status','=','Approved'],
-                        ['created_at','>=',$request->from_date]
+                        ['status','=','Approved']
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
@@ -41,7 +41,7 @@ class DsyirkahAktifController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl_persetujuan',function($row){
-                    return date('Y-m-d h:i',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
+                    return date('Y-m-d G:i',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
                 })
                 ->addColumn('jatuh_tempo',function($row){
                     return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
@@ -139,8 +139,8 @@ class DsyirkahAktifController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
                         ['status','=','Approved'],
-                        ['created_at','>=',$request->from_date],
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
@@ -160,7 +160,7 @@ class DsyirkahAktifController extends Controller
                     return $row->nominal();
                 })
                 ->addColumn('tgl_persetujuan',function($row){
-                    return date('Y-m-d h:i',strtotime($row->perpanjangan_rupiah->get(0)->tgl_akad_baru));
+                    return date('Y-m-d G:i',strtotime($row->perpanjangan_rupiah->get(0)->tgl_akad_baru));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;

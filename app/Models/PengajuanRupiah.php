@@ -53,7 +53,7 @@ class PengajuanRupiah extends Model
     }
     public function jangka_waktu()
     {
-        return $this->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jangka_waktu." Bulan";
+        return $this->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->jangka_waktu." Bulan";
     }
     public function status()
     {
@@ -95,7 +95,7 @@ class PengajuanRupiah extends Model
             }
         }
     }
-    public function generate_no_sertifikat_mq(){
+    public function generate_no_sertifikat_mq($check, $pengajuan){
         if($check)
         {
             if($pengajuan->pilihan_program == "pokokWakaf"){

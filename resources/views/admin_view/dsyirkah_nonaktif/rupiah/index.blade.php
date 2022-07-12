@@ -54,6 +54,7 @@
                                         <th>No</th>
                                         <th>Tanggal Slesai</th>
                                         <th>Kode Sertifikat</th>
+                                        <th>Kode Usaha</th>
                                         <th>Nomor BA</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis D'Syirkah</th>
@@ -146,6 +147,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'tanggal_non_aktif', name: 'tanggal_non_aktif'},
                     {data: 'kode_sertifikat', name: 'kode_sertifikat'},
+                    {data: 'kode_usaha', name: 'kode_usaha'},
                     {data: 'nomor_ba', name: 'nomor_ba'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
                     {data: 'jenis', name: 'jenis'},

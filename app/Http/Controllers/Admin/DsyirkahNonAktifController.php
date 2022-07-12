@@ -15,7 +15,7 @@ class DsyirkahNonAktifController extends Controller
             if(!empty($request->from_date)) {
                 if($request->NonAktifEmas == $request->to_date){
                     $data = NonAktifRupiah::with('pengajuan','anggota')
-                    ->where('tanggal_non_aktif','>=',$request->from_date)
+                    ->whereDate('tanggal_non_aktif',$request->from_date)
                     ->orderBy("tanggal_non_aktif","desc")->get();
                 } else {
                     $data = NonAktifEmas::with('pengajuan','anggota')
@@ -78,7 +78,7 @@ class DsyirkahNonAktifController extends Controller
             if(!empty($request->from_date)) {
                 if($request->from_date == $request->to_date){
                     $data = NonAktifRupiah::with('pengajuan','anggota')
-                    ->where('tanggal_non_aktif','>=',$request->from_date)
+                    ->whereDate('tanggal_non_aktif',$request->from_date)
                     ->orderBy("tanggal_non_aktif","desc")->get();
                 } else {
                     $data = NonAktifRupiah::with('pengajuan','anggota')

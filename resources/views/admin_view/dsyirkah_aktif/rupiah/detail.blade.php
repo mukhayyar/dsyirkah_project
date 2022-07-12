@@ -10,10 +10,10 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">D'Syirkah</a></li>
-                        <li class="breadcrumb-item active">Tindaklanjut Rupiah</li>
+                        <li class="breadcrumb-item active">Tindak lanjut Rupiah</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Tindaklanjut Rupiah</h4>
+                <h4 class="page-title">Tindak lanjut Rupiah</h4>
             </div>
         </div>
     </div>
@@ -100,11 +100,11 @@
                                         </tr>
                                         <tr>
                                             <td>Jatuh Tempo</td>
-                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
+                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                         </tr>
                                         <tr>
                                             <td>Nisbah</td>
-                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
+                                            <td>: {{$pengajuan->perpanjangan_rupiah()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->nisbah}}</td>
                                         </tr>
                                         <tr>
                                             <td>Alokasi Nisbah</td>
@@ -167,6 +167,41 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($pengajuan->perpanjangan_rupiah as $perpanjangan)
+                                                    <tr>
+                                                        <td>{{$loop->index+1}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td>{{$perpanjangan->nisbah}}</td>
+                                                        <td>{{$perpanjangan->status}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div slass="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <h5>Rincian Perpanjangan Terhapus</h5>
+                                            <table class="table mb-0">
+                                                <thead class="table-light">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Jatuhtempo Sebelumnya</th>
+                                                    <th>Tgl Akad Baru</th>
+                                                    <th>Jangka Waktu</th>
+                                                    <th>Jatuhtempo Akandatang</th>
+                                                    <th>Nisbah</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($pengajuan->perpanjangan_rupiah()->onlyTrashed()->get() as $perpanjangan)
                                                     <tr>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>

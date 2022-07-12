@@ -27,9 +27,9 @@ class PengajuanController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
-                        ['created_at','>=',$request->from_date],
                         ['status','!=','Reject'],
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanEmas::with('versi','anggota')
@@ -51,7 +51,7 @@ class PengajuanController extends Controller
                     return $btn;
                 })
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -140,6 +140,7 @@ class PengajuanController extends Controller
         $perpanjangan->nisbah = $pengajuan->nisbah;
         $perpanjangan->status = "Approved";
         $perpanjangan->save();
+        dd($request->today);
         return redirect('/admin/pengajuan_dsyirkah/emas');
     }
     public function emas_detail($id){
@@ -152,9 +153,9 @@ class PengajuanController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
-                        ['status','=','Reject'],
-                        ['created_at','>=',$request->from_date]
+                        ['status','=','Reject']
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanEmas::with('versi','anggota')
@@ -172,7 +173,7 @@ class PengajuanController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -213,8 +214,8 @@ class PengajuanController extends Controller
                     $data = PengajuanRupiah::with('versi','anggota')
                     ->where([
                         ['status','!=','Reject'],
-                        ['created_at','>=',$request->from_date],
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanRupiah::with('versi','anggota')
@@ -236,7 +237,7 @@ class PengajuanController extends Controller
                     return $btn;
                 })
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -329,9 +330,9 @@ class PengajuanController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanRupiah::with('versi','anggota')
                     ->where([
-                        ['status','=','Reject'],
-                        ['created_at','>=',$request->from_date]
+                        ['status','=','Reject']
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanRupiah::with('versi','anggota')
@@ -355,7 +356,7 @@ class PengajuanController extends Controller
                     return $btn;
                 })
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;

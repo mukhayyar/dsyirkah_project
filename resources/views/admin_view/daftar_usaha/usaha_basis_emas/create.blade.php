@@ -125,7 +125,7 @@
                                                                     <select class="form-select" id="checkMuqayyadah" name="jenis_akad" required>
                                                                         <option value="">Pilih</option>
                                                                         <option value="Mutlaqah" @if(isset($usaha))@if($usaha->jenis_akad == 'Mutlaqah') selected @endif @elseif(old('jenis_akad') == 'Mutlaqah') selected @endif>Mutlaqah</option>
-                                                                        <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'Muqayyadah') selected @endif>Muqqayyadah</option>
+                                                                        <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'Muqayyadah') selected @endif>Muqayyadah</option>
                                                                     </select>
                                                                 </div><br>
                                                                 <div class="col-md Muqayyadah" style="display:none;">
@@ -250,7 +250,25 @@
                 $('#checkMuqayyadah').change(function(){
                     $('.Muqayyadah').hide();
                     $('.' + $(this).val()).show();
+                    var selected = $('#checkMuqayyadah')[0].selectedOptions[0].innerText;
+                    if(selected == "Muqayyadah")
+                    {
+                        $('#jenis_form_bentuk').attr("required","required");
+                        $('#kode_usaha').attr("required","required");
+                    } else {
+                        $('#jenis_form_bentuk').removeAttr("required");
+                        $('#kode_usaha').removeAttr("required");
+
+                    }
                 })
+
+                var selected = $('#checkMuqayyadah')[0].selectedOptions[0].innerText;
+                if(selected == "Muqayyadah")
+                {
+                    $('.Muqayyadah').show();
+                    $('#jenis_form_bentuk').attr("required","required");
+                    $('#kode_usaha').attr("required","required");
+                }
             })
         </script>
         @endpush

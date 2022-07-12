@@ -60,6 +60,7 @@
                                         <th>Tanggal Persetujuan</th>
                                         <th>No Pengajuan</th>
                                         <th>Kode Sertifikat</th>
+                                        <th>Kode Usaha</th>
                                         <th>Nomor BA</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis D'Syirkah</th>
@@ -190,6 +191,7 @@
                     {data: 'tgl_persetujuan', name: 'tgl_persetujuan'},
                     {data: 'no_pengajuan', name: 'no_pengajuan'},
                     {data: 'kode_sertifikat', name: 'kode_sertifikat'},
+                    {data: 'kode_usaha', name: 'kode_usaha'},
                     {data: 'nomor_ba', name: 'nomor_ba'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
                     {data: 'jenis_syirkah', name: 'jenis_syirkah'},

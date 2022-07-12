@@ -343,7 +343,7 @@ class DaftarUsahaController extends Controller
         $usaha->pemilik = $request->pemilik;
         $usaha->jenis_form = $request->jenis_form_bentuk;
         $usaha->status_dana = $request->status_dana;
-        $usaha->kebutuhan_rupiah = $request->kebutuhan;
+        $usaha->kebutuhan_rupiah = str_replace(".","",$request->kebutuhan);
         $usaha->jangka_waktu = $request->jangka_waktu;
         $usaha->capaian_muqayyadah = $request->capaian;
         $usaha->save();

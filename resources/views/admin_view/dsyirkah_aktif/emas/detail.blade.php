@@ -60,66 +60,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-<<<<<<< HEAD
-                                        <tr>
-                                            <td>Tanggal Persetujuan</td>
-                                            <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kode DSyirkah</td>
-                                            <td>: {{$pengajuan->no_pengajuan}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kode Sertifikat</td>
-                                            <td>: {{$pengajuan->no_pengajuan}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Referensi</td>
-                                            <td>: {{$pengajuan->referensi}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Pilihan Program</td>
-                                            <td>: {{$pengajuan->pilihan_program}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenis Syirkah</td>
-                                            <td>: {{$pengajuan->jenis_syirkah}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Versi Syirkah</td>
-                                            <td>: {{$pengajuan->versi->versi}}</td>
-                                        </tr>
-                                        @if($pengajuan->kode_usaha)
-                                        <tr>
-                                            <td>Kode Usaha</td>
-                                            <td>: {{$pengajuan->kode_usaha}}</td>
-                                        </tr>
-                                        @endif
-                                        <tr>
-                                            <td>Jangka Waktu</td>
-                                            <td>: {{$pengajuan->jangka_waktu()}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jatuh Tempo</td>
-                                            <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nisbah</td>
-                                            <td>: {{$pengajuan->nisbah}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alokasi Nisbah</td>
-                                            <td>: {{$pengajuan->alokasi_nisbah}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Perpanjangan</td>
-                                            <td>: {{$pengajuan->perpanjangan}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total Gramasi</td>
-                                            <td>: {{$pengajuan->total_gramasi()}}</td>
-                                        </tr>
-=======
                                     <tr>
                                         <td>Tanggal Persetujuan</td>
                                         <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
@@ -160,11 +100,11 @@
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
@@ -178,7 +118,6 @@
                                         <td>Total Gramasi</td>
                                         <td>: {{$pengajuan->total_gramasi()}}</td>
                                     </tr>
->>>>>>> origin
                                     </tbody>
                                 </table>
                             </div><br>
@@ -254,6 +193,41 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($pengajuan->perpanjangan_emas as $perpanjangan)
+                                                    <tr>
+                                                        <td>{{$loop->index+1}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td>{{$perpanjangan->nisbah}}</td>
+                                                        <td>{{$perpanjangan->status}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div slass="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <h5>Rincian Perpanjangan Terhapus</h5>
+                                            <table class="table mb-0">
+                                                <thead class="table-light">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Jatuhtempo Sebelumnya</th>
+                                                    <th>Tgl Akad Baru</th>
+                                                    <th>Jangka Waktu</th>
+                                                    <th>Jatuhtempo Akandatang</th>
+                                                    <th>Nisbah</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($pengajuan->perpanjangan_emas()->onlyTrashed()->get() as $perpanjangan)
                                                     <tr>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
