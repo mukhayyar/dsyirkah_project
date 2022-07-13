@@ -352,8 +352,8 @@
                 </div> <!-- content -->
 
 
-                <!-- print -->
-                <div style="display:none;">
+                     <!-- print -->
+                     <div style="display:none;">
 <div id="pengajuan_rp_print">
     <div class="row">
         <div class="col-4">
