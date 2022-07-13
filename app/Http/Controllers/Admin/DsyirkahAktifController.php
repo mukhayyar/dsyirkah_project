@@ -99,7 +99,7 @@ class DsyirkahAktifController extends Controller
         $stop->keterangan = $request->keterangan;
         $stop->status = "Proses";
         $stop->save();
-        return redirect()->back()->with('success','Berhasil stop');
+        return redirect('/admin/dsyirkah_aktif/emas')->with('success','Berhasil stop');
     }
     public function emas_approve(Request $request,$id){
         if($request->old_id_perpanjangan){
@@ -211,7 +211,7 @@ class DsyirkahAktifController extends Controller
         $stop->keterangan = $request->keterangan;
         $stop->status = "Proses";
         $stop->save();
-        return redirect()->back()->with('success','Berhasil stop');
+        return redirect('/admin/dsyirkah_aktif/rupiah')->with('success','Berhasil stop');
     }
     public function rupiah_approve($id, Request $request){
         if($request->old_id_perpanjangan){

@@ -187,11 +187,13 @@ Route::middleware(['auth','checkStatus'])->group(function(){
                 Route::get('/emas',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_index']);
                 Route::get('/emas/action/{id}',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_approval']);
                 Route::get('/emas/{id}/detail',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_detail']);
+                Route::post('/emas/{id}/reaktivasi',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_reaktivasi']);
                 Route::post('/emas/{id}/upload-bukti',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'emas_upload_transfer']);
                 // rupiah
                 Route::get('/rupiah',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_index']);
                 Route::get('/rupiah/action/{id}',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_approval']);
                 Route::get('/rupiah/{id}/detail',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_detail']);
+                Route::post('/rupiah/{id}/reaktivasi',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_reaktivasi']);
                 Route::post('/rupiah/{id}/upload-bukti',[App\Http\Controllers\Admin\DsyirkahNonAktifController::class,'rupiah_upload_transfer']);
             });
         });

@@ -13,6 +13,8 @@ class PengajuanRupiah extends Model
 
     protected $table = 'pengajuan_rupiah_syirkah';
 
+    protected $fillable = ['status'];
+
     public function anggota()
     {
         return $this->belongsTo(Anggota::class);

@@ -12,6 +12,7 @@ class PengajuanEmas extends Model
 {
     use HasFactory;
     protected $table = 'pengajuan_emas_syirkah';
+    protected $fillable = ['status'];
 
     public function anggota()
     {

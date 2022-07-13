@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use DataTables;
 use App\Models\NonAktifEmas;
 use Illuminate\Http\Request;
+use App\Models\PengajuanEmas;
 use App\Models\NonAktifRupiah;
+use App\Models\PengajuanRupiah;
 use App\Http\Controllers\Controller;
 
 class DsyirkahNonAktifController extends Controller
@@ -34,7 +36,7 @@ class DsyirkahNonAktifController extends Controller
                     return $row->anggota->nama_lengkap;
                 })
                 ->addColumn('total_emas',function($row){
-                    return $row->pengajuan->total_gramasi;
+                    return $row->pengajuan->total_gramasi();
                 })
                 ->addColumn('jenis',function($row){
                     return $row->pengajuan->jenis_syirkah;
@@ -49,7 +51,7 @@ class DsyirkahNonAktifController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="emas/'.$row->id.'/detail" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn .= '<a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>';
+                    $btn .= '<a id="reaktivasi" data-id="'.$row->id.'" data-kode_sertifikat="'.$row->kode_sertifikat.'" href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','pengiriman'])
@@ -97,7 +99,7 @@ class DsyirkahNonAktifController extends Controller
                     return $row->anggota->nama_lengkap;
                 })
                 ->addColumn('nominal',function($row){
-                    return $row->pengajuan->nominal;
+                    return $row->pengajuan->nominal();
                 })
                 ->addColumn('jenis',function($row){
                     return $row->pengajuan->jenis_syirkah;
@@ -112,7 +114,7 @@ class DsyirkahNonAktifController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="rupiah/'.$row->id.'/detail" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    $btn .= '<a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>';
+                    $btn .= '<a id="reaktivasi" data-id="'.$row->id.'" data-kode_sertifikat="'.$row->kode_sertifikat.'" class="action-icon"> <i class="mdi mdi-file-restore-outline"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action','pengiriman'])
@@ -135,5 +137,19 @@ class DsyirkahNonAktifController extends Controller
         $non_aktif->tanggal_pengiriman_barang = $request->tanggal_pengiriman;
         $non_aktif->save();
         return redirect()->back()->with('success','');
+    }
+
+    public function emas_reaktivasi($id){
+        $non_aktif = NonAktifEmas::find($id);
+        PengajuanEmas::find($non_aktif->pengajuan_id)->update(['status'=>'Approved']);
+        $non_aktif->delete();
+        return response()->json(['success'=>'Syirkah berhasil diaktivasi']);
+    }
+
+    public function rupiah_reaktivasi($id){
+        $non_aktif = NonAktifRupiah::find($id);
+        PengajuanRupiah::find($non_aktif->pengajuan_id)->update(['status'=>'Approved']);
+        $non_aktif->delete();
+        return response()->json(['success'=>'Syirkah berhasil diaktivasi']);
     }
 }

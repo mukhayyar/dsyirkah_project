@@ -2,7 +2,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-                        
+    <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">               
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -180,6 +180,25 @@
             $('.data-table').DataTable().destroy();
             load_data();
         });
+
+        $(document).on('click', '#reaktivasi', function () {
+            var kode = $(this)[0].dataset.kode_sertifikat;
+            var id = $(this)[0].dataset.id;
+            if(confirm(`Yakin akan merestore syirkah dengan kode sertifikat ${kode}?`)){
+                $.ajax({
+                        type: "POST",
+                        url: "/admin/dsyirkah_nonaktif/emas/"+id+"/reaktivasi",
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
+                        },
+                        success: function(hasil){
+                            alert(hasil.success);
+                        }
+                    })
+                $('.data-table').DataTable().destroy();
+                load_data();
+            }
+        })
     });
 </script>
 @endpush
