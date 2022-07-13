@@ -221,7 +221,9 @@
                                                             @endif
                                                             @if($perpanjangan->status == "Approved" || $perpanjangan->status == "Pengajuan")
                                                             <a href="javascript:void(0);" id="editRow" data-index="{{$loop->index+1}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                            @if($loop->index != 0)
                                                             <a href="javascript:void(0);" id="removeRow" class="action-icon" data-index="{{$loop->index+1}}" data-id_rincian_perpanjangan="{{$perpanjangan->id}}"> <i class="mdi mdi-delete"></i></a>
+                                                            @endif
                                                             @endif
                                                         </td>
                                                     </tr>
