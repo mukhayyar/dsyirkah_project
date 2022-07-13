@@ -393,8 +393,8 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-          <!-- print -->
-          <div style="display:none;">
+             <!-- print -->
+             <div style="display:none;">
               <div id="rp_aktif_print">
                   <div class="row">
                       <div class="col-4">
