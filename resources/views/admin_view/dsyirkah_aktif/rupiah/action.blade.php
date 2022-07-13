@@ -218,7 +218,6 @@
                                                     <th>Jangka Waktu</th>
                                                     <th>Jatuhtempo Akandatang</th>
                                                     <th>Nisbah</th>
-                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -231,7 +230,6 @@
                                                         <td>{{$perpanjangan->jangka_waktu}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
                                                         <td>{{$perpanjangan->nisbah}}</td>
-                                                        <td>{{$perpanjangan->status}}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

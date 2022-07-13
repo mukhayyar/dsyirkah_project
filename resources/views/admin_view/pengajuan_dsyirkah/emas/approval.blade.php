@@ -184,7 +184,7 @@
                                                         <div class="card border-danger border">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Catatan Edit :</h5>
-                                                                <p class="card-text">{{$pengajuan->catatan_pengajuan}}</p>
+                                                                <p class="card-text">{{$pengajuan->catatan_edit}}</p>
                                                             </div> <!-- end card-body-->
                                                         </div> <!-- end card-->
                                                     </div>
