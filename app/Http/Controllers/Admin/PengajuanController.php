@@ -35,9 +35,10 @@ class PengajuanController extends Controller
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
                         ['status','!=','Reject']
-                        ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
-                        ->orderBy("created_at","desc")->get();
+                    ])
+                    ->whereDate('created_at','>=',$request->from_date)
+                    ->whereDate('created_at','<=',$request->to_date)
+                    ->orderBy("created_at","desc")->get();
                 }
             } else {
                 $data = PengajuanEmas::with('versi','anggota')->where([
@@ -60,8 +61,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -141,7 +145,6 @@ class PengajuanController extends Controller
         $perpanjangan->nisbah = $pengajuan->nisbah;
         $perpanjangan->status = "Approved";
         $perpanjangan->save();
-        dd($request->today);
         return redirect('/admin/pengajuan_dsyirkah/emas');
     }
     public function emas_detail($id){
@@ -163,7 +166,8 @@ class PengajuanController extends Controller
                     ->where([
                         ['status','=','Reject']
                         ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate('created_at','>=',$request->from_date)
+                        ->whereDate('created_at','<=',$request->to_date)
                         ->orderBy("created_at","desc")->get();
                 }
             } else {
@@ -183,8 +187,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -223,7 +230,8 @@ class PengajuanController extends Controller
                     ->where([
                         ['status','!=','Reject']
                         ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate('created_at','>=',$request->from_date)
+                        ->whereDate('created_at','<=',$request->to_date)
                         ->orderBy("created_at","desc")->get();
                 }
             } else {
@@ -247,8 +255,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -257,7 +268,7 @@ class PengajuanController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="rupiah/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    if($row->status != 'Approved'){
+                    if($row->status == 'Pengajuan'){
                         $btn .= '<a href="rupiah/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
                     }
                     return $btn;
@@ -341,7 +352,8 @@ class PengajuanController extends Controller
                     ->where([
                         ['status','=','Reject']
                         ])
-                        ->whereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate('created_at','>=',$request->from_date)
+                        ->whereDate('created_at','<=',$request->to_date)
                         ->orderBy("created_at","desc")->get();
                 }
             } else {
@@ -367,8 +379,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })

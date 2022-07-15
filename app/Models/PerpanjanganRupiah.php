@@ -13,4 +13,9 @@ class PerpanjanganRupiah extends Model
     protected $table = 'perpanjangan_rupiah_syirkah';
     public $timestamps = false;
     protected $dates = ['deleted_at'];
+
+    public function tgl_akad_baru()
+    {
+        return date_format(date_create($this->tgl_akad_baru),"Y-m-d");
+    }
 }

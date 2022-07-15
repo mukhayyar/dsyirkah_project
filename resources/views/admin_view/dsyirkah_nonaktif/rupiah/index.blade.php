@@ -25,6 +25,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2 input-daterange">
+                        {{-- <div class="col-sm-2">
+                            <select name="filter_data" id="filter_data">
+                                <option value="tgl_persetujuan">Tanggal Persetujuan</option>
+                                <option value="tgl_akad_baru">Tanggal Akad Baru</option>
+                                <option value="jatuh_tempo_akan_datang">Jatuh Tempo</option>
+                            </select>
+                        </div> --}}
                         <div class="col-sm-3">
                             <div class="row mb-3">
                                 <label for="colFormLabelSm" class="col-4 col-form-label">Min. Date:</label>

@@ -185,8 +185,8 @@
                                     <div class="text-center">
                                         <i class="dripicons-warning h1 text-warning"></i>
                                         <h4 class="mt-2">Perhatian</h4>
-                                        @if($pengajuan->status == 'Approved')
-                                        Pengajuan Ini Sudah Di Approved
+                                        @if($pengajuan->status == 'Approved' || $pengajuan->status == "Non Aktif")
+                                        Pengajuan Ini Sudah Di {{$pengajuan->status}}
                                         @else
                                         <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Setujui</strong></p>
                                         <p> Silakan klik <strong>Aprov</strong> jika sudah yakin</p>
@@ -209,8 +209,8 @@
                                     <div class="text-center">
                                         <i class="dripicons-warning h1 text-warning"></i>
                                         <h4 class="mt-2">Perhatian</h4>
-                                        @if($pengajuan->status == 'Approved')
-                                        Pengajuan Ini Sudah Di Approved
+                                        @if($pengajuan->status == 'Approved' || $pengajuan->status == "Non Aktif")
+                                        Pengajuan Ini Sudah Di {{$pengajuan->status}}
                                         @else
                                         <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Riject</strong></p>
                                         <p> Silakan klik <strong>Riject</strong> jika sudah yakin</p>
