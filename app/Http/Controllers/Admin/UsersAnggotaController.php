@@ -48,16 +48,16 @@ class UsersAnggotaController extends Controller
     }
     public function data_verifikasi_akun_add(Request $request)
     {
-        // dd($request);
-        $validation = Validator::make($request->all(), [
+       
+        $validator = Validator::make($request->all(), [
             'no_ba' => ['required', 'string', 'max:24','unique:anggota,nomor_ba'],
             'nama' => ['required', 'string', 'max:255'],
             'no_hp' => ['required', 'string', 'max:16'],
             'email' => ['required', 'email', 'unique:anggota,email'],
             'status' => ['required', 'string'],
         ]);
-        if($validation->fails()){
-            return response()->json(['error'=>'Data admin gagal ditambahkan']);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()->all()]);
         }
         $anggota = new Anggota;
         $anggota->nomor_ba = $request->no_ba;
@@ -157,15 +157,15 @@ class UsersAnggotaController extends Controller
         return response()->json($anggota);
     }
     public function pengaturan_akun_add(Request $request){
-        $validation = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nomor_ba' => ['required', 'string', 'max:255'],
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email'],
             'status' => ['required', 'boolean'],
             'password' => ['required', 'string','min:8', 'confirmed'],
         ]);
-        if($validation->fails()){
-            return response()->json(['error'=>'Data admin gagal ditambahkan']);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()->all()]);
         }
         $user = new User;
         $user->name = $request->nama;

@@ -126,8 +126,8 @@ class MasterController extends Controller
     }
     public function cif_anggota_add(Request $request)
     {
-        // dd($request->file('file_ktp'));
-        $validation = Validator::make($request->all(), [
+    
+        $validator = Validator::make($request->all(), [
             'no_ba' => ['required', 'string', 'max:24'],
             'no_ktp' => ['required', 'string','min:16','max:16'],
             'jenis_kelamin' => ['required'],
@@ -139,10 +139,12 @@ class MasterController extends Controller
             'kecamatan_ktp' => ['required'],
             'kota_ktp' => ['required'],
             'provinsi_ktp' => ['required'],
-            'file_ktp' => ['required','max:2048'],
+           
         ]);
-        if($validation->fails()){
-            return response()->json($validation->errors());
+
+        if ($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()->all()]);
         }
         $anggota = Anggota::where('nomor_ba',$request->no_ba)->first();
         if($request->file('file_ktp')){
@@ -183,8 +185,11 @@ class MasterController extends Controller
             $kota_domisili = explode(",",$request->kota_dom);
             $anggota->kota_domisili = $kota_domisili[1];
         }
-        $anggota->save();
-        return redirect()->back();
+     
+        $saved = $anggota->save();
+        if($saved){
+            return response()->json(['success'=>'Record is successfully added']);   
+        }
     }
     public function cif_anggota_edit($id){
         $anggota = Anggota::where([
@@ -195,7 +200,8 @@ class MasterController extends Controller
     }    
     public function cif_anggota_update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(), [
+        
+        $validator = Validator::make($request->all(), [
             'no_ba' => ['required', 'string', 'max:24'],
             'no_ktp' => ['required', 'string','min:16','max:16'],
             'jenis_kelamin' => ['required'],
@@ -208,8 +214,8 @@ class MasterController extends Controller
             'kota_ktp' => ['required'],
             'provinsi_ktp' => ['required'],
         ]);
-        if($validation->fails()){
-            return response()->json($validation->errors());
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()->all()]);
         }
         $anggota = Anggota::where('nomor_ba',$request->no_ba)->first();
         if($request->file('file_ktp')){
