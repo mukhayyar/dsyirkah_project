@@ -128,7 +128,7 @@
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
-                                                    {{$pengajuan->persetujuan}}
+                                                    {{$pengajuan->persetujuan()}}
                                                 </li>
                                             </ul></p>
                                     </div> <!-- end card-body-->
@@ -149,7 +149,6 @@
                                                     <th>Jangka Waktu</th>
                                                     <th>Jatuhtempo Akandatang</th>
                                                     <th>Nisbah</th>
-                                                    <th>Status</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -161,7 +160,6 @@
                                                         <td>{{$perpanjangan->jangka_waktu}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
                                                         <td>{{$perpanjangan->nisbah}}</td>
-                                                        <td>{{$perpanjangan->status}}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

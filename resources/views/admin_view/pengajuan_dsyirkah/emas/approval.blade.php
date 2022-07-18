@@ -148,7 +148,7 @@
                                                             <p class="card-text">
                                                                 <ul class="ul-number">
                                                                     <li>
-                                                                        {{$pengajuan->persetujuan}}
+                                                                        {{$pengajuan->persetujuan()}}
                                                                     </li>
                                                                 </ul></p>
                                                         </div> <!-- end card-body-->
@@ -184,7 +184,7 @@
                                                         <div class="card border-danger border">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">Catatan Edit :</h5>
-                                                                <p class="card-text">{{$pengajuan->catatan_pengajuan}}</p>
+                                                                <p class="card-text">{{$pengajuan->catatan_edit}}</p>
                                                             </div> <!-- end card-body-->
                                                         </div> <!-- end card-->
                                                     </div>
@@ -209,8 +209,8 @@
                                     <div class="text-center">
                                         <i class="dripicons-warning h1 text-warning"></i>
                                         <h4 class="mt-2">Perhatian</h4>
-                                        @if($pengajuan->status == "Approved")
-                                        <p class="mt-3">Pengajuan sudah di approve</p>
+                                        @if($pengajuan->status == "Approved" || $pengajuan->status == "Non Aktif")
+                                        <p class="mt-3">Pengajuan sudah di {{$pengajuan->status}}</p>
                                         @else
                                         <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Setujui</strong></p>
                                         <p> Silakan klik <strong>Aprov</strong> jika sudah yakin</p>
@@ -233,8 +233,8 @@
                                     <div class="text-center">
                                         <i class="dripicons-warning h1 text-warning"></i>
                                         <h4 class="mt-2">Perhatian</h4>
-                                        @if($pengajuan->status == "Approved")
-                                        <p class="mt-3">Pengajuan sudah di approve</p>
+                                        @if($pengajuan->status == "Approved" || $pengajuan->status == "Non Aktif")
+                                        <p class="mt-3">Pengajuan sudah di {{$pengajuan->status}}</p>
                                         @else
                                         <p class="mt-3">Data pengajuan An. {{$pengajuan->anggota->nama_lengkap}} tanggal Pengajuan {{$pengajuan->created_at}} Akan di <strong>Riject</strong></p>
                                         <p> Silakan klik <strong>Riject</strong> jika sudah yakin</p>

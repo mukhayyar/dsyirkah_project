@@ -13,6 +13,8 @@ class PengajuanRupiah extends Model
 
     protected $table = 'pengajuan_rupiah_syirkah';
 
+    protected $fillable = ['status'];
+
     public function anggota()
     {
         return $this->belongsTo(Anggota::class);
@@ -21,6 +23,37 @@ class PengajuanRupiah extends Model
     public function perpanjangan_rupiah()
     {
         return $this->hasMany(PerpanjanganRupiah::class,'pengajuan_id');
+    }
+
+    public function persetujuan()
+    {
+        $persetujuan = $this->persetujuan;
+        switch($persetujuan){
+            case "persetujuan-reguler-1":
+                return "Simpanan berjangka dengan akad Mudharabah Muthlaqah";
+                break;
+            case "persetujuan-reguler-2":
+                return "Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo";
+                break;
+            case "persetujuan-reguler-3":
+                return "Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold";
+                break;
+            case "persetujuan-reguler-4":
+                return "Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.";
+                break;
+            case "persetujuan-pokok-wakaf-1":
+                return "Simpanan berjangka dengan akad Mudharabah Muthlaqah";
+                break;
+            case "persetujuan-pokok-wakaf-2":
+                return "Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo";
+                break;
+            case "persetujuan-pokok-wakaf-3":
+                return "Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold";
+                break;
+            case "persetujuan-pokok-wakaf-4":
+                return "Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.";
+                break;
+        }
     }
 
     public function generate_no_mq($check)

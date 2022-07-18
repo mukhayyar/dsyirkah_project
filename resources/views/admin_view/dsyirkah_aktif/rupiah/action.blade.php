@@ -135,7 +135,7 @@
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
-                                                    {{$pengajuan->persetujuan}}
+                                                    {{$pengajuan->persetujuan()}}
                                                 </li>
                                             </ul></p>
                                     </div> <!-- end card-body-->
@@ -160,7 +160,7 @@
                                                     <th>Status</th>
                                                     <th>Action
                                                         @if($pengajuan->status == "Approved")
-                                                        <a href="" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-tambah-dataperpanjangan"><i class="mdi mdi-plus-box"></i></a>
+                                                        <a href="" id="modalTambahPengajuan" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-tambah-dataperpanjangan"><i class="mdi mdi-plus-box"></i></a>
                                                         @endif
                                                     </th>
                                                 </tr>
@@ -173,8 +173,8 @@
                                                         <td class="tambah-sebelum-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
                                                         <input type="hidden" name="old_id_perpanjangan[]" value="{{$perpanjangan->id}}">
                                                         <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
-                                                        <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru}}</td>
-                                                        <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
+                                                        <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru()}}</td>
+                                                        <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru()}}">
                                                         <td class="tambah-jangka-{{$loop->index+1}}">{{$perpanjangan->jangka_waktu}}</td>
                                                         <td class="tambah-mendatang-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
                                                         <td class="tambah-nisbah-{{$loop->index+1}}">{{$perpanjangan->nisbah}}</td>
@@ -218,20 +218,18 @@
                                                     <th>Jangka Waktu</th>
                                                     <th>Jatuhtempo Akandatang</th>
                                                     <th>Nisbah</th>
-                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
                                                     @foreach($pengajuan->perpanjangan_rupiah()->onlyTrashed()->get() as $perpanjangan)
-                                                    <tr id="item-{{$loop->index+1}}">
+                                                    <tr>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
-                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru()}}</td>
                                                         <td>{{$perpanjangan->jangka_waktu}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
                                                         <td>{{$perpanjangan->nisbah}}</td>
-                                                        <td>{{$perpanjangan->status}}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -669,7 +667,11 @@
             $('#modal-tambah-title')[0].textContent = 'Edit Data Perpanjangan';
             var index = $(this)[0].dataset.index;
             var jatuh_tempo_sebelumnya = $(`input.tambah-sebelum-${index}`)[0].value;
+            jatuh_tempo_sebelumnya = new Date(jatuh_tempo_sebelumnya);
+            jatuh_tempo_sebelumnya = `${jatuh_tempo_sebelumnya.getFullYear()}-${jatuh_tempo_sebelumnya.getMonth()+1 >= 10 ? jatuh_tempo_sebelumnya.getMonth()+1 : "0"+(jatuh_tempo_sebelumnya.getMonth()+1)}-${jatuh_tempo_sebelumnya.getDate()}`
             var tgl_akad_baru = $(`input.tambah-akad-${index}`).val();
+            tgl_akad_baru = new Date(tgl_akad_baru);
+            tgl_akad_baru = `${tgl_akad_baru.getFullYear()}-${tgl_akad_baru.getMonth()+1 >= 10 ? tgl_akad_baru.getMonth()+1 : "0"+(tgl_akad_baru.getMonth()+1)}-${tgl_akad_baru.getDate()}`
             var jangka_waktu = $(`input.tambah-jangka-${index}`).val();
             var jatuh_tempo_mendatang = $(`input.tambah-mendatang-${index}`).val();
             var nisbah = $(`input.tambah-nisbah-${index}`).val();
@@ -718,6 +720,22 @@
             $('body').on('click','.btn-close',function() {
                 $('#modal-tambah-title')[0].textContent = 'Tambah Data Perpanjangan';
                 $('#form_tambah_data_perpanjangan').trigger('reset');
+            })
+        });
+        $(document).on('click', '#modalTambahPengajuan', function () {
+            var form = $("#form_tambah_perpanjangan tr");
+            var length = $("#form_tambah_perpanjangan tr").length;
+            var jatuh_tempo_sebelumnya = form[length-1].cells[4].innerText;
+            $('#jatuh_tempo_sebelumnya').val(jatuh_tempo_sebelumnya);
+            $('#tgl_akad_baru').val(jatuh_tempo_sebelumnya);
+            $("body").on("change","#jangka_waktu", function(){
+                var selected = $(this)[0].options.selectedIndex;
+                var bulan = $(this)[0].options[selected].value;
+                var tgl_akad_baru = new Date($("#tgl_akad_baru")[0].value);
+                var jatuh_tempo_mendatang = new Date(tgl_akad_baru);
+                jatuh_tempo_mendatang.setMonth(jatuh_tempo_mendatang.getMonth()+(bulan-1)+1);
+                jatuh_tempo_mendatang = `${jatuh_tempo_mendatang.getFullYear()}-${jatuh_tempo_mendatang.getMonth()+1 >= 10 ? jatuh_tempo_mendatang.getMonth()+1 : "0"+(jatuh_tempo_mendatang.getMonth()+1)}-${jatuh_tempo_mendatang.getDate()}`
+                $('#jatuh_tempo_mendatang').val(jatuh_tempo_mendatang);
             })
         });
         $(document).on('click', '#updatePengajuan', function () {

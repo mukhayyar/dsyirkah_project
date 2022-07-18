@@ -14,6 +14,7 @@ use App\Models\PerpanjanganEmas;
 use App\Models\PerpanjanganRupiah;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Database\Eloquent\Builder;
 
 class DsyirkahAktifController extends Controller
 {
@@ -21,17 +22,42 @@ class DsyirkahAktifController extends Controller
          if($request->ajax()) {
             if(!empty($request->from_date)) {
                 if($request->from_date == $request->to_date){
-                    $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
-                        ['status','=','Approved']
-                    ])
-                    ->whereDate('created_at',$request->from_date)
-                    ->orderBy("tgl_persetujuan","desc")->get();
-                } else {
-                    $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
-                        ['status','=','Approved'],
+                    if($request->filter_data == "tgl_persetujuan"){
+                        $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                            ['status','=','Approved'],
                         ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate($request->filter_data,$request->from_date)
                         ->orderBy("tgl_persetujuan","desc")->get();
+                    } else {
+                        $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                            ['status','=','Approved'],
+                        ])
+                        ->whereHas('perpanjangan_emas', function(Builder $query) use($request){
+                            return $query->where('status','Approved')->whereDate($request->filter_data,$request->from_date);
+                        })
+                        ->orderBy("tgl_persetujuan","desc")->get();
+                    }
+                } else {
+                    if($request->filter_data == "tgl_persetujuan"){
+                        $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                            ['status','=','Approved'],
+                        ])
+                        ->whereDate($request->filter_data,'>=',$request->from_date)
+                        ->whereDate($request->filter_data,'<=',$request->to_date)
+                        ->orderBy("tgl_persetujuan","desc")->get();
+                    } else {
+                        $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
+                            ['status','=','Approved'],
+                        ])
+                        ->whereHas('perpanjangan_emas', function(Builder $query) use($request){
+                            return $query->where('status','Approved')->whereDate($request->filter_data,'>=',$request->from_date);
+                        })
+                        ->whereHas('perpanjangan_emas', function(Builder $query) use($request){
+                            return $query->where('status','Approved')->whereDate($request->filter_data,'<=',$request->from_date);
+                        })
+                        ->orderBy("tgl_persetujuan","desc")->get();
+
+                    }
                 }
             } else {
                 $data = PengajuanEmas::with('perpanjangan_emas','anggota','versi')->where([
@@ -41,10 +67,16 @@ class DsyirkahAktifController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl_persetujuan',function($row){
-                    return date('Y-m-d G:i',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
+                    return date('Y-m-d G:i',strtotime($row->tgl_persetujuan));
                 })
-                ->addColumn('jatuh_tempo',function($row){
-                    return date('Y-m-d',strtotime($row->perpanjangan_emas->get(0)->tgl_akad_baru));
+                ->addColumn('tgl_akad_baru',function($row){
+                    return date_format(date_create($row->perpanjangan_emas()->orderBy("id","desc")->where('status','Approved')->first()->tgl_akad_baru),"Y-m-d");
+                })
+                ->editColumn('jangka_waktu',function($row){
+                    return $row->jangka_waktu();
+                })
+                ->editColumn('jatuh_tempo',function($row){
+                    return $row->perpanjangan_emas()->orderBy("id","desc")->where('status','Approved')->first()->jatuh_tempo_akan_datang;
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -99,7 +131,7 @@ class DsyirkahAktifController extends Controller
         $stop->keterangan = $request->keterangan;
         $stop->status = "Proses";
         $stop->save();
-        return redirect()->back()->with('success','Berhasil stop');
+        return redirect('/admin/dsyirkah_aktif/emas')->with('success','Berhasil stop');
     }
     public function emas_approve(Request $request,$id){
         if($request->old_id_perpanjangan){
@@ -137,17 +169,42 @@ class DsyirkahAktifController extends Controller
         if($request->ajax()) {
             if(!empty($request->from_date)) {
                 if($request->from_date == $request->to_date){
-                    $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
-                        ['status','=','Approved'],
-                    ])
-                    ->whereDate('created_at',$request->from_date)
-                    ->orderBy("tgl_persetujuan","desc")->get();
-                } else {
-                    $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
-                        ['status','=','Approved'],
+                    if($request->filter_data == "tgl_persetujuan"){
+                        $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                            ['status','=','Approved'],
                         ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate($request->filter_data,$request->from_date)
                         ->orderBy("tgl_persetujuan","desc")->get();
+                    } else {
+                        $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                            ['status','=','Approved'],
+                        ])
+                        ->whereHas('perpanjangan_rupiah', function(Builder $query) use($request){
+                            return $query->where('status','Approved')->whereDate($request->filter_data,$request->from_date);
+                        })
+                        ->orderBy("tgl_persetujuan","desc")->get();
+                    }
+                } else {
+                    if($request->filter_data == "tgl_persetujuan"){
+                        $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                            ['status','=','Approved'],
+                        ])
+                        ->whereDate($request->filter_data,'>=',$request->from_date)
+                        ->whereDate($request->filter_data,'<=',$request->to_date)
+                        ->orderBy("tgl_persetujuan","desc")->get();
+                    } else {
+                        $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
+                            ['status','=','Approved'],
+                        ])
+                        ->whereHas('perpanjangan_rupiah', function(Builder $query) use($request){
+                            return $query->where('status','Approved')->whereDate($request->filter_data,'>=',$request->from_date);
+                        })
+                        ->whereHas('perpanjangan_rupiah', function(Builder $query) use($request){
+                            return $query->where('status','Approved')->whereDate($request->filter_data,'<=',$request->from_date);
+                        })
+                        ->orderBy("tgl_persetujuan","desc")->get();
+
+                    }
                 }
             } else {
                 $data = PengajuanRupiah::with('perpanjangan_rupiah','anggota','versi')->where([
@@ -159,14 +216,20 @@ class DsyirkahAktifController extends Controller
                 ->editColumn('nominal',function($row){
                     return $row->nominal();
                 })
+                ->addColumn('tgl_akad_baru',function($row){
+                    return date_format(date_create($row->perpanjangan_rupiah()->orderBy("id","desc")->where('status','Approved')->first()->tgl_akad_baru),"Y-m-d");
+                })
+                ->editColumn('jangka_waktu',function($row){
+                    return $row->jangka_waktu();
+                })
+                ->editColumn('jatuh_tempo',function($row){
+                    return $row->perpanjangan_rupiah()->orderBy("id","desc")->where('status','Approved')->first()->jatuh_tempo_akan_datang;
+                })
                 ->addColumn('tgl_persetujuan',function($row){
-                    return date('Y-m-d G:i',strtotime($row->perpanjangan_rupiah->get(0)->tgl_akad_baru));
+                    return date('Y-m-d G:i',strtotime($row->tgl_persetujuan));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
-                })
-                ->addColumn('jatuh_tempo',function($row){
-                    return date('Y-m-d',strtotime($row->perpanjangan_rupiah->get(0)->jatuh_tempo_akan_datang));
                 })
                 ->addColumn('nomor_ba',function($row){
                     return $row->anggota->nomor_ba;
@@ -200,6 +263,7 @@ class DsyirkahAktifController extends Controller
     }
     public function rupiah_stop($id, Request $request){
         PengajuanRupiah::where('slug',$id)->update(['status'=>'Non Aktif']);
+        // dd(PengajuanRupiah::where('slug',$id)->first());
         $pengajuan = PengajuanRupiah::where('slug',$id)->first();
         $stop = new NonAktifRupiah;
         $stop->pengajuan_id = $pengajuan->id;
@@ -211,7 +275,7 @@ class DsyirkahAktifController extends Controller
         $stop->keterangan = $request->keterangan;
         $stop->status = "Proses";
         $stop->save();
-        return redirect()->back()->with('success','Berhasil stop');
+        return redirect('/admin/dsyirkah_aktif/rupiah')->with('success','Berhasil stop');
     }
     public function rupiah_approve($id, Request $request){
         if($request->old_id_perpanjangan){
