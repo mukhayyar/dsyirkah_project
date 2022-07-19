@@ -279,187 +279,223 @@
 
                 <div class="modal-body">
                 <div class="row">
-                    <div class="col-4">
+        <div class="col">
+            <div class="headlabel">
+            <h4> KPPS SIMPUL BERKAH SINERGI</h4>
+<p class="subheadlabel">013865/BH/M.KUKM.2/VII/2019</p>
+            </div>
+
+        </div>
+        <div class="col">
+            <img src="{{asset('images/logo-simpul.png')}}"  width="50%"  class="logo-center" alt="">
+        </div>
+    </div>
+    <div>
+        <center>
+        <p class="subheadlabel">Pengajuan Simpanan Berjangka D’Syirkah</p>
+        </center>
+        <center>
+        <p class="subheadlabel">Simpanan Berjangka D’Syirkah</p>
+            </center>
+        
+            <hr style="border-top: 1px solid;">
+
+            <div class="row">
+                <div class="col-6">
+                  
+                <div class="row">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         
                         <p id="no_ba_print" class="font-14"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
+              <div class="row">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
                  
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="nama_lengkap_print" class="font-14"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
+                  <div class="row">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="no_hp_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="email_print" class="font-14"></p>
                     </div><hr style="border-top: 1px solid;">
                 </div>
                 
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="no_ktp_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="jenis_kelamin_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="tempat_lahir_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="tanggal_lahir_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="status_nikah_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="no_npwp_print" class="font-14"></p>
-                    </div><hr style="border-top: 1px solid;">
+                   
                 </div>
-                
+
+                </div>
+</div>
+                <div class="col-6">
+                    
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="alamat_ktp_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Kelurahan</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="kelurahan_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="kecamatan_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="kota_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="provinsi_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="alamat_tinggal_print" class="font-14"></p>
                     </div>
                 </div>
                 <div id="checkAlamatTinggalprint">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="alamat_domisili_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Kelurahan</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="kelurahan_domisili_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Kecamatan</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="kecamatan_domisili_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="kota_domisli_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Provinsi</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="provinsi_domisili_print" class="font-14"></p>
-                        </div><hr style="border-top: 1px solid;">
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                <div class="col-4">
+              
+            </div>
+    </div>
+    <hr style="border-top: 1px solid;">
+    <div class="row">
+                <div class="col-6">
                     <p class="font-14"><strong>Photo KTP :</strong></p>
                 </div>
-                    <div class="col-4">
+                    <div class="col-6">
                     <img src="" alt="image" class="img-fluid rounded" id="print_foto_ktp_print" width="150"/>
                     </div>
                 </div>
+                </div>
+                
+               
                
                
             </div>
@@ -1057,7 +1093,7 @@
         var a = window.open('', '', 'height=500, width=500');
         a.document.write('<html>'); 
         a.document.write('<head>');
-        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/> <style>.logo-center { display: block;margin-left: auto;margin-right: auto; width: 40%;} </style>');
         a.document.write('</head>');   
         a.document.write('<body>');
     
