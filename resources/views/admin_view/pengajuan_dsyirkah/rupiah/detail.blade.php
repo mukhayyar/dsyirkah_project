@@ -355,6 +355,27 @@
                      <!-- print -->
                      <div style="display:none;">
 <div id="pengajuan_rp_print">
+<div class="row">
+        <div class="col">
+            <div class="headlabel">
+            <h4> KPPS SIMPUL BERKAH SINERGI</h4>
+<p class="subheadlabel">013865/BH/M.KUKM.2/VII/2019</p>
+            </div>
+
+        </div>
+        <div class="col">
+            <img src="{{asset('images/logo-simpul.png')}}"  width="50%"  class="logo-center" alt="">
+        </div>
+    </div>
+    <div>
+        <center>
+        <p class="subheadlabel">Pengajuan Simpanan Berjangka D’Syirkah</p>
+        </center>
+        <center>
+        <p class="subheadlabel">Simpanan Berjangka D’Syirkah</p>
+            </center>
+        
+            <hr style="border-top: 1px solid;">
     <div class="row">
         <div class="col-4">
             <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
@@ -519,7 +540,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Tandatangan :</h5>
                         <img src="/images/data_penting/tanda_tangan/{{$pengajuan->ttd}}" alt="image"
-                            class="img-fluid rounded" height="100" width="150" /><br>
+                            class="img-fluid rounded"  width="100" /><br>
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
             </div>
@@ -537,7 +558,7 @@
         a.document.write('<html>');
         a.document.write('<head>');
         a.document.write('<style> table tr th{width:120px;border-bottom:1px solid gray;border-collapse: collapse;}</style>');
-        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/><style>.logo-center { display: block;margin-left: auto;margin-right: auto; width: 40%;} </style>');
         a.document.write('</head>');
         a.document.write('<body>');
         a.document.write(divContents);

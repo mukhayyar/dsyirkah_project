@@ -428,12 +428,33 @@
 <!-- print -->
 <div style="display:none;">
     <div id="emas_nonaktif_print">
+    <div class="row">
+        <div class="col">
+            <div class="headlabel">
+            <h4> KPPS SIMPUL BERKAH SINERGI</h4>
+<p class="subheadlabel">013865/BH/M.KUKM.2/VII/2019</p>
+            </div>
+
+        </div>
+        <div class="col">
+            <img src="{{asset('images/logo-simpul.png')}}"  width="50%"  class="logo-center" alt="">
+        </div>
+    </div>
+    <div>
+        <center>
+        <p class="subheadlabel">Pengajuan Simpanan Berjangka D’Syirkah</p>
+        </center>
+        <center>
+        <p class="subheadlabel">Simpanan Berjangka D’Syirkah</p>
+            </center>
+        
+            <hr style="border-top: 1px solid;">
         <!-- atas -->
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-4">
                 <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$non_aktif->pengajuan->anggota->nomor_ba}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-4">
                 <p class="font-14"><strong>Nama Lengkap :</strong> {{$non_aktif->pengajuan->anggota->nama_lengkap}}</p>
             </div>
         </div>
@@ -721,7 +742,7 @@
         a.document.write('<html>');
         a.document.write('<head>');
         a.document.write('<style> table tr th{width:120px;border-bottom:1px solid gray;border-collapse: collapse;}</style>');
-        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/><style>.logo-center { display: block;margin-left: auto;margin-right: auto; width: 40%;} </style>');
         a.document.write('</head>');
         a.document.write('<body>');
         a.document.write(divContents);

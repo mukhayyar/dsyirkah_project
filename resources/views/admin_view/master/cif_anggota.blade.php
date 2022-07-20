@@ -20,7 +20,11 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
+                        <div class="alert alert-dark" id="alert" style="display:none">
+                        <a id="CloseAlert" type="button" style="margin-left:100%"><i class="mdi mdi-close-circle"></i></a>
+                        <h5 class="alert-heading" id="alert-heading">Sukses Menyimpan !!</h5>
+                    
+                    </div>
 
                         <div class="row">
                             <div class="col-12">
@@ -35,7 +39,7 @@
 
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
-                                                <a href="" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#modal-tambah-datacif"><i class="mdi mdi-plus-circle me-2"></i> Data CIF Anggota</a>
+                                                <a href="javascript:void(0);" class="btn btn-danger mb-2" id="TambahCif"><i class="mdi mdi-plus-circle me-2"></i> Data CIF Anggota</a>
                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#importExcel" class="btn btn-success mb-2"><i class="mdi mdi-database-import me-2"></i> Import</a>
                                             </div>
                                         </div>
@@ -96,7 +100,7 @@
                 <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <form id="CustomerForm" name="CustomerForm" method="POST" action="/admin/master/cif_anggota" enctype="multipart/form-data">
+                <form id="CustomerForm" name="CustomerForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h5>Data Akun</h5><hr>
                     <div class="row g-2">
@@ -262,7 +266,8 @@
 
                     <br>
                     <div class="mb-3 text-center" id="div-simpan">
-                        <button class="btn btn-primary" type="submit"> Simpan </button>
+                        <button class="btn btn-primary" id="BtnModal" style="display:none" type="submit"> Simpan </button>
+                        <button class="btn btn-primary" id="BtnSave" style="display:none" type="submit"> Simpan </button>
                     </div>
                 </form>
             </div>
@@ -274,187 +279,223 @@
 
                 <div class="modal-body">
                 <div class="row">
-                    <div class="col-4">
+        <div class="col">
+            <div class="headlabel">
+            <h4> KPPS SIMPUL BERKAH SINERGI</h4>
+<p class="subheadlabel">013865/BH/M.KUKM.2/VII/2019</p>
+            </div>
+
+        </div>
+        <div class="col">
+            <img src="{{asset('images/logo-simpul.png')}}"  width="50%"  class="logo-center" alt="">
+        </div>
+    </div>
+    <div>
+        <center>
+        <p class="subheadlabel">Pengajuan Simpanan Berjangka D’Syirkah</p>
+        </center>
+        <center>
+        <p class="subheadlabel">Simpanan Berjangka D’Syirkah</p>
+            </center>
+        
+            <hr style="border-top: 1px solid;">
+
+            <div class="row">
+                <div class="col-6">
+                  
+                <div class="row">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor Buku Anggota</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         
                         <p id="no_ba_print" class="font-14"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
+              <div class="row">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nama Lengkap</strong></p>
                     </div>
                  
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="nama_lengkap_print" class="font-14"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
+                  <div class="row">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor Hp</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="no_hp_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Email</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="email_print" class="font-14"></p>
                     </div><hr style="border-top: 1px solid;">
                 </div>
                 
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor KTP</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="no_ktp_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Jenis Kelamin</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="jenis_kelamin_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Tempat Lahir</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="tempat_lahir_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Tanggal Lahir</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="tanggal_lahir_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Status Pernikahan</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="status_nikah_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Nomor NPWP</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="no_npwp_print" class="font-14"></p>
-                    </div><hr style="border-top: 1px solid;">
+                   
                 </div>
-                
+
+                </div>
+</div>
+                <div class="col-6">
+                    
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Alamat Sesuai KTP</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="alamat_ktp_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Kelurahan</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="kelurahan_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Kecamatan</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="kecamatan_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="kota_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Provinsi</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="provinsi_print" class="font-14"></p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <p class="font-14"><strong>Alamat Tinggal</strong></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <p id="alamat_tinggal_print" class="font-14"></p>
                     </div>
                 </div>
                 <div id="checkAlamatTinggalprint">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Alamat Tinggal Saat ini</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="alamat_domisili_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Kelurahan</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="kelurahan_domisili_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Kecamatan</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="kecamatan_domisili_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Kota / Kabupaten</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="kota_domisli_print" class="font-14"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="font-14"><strong>Provinsi</strong></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <p id="provinsi_domisili_print" class="font-14"></p>
-                        </div><hr style="border-top: 1px solid;">
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                <div class="col-4">
+              
+            </div>
+    </div>
+    <hr style="border-top: 1px solid;">
+    <div class="row">
+                <div class="col-6">
                     <p class="font-14"><strong>Photo KTP :</strong></p>
                 </div>
-                    <div class="col-4">
+                    <div class="col-6">
                     <img src="" alt="image" class="img-fluid rounded" id="print_foto_ktp_print" width="150"/>
                     </div>
                 </div>
+                </div>
+                
+               
                
                
             </div>
@@ -866,10 +907,13 @@
         $('body').on('click', '.editAkun', function () {
         var id_akun = $(this).data('id');
         $.get("cif_anggota" +'/' + id_akun +'/edit', function (data) {
+            $('#alert').hide();
+            $('#BtnModal').attr("data-id",id_akun)
             $('form').attr("action","cif_anggota/"+id_akun+"/edit");
             $('form').append("<input class='methodPut' id='methodPut' type='hidden' name='_method' value='PUT'>")
             $('#myLargeModalLabel').html("Edit Data CIF Anggota");
             $('#modal-tambah-datacif').modal('show');
+            $('#BtnModal').show();
             $('#cari').css('display','none');
             $('#no_ba').val(data.nomor_ba);
             $('#no_ba').attr("readonly","readonly");
@@ -877,7 +921,7 @@
             $('#noHpAdd').val(data.no_hp);
             $('#emailAdd').val(data.email);
             $('#noKtp').val(data.no_ktp);
-            $(`#jenis_kelamin option[value=${data.jenis_kelamin}]`).attr('selected','selected');
+            $(`#jenis_kelamin option[value=${data.jenis_kelamin }]`).attr('selected','selected');
             $('#tempat_lahir').val(data.tempat_lahir);
             $('#tanggal_lahir').val(data.tanggal_lahir);
             $(`#status_nikah option[value=${data.nikah}]`).attr('selected','selected');
@@ -916,6 +960,8 @@
                 $(`#form_kab option[value='${data.kota_ktp}]'`).prop('selected',false);
                 $(`#checkAlamatTinggal option[value='${data.alamat_tinggal}']`).prop('selected',false);
                 $('.domisili').hide();
+                $('#BtnModal').hide();
+                $('#BtnSave').hide();
             });
         })
         });
@@ -963,36 +1009,49 @@
                 $('#cari').html('Cari');
             });
         });
-        $('#saveBtn').click(function (e) {
-            e.preventDefault();
-            $(this).html('Sending..');
-            var form = document.getElementById('CustomerForm');
-            var data = new FormData();
-            data.append('username', 'Chris');
-            // var files = $('#file_ktp')[0].files;
-            // data.append('file_ktp',files[0]);
-            $.ajax({
-                data: $('#CustomerForm').serialize(),
-                url: "",
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('input[type="hidden"]').val()
-                },
-                type: "POST",
-                dataType: 'json',
-                success: function (data) {
-                    $('#CustomerForm').trigger("reset");
-                    $(this).html('Cari');
-                    $('#modal-tambah-datacif').modal('hide');
-                    table.draw();
-                },
-                error: function (data) {
-                    $('#saveBtn').html('Save Changes');
-                }
-            });
+        jQuery('#TambahCif').click(function(e){
+            $('#modal-tambah-datacif').modal('show');
+            $('#BtnSave').show();
+            $('#alert').hide();
         });
+        jQuery('#CloseAlert').click(function(e){
+           
+            $('#alert').hide();
+        });
+        //add cif
+        jQuery('#BtnSave').click(function(e){
+               e.preventDefault();
+               jQuery.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+              var form = document.getElementById('CustomerForm');
+            var data = new FormData();
+               jQuery.ajax({
+                  url: "{{ url('/admin/master/cif_anggota')}}",
+                  method: 'post',
+                  data: $('#CustomerForm').serialize(),
+               
+                  success: function(data){
+                        $('#modal-tambah-datacif').modal('hide');
+                  		jQuery.each(data.errors, function(key, value){
+                            document.getElementById("alert-heading").innerHTML = "Gagal Menyimpan !!";
+                  			jQuery('.alert-dark').append(' <p>'+value+'</p>');                            
+                              $('#CustomerForm').trigger("reset");       
+                  		});
+                          jQuery('.alert-dark').show();
+                	}
+                  });
+               });
+
+       
+
+           
+        
+        
     });
+
     </script>
     <script>
         $('body').on('click', '.printAkun', function () {
@@ -1026,6 +1085,7 @@
             }
             cif_print();
         })
+
         });
 
         function cif_print(){
@@ -1033,7 +1093,7 @@
         var a = window.open('', '', 'height=500, width=500');
         a.document.write('<html>'); 
         a.document.write('<head>');
-        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/> <style>.logo-center { display: block;margin-left: auto;margin-right: auto; width: 40%;} </style>');
         a.document.write('</head>');   
         a.document.write('<body>');
     

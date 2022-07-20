@@ -20,7 +20,11 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
+                        <div class="alert alert-dark" id="alert" style="display:none">
+                        <a id="CloseAlert" type="button" style="margin-left:100%"><i class="mdi mdi-close-circle"></i></a>
+                        <h5 class="alert-heading" id="alert-heading">Sukses Menyimpan !!</h5>
+                        
+                    </div>
 
                         <div class="row">
                             <div class="col-12">
@@ -195,9 +199,13 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
+        jQuery('#CloseAlert').click(function(e){
+            $('#alert').hide();
+        });
         $('body').on('click', '.editAkun', function () {
             var id_akun = $(this).data('id');
             $.get("data_verifikasi_akun" +'/' + id_akun +'/edit', function (data) {
+                $('#alert').hide();
                 $('#modalHeading').html("Edit Data Verifikasi");
                 $('#saveBtn').css("display",'none');
                 $('#editBtn').css("display",'block');
@@ -226,24 +234,53 @@
             })
         })
         });
-        $('#saveBtn').click(function (e) {
-            e.preventDefault();
-            $(this).html('Sending..');
-            $.ajax({
-            data: $('#CustomerForm').serialize(),
-            url: "",
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $('#CustomerForm').trigger("reset");
+        // $('#saveBtn').click(function (e) {
+        //     e.preventDefault();
+        //     $(this).html('Sending..');
+        //     $.ajax({
+        //     data: $('#CustomerForm').serialize(),
+        //     url: "",
+        //     type: "POST",
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         $('#CustomerForm').trigger("reset");
+        //         $('#modal-tambahdata').modal('hide');
+        //         table.draw();
+        //         $('#saveBtn').html('Simpan');
+               
+        //     },
+        //     error: function (data) {
+        //         console.log('Error:', data);
+        //         $('#saveBtn').html('Simpan');
+        //     }
+        // });
+        // });
+        jQuery('#saveBtn').click(function(e){
+               e.preventDefault();
+               jQuery.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+              var form = document.getElementById('CustomerForm');
+            var data = new FormData();
+               jQuery.ajax({
+                  url: "",
+                  method: 'post',
+                  data: $('#CustomerForm').serialize(),
+               
+                  success: function(data){
+                    $('#CustomerForm').trigger("reset");
                 $('#modal-tambahdata').modal('hide');
                 table.draw();
                 $('#saveBtn').html('Simpan');
-            },
-            error: function (data) {
-                console.log('Error:', data);
-                $('#saveBtn').html('Simpan');
-            }
+                  		jQuery.each(data.errors, function(key, value){
+                            document.getElementById("alert-heading").innerHTML = 'Gagal Menyimpan !!' ;
+                  			jQuery('.alert-dark').append(' <p>'+value+'</p>');                            
+                              $('#CustomerForm').trigger("reset");       
+                  		});
+                          jQuery('.alert-dark').show();
+                	}
         });
         });
         $('#editBtn').click(function (e) {
