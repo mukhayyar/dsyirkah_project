@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item active">NonAktif Emas</li>
                     </ol>
                 </div>
-                <h4 class="page-title">List NonAktif Emas</h4>
+                <h4 class="page-title text-danger">List NonAktif Emas</h4>
             </div>
         </div>
     </div>
@@ -45,6 +45,8 @@
                             <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
                             <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
                         </div>
+                        <span class="placeholder col-12 bg-danger"></span>
+                        <span class="placeholder col-12" style="background-color: goldenrod"></span>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane show active" id="scroll-horizontal-preview">

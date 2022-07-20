@@ -4,7 +4,7 @@
 <section class="py-3" style="background-color: rgb(243, 243, 243);">
     <div class="container">
             <div class="card d-block">
-                <div class="card-header" style="background-color: goldenrod;">
+                <div class="card-header" style="background-color: #a3610a; border:2px solid goldenrod;">
                     <div class=" align-items-center mb-2 text-white">
                         <h3>Form Pengajuan D'Syirkah Gold</h3>
                         @if(isset($kode_usaha))
@@ -12,7 +12,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="border:1px solid goldenrod;">
                     <div class="py-0">
                         <h5>Data Pemohon</h5>
                     </div><hr>
@@ -76,7 +76,7 @@
 
                         <div class="row g-2">
                             <div class="col-lg-4">
-                                <div class="card text-white" style="background-color: goldenrod;">
+                                <div class="card text-white" style="background-color: #a3610a">
                                     <div class="card-body">
                                         <blockquote class="card-bodyquote">
                                             <div class="col-md">
@@ -112,14 +112,14 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="col-sm-5">
-                                    <a href="javascript:void(0);" class="btn mb-2 text-white" data-bs-toggle="modal" data-bs-target="#modal-tambah-emas" style="background-color: goldenrod;"><i class="mdi mdi-plus-circle me-2"></i> Emas</a>
+                                    <a href="javascript:void(0);" class="btn mb-2 text-white" data-bs-toggle="modal" data-bs-target="#modal-tambah-emas" style="background-color: #a3610a;"><i class="mdi mdi-plus-circle me-2"></i> Emas</a>
                                 </div>
                                 <div class="table-responsive">
                                     @if(isset($kebutuhan))
                                     <h4>Kebutuhan Emas: {{$kebutuhan}} Gram</h4>
                                     @endif
                                     <table class="table table-borderless table-nowrap table-centered mb-0">
-                                        <thead class="text-white" style="background-color: goldenrod;">
+                                        <thead class="text-white" style="background-color: #a3610a;">
                                             <tr>
                                                 <th>Item emas</th>
                                                 <th>Jenis</th>
@@ -129,7 +129,7 @@
                                                 <th style="width: 50px;"></th>
                                             </tr>
                                         </thead>
-                                        <tfoot class="text-white" style="background-color: goldenrod;">
+                                        <tfoot class="text-white" style="background-color: #a3610a;">
                                             <tr>
                                                 <th>Total</th>
                                                 <th></th>
@@ -144,9 +144,9 @@
                                         </tbody>
                                     </table>
                                 </div><hr><br> <!-- end table-responsive-->
-                                <div class="card border-primary border program reguler" style="display: none">
+                                <div class="card program reguler" style="border:1px solid goldenrod; display: none">
                                     <div class="card-body">
-                                        <h5 class="card-title">Persetujuan : (jika Reguler)</h5>
+                                        <h5 class="card-title">Persetujuan :</h5>
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
@@ -159,25 +159,41 @@
                                                 </li>
                                                 <li>
                                                     Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
+                                                </li>
+                                                <li>
+                                                    Niat mengikuti D'Syirkah untuk mengharapkan Ridho & Keberkahan Allah SWT. dan turut serta mendoakan agar selalu diberikan kemudahan & pertolongan dari Allah
+                                                </li>
+                                                <li>
+                                                    Data Anggota Perorangan yang disajikan dalam Formulir Pendaftaran ini adalah sebenar-benarnya. Apabila di kemudian hari terdapat perubahan atas data isian saya tersebut diatas yang tidak saya sampaikan kepada Koperasi Syariah Simpul Berkah Sinergi (KSPPS-SBS) maka saya bertanggung jawab atas segala tuntutan, gugatan dan / atau klaim dari Pihak manapun serta dari kerugian dan risiko yang mungkin timbul di kemudian hari.
+                                                </li>
+                                                <li>
+                                                    Koperasi dapat melakukan pemeriksaan terhadap kebenaran data yang saya berikan dalam Formulir Pendaftaran ini.
+                                                </li>
+                                                <li>
+                                                    Menyatakan bahwa sumber dana yang saya gunakan dalam simpanan ini untuk tujuan D’Syirkah bukan didapatkan atau berasal dari tindak pidana dan/atau pencucian uang (Money Laundering)
+                                                </li>
+                                                <li>
+                                                    Dalam hal pihak Pemberi Dana dari Nasabah telah memenuhi persyaratan sebagai wajib pajak dan atau telah memiliki NPWP maka akan segera menyerahkan Softcopy NPWP tersebut kepada Koperasi.
+                                                </li>
+                                                <li>
+                                                    Saya akan mematuhi jangka waktu yang telah dipilih. Apabila dalan waktu berjalan, saya merubah jangka waktu Akad sebelum jatuh tempo maka Nisbah berjalan menjadi hangus / batal.
+                                                </li>
+                                                <li>
+                                                    Pengisian form ini bersifat pengajuan, akad akan dilaksanakan setelah proses transakasi selesai & dikonfirmasi dari pihak koperasi
                                                 </li>
                                             </ul>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
-                                <div class="card border-primary border program pokokWakaf" style="display: none">
+                                <div class="card program pokokWakaf" style="border:1px solid goldenrod; display: none">
                                     <div class="card-body">
-                                        <h5 class="card-title">Persetujuan : (jika Pokok diwakafkan)</h5>
+                                        <h5 class="card-title">Persetujuan :</h5>
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
-                                                     Simpanan berjangka dengan akad Mudharabah Muthlaqah
+                                                    D'Syirkah ini menggunakan akad Wakaf Permanen
                                                 </li>
                                                 <li>
-                                                    Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                <li>
-                                                    Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                </li>
-                                                <li>
-                                                    Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
+                                                    Pokok di serahkan pengelolaannya ke Wakaf Peradaban dan nisbah dialokasikan sesuai dengan pilihan anggota
                                                 </li>
                                             </ul>
                                     </div> <!-- end card-body-->
@@ -187,7 +203,7 @@
                         </div>
                         <div>
                             <div class="col-lg program reguler" style="display: none">
-                                <div class="card border-secondary border">
+                                <div class="card" style="border:1px solid goldenrod;">
                                     <div class="card-body">
                                         <h5 class="card-title">Alokasi Nisbah Reguler :</h5>
                                         <div class="mt-3">
@@ -239,20 +255,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card border-secondary border">
+                            <div class="col-md-6">
+                                <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Catatan :</h5>
-                                        <textarea name="catatan" id="" cols="70" rows="10" required></textarea>
+                                        <textarea class="col-md-12" style="border:1px solid goldenrod;" name="catatan" id="" cols="45" rows="10" required></textarea>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card border-secondary border">
+                            <div class="col-md-6">
+                                <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Tandatangan :</h5>
                                         <br/>
-                                        <div style="border:1px solid #000000;">
+                                        <div style="border:1px solid goldenrod;">
                                             <div id="sig" ></div>
                                         </div>
                                         <br/>
@@ -264,7 +280,7 @@
                         </div><hr>
 
                         <br><div class="mb-3 text-center" >
-                            <button class="btn btn-primary" type="submit"> Simpan </button>
+                            <button class="btn btn-primary" style="background-color: #a3610a" type="submit"> Simpan </button>
                         </div>
                     </form>
                 </div>

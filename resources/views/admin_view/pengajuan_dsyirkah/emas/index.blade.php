@@ -9,14 +9,14 @@
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
-                                <div class="page-title-box">
+                                <div class="page-title-box" >
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">D'Syirkah</a></li>
                                             <li class="breadcrumb-item active">Pengajuan Emas</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">List Pengajuan Emas</h4>
+                                    <h1 class="page-title text-warning">List Pengajuan Emas</h1>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        
                                         <div class="row mb-2 input-daterange">
                                             <div class="col-sm-4">
                                                 <a href="emas/reject" class="btn btn-danger mb-2"><i class="mdi mdi-delete-alert"></i> Data Riject</a>
@@ -53,6 +52,8 @@
                                                 <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
                                                 <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
                                             </div>
+                                            <span class="placeholder col-12 bg-warning"></span>
+                                            <span class="placeholder col-12" style="background-color: goldenrod"></span>
                                         </div>
                                         
                                         <div class="tab-content">

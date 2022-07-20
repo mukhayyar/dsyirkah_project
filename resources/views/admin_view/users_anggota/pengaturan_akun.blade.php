@@ -27,15 +27,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <!-- Hanya Sementara -->
-                                        <div class="card-body col-lg-7">
-                                            <h6>Keterangan</h6>
-                                            <p>Email & Nomor Tidak ditampilkan secara rinci</p>
-                                            <p>Bisa kirim WA & Email Untuk Reset Paswd Akses semua yang bisa lihat halaman ini</p>
-                                            <p>edit hanya untk admin IT</p>
-                                            <p>Vew untuk OPR & layanan</p>
-                                        </div>
-
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
                                                 <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#modal-tambahakun-anggota"><i class="mdi mdi-plus-circle me-2"></i> Akun</a>

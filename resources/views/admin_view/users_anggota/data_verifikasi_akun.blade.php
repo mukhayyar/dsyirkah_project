@@ -26,15 +26,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <!-- Hanya Sementara -->
-                                        <div class="card-body col-lg-7">
-                                            <h6>Keterangan</h6>
-                                            <p>1.Validasi ke Nomor BA (unik), Nomor Hp, Email</p>
-                                            <p>2.Import Excel</p>
-                                            <p>Action = View, Edit, Kirim Email</p>
-                                            <p>3.Edit All Kecuali nomor BA</p>
-                                            <p>4.kirim Email Verivikasi pendaftaran</p>
-                                        </div>
                                         <div class="row mb-2">
                                             <div class="col-sm-5">
                                                 <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#modal-tambahdata"><i class="mdi mdi-plus-circle me-2"></i> Data</a>

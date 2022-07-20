@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 @endpush
         <!-- START HERO -->
-        <section class="hero-section" style="background-color: rgb(48, 113, 252);" >
+        <section class="hero-section" style="background-color: #dea057">
             <div class="container" >
                 <div class="row align-items-center" >
                     <div class="col-md-5">
@@ -12,7 +12,7 @@
                             <h2 class="text-white fw-normal hero-title">
                                 D'Syirkah Transaksi
                             </h2>
-                            <p class="md-4 font-16 text-white">Berikut adalah histori transaksi anda di D'Syirkah Mutlaqah atau Muqayyadah</p>
+                            <p class="md-4 font-16" style="color: #572423">Berikut adalah histori transaksi anda di D'Syirkah Mutlaqah atau Muqayyadah</p>
                         </div>
                     </div>
             </div>
