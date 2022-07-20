@@ -295,6 +295,12 @@
                 type: "PUT",
                 dataType: 'json',
                 success: function (data) {
+                    jQuery.each(data.errors, function(key, value){
+                            document.getElementById("alert-heading").innerHTML = 'Gagal Menyimpan !!' ;
+                  			jQuery('.alert-dark').append(' <p>'+value+'</p>');                            
+                              $('#CustomerForm').trigger("reset");       
+                  		});
+                          jQuery('.alert-dark').show();
                     console.log("test");
                     $('#no_ba').removeAttr("readonly");
                     $('#CustomerForm').trigger("reset");

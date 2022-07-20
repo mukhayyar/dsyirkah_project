@@ -181,11 +181,11 @@ class UsersAnggotaController extends Controller
         return response()->json(['success'=>'Data data verifikasi akun berhasil ditambahkan']);
     }
     public function pengaturan_akun_update(Request $request,$id){
-        $validation = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'password' => ['required', 'string','min:8', 'confirmed'],
         ]);
-        if($validation->fails()){
-            return response()->json($validation->errors());
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()->all()]);
         }
         $anggota = Anggota::where('nomor_ba',$request->nomor_ba)->first();
         $user = User::find($anggota->user_id);
