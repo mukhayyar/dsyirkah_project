@@ -158,7 +158,7 @@
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
-                                                    {{$pengajuan->persetujuan()}}
+                                                    {{$non_aktif->pengajuan->persetujuan()}}
                                                 </li>
                                             </ul></p>
                                     </div> <!-- end card-body-->

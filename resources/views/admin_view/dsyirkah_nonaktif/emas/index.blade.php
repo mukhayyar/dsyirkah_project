@@ -60,6 +60,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Slesai</th>
+                                        <th>Kode Pengajuan</th>
                                         <th>Kode Sertifikat</th>
                                         <th>Kode Usaha</th>
                                         <th>Nomor BA</th>
@@ -153,6 +154,7 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'tanggal_non_aktif', name: 'tanggal_non_aktif'},
+                    {data: 'pengajuan.no_pengajuan', name: 'pengajuan.no_pengajuan'},
                     {data: 'kode_sertifikat', name: 'kode_sertifikat'},
                     {data: 'pengajuan.kode_usaha', name: 'pengajuan.kode_usaha'},
                     {data: 'nomor_ba', name: 'nomor_ba'},
