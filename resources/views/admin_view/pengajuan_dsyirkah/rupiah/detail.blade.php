@@ -538,9 +538,17 @@
             <div class="col">
                 <div class="card border-danger border">
                     <div class="card-body">
-                        <h5 class="card-title">Tandatangan :</h5>
-                        <img src="/images/data_penting/tanda_tangan/{{$pengajuan->ttd}}" alt="image"
-                            class="img-fluid rounded"  width="100" /><br>
+                        <div class="row">
+                            <div class="col-4">
+                            <h5 class="card-title">Tandatangan :</h5>
+                            </div>
+                            <div class="col-6">
+                            <img src="/images/data_penting/tanda_tangan/{{$pengajuan->ttd}}" alt="image" 
+                            class=""  width="100" height="75"/><br>
+                            </div>
+                        </div>
+                        
+                        
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
             </div>
