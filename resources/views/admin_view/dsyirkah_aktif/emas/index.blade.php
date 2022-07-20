@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item active">DSyirkah Aktif Emas</li>
                     </ol>
                 </div>
-                <h4 class="page-title">List Dsyirkah Aktif Emas</h4>
+                <h4 class="page-title text-primary">List Dsyirkah Aktif Emas</h4>
             </div>
         </div>
     </div>
@@ -56,6 +56,8 @@
                             <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
                             <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
                         </div>
+                        <span class="placeholder col-12 bg-primary"></span>
+                        <span class="placeholder col-12" style="background-color: goldenrod"></span>
                     </div>
                     
                     <div class="tab-content">

@@ -4,7 +4,7 @@
  <section class="py-3" style="background-color: rgb(243, 243, 243);">
     <div class="container">
             <div class="card d-block">
-                <div class="card-header bg-success">
+                <div class="card-header border-success border-3" style="background-color: #a3610a">
                     <div class=" align-items-center mb-2 text-white">
                         <h3>Form Pengajuan D'Syirkah Rupiah</h3>
                         @if(isset($kode_usaha))
@@ -12,7 +12,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body border-success border">
                     <div class="py-0">
                         <h5>Data Pemohon</h5>
                     </div><hr>
@@ -64,7 +64,7 @@
                                 <input type="hidden" id="id_versi" value="{{$versi->id}}" name="versi">
                             </div>
                             <div class="col-md">
-                                <label for="perwada" class="form-label">Perwada</label>
+                                <label for="perwada" class="form-label">Ref. Perwada</label>
                                 <select class="form-control" type="text" id="perwada" required name="perwada">
                                     <option value="">Pilih</option>
                                     @foreach($perwada as $pwd)
@@ -76,7 +76,7 @@
 
                         <div class="row g-2">
                             <div class="col-lg-4">
-                                <div class="card text-white bg-success">
+                                <div class="card text-white" style="background-color: #a3610a">
                                     <div class="card-body">
                                         <blockquote class="card-bodyquote">
                                             <div class="col-md">
@@ -88,18 +88,18 @@
                                                 </select>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
-                                                <label for="example-select" class="form-label">Jangka Waktu (jika reg)</label>
+                                                <label for="example-select" class="form-label">Jangka Waktu</label>
                                                 <select class="form-select" id="bulanPil" name="jangka_waktu">
                                                     <option value="">Pilih</option>
                                                 </select>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
-                                                <label for="nisbahPil" class="form-label">Nisbah (sesuai dg jangka waktu)</label>
+                                                <label for="nisbahPil" class="form-label">Nisbah</label>
                                                 <input class="form-control date" type="text" id="nisbahPil" name="nisbah" readonly>
                                             </div><br>
                                             <div class="col-md program reguler" style="display: none">
-                                                <label for="perpanjangan" class="form-label">Perpanjangan (jika reg)</label>
-                                                <select class="form-select" id="perpanjangan" name="perpanjangan">
+                                                <label for="example-select" class="form-label">Perpanjangan</label>
+                                                <select class="form-select" id="example-select" name="perpanjangan">
                                                     <option value="">Pilih</option>
                                                     <option value="Otomatis">Otomatis</option>
                                                     <option value="Tidak Otomatis">Tidak Otomatis</option>
@@ -117,12 +117,12 @@
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label class="form-label">Rp</label>
-                                        <input type="text" name="nominal" class="form-control" data-toggle="input-mask" data-mask-format="0.000.000.000.000" data-reverse="false">
+                                        <input type="text" name="nominal" class="form-control" data-toggle="input-mask" data-mask-format="000.000.000.000.000" data-reverse="true">
                                         @if(isset($kebutuhan))<span class="font-13 text-muted">Kebutuhan Usaha: Rp. {{number_format($kebutuhan,0,",",".")}}</span>@endif
                                     </div>
                                     <div class="row g-2">
                                         <div class="col-md text-center py-lg-3">
-                                            <a href="javascript:void(0);" class="btn mb-2 text-white bg-success" data-bs-toggle="modal" data-bs-target="#modal-tambah-perwada"><i class="mdi mdi-order-numeric-descending me-2"></i>Lihat Nomor Rekening</a>
+                                            <a href="javascript:void(0);" class="btn mb-2 text-white bg-success" data-bs-toggle="modal" data-bs-target="#no-rek"><i class="mdi mdi-order-numeric-descending me-2"></i>Lihat Nomor Rekening</a>
                                         </div>
                                         <div class="col-md">
                                             <label for="formFile" class="form-label">Upload Bukti Transfer</label>
@@ -131,9 +131,9 @@
                                     </div>
 
                                 </div>
-                                <div class="card border-primary border program reguler" style="display: none">
+                                <div class="card border-success border program reguler" style="display: none">
                                     <div class="card-body">
-                                        <h5 class="card-title">Persetujuan : (jika Reguler)</h5>
+                                        <h5 class="card-title">Persetujuan :</h5>
                                         <p class="card-text">
                                             <div class="mt-3">
                                                 <div class="form-check">
@@ -155,28 +155,18 @@
                                             </div></p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
-                                <div class="card border-primary border program pokokWakaf" style="display: none">
+                                <div class="card border-success border program pokokWakaf" style="display: none">
                                     <div class="card-body">
-                                        <h5 class="card-title">Persetujuan : (jika Pokok diwakafkan)</h5>
+                                        <h5 class="card-title">Persetujuan :</h5>
                                         <p class="card-text">
-                                            <div class="mt-3">
-                                                <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio1" name="persetujuan" value="persetujuan-pokok-wakaf-1" class="form-check-input">
-                                                    <label class="form-check-label" for="persetujuanRadio1">Simpanan berjangka dengan akad Mudharabah Muthlaqah</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio2" name="persetujuan" value="persetujuan-pokok-wakaf-2" class="form-check-input">
-                                                    <label class="form-check-label" for="persetujuanRadio2">Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio3" name="persetujuan" value="persetujuan-pokok-wakaf-3" class="form-check-input">
-                                                    <label class="form-check-label" for="persetujuanRadio3">Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="persetujuanRadio4" name="persetujuan" value="persetujuan-pokok-wakaf-4" class="form-check-input">
-                                                    <label class="form-check-label" for="persetujuanRadio4">Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.</label>
-                                                </div>
-                                            </div></p>
+                                            <ul class="ul-number">
+                                                <li>
+                                                    D'Syirkah ini menggunakan akad Wakaf Permanen
+                                                </li>
+                                                <li>
+                                                    Pokok di serahkan pengelolaannya ke Wakaf Peradaban dan nisbah dialokasikan sesuai dengan pilihan anggota
+                                                </li>
+                                            </ul>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                                 
@@ -184,7 +174,7 @@
                         </div>
                         <div>
                             <div class="col-lg program reguler" style="display: none">
-                                <div class="card border-secondary border">
+                                <div class="card" Style="border:1px solid goldenrod;">
                                     <div class="card-body">
                                         <h5 class="card-title">Alokasi Nisbah Reguler :</h5>
                                         <div class="mt-3">
@@ -235,20 +225,22 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card border-secondary border">
+                            <div class="col-md-6">
+                                <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Catatan :</h5>
-                                        <textarea name="catatan" id="" cols="70" rows="10"></textarea>
+                                        <h5 class="card-title ">Catatan :</h5>
+                                        <div class="">
+                                            <textarea class="border-success border col-md-12" name="catatan" id="" cols="45" rows="10"></textarea>
+                                        </div>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card border-secondary border">
+                            <div class="col-md-6">
+                                <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Tandatangan :</h5>
                                         <br/>
-                                        <div style="border:1px solid #000000;">
+                                        <div class="border-success border">
                                             <div id="sig" ></div>
                                         </div>
                                         <br/>
@@ -258,13 +250,43 @@
                                 </div> <!-- end card-->
                             </div>
                         </div><hr>
-
                         <br><div class="mb-3 text-center" >
-                            <button class="btn btn-primary" type="submit"> Simpan </button>
+                            <button class="btn text-white" style="background-color: #a3610a" type="submit"> Simpan </button>
                         </div>
                     </form>
                 </div>
-                
+                <!--Modal No rek -->
+                <div class="modal fade" id="no-rek" role="dialog" aria-labelledby="exampleModalToggleLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content bg-transparent">
+                        <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-xxl-7 col-lg-5">
+                                        <div class="card">
+                                            <!-- Logo-->
+                                            <div class="modal-header" style="background-color: #a3610a">
+                                                <div style="color: rgb(255, 255, 255);"><h4 id="modalHeading">Nomor Rekening Transfer</h4></div>
+                                                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                            </div>
+                                            <div class="card-body p-4">
+                                                <div class="text-center">
+                                                    <h3>BANK SYARIAH INDONESIA</h3>
+                                                    <h2 class="text-white" style="background-color: #a3610a">721 062 0197</h1>
+                                                    <h4>an. KSPPS SIMPUL BERKAH SINERGI</h4>
+                                                </div>
+                                            </div> <!-- end card-body -->
+                                        </div>
+                                        <!-- end card -->
+                                        <!-- end row -->
+                                    </div> <!-- end col -->
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- end page -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </div>
     </div>
 </section>

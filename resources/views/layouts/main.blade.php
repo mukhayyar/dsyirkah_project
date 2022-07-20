@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Landing Page | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <title>D'Syirkah | KSPPS SIMPUL BERKAH SINERGI</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -13,6 +13,7 @@
         <!-- App css -->
         <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+        <link href="/assets/css/custom.css" rel="stylesheet">
 
     </head>
 
@@ -36,9 +37,9 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
                     <!-- left menu -->
-                    <ul class="navbar-nav me-auto align-items-center" >
+                    <ul class="navbar-nav me-auto align-items-center activate-select" >
                         <li class="nav-item mx-lg-1">
-                            <a class="nav-link active" href="/">Home</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         @if(!Auth::check())
                         <li class="nav-item mx-lg-1" data-bs-toggle="modal" data-bs-target="#modal-not-login" >
@@ -67,8 +68,13 @@
                     <!-- right menu -->
                     <ul class="navbar-nav ms-auto align-items-center">
                         @if(!Auth::check())
+                        <li class="nav-item me-0 p-2">
+                            <a href="blank" class="btn btn-sm btn-light rounded-pill  d-lg-inline-flex" style="color: #a3610a">
+                                <i class="mdi mdi-account me-2"></i> Daftar Pemilik Usaha
+                            </a>
+                        </li>
                         <li class="nav-item me-0">
-                            <a class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#modal-login">
+                            <a class="btn btn-sm btn-light rounded-pill  d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#modal-login" style="color: #a3610a">
                                 <i class="mdi mdi-account me-2"></i> Masuk
                             </a>
                         </li>
@@ -102,25 +108,24 @@
         <div class="modal fade" id="modal-not-login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" >
-                    <div class="modal-header" style="background-color: rgb(38, 105, 252);">
-                        <h4 class="modal-title" id="modal-not-login" style="color: aliceblue;">Harap dibaca</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    <div class="modal-header" style="background-color: #a3610a">
+                        <h4 class="modal-title text-white" id="modal-not-login" >HALAMAN INI HANYA UNTUK ANGGOTA</h4>
+                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-hidden="true"></button>
                     </div>
                     <div class="modal-body text-center" >
                         <h4>D'Syirkah adalah Simpanan Berjangka dari KSPPS Simpul Berkah Sinergi</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi ipsa blanditiis eum
-                            aliquam perferendis facere quibusdam natus eaque neque sequi exercitationem necessitatibus nemo accusantium, hic reiciendis velit dolorem praesentium! Quia.
+                        <p>
                         </p>
                         <div style="margin-top: 2%;">
                             <div class="text-sm-center"><h5>Silahkan Hubungi Kami jika membutuhkan penjelasan lebih lanjut Atau langsung Daftar Sebagai Anggota</h5></div>
                             <div class="text-center mt-sm-0 mt-3 text-sm-center">
-                                <a class="btn btn-lg font-16 btn-danger" id="btn-proposal" data-bs-toggle="modal" data-bs-target="#modal-daftar">
-                                    <i class="mdi mdi-badge-account-outline"></i> Daftar Jadi Anggota </a>
-                                <a href="" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
+                                <a class="btn btn-lg font-16 btn-new text-white" id="btn-proposal" data-bs-toggle="modal" data-bs-target="#modal-daftar">
+                                    <i class="mdi mdi-badge-account-outline" ></i> Daftar Jadi Anggota </a>
+                                <a href="" class="btn btn-lg btn-new font-16 text-white" id="btn-Wa-center">
                                     <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>
                             </div><br>
                             <div class="text-sm-center"><h6>Sudah Memiliki Akun? Silahkan Masuk </h6></div>
-                            <a class="btn btn-lg font-16 btn-primary" data-bs-toggle="modal" data-bs-target="#modal-login" id="btn-Wa-center">
+                            <a class="btn btn-lg btn-new font-16 text-white" data-bs-toggle="modal" data-bs-target="#modal-login" id="btn-Wa-center">
                                 <i class="mdi mdi-account-box-outline"></i> Masuk Anggota</a>
                         </div>
                     </div>
@@ -137,11 +142,11 @@
                             <div class="col-xxl-7 col-lg-5">
                                 <div class="card">
                                     <!-- Logo -->
-                                    <div class="modal-header" style="background-color: #0652f8">
+                                    <div class="modal-header" style="background-color: #a3610a">
                                         <a href="/">
-                                            <span><img src="/assets/images/logo.png" alt="" height="18"></span>
+                                            <span><img src="/assets/images/logo.png" alt="" height="30"></span>
                                         </a>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-hidden="true"></button>
                                     </div>
 
                                     <div class="card-body p-4">
@@ -153,11 +158,11 @@
                                         <form action="/login" method="POST">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="emailaddress" class="form-label">Email address</label>
+                                                <label for="emailaddress" class="form-label">Email</label>
                                                 <input class="form-control" type="email" id="emailaddress" required name="email" placeholder="Enter your email">
                                             </div>
                                             <div class="mb-3">
-                                                <a href="{{route('password.email')}}" class="text-muted float-end"><small>Forgot your password?</small></a>
+                                                <a href="" class="text-muted float-end" data-bs-toggle="modal" data-bs-target="#modal-forgot-password"><small>Forgot your password?</small></a>
                                                 <label for="password" class="form-label">Password</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="password" id="password" class="form-control" name="password" placeholder="Enter your password">
@@ -173,7 +178,7 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3 mb-0 text-center">
-                                                <button class="btn btn-primary" type="submit"> Log In </button>
+                                                <button class="btn btn-new" type="submit"> Log In </button>
                                             </div>
                                         </form>
                                     </div>
@@ -205,11 +210,11 @@
                             <div class="col-xxl-7 col-lg-5">
                                 <div class="card">
                                     <!-- Logo-->
-                                    <div class="modal-header" style="background-color: #0652f8">
+                                    <div class="modal-header" style="background-color: #a3610a">
                                         <a href="/">
-                                            <span><img src="/assets/images/logo.png" alt="" height="18"></span>
+                                            <span><img src="/assets/images/logo.png" alt="" height="30"></span>
                                         </a>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-hidden="true"></button>
                                     </div>
 
                                     <div class="card-body p-4">
@@ -222,8 +227,8 @@
                                         <form action="/register" method="POST">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="fullname" class="form-label">Nomor Buku Anggota (BA)</label>
-                                                <input class="form-control" type="text" id="nomor_ba" name="nomor_ba" placeholder="contoh: 0.123.1234567" required data-toggle="input-mask" data-mask-format="0.000.0000000">
+                                                <label for="fullname" class="form-label">Nomor Buku Anggota</label>
+                                                <input class="form-control" type="text" id="nomor_ba" name="nomor_ba" placeholder="Your BA Number" required data-toggle="input-mask" data-mask-format="0.000.0000000">
                                             </div>
 
                                             <div class="mb-3">
@@ -233,11 +238,11 @@
 
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Nomor HP</label>
-                                                <input class="form-control" type="text" id="no_hp" name="no_hp" placeholder="Enter your name" required>
+                                                <input class="form-control" type="text" id="no_hp" name="no_hp" placeholder="Enter Contact Number" required>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="emailaddress" class="form-label">Email address</label>
+                                                <label for="emailaddress" class="form-label">Email</label>
                                                 <input class="form-control" type="email" id="email" name="email" required placeholder="Enter your email">
                                             </div>
 
@@ -253,7 +258,7 @@
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
                                                 <div class="input-group input-group-merge">
-                                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Enter your password">
+                                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Re-Enter your password">
                                                     <div class="input-group-text" data-password="false">
                                                         <span class="password-eye"></span>
                                                     </div>
@@ -268,7 +273,7 @@
                                             </div>
 
                                             <div class="mb-3 text-center" >
-                                                <button class="btn btn-primary" type="submit"> Daftar </button>
+                                                <button class="btn btn-new" type="submit"> Daftar </button>
                                             </div>
 
                                         </form>
@@ -281,10 +286,8 @@
                                 </div>
                                 <!-- end card -->
                                 <!-- end row -->
-
                             </div> <!-- end col -->
                         </div>
-
                         <!-- end row -->
                     </div>
                     <!-- end container -->
@@ -336,11 +339,28 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+        <div class="modal fade" id="modal-forgot-password" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" >
+                    <div class="modal-header" style="background-color: #a3610a">
+                        <h4 class="modal-title text-white" id="modal-not-login" >Lupa Password</h4>
+                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body text-center" >
+                        <h4>Silahkan Hubungi Customer Service Kami</h4>
+                        <div style="margin-top: 2%;">
+                            <div class="text-sm-center"><h5>Silahkan Hubungi kami Via Whatsapp jika anda lupa Pasword! </h5></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- START FOOTER -->
         <footer class="py-3 text-white"  style="background-color: #fefbea">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-3 col-sm-6">
                         <div class="text-left" style="color: #572423">
                             <h3>EOA CLUB D'Syirkah</h3><br>
                             <h4>D'Syirkah</h4>
@@ -368,8 +388,13 @@
                             </a>
                         </div>
                     </div>
+                    <div class="col-lg-6 text-left">
+                        <div class="text-md-end mt-3 me-lg d-none d-lg-block" style="position: relative; left: -85px;">
+                            <img src="assets/images/foot.png" alt=""  >
+                        </div>
+                    </div>
 
-                    <div class="col-lg-3 col-md-4 mt-3 mt-lg-0" style="color: #572423">
+                    <div class="col-lg-3 col-sm-6 mt-3 mt-lg-0" style="color: #572423">
                         <h4 class="">Company</h4><hr>
                         <ul class="list-unstyled ps-0 mb-0 mt-3 text-white" style="color: #572423">
                             <li class="mt-2"><a href=""  style="color: #572423">Website EOA Club</a></li>
@@ -383,7 +408,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="mt-3">
-                            <p class="text-white mt-4 text-center mb-0">© 2022 - <script>document.write(new Date().getFullYear())</script> EOA Club | D'Syirkah. KSPPS Simpul Berkah Sinergi
+                            <p class=" mt-4 text-center mb-0" style="color: #572423">© 2022 - <script>document.write(new Date().getFullYear())</script> EOA Club | D'Syirkah. KSPPS Simpul Berkah Sinergi
                                 </p>
                         </div>
                     </div>
