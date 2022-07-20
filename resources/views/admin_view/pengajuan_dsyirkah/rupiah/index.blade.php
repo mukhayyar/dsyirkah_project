@@ -16,7 +16,7 @@
                                             <li class="breadcrumb-item active">Pengajuan Rupiah</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">List Pengajuan Rupiah</h4>
+                                    <h4 class="page-title text-warning">List Pengajuan Rupiah</h4>
                                 </div>
                             </div>
                         </div>
@@ -52,6 +52,8 @@
                                                 <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
                                                 <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
                                             </div>
+                                            <span class="placeholder col-12 bg-warning"></span>
+                                            <span class="placeholder col-12 bg-success"></span>
                                         </div>
                 
                                         <div class="tab-content">

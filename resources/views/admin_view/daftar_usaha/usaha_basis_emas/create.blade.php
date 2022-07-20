@@ -37,14 +37,17 @@
                                 <div class="card">
                                     <div class="card-body py-0" data-simplebar style="max-height: 700px;"><br>
                                         <div class="mb-3">
-                                            <label for="judul_usaha" class="form-label">Judul Usaha</label>
+                                            <label for="judul_usaha" class="form-label">Nama Usaha</label>
                                             <input type="text" id="judul_usaha" name="judul_usaha" class="form-control" value="@if(isset($usaha)){{$usaha->judul}}@else{{ old('judul_usaha') }}@endif">
                                         </div>
                                         <div>
                                             <h5>Profile Usaha</h5>
                                             <textarea name="profil_usaha" class="ckeditor form-control" id="profil_usaha" cols="100" rows="10">@if(isset($usaha)){{$usaha->profil}}@else{{ old('profil_usaha') }}@endif</textarea>
                                         </div><br>
-
+                                        <div>
+                                            <h5>Kinerja Usaha</h5>
+                                            <textarea name="legalitas" class="ckeditor form-control" id="kinerjausaha" cols="100" rows="10"> </textarea>
+                                        </div><br>
                                         <div>
                                             <h5>Legalitas</h5>
                                             <textarea name="legalitas" class="ckeditor form-control" id="legalitas" cols="100" rows="10">@if(isset($usaha)){{$usaha->legalitas}}@else{{ old('legalitas') }}@endif</textarea>
@@ -146,6 +149,10 @@
                                                                 <div class="col-md">
                                                                     <label for="jangka_waktu" class="form-label">Jangka Waktu (dalam Angka)</label>
                                                                     <input class="form-control" name="jangka_waktu" type="number" id="jangka_waktu" value="@if(isset($usaha)){{$usaha->jangka_waktu}}@else{{ old('jangka_waktu') }}@endif" required>
+                                                                </div><br>
+                                                                <div class="col-md">
+                                                                    <label for="margin" class="form-label">Prediksi Margin</label>
+                                                                    <input class="form-control" type="text" id="pemilik" name="pemilik" value="@if(isset($usaha)){{$usaha->pemilik}}@else{{ old('pemilik') }}@endif">
                                                                 </div><br>
 
                                                                 <div class="col-md Muqayyadah" style="display:none;">

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Datatables | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <title>D'Syirkah | KSPPS SIMPUL BERKAH SINERGI</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -78,7 +78,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/users_dashboard/ganti_sandi" class="side-nav-link">
                                 <i class="uil-dialpad"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Ganti Sandi </span>
                             </a>
                         </li>
@@ -86,7 +85,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/users_dashboard/pengaturan_akun" class="side-nav-link">
                                 <i class="uil-users-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Pengaturan Akun </span>
                             </a>
                         </li>
@@ -98,7 +96,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/users_anggota/data_verifikasi_akun" class="side-nav-link">
                                 <i class="uil-shield-check"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Data Verifikasi Akun </span>
                             </a>
                         </li>
@@ -106,7 +103,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/users_anggota/pengaturan_akun" class="side-nav-link">
                                 <i class="uil-users-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Pengaturan Akun </span>
                             </a>
                         </li>
@@ -114,7 +110,6 @@
                         <li class="side-nav-item">
                             <a href="#" class="side-nav-link">
                                 <i class="uil-user-square"></i>
-                                <span class="badge bg-info float-end">2</span>
                                 <span> Akses Area Anggota </span>
                             </a>
                         </li>
@@ -126,7 +121,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/users_anggota/pengaturan_akun" class="side-nav-link">
                                 <i class="uil-users-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Pengaturan Akun </span>
                             </a>
                         </li>
@@ -138,7 +132,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/master/perwada" class="side-nav-link">
                                 <i class="uil-shutter-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Perwada </span>
                             </a>
                         </li>
@@ -146,7 +139,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/master/cif_anggota" class="side-nav-link">
                                 <i class="dripicons-user-id"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> CIF Anggota </span>
                             </a>
                         </li>
@@ -170,7 +162,6 @@
                         <li class="side-nav-item">
                             <a data-bs-toggle="collapse" href="#versidsyirkah" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
                                 <i class="uil-servers"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Versi DSyirkah </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -194,7 +185,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/master/item_emas" class="side-nav-link">
                                 <i class="mdi mdi-gold"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Item Emas </span>
                             </a>
                         </li>
@@ -206,7 +196,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/daftar_usaha/usaha_basis_emas" class="side-nav-link">
                                 <i class="uil-gold"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Usaha Basis Emas </span>
                             </a>
                         </li>
@@ -214,7 +203,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/daftar_usaha/usaha_basis_rupiah" class="side-nav-link">
                                 <i class="uil-money-insert"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Usaha Basis Rupiah </span>
                             </a>
                         </li>
@@ -234,7 +222,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/pengajuan_dsyirkah/emas" class="side-nav-link">
                                 <i class="uil-file-plus-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Emas </span>
                             </a>
                         </li>
@@ -242,7 +229,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/pengajuan_dsyirkah/rupiah" class="side-nav-link">
                                 <i class="uil-file-plus "></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Rupiah </span>
                             </a>
                         </li>
@@ -255,7 +241,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/dsyirkah_aktif/emas" class="side-nav-link">
                                 <i class="uil-file-check-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Emas </span>
                             </a>
                         </li>
@@ -263,7 +248,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/dsyirkah_aktif/rupiah" class="side-nav-link">
                                 <i class="uil-file-check"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Rupiah </span>
                             </a>
                         </li>
@@ -306,7 +290,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/dsyirkah_nonaktif/emas" class="side-nav-link">
                                 <i class="uil-file-times-alt"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Emas </span>
                             </a>
                         </li>
@@ -314,7 +297,6 @@
                         <li class="side-nav-item">
                             <a href="/admin/dsyirkah_nonaktif/rupiah" class="side-nav-link">
                                 <i class="uil-file-times"></i>
-                                <span class="badge bg-primary float-end">1</span>
                                 <span> Rupiah </span>
                             </a>
                         </li>

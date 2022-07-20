@@ -11,7 +11,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card ribbon-box">
-                                        <div class="ribbon ribbon-success float-start" style="background-color: rgb(65, 124, 253);"><i class="mdi mdi-progress-check me-1"></i>{{$usaha->status_dana}} </div>
+                                        <div class="ribbon ribbon-new float-start"><i class="mdi mdi-progress-check me-1"></i>{{$usaha->status_dana}} </div>
                                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                                     <ol class="carousel-indicators">
                                                         @foreach(json_decode($usaha->usahaImages->nama) as $image)
@@ -51,11 +51,17 @@
                                 <div class="col-md-6">
                                     <h3>Deskripsi Usaha :</h3>
                                     <hr>
-                                    <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                                    <ul class="nav nav-pills2 bg-nav-pills2 nav-justified mb-3">
                                         <li class="nav-item">
-                                            <a href="#home1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 btn-info active">
+                                            <a href="#home1" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 btn-info active" >
                                                 <i class="mdi mdi-home-variant d-md-none d-block"></i>
                                                 <span class="d-none d-md-block">Profile Usaha</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#usaha" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 text-white">
+                                                <i class="mdi mdi-television-guide d-md-none d-block"></i>
+                                                <span class="d-none d-md-block">Kinerja Usaha</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -84,6 +90,7 @@
                                     <p><b>Kategori : </b><small>{{$usaha->jenis_usaha}}</small></p>
                                     <p><b>Bentuk : </b><small>{{$usaha->jenis_form}}</small></p>
                                     <p><b>Kebutuhan : </b><small>@if($usaha->checkUsahaKebutuhan())Rp {{number_format($usaha->kebutuhan_rupiah,2,",",".")}},- @else {{$usaha->kebutuhan_emas}} @endif</small></p>
+                                    <p><b>Prediksi Bagi hasil: </b><small>5-10%</small>/Tahun</p>
                                     <p><b>Jangka Waktu : </b><small>{{$usaha->jangkaWaktu()}}</small></p>
                                     <p><b>Capaian : </b><small>@if($usaha->checkUsahaKebutuhan())Rp {{number_format($usaha->capaian_muqayyadah,2,",",".")}},- @else {{$usaha->capaian_muqayyadah}} @endif</small></p>
                                     <div class="progress" style="height: 25px; ">
@@ -93,12 +100,12 @@
                                 <div class="col-md-6" style="margin-top: 2%;">
                                     <div class="text-sm-center"><h5>Silahkan Hubungi Kami jika membutuhkan penjelasan lebih detail</h5></div>
                                     <div class="text-center mt-sm-0 mt-3 text-sm-center">
-                                        <a target="_blank" href="/proposal/{{$usaha->proposal}}" class="btn btn-lg font-16 btn-danger" id="btn-proposal">
-                                            <i class="mdi mdi-book"></i> Lihat Proposal </a>
-                                        <a href="https://wa.me/6281219974532" target="_blank" class="btn btn-lg font-16 btn-success" id="btn-Wa-center">
-                                            <i class="mdi mdi-whatsapp"></i> WA Customer Services </a>
-                                        <a href="/muqayyadah/usaha/{{$usaha->id}}/pengajuan" class="btn btn-lg font-16 btn-primary" id="btn-form-gabung" >
-                                            <i class="mdi mdi-clipboard-edit-outline"></i> Daftar </a>
+                                        <a target="_blank" href="/proposal/{{$usaha->proposal}}" class="btn btn-lg btn-new font-16" id="btn-proposal">
+                                            <i class="mdi mdi-book"></i> Lihat Proposal Usaha </a>
+                                        <a href="https://wa.me/6281219974532" target="_blank" class="btn btn-lg btn-new font-16" id="btn-Wa-center">
+                                            <i class="mdi mdi-whatsapp"></i> WA CS </a>
+                                        <a href="/muqayyadah/usaha/{{$usaha->id}}/pengajuan" class="btn btn-lg btn-new font-16" id="btn-form-gabung" >
+                                            <i class="mdi mdi-clipboard-edit-outline"></i> Pilih Usaha ini </a>
                                     </div>
                                 </div>
                             </div>
