@@ -90,11 +90,11 @@
                                                                 </div><br>
                                                                 <div class="col-md">
                                                                     <label for="user_create" class="form-label">User Create</label>
-                                                                    <input class="form-control" type="text" id="user_create" readonly="">
+                                                                    <input class="form-control" type="text" id="user_create" readonly="" value="@if(isset($usaha->user_create_usaha)){{$usaha->user_create_usaha->name}} | {{$usaha->user_create_usaha->role}}@endif">
                                                                 </div><br>
                                                                 <div class="col-md">
                                                                     <label for="user_edit" class="form-label">User Edit</label>
-                                                                    <input class="form-control" type="text" id="user_edit" readonly="">
+                                                                    <input class="form-control" type="text" id="user_edit" readonly="" value="@if(isset($usaha->user_edit_usaha)){{$usaha->user_edit_usaha->name}} | {{$usaha->user_edit_usaha->role}}@endif">
                                                                 </div>
                                                         </div> <!-- end card-body-->
                                                     </div> <!-- end card-->
@@ -109,9 +109,9 @@
                                                                     <label for="status_dana" class="form-label">Status Dana</label>
                                                                     <select class="form-select" id="status_dana" name="status_dana" required>
                                                                         <option value="">Pilih</option>
-                                                                        <option value="Draf" @if(isset($usaha))@if($usaha->status_dana == 'draf') selected @endif @elseif(old('status_dana') == 'draf') selected @endif>Draf</option>
-                                                                        <option value="Pengumpulan Dana" @if(isset($usaha))@if($usaha->status_dana == 'pengumpulan_dana') selected @endif @elseif(old('status_dana') == 'pengumpulan_dana') selected @endif>Pengumpulan Dana</option>
-                                                                        <option value="Sudah Terpenuhi" @if(isset($usaha))@if($usaha->status_dana == 'sudah_terpenuhi') selected @endif @elseif(old('status_dana') == 'sudah_terpenuhi') selected @endif>Sudah Terpenuhi</option>
+                                                                        <option value="Draf" @if(isset($usaha))@if($usaha->status_dana == 'Draf') selected @endif @elseif(old('status_dana') == 'Draf') selected @endif>Draf</option>
+                                                                            <option value="Pengumpulan Dana" @if(isset($usaha))@if($usaha->status_dana == 'Pengumpulan Dana') selected @endif @elseif(old('status_dana') == 'Pengumpulan Dana') selected @endif>Pengumpulan Dana</option>
+                                                                            <option value="Sudah Terpenuhi" @if(isset($usaha))@if($usaha->status_dana == 'Sudah Terpenuhi') selected @endif @elseif(old('status_dana') == 'Sudah Terpenuhi') selected @endif>Sudah Terpenuhi</option>
                                                                     </select>
                                                                 </div><br>
                                                                 <div class="col-md">
@@ -128,7 +128,7 @@
                                                                     <select class="form-select" id="checkMuqayyadah" name="jenis_akad" required>
                                                                         <option value="">Pilih</option>
                                                                         <option value="Mutlaqah" @if(isset($usaha))@if($usaha->jenis_akad == 'Mutlaqah') selected @endif @elseif(old('jenis_akad') == 'Mutlaqah') selected @endif>Mutlaqah</option>
-                                                                        <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'Muqayyadah') selected @endif>Muqqayyadah</option>
+                                                                        <option value="Muqayyadah" @if(isset($usaha))@if($usaha->jenis_akad == 'Muqayyadah') selected @endif @elseif(old('jenis_akad') == 'Muqayyadah') selected @endif>Muqayyadah</option>
                                                                     </select>
                                                                 </div><br>
                                                                 <div class="col-md Muqayyadah" style="display:none;">
@@ -138,7 +138,7 @@
                                                                         <option value="emas" @if(isset($usaha))@if($usaha->jenis_form == 'emas') selected @endif @elseif(old('jenis_form_bentuk') == 'emas') selected @endif>Emas</option>
                                                                     </select>
                                                                     <label for="kode_usaha" class="form-label">Kode Usaha</label>
-                                                                    <input class="form-control" type="text" name="kode_usaha" id="kode_usaha">
+                                                                    <input class="form-control" type="text" name="kode_usaha" id="kode_usaha" value="@if(isset($usaha)){{$usaha->kode_usaha}}@else{{ old('kode_usaha') }}@endif">
                                                                 </div><br>
 
                                                                 <div class="col-md">
@@ -257,7 +257,25 @@
                 $('#checkMuqayyadah').change(function(){
                     $('.Muqayyadah').hide();
                     $('.' + $(this).val()).show();
+                    var selected = $('#checkMuqayyadah')[0].selectedOptions[0].innerText;
+                    if(selected == "Muqayyadah")
+                    {
+                        $('#jenis_form_bentuk').attr("required","required");
+                        $('#kode_usaha').attr("required","required");
+                    } else {
+                        $('#jenis_form_bentuk').removeAttr("required");
+                        $('#kode_usaha').removeAttr("required");
+
+                    }
                 })
+
+                var selected = $('#checkMuqayyadah')[0].selectedOptions[0].innerText;
+                if(selected == "Muqayyadah")
+                {
+                    $('.Muqayyadah').show();
+                    $('#jenis_form_bentuk').attr("required","required");
+                    $('#kode_usaha').attr("required","required");
+                }
             })
         </script>
         @endpush

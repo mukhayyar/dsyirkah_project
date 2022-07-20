@@ -27,17 +27,18 @@ class PengajuanController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
-                        ['created_at','>=',$request->from_date],
                         ['status','!=','Reject'],
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
                         ['status','!=','Reject']
-                        ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
-                        ->orderBy("created_at","desc")->get();
+                    ])
+                    ->whereDate('created_at','>=',$request->from_date)
+                    ->whereDate('created_at','<=',$request->to_date)
+                    ->orderBy("created_at","desc")->get();
                 }
             } else {
                 $data = PengajuanEmas::with('versi','anggota')->where([
@@ -51,7 +52,7 @@ class PengajuanController extends Controller
                     return $btn;
                 })
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -60,8 +61,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -115,6 +119,7 @@ class PengajuanController extends Controller
             $generate_no = $pengajuan_emas->generate_no_sertifikat_mq($check_no, $pengajuan);
         }
         $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->tgl_persetujuan = $request->today;
         $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
@@ -152,16 +157,17 @@ class PengajuanController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
-                        ['status','=','Reject'],
-                        ['created_at','>=',$request->from_date]
+                        ['status','=','Reject']
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanEmas::with('versi','anggota')
                     ->where([
                         ['status','=','Reject']
                         ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate('created_at','>=',$request->from_date)
+                        ->whereDate('created_at','<=',$request->to_date)
                         ->orderBy("created_at","desc")->get();
                 }
             } else {
@@ -172,7 +178,7 @@ class PengajuanController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -181,8 +187,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -213,15 +222,16 @@ class PengajuanController extends Controller
                     $data = PengajuanRupiah::with('versi','anggota')
                     ->where([
                         ['status','!=','Reject'],
-                        ['created_at','>=',$request->from_date],
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanRupiah::with('versi','anggota')
                     ->where([
                         ['status','!=','Reject']
                         ])
-                        ->WhereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate('created_at','>=',$request->from_date)
+                        ->whereDate('created_at','<=',$request->to_date)
                         ->orderBy("created_at","desc")->get();
                 }
             } else {
@@ -236,7 +246,7 @@ class PengajuanController extends Controller
                     return $btn;
                 })
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -245,8 +255,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -255,7 +268,7 @@ class PengajuanController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $btn = '<a href="rupiah/detail/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-card-search-outline"></i></a>';
-                    if($row->status != 'Approved'){
+                    if($row->status == 'Pengajuan'){
                         $btn .= '<a href="rupiah/edit/'.$row->slug.'" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>';
                     }
                     return $btn;
@@ -292,6 +305,7 @@ class PengajuanController extends Controller
             $generate_no = $pengajuan_rupiah->generate_no_sertifikat_mq($check_no, $pengajuan);
         }
         $pengajuan->kode_sertifikat = $generate_no;
+        $pengajuan->tgl_persetujuan = $request->today;
         $pengajuan->save();
         if($pengajuan->kode_usaha){
             $usaha = Usaha::where('kode_usaha','=',$pengajuan->kode_usaha)->first();
@@ -329,16 +343,17 @@ class PengajuanController extends Controller
                 if($request->from_date == $request->to_date){
                     $data = PengajuanRupiah::with('versi','anggota')
                     ->where([
-                        ['status','=','Reject'],
-                        ['created_at','>=',$request->from_date]
+                        ['status','=','Reject']
                     ])
+                    ->whereDate('created_at',$request->from_date)
                     ->orderBy("created_at","desc")->get();
                 } else {
                     $data = PengajuanRupiah::with('versi','anggota')
                     ->where([
                         ['status','=','Reject']
                         ])
-                        ->whereBetween('created_at',[$request->from_date, $request->to_date])
+                        ->whereDate('created_at','>=',$request->from_date)
+                        ->whereDate('created_at','<=',$request->to_date)
                         ->orderBy("created_at","desc")->get();
                 }
             } else {
@@ -355,7 +370,7 @@ class PengajuanController extends Controller
                     return $btn;
                 })
                 ->editColumn('created_at',function($row){
-                    return date('Y-m-d h:i',strtotime($row->created_at));
+                    return date('Y-m-d G:i',strtotime($row->created_at));
                 })
                 ->editColumn('versi_syirkah',function($row){
                     return $row->versi->versi;
@@ -364,8 +379,11 @@ class PengajuanController extends Controller
                     if($row->status == 'Approved'){
                         $btn = "<span class='badge badge-success-lighten'>Approved</span>";
                         return $btn;
-                    } else {
+                    } else if($row->status == 'Pengajuan'){
                         $btn = "<span class='badge badge-warning-lighten'>Pengajuan</span>";
+                        return $btn;
+                    } else {
+                        $btn = "<span class='badge badge-danger-lighten'>Non Aktif</span>";
                         return $btn;
                     }
                 })
@@ -412,10 +430,10 @@ class PengajuanController extends Controller
         $pengajuan->jangka_waktu = $jangka_waktu;
         $pengajuan->jenis_syirkah = $request->jenis;
         $pengajuan->nisbah = $request->nisbah;
-        $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
         $pengajuan->nominal = str_replace(".","",$request->nominal);
         $pengajuan->alokasi_nisbah = $request->alokasiNisbah;
+        $pengajuan->persetujuan = $request->persetujuan;
         $pengajuan->catatan_edit = $request->catatan_edit;
         $pengajuan->save();
         return redirect('/admin/pengajuan_dsyirkah/rupiah')->with('success','Pengajuan sudah terkirim, untuk konfirmasi tolong hubungi admin');
@@ -437,8 +455,8 @@ class PengajuanController extends Controller
         $pengajuan->jangka_waktu = $jangka_waktu;
         $pengajuan->jenis_syirkah = $request->jenis;
         $pengajuan->nisbah = $request->nisbah;
-        $pengajuan->kode_usaha = $request->kode_usaha;
         $pengajuan->perpanjangan = $request->perpanjangan;
+        $pengajuan->persetujuan = $request->persetujuan;
         if($request->total_jumlah_emas != 'NaN'){
             $pengajuan->total_gramasi = $request->total_jumlah_emas;
         }

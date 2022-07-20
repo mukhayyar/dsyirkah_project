@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\UsahaImages;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,17 @@ class Usaha extends Model
     {
         return $this->hasOne(UsahaImages::class);
     }
+    
+    public function user_create_usaha()
+    {
+        return $this->belongsTo(User::class,'user_create');
+    }
+
+    public function user_edit_usaha()
+    {
+        return $this->belongsTo(User::class,'user_edit');
+    }
+    
     public function checkUsahaKebutuhan()
     {
         if(is_null($this->kebutuhan_emas))

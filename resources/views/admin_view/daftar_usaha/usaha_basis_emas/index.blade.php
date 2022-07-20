@@ -48,6 +48,7 @@
                                                             <th>No</th>
                                                             <th>Tanggal</th>
                                                             <th>Status Input</th>
+                                                            <th>Kode Usaha</th>
                                                             <th>Pemilik Usaha</th>
                                                             <th>Nama Usaha</th>
                                                             <th>Kategori</th>
@@ -85,6 +86,7 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'tanggal_post', name: 'tanggal_post'},
                 {data: 'status_post', name: 'status_post'},
+                {data: 'kode_usaha', name: 'kode_usaha'},
                 {data: 'pemilik', name: 'pemilik'},
                 {data: 'judul', name: 'judul'},
                 {data: 'jenis_usaha', name: 'jenis_usaha'},

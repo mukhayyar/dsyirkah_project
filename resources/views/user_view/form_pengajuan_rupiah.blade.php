@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="col-md">
                                             <label for="formFile" class="form-label">Upload Bukti Transfer</label>
-                                            <input class="form-control" type="file" id="formFile" name="buktiTransfer">
+                                            <input class="form-control" type="file" id="formFile" name="buktiTransfer" accept="image/png, image/jpg, image/jpeg">
                                         </div><hr><br>
                                     </div>
 
@@ -203,15 +203,15 @@
                                                 <label class="form-check-label" for="customRadio2">Nisbah di Wakafkan 25% melalui Wakaf Peradaban ; 75% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                <input type="radio" id="customRadio3" name="alokasiNisbah" value="Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio3">Nisbah di Wakafkan 50% melalui Wakaf Peradaban ; 50% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input">
+                                                <input type="radio" id="customRadio4" name="alokasiNisbah" value="Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio4">Nisbah di Wakafkan 75% melalui Wakaf Peradaban ; 25% dimasukkan ke Simpanan Berkah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input">
+                                                <input type="radio" id="customRadio5" name="alokasiNisbah" value="Nisbah semua di wakafkan melalui Wakaf Peradaban" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio5">Nisbah semua di wakafkan melalui Wakaf Peradaban</label>
                                             </div>
                                         </div> 
@@ -224,15 +224,15 @@
                                         <h5 class="card-title">Alokasi Nisbah Wakaf :</h5>
                                         <div class="mt-3">
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio1" name="alokasiNisbah" value="100% sedekah" class="form-check-input">
+                                                <input type="radio" id="customRadio6" name="alokasiNisbah" value="100% sedekah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio6">100% sedekah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input">
+                                                <input type="radio" id="customRadio7" name="alokasiNisbah" value="40% anggota ; 60% sedekah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio7">40% anggota ; 60% sedekah</label>
                                             </div>
                                             <div class="form-check">
-                                                <input type="radio" id="customRadio2" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input">
+                                                <input type="radio" id="customRadio8" name="alokasiNisbah" value="25% anggota ; 75% sedekah" class="form-check-input">
                                                 <label class="form-check-label" for="customRadio8">25% anggota ; 75% sedekah</label>
                                             </div>
                                         </div> 
@@ -336,7 +336,27 @@
         $('#pilihanProgram').change(function(){
             $('.program').hide();
             $('.' + $(this).val()).show();
+            var selected = $('#pilihanProgram')[0].selectedOptions[0].innerText;
+            if(selected == "Reguler")
+            {
+                $('#perpanjangan').attr("required","required");
+                $('#bulanPil').attr("required","required");
+            } else {
+                $('#perpanjangan').removeAttr("required");
+                $('#bulanPil').removeAttr("required");
+
+            }
         })
+        var selected = $('#pilihanProgram')[0].selectedOptions[0].innerText;
+        if(selected == "Reguler")
+        {
+            $('.program').hide();
+            $('.reguler').show();
+            $('#perpanjangan').attr("required","required");
+            $('#bulanPil').attr("required","required");
+        } else if(selected == "Pokok Diwakafkan") {
+            $('.pokokWakaf').show();
+        }
     });
     $(document).ready(function(){
         var id_versi = $("#id_versi").val();

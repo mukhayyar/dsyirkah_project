@@ -2,7 +2,7 @@
 @section('content')
 <!-- Start Content-->
 <div class="container-fluid">
-                        
+    <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -25,6 +25,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2 input-daterange">
+                        {{-- <div class="col-sm-2">
+                            <select name="filter_data" id="filter_data">
+                                <option value="tgl_persetujuan">Tanggal Persetujuan</option>
+                                <option value="tgl_akad_baru">Tanggal Akad Baru</option>
+                                <option value="jatuh_tempo_akan_datang">Jatuh Tempo</option>
+                            </select>
+                        </div> --}}
                         <div class="col-sm-3">
                             <div class="row mb-3">
                                 <label for="colFormLabelSm" class="col-4 col-form-label">Min. Date:</label>
@@ -55,7 +62,9 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Slesai</th>
+                                        <th>Kode Pengajuan</th>
                                         <th>Kode Sertifikat</th>
+                                        <th>Kode Usaha</th>
                                         <th>Nomor BA</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis D'Syirkah</th>
@@ -147,7 +156,9 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'tanggal_non_aktif', name: 'tanggal_non_aktif'},
+                    {data: 'pengajuan.no_pengajuan', name: 'pengajuan.no_pengajuan'},
                     {data: 'kode_sertifikat', name: 'kode_sertifikat'},
+                    {data: 'pengajuan.kode_usaha', name: 'pengajuan.kode_usaha'},
                     {data: 'nomor_ba', name: 'nomor_ba'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
                     {data: 'jenis', name: 'jenis'},
@@ -181,6 +192,24 @@
             $('.data-table').DataTable().destroy();
             load_data();
         });
+        $(document).on('click', '#reaktivasi', function () {
+            var kode = $(this)[0].dataset.kode_sertifikat;
+            var id = $(this)[0].dataset.id;
+            if(confirm(`Yakin akan merestore syirkah dengan kode sertifikat ${kode}?`)){
+                $.ajax({
+                        type: "POST",
+                        url: "/admin/dsyirkah_nonaktif/rupiah/"+id+"/reaktivasi",
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
+                        },
+                        success: function(hasil){
+                            alert(hasil.success);
+                        }
+                    })
+                $('.data-table').DataTable().destroy();
+                load_data();
+            }
+        })
     });
 </script>
 @endpush

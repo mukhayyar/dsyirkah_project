@@ -26,8 +26,15 @@
                 <div class="card-body">
                     <!-- Hanya Sementara -->
                     <div class="row mb-2 input-daterange">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <a href="rupiah/export" class="btn btn-success mb-2"><i class="mdi mdi-database-export"></i> Export</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <select name="filter_data" id="filter_data">
+                                <option value="tgl_persetujuan">Tanggal Persetujuan</option>
+                                <option value="tgl_akad_baru">Tanggal Akad Baru</option>
+                                <option value="jatuh_tempo_akan_datang">Jatuh Tempo</option>
+                            </select>
                         </div>
                         <div class="col-sm-3">
                             <div class="row mb-3">
@@ -62,6 +69,7 @@
                                         <th>Tanggal Persetujuan</th>
                                         <th>No Pengajuan</th>
                                         <th>Kode Sertifikat</th>
+                                        <th>Kode Usaha</th>
                                         <th>Nomor BA</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis D'Syirkah</th>
@@ -69,6 +77,7 @@
                                         <th>Pilihan Program</th>
                                         <th>Referensi</th>
                                         <th>Total Rupiah</th>
+                                        <th>Tanggal Akad Baru</th>
                                         <th>Jangka Waktu</th>
                                         <th>Jatuh Tempo</th>
                                         <th>Perpanjangan</th>
@@ -178,20 +187,21 @@
         });
 
         load_data();
-        function load_data(from_date = '', to_date = ''){
+        function load_data(from_date = '', to_date = '', filter_data){
             $('.data-table').DataTable({
                 "scrollX": true,
                 processing: true,
                 serverSide: true,
                 ajax: {
                     url: "",
-                    data:{from_date:from_date, to_date:to_date}
+                    data:{from_date:from_date, to_date:to_date, filter_data:filter_data}
                 },
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'tgl_persetujuan', name: 'tgl_persetujuan'},
                     {data: 'no_pengajuan', name: 'no_pengajuan'},
                     {data: 'kode_sertifikat', name: 'kode_sertifikat'},
+                    {data: 'kode_usaha', name: 'kode_usaha'},
                     {data: 'nomor_ba', name: 'nomor_ba'},
                     {data: 'nama_lengkap', name: 'nama_lengkap'},
                     {data: 'jenis_syirkah', name: 'jenis_syirkah'},
@@ -199,6 +209,7 @@
                     {data: 'pilihan_program', name: 'pilihan_program'},
                     {data: 'referensi', name: 'referensi'},
                     {data: 'nominal', name: 'nominal'},
+                    {data: 'tgl_akad_baru', name: 'tgl_akad_baru'},
                     {data: 'jangka_waktu', name: 'jangka_waktu'},
                     {data: 'jatuh_tempo', name: 'jatuh_tempo'},
                     {data: 'perpanjangan', name: 'perpanjangan'},
@@ -212,10 +223,11 @@
         $('#filter').click(function(){
             var from_date = $('#from_date').val();
             var to_date = $('#to_date').val();
+            var filter_data = $('#filter_data').val();
             if(from_date != '' &&  to_date != '')
             {
                 $('.data-table').DataTable().destroy();
-                load_data(from_date, to_date);
+                load_data(from_date, to_date, filter_data);
             }
             else
             {

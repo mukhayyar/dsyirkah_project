@@ -102,11 +102,11 @@
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
@@ -165,18 +165,9 @@
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
-                                                    Simpanan berjangka dengan akad Mudharabah Muthlaqah
+                                                    {{$pengajuan->persetujuan()}}
                                                 </li>
-                                                <li>
-                                                    Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                <li>
-                                                    Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                </li>
-                                                <li>
-                                                    Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
-                                                </li>
-                                            </ul>
-                                        Tergantung Dari pilihan Form</p>
+                                            </ul></p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                                 
@@ -199,7 +190,7 @@
                                                     <th>Status</th>
                                                     <th>Action
                                                         @if($pengajuan->status == "Approved")
-                                                        <a href="" class="action-icon" data-bs-toggle="modal" data-bs-target="#modal-tambah-dataperpanjangan"><i class="mdi mdi-plus-box"></i></a>
+                                                        <a href="" class="action-icon" id="modalTambahPengajuan" data-bs-toggle="modal" data-bs-target="#modal-tambah-dataperpanjangan"><i class="mdi mdi-plus-box"></i></a>
                                                         @endif
                                                     </th>
                                                 </tr>
@@ -212,8 +203,8 @@
                                                         <td class="tambah-sebelum-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
                                                         <input type="hidden" name="old_id_perpanjangan[]" value="{{$perpanjangan->id}}">
                                                         <input class="tambah-sebelum-{{$loop->index+1}}" type="hidden" name="old_jatuh_tempo_sebelumnya[]" value="{{$perpanjangan->jatuh_tempo_sebelumnya}}">
-                                                        <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru}}</td>
-                                                        <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru}}">
+                                                        <td class="tambah-akad-{{$loop->index+1}}">{{$perpanjangan->tgl_akad_baru()}}</td>
+                                                        <input class="tambah-akad-{{$loop->index+1}}" type="hidden" name="old_tgl_akad_baru[]" value="{{$perpanjangan->tgl_akad_baru()}}">
                                                         <td class="tambah-jangka-{{$loop->index+1}}">{{$perpanjangan->jangka_waktu}}</td>
                                                         <td class="tambah-mendatang-{{$loop->index+1}}">{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
                                                         <td class="tambah-nisbah-{{$loop->index+1}}">{{$perpanjangan->nisbah}}</td>
@@ -230,9 +221,45 @@
                                                             @endif
                                                             @if($perpanjangan->status == "Approved" || $perpanjangan->status == "Pengajuan")
                                                             <a href="javascript:void(0);" id="editRow" data-index="{{$loop->index+1}}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                                            @if($loop->index != 0)
                                                             <a href="javascript:void(0);" id="removeRow" class="action-icon" data-index="{{$loop->index+1}}" data-id_rincian_perpanjangan="{{$perpanjangan->id}}"> <i class="mdi mdi-delete"></i></a>
                                                             @endif
+                                                            @endif
                                                         </td>
+                                                    </tr>
+                                                    @endforeach
+                                                        </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div slass="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <h5>Rincian Perpanjangan Terhapus</h5>
+                                            <table class="table mb-0">
+                                                <thead class="table-light">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Jatuhtempo Sebelumnya</th>
+                                                    <th>Tgl Akad Baru</th>
+                                                    <th>Jangka Waktu</th>
+                                                    <th>Jatuhtempo Akandatang</th>
+                                                    <th>Nisbah</th>
+                                                </tr>
+                                                </thead>
+                                                    <tbody>
+                                                    <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
+                                                    @foreach($pengajuan->perpanjangan_emas()->onlyTrashed()->get() as $perpanjangan)
+                                                    <tr>
+                                                        <td>{{$loop->index+1}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru()}}</td>
+                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td>{{$perpanjangan->nisbah}}</td>
                                                     </tr>
                                                     @endforeach
                                                         </tbody>
@@ -643,20 +670,22 @@
             $('#modal-tambah-dataperpanjangan').modal("hide");
         }); 
         $(document).on('click', '#removeRow', function () {
-            var index = $(this)[0].dataset.index;
-            $(this).closest(`#item-${index}`).remove();
-            var id_rincian_perpanjangan = $(this)[0].dataset.id_rincian_perpanjangan;
-            if(id_rincian_perpanjangan){
-                $.ajax({
-                    type: "DELETE",
-                    url: "/admin/dsyirkah_aktif/emas/delete/perpanjangan/"+id_rincian_perpanjangan,
-                    beforeSend: function(xhr){
-                        xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
-                    },
-                    success: function(hasil){
-                        console.log("berhasil dihapus");
-                    }
-                })
+            if(confirm("Yakin akan menghapus data perpanjangan ini?")){
+                var index = $(this)[0].dataset.index;
+                $(this).closest(`#item-${index}`).remove();
+                var id_rincian_perpanjangan = $(this)[0].dataset.id_rincian_perpanjangan;
+                if(id_rincian_perpanjangan){
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/admin/dsyirkah_aktif/emas/delete/perpanjangan/"+id_rincian_perpanjangan,
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-CSRF-TOKEN', $('#token').val());
+                        },
+                        success: function(hasil){
+                            alert("berhasil dihapus");
+                        }
+                    })
+                }
             }
         });
         $(document).on('click', '#activateRow', function () {
@@ -669,7 +698,11 @@
             $('#modal-tambah-title')[0].textContent = 'Edit Data Perpanjangan';
             var index = $(this)[0].dataset.index;
             var jatuh_tempo_sebelumnya = $(`input.tambah-sebelum-${index}`)[0].value;
+            jatuh_tempo_sebelumnya = new Date(jatuh_tempo_sebelumnya);
+            jatuh_tempo_sebelumnya = `${jatuh_tempo_sebelumnya.getFullYear()}-${jatuh_tempo_sebelumnya.getMonth()+1 >= 10 ? jatuh_tempo_sebelumnya.getMonth()+1 : "0"+(jatuh_tempo_sebelumnya.getMonth()+1)}-${jatuh_tempo_sebelumnya.getDate()}`
             var tgl_akad_baru = $(`input.tambah-akad-${index}`).val();
+            tgl_akad_baru = new Date(tgl_akad_baru);
+            tgl_akad_baru = `${tgl_akad_baru.getFullYear()}-${tgl_akad_baru.getMonth()+1 >= 10 ? tgl_akad_baru.getMonth()+1 : "0"+(tgl_akad_baru.getMonth()+1)}-${tgl_akad_baru.getDate()}`
             var jangka_waktu = $(`input.tambah-jangka-${index}`).val();
             var jatuh_tempo_mendatang = $(`input.tambah-mendatang-${index}`).val();
             var nisbah = $(`input.tambah-nisbah-${index}`).val();
@@ -718,6 +751,22 @@
             $('body').on('click','.btn-close',function() {
                 $('#modal-tambah-title')[0].textContent = 'Tambah Data Perpanjangan';
                 $('#form_tambah_data_perpanjangan').trigger('reset');
+            })
+        });
+        $(document).on('click', '#modalTambahPengajuan', function () {
+            var form = $("#form_tambah_perpanjangan tr");
+            var length = $("#form_tambah_perpanjangan tr").length;
+            var jatuh_tempo_sebelumnya = form[length-1].cells[4].innerText;
+            $('#jatuh_tempo_sebelumnya').val(jatuh_tempo_sebelumnya);
+            $('#tgl_akad_baru').val(jatuh_tempo_sebelumnya);
+            $("body").on("change","#jangka_waktu", function(){
+                var selected = $(this)[0].options.selectedIndex;
+                var bulan = $(this)[0].options[selected].value;
+                var tgl_akad_baru = new Date($("#tgl_akad_baru")[0].value);
+                var jatuh_tempo_mendatang = new Date(tgl_akad_baru);
+                jatuh_tempo_mendatang.setMonth(jatuh_tempo_mendatang.getMonth()+(bulan-1)+1);
+                jatuh_tempo_mendatang = `${jatuh_tempo_mendatang.getFullYear()}-${jatuh_tempo_mendatang.getMonth()+1 >= 10 ? jatuh_tempo_mendatang.getMonth()+1 : "0"+(jatuh_tempo_mendatang.getMonth()+1)}-${jatuh_tempo_mendatang.getDate()}`
+                $('#jatuh_tempo_mendatang').val(jatuh_tempo_mendatang);
             })
         });
         $(document).on('click', '#updatePengajuan', function () {

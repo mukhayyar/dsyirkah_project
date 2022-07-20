@@ -187,6 +187,9 @@ class PageController extends Controller
     {
         $checkForm = Usaha::find($id);
         $kode_usaha = $checkForm->kode_usaha;
+        if(is_null($kode_usaha)){
+            return redirect()->back()->with('warning','Kode Usaha Belum diatur');
+        }
         $jenis_form = $checkForm->jenis_form;
         $kebutuhan = $checkForm->kebutuhan_emas ? $checkForm->kebutuhan_emas : $checkForm->kebutuhan_rupiah;
         $kebutuhan_len = $checkForm->kebutuhan_rupiah ? strlen((string)$checkForm->kebutuhan_rupiah) : 19;

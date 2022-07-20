@@ -64,6 +64,7 @@
                                                             <th>No</th>
                                                             <th>Tanggal Pengajuan</th>
                                                             <th>Nomor Pengajuan</th>
+                                                            <th>Kode Usaha</th>
                                                             <th>Nomor BA</th>
                                                             <th>Nama Lengkap</th>
                                                             <th>Jenis D'Syirkah</th>
@@ -117,6 +118,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'no_pengajuan', name: 'no_pengajuan'},
+                    {data: 'kode_usaha', name: 'kode_usaha'},
                     {data: 'anggota.nomor_ba', name: 'anggota.nomor_ba'},
                     {data: 'anggota.nama_lengkap', name: 'anggota.nama_lengkap'},
                     {data: 'jenis_syirkah', name: 'jenis_syirkah'},

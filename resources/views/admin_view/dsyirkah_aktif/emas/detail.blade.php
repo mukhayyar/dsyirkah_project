@@ -60,66 +60,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-<<<<<<< HEAD
-                                        <tr>
-                                            <td>Tanggal Persetujuan</td>
-                                            <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kode DSyirkah</td>
-                                            <td>: {{$pengajuan->no_pengajuan}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kode Sertifikat</td>
-                                            <td>: {{$pengajuan->no_pengajuan}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Referensi</td>
-                                            <td>: {{$pengajuan->referensi}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Pilihan Program</td>
-                                            <td>: {{$pengajuan->pilihan_program}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenis Syirkah</td>
-                                            <td>: {{$pengajuan->jenis_syirkah}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Versi Syirkah</td>
-                                            <td>: {{$pengajuan->versi->versi}}</td>
-                                        </tr>
-                                        @if($pengajuan->kode_usaha)
-                                        <tr>
-                                            <td>Kode Usaha</td>
-                                            <td>: {{$pengajuan->kode_usaha}}</td>
-                                        </tr>
-                                        @endif
-                                        <tr>
-                                            <td>Jangka Waktu</td>
-                                            <td>: {{$pengajuan->jangka_waktu()}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jatuh Tempo</td>
-                                            <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->first()->jatuh_tempo_akan_datang}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nisbah</td>
-                                            <td>: {{$pengajuan->nisbah}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alokasi Nisbah</td>
-                                            <td>: {{$pengajuan->alokasi_nisbah}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Perpanjangan</td>
-                                            <td>: {{$pengajuan->perpanjangan}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total Gramasi</td>
-                                            <td>: {{$pengajuan->total_gramasi()}}</td>
-                                        </tr>
-=======
                                     <tr>
                                         <td>Tanggal Persetujuan</td>
                                         <td>: {{$pengajuan->perpanjangan_emas->get(0)->tgl_akad_baru}}</td>
@@ -160,11 +100,11 @@
                                     </tr>
                                     <tr>
                                         <td>Jatuh Tempo</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->jatuh_tempo_akan_datang}}</td>
                                     </tr>
                                     <tr>
                                         <td>Nisbah</td>
-                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","asc")->where('status','Approved')->first()->nisbah}}</td>
+                                        <td>: {{$pengajuan->perpanjangan_emas()->orderBy("jatuh_tempo_akan_datang","desc")->where('status','Approved')->first()->nisbah}}</td>
                                     </tr>
                                     <tr>
                                         <td>Alokasi Nisbah</td>
@@ -178,7 +118,6 @@
                                         <td>Total Gramasi</td>
                                         <td>: {{$pengajuan->total_gramasi()}}</td>
                                     </tr>
->>>>>>> origin
                                     </tbody>
                                 </table>
                             </div><br>
@@ -219,18 +158,9 @@
                                         <p class="card-text">
                                             <ul class="ul-number">
                                                 <li>
-                                                    Simpanan berjangka dengan akad Mudharabah Muthlaqah
+                                                    {{$pengajuan->persetujuan()}}
                                                 </li>
-                                                <li>
-                                                    Simpanan berjangka ini tidak dapat dicairkan sebelum tanggal jatuh tempo</li>
-                                                <li>
-                                                    Simpanan Berjangka Dsyirkah minimal 100 Gram dengan jangka waktu 12 Bulan Mendapatkan Hadiah 1 Gram Gold / 100 Gram dengan jangka waktu 24 Bulan Mendapatkan Hadiah 2 Gram Gold
-                                                </li>
-                                                <li>
-                                                    Saya siap mengembalikan hadiah jika tidak sesuai dengan akad.
-                                                </li>
-                                            </ul>
-                                        Tergantung Dari pilihan Form</p>
+                                            </ul></p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
                                 
@@ -249,11 +179,44 @@
                                                     <th>Jangka Waktu</th>
                                                     <th>Jatuhtempo Akandatang</th>
                                                     <th>Nisbah</th>
-                                                    <th>Status</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach($pengajuan->perpanjangan_emas as $perpanjangan)
+                                                    <tr>
+                                                        <td>{{$loop->index+1}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
+                                                        <td>{{$perpanjangan->tgl_akad_baru}}</td>
+                                                        <td>{{$perpanjangan->jangka_waktu}}</td>
+                                                        <td>{{$perpanjangan->jatuh_tempo_akan_datang}}</td>
+                                                        <td>{{$perpanjangan->nisbah}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div slass="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="table-responsive">
+                                            <h5>Rincian Perpanjangan Terhapus</h5>
+                                            <table class="table mb-0">
+                                                <thead class="table-light">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Jatuhtempo Sebelumnya</th>
+                                                    <th>Tgl Akad Baru</th>
+                                                    <th>Jangka Waktu</th>
+                                                    <th>Jatuhtempo Akandatang</th>
+                                                    <th>Nisbah</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($pengajuan->perpanjangan_emas()->onlyTrashed()->get() as $perpanjangan)
                                                     <tr>
                                                         <td>{{$loop->index+1}}</td>
                                                         <td>{{$perpanjangan->jatuh_tempo_sebelumnya}}</td>
@@ -456,12 +419,33 @@
 <!-- print -->
 <div style="display:none;">
     <div id="emas_aktif_print">
+    <div class="row">
+        <div class="col">
+            <div class="headlabel">
+            <h4> KPPS SIMPUL BERKAH SINERGI</h4>
+<p class="subheadlabel">013865/BH/M.KUKM.2/VII/2019</p>
+            </div>
+
+        </div>
+        <div class="col">
+            <img src="{{asset('images/logo-simpul.png')}}"  width="50%"  class="logo-center" alt="">
+        </div>
+    </div>
+    <div>
+        <center>
+        <p class="subheadlabel">Pengajuan Simpanan Berjangka D’Syirkah</p>
+        </center>
+        <center>
+        <p class="subheadlabel">Simpanan Berjangka D’Syirkah</p>
+            </center>
+        
+            <hr style="border-top: 1px solid;">
         <!-- atas -->
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-4">
                 <p class="font-14"><strong>Nomor Buku Anggota :</strong> {{$pengajuan->anggota->nomor_ba}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-4">
                 <p class="font-14"><strong>Nama Lengkap :</strong> {{$pengajuan->anggota->nama_lengkap}}</p>
             </div>
         </div>
@@ -705,7 +689,7 @@
         a.document.write('<html>');
         a.document.write('<head>');
         a.document.write('<style> table tr th{width:120px;border-bottom:1px solid gray;border-collapse: collapse;}</style>');
-        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/>');
+        a.document.write('<link href="{{ URL::asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style"/><style>.logo-center { display: block;margin-left: auto;margin-right: auto; width: 40%;} </style>');
         a.document.write('</head>');
         a.document.write('<body>');
         a.document.write(divContents);
